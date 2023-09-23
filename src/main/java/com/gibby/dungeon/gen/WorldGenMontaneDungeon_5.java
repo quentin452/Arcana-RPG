@@ -24,24 +24,24 @@ public class WorldGenMontaneDungeon_5 extends WorldGenerator implements IWorldGe
     }
     
     public boolean generate(final World world, final Random rand, final int i, final int j, final int k) {
-        this.setBlock(world, i + 0, j + 38, k + 100, Blocks.cobblestone_wall, 0);
-        this.setBlock(world, i + 0, j + 38, k + 101, Blocks.stonebrick, 0);
-        this.setBlock(world, i + 0, j + 38, k + 102, Blocks.stonebrick, 0);
-        this.setBlock(world, i + 0, j + 38, k + 103, Blocks.stonebrick, 0);
-        this.setBlock(world, i + 0, j + 38, k + 104, Blocks.stonebrick, 0);
-        this.setBlock(world, i + 0, j + 38, k + 105, Blocks.stonebrick, 0);
-        this.setBlock(world, i + 0, j + 38, k + 106, Blocks.stonebrick, 0);
-        this.setBlock(world, i + 0, j + 38, k + 107, Blocks.stonebrick, 0);
-        this.setBlock(world, i + 0, j + 38, k + 108, Blocks.cobblestone_wall, 0);
-        this.setBlock(world, i + 0, j + 39, k + 100, Blocks.cobblestone_wall, 0);
-        this.setBlock(world, i + 0, j + 39, k + 101, Blocks.stonebrick, 0);
-        this.setBlock(world, i + 0, j + 39, k + 102, Blocks.stonebrick, 0);
-        this.setBlock(world, i + 0, j + 39, k + 103, Blocks.stonebrick, 0);
-        this.setBlock(world, i + 0, j + 39, k + 104, Blocks.stonebrick, 0);
-        this.setBlock(world, i + 0, j + 39, k + 105, Blocks.stonebrick, 0);
-        this.setBlock(world, i + 0, j + 39, k + 106, Blocks.stonebrick, 0);
-        this.setBlock(world, i + 0, j + 39, k + 107, Blocks.stonebrick, 0);
-        this.setBlock(world, i + 0, j + 39, k + 108, Blocks.cobblestone_wall, 0);
+        this.setBlock(world, i, j + 38, k + 100, Blocks.cobblestone_wall, 0);
+        this.setBlock(world, i, j + 38, k + 101, Blocks.stonebrick, 0);
+        this.setBlock(world, i, j + 38, k + 102, Blocks.stonebrick, 0);
+        this.setBlock(world, i, j + 38, k + 103, Blocks.stonebrick, 0);
+        this.setBlock(world, i, j + 38, k + 104, Blocks.stonebrick, 0);
+        this.setBlock(world, i, j + 38, k + 105, Blocks.stonebrick, 0);
+        this.setBlock(world, i, j + 38, k + 106, Blocks.stonebrick, 0);
+        this.setBlock(world, i, j + 38, k + 107, Blocks.stonebrick, 0);
+        this.setBlock(world, i, j + 38, k + 108, Blocks.cobblestone_wall, 0);
+        this.setBlock(world, i, j + 39, k + 100, Blocks.cobblestone_wall, 0);
+        this.setBlock(world, i, j + 39, k + 101, Blocks.stonebrick, 0);
+        this.setBlock(world, i, j + 39, k + 102, Blocks.stonebrick, 0);
+        this.setBlock(world, i, j + 39, k + 103, Blocks.stonebrick, 0);
+        this.setBlock(world, i, j + 39, k + 104, Blocks.stonebrick, 0);
+        this.setBlock(world, i, j + 39, k + 105, Blocks.stonebrick, 0);
+        this.setBlock(world, i, j + 39, k + 106, Blocks.stonebrick, 0);
+        this.setBlock(world, i, j + 39, k + 107, Blocks.stonebrick, 0);
+        this.setBlock(world, i, j + 39, k + 108, Blocks.cobblestone_wall, 0);
         this.setBlock(world, i + 1, j + 38, k + 100, Blocks.cobblestone_wall, 0);
         this.setBlock(world, i + 1, j + 38, k + 101, Blocks.stonebrick, 0);
         this.setBlock(world, i + 1, j + 38, k + 102, Blocks.stonebrick, 0);
@@ -61,7 +61,7 @@ public class WorldGenMontaneDungeon_5 extends WorldGenerator implements IWorldGe
         this.setBlock(world, i + 1, j + 39, k + 107, Blocks.stonebrick, 0);
         this.setBlock(world, i + 1, j + 39, k + 108, Blocks.cobblestone_wall, 0);
         Dungeons.spawner(world, i + 1, j + 40, k + 104, 37, 3);
-        Dungeons.spawner(world, i + 0, j + 40, k + 104, 38, 1);
+        Dungeons.spawner(world, i, j + 40, k + 104, 38, 1);
         this.setBlock(world, i + 2, j + 38, k + 100, Blocks.stonebrick, 0);
         this.setBlock(world, i + 2, j + 38, k + 101, Blocks.stonebrick, 0);
         this.setBlock(world, i + 2, j + 38, k + 102, Blocks.stonebrick, 0);

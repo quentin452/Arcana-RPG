@@ -24,20 +24,20 @@ public class WorldGenMontaneDungeon_2 extends WorldGenerator implements IWorldGe
     }
     
     public boolean generate(final World world, final Random rand, final int i, final int j, final int k) {
-        this.setBlock(world, i + 0, j + 35, k + 31, Blocks.stonebrick, 0);
-        this.setBlock(world, i + 0, j + 35, k + 32, (Block)Blocks.wooden_slab, 8);
-        this.setBlock(world, i + 0, j + 35, k + 36, (Block)Blocks.wooden_slab, 8);
-        this.setBlock(world, i + 0, j + 35, k + 37, Blocks.stonebrick, 0);
-        this.setBlock(world, i + 0, j + 36, k + 31, Blocks.stonebrick, 0);
-        this.setBlock(world, i + 0, j + 36, k + 32, Blocks.stonebrick, 0);
-        this.setBlock(world, i + 0, j + 36, k + 33, Blocks.stonebrick, 0);
-        this.setBlock(world, i + 0, j + 36, k + 34, Blocks.stonebrick, 0);
-        this.setBlock(world, i + 0, j + 36, k + 35, Blocks.stonebrick, 0);
-        this.setBlock(world, i + 0, j + 36, k + 36, Blocks.stonebrick, 0);
-        this.setBlock(world, i + 0, j + 36, k + 37, Blocks.stonebrick, 0);
-        this.setBlock(world, i + 0, j + 37, k + 31, Blocks.stonebrick, 0);
-        this.setBlock(world, i + 0, j + 37, k + 37, Blocks.stonebrick, 0);
-        this.setBlock(world, i + 0, j + 71, k + 75, Blocks.air, 15);
+        this.setBlock(world, i, j + 35, k + 31, Blocks.stonebrick, 0);
+        this.setBlock(world, i, j + 35, k + 32, (Block)Blocks.wooden_slab, 8);
+        this.setBlock(world, i, j + 35, k + 36, (Block)Blocks.wooden_slab, 8);
+        this.setBlock(world, i, j + 35, k + 37, Blocks.stonebrick, 0);
+        this.setBlock(world, i, j + 36, k + 31, Blocks.stonebrick, 0);
+        this.setBlock(world, i, j + 36, k + 32, Blocks.stonebrick, 0);
+        this.setBlock(world, i, j + 36, k + 33, Blocks.stonebrick, 0);
+        this.setBlock(world, i, j + 36, k + 34, Blocks.stonebrick, 0);
+        this.setBlock(world, i, j + 36, k + 35, Blocks.stonebrick, 0);
+        this.setBlock(world, i, j + 36, k + 36, Blocks.stonebrick, 0);
+        this.setBlock(world, i, j + 36, k + 37, Blocks.stonebrick, 0);
+        this.setBlock(world, i, j + 37, k + 31, Blocks.stonebrick, 0);
+        this.setBlock(world, i, j + 37, k + 37, Blocks.stonebrick, 0);
+        this.setBlock(world, i, j + 71, k + 75, Blocks.air, 15);
         this.setBlock(world, i + 1, j + 35, k + 32, (Block)Blocks.wooden_slab, 8);
         this.setBlock(world, i + 1, j + 35, k + 36, (Block)Blocks.wooden_slab, 8);
         this.setBlock(world, i + 1, j + 36, k + 32, Blocks.stonebrick, 0);

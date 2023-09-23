@@ -103,7 +103,7 @@ public class TeleporterMontane extends Teleporter
                 this.destinationCoordinateCache.add(j2, (Object)new PortalPosition(i, j, k, this.worldServerInstance.getTotalWorldTime()));
                 this.destinationCoordinateKeys.add(j2);
             }
-            double d8 = i + 0.5;
+            double d8 = i.5;
             final double d9 = j + 0.5;
             double d6 = k + 0.5;
             int j3 = -1;

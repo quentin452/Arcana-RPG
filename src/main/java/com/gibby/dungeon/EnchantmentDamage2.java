@@ -74,7 +74,7 @@ public class EnchantmentDamage2 extends Enchantment
             else if (this.damageType == 5) {
                 final int i = (int)(p_151368_3_ * 0.4f);
                 final EntityLivingBase entityLivingBase = entitylivingbase1;
-                entityLivingBase.motionY += i + 0.46;
+                entityLivingBase.motionY += i.46;
             }
             else if (this.damageType == 6) {
                 final int i = (int)(p_151368_3_ * 2.0f);

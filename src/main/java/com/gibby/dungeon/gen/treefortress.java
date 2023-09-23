@@ -15,17 +15,17 @@ public class treefortress extends WorldGenerator
         if (world.getBlock(i, j, k) != Blocks.grass || world.getBlock(i, j + 1, k) != Blocks.air) {
             return false;
         }
-        world.setBlock(i + 0, j + 5, k + 4, (Block)Blocks.leaves, 12, 0);
-        world.setBlock(i + 0, j + 5, k + 5, (Block)Blocks.leaves);
-        world.setBlock(i + 0, j + 5, k + 6, (Block)Blocks.leaves);
-        world.setBlock(i + 0, j + 6, k + 3, (Block)Blocks.leaves, 4, 0);
-        world.setBlock(i + 0, j + 6, k + 4, (Block)Blocks.leaves, 12, 0);
-        world.setBlock(i + 0, j + 6, k + 5, (Block)Blocks.leaves, 12, 0);
-        world.setBlock(i + 0, j + 6, k + 6, (Block)Blocks.leaves, 12, 0);
-        world.setBlock(i + 0, j + 7, k + 3, (Block)Blocks.leaves, 4, 0);
-        world.setBlock(i + 0, j + 7, k + 4, (Block)Blocks.leaves, 12, 0);
-        world.setBlock(i + 0, j + 7, k + 5, (Block)Blocks.leaves, 12, 0);
-        world.setBlock(i + 0, j + 7, k + 6, (Block)Blocks.leaves, 12, 0);
+        world.setBlock(i, j + 5, k + 4, (Block)Blocks.leaves, 12, 0);
+        world.setBlock(i, j + 5, k + 5, (Block)Blocks.leaves);
+        world.setBlock(i, j + 5, k + 6, (Block)Blocks.leaves);
+        world.setBlock(i, j + 6, k + 3, (Block)Blocks.leaves, 4, 0);
+        world.setBlock(i, j + 6, k + 4, (Block)Blocks.leaves, 12, 0);
+        world.setBlock(i, j + 6, k + 5, (Block)Blocks.leaves, 12, 0);
+        world.setBlock(i, j + 6, k + 6, (Block)Blocks.leaves, 12, 0);
+        world.setBlock(i, j + 7, k + 3, (Block)Blocks.leaves, 4, 0);
+        world.setBlock(i, j + 7, k + 4, (Block)Blocks.leaves, 12, 0);
+        world.setBlock(i, j + 7, k + 5, (Block)Blocks.leaves, 12, 0);
+        world.setBlock(i, j + 7, k + 6, (Block)Blocks.leaves, 12, 0);
         world.setBlock(i + 1, j + 4, k + 2, (Block)Blocks.leaves);
         world.setBlock(i + 1, j + 4, k + 3, (Block)Blocks.leaves);
         world.setBlock(i + 1, j + 4, k + 4, (Block)Blocks.leaves);

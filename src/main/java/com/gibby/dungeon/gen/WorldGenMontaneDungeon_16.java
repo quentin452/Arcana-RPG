@@ -21758,12 +21758,12 @@ public class WorldGenMontaneDungeon_16 extends WorldGenerator implements IWorldG
         Dungeons.spawner(world, i + 0, j + 39, k + 107, 32, 2);
         Dungeons.spawner(world, i + 0, j + 39, k + 131, 31, 2);
         this.setBlock(world, i + 0, j + 47, k + 140, Blocks.lava, 0);
-        world.setBlockMetadataWithNotify(i + 0, j + 47, k + 141, 8, 2);
-        world.setBlockMetadataWithNotify(i + 0, j + 47, k + 142, 8, 2);
-        world.setBlockMetadataWithNotify(i + 0, j + 47, k + 143, 8, 2);
-        world.setBlockMetadataWithNotify(i + 0, j + 47, k + 144, 8, 2);
-        world.setBlockMetadataWithNotify(i + 0, j + 47, k + 145, 8, 2);
-        world.setBlockMetadataWithNotify(i + 0, j + 47, k + 146, 8, 2);
+        world.setBlockMetadataWithNotify(i, j + 47, k + 141, 8, 2);
+        world.setBlockMetadataWithNotify(i, j + 47, k + 142, 8, 2);
+        world.setBlockMetadataWithNotify(i, j + 47, k + 143, 8, 2);
+        world.setBlockMetadataWithNotify(i, j + 47, k + 144, 8, 2);
+        world.setBlockMetadataWithNotify(i, j + 47, k + 145, 8, 2);
+        world.setBlockMetadataWithNotify(i, j + 47, k + 146, 8, 2);
         this.setBlock(world, i + 0, j + 47, k + 147, Blocks.lava, 0);
         this.setBlock(world, i + 0, j + 47, k + 148, Blocks.lava, 0);
         this.setBlock(world, i + 0, j + 47, k + 149, Blocks.lava, 0);
@@ -21925,7 +21925,7 @@ public class WorldGenMontaneDungeon_16 extends WorldGenerator implements IWorldG
         this.setBlock(world, i + 0, j + 98, k + 138, Blocks.snow, 0);
         this.setBlock(world, i + 0, j + 98, k + 150, Blocks.snow, 0);
         this.setBlock(world, i + 0, j + 98, k + 154, Blocks.snow, 0);
-        world.setBlockMetadataWithNotify(i + 0, j + 99, k + 152, 1, 2);
+        world.setBlockMetadataWithNotify(i, j + 99, k + 152, 1, 2);
         this.setBlock(world, i + 0, j + 100, k + 151, Blocks.snow, 0);
         this.setBlock(world, i + 0, j + 100, k + 153, Blocks.snow, 0);
         this.setBlock(world, i + 0, j + 101, k + 137, Blocks.snow, 0);
