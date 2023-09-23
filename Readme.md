@@ -14,10 +14,6 @@ Go here : [Wiki](https://github.com/quentin452/Arcana-RPG/wiki)
 
 [*Curseforge*](https://legacy.curseforge.com/minecraft/mc-mods/arcana-rpg-continuation)
 
-# Secial Thanks
-
-Special thanks to Falsetweaks code : [HERE](https://github.com/FalsePattern/FalseTweaks)
-
 # Discord
 
 Add me on discord : imacatfr
