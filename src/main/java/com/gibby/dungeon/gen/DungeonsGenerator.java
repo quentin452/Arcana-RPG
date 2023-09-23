@@ -27,7 +27,6 @@ public class DungeonsGenerator implements IWorldGenerator
         }
     }
 
-    @SideOnly(Side.CLIENT)
     private void GenerateNether(final Random random, final int chunkX, final int chunkZ, final World world) {
         for (int i = 0; i < 3; ++i) {
             final int coordX = chunkX + random.nextInt(16);
@@ -66,8 +65,7 @@ public class DungeonsGenerator implements IWorldGenerator
             }
         }
     }
-
-    @SideOnly(Side.CLIENT)
+    
     private void GenerateSurface(final Random random, final int chunkX, final int chunkZ, final World world) {
         for (int i = 0; i < 18; ++i) {
             final int coordX = chunkX + random.nextInt(16);
