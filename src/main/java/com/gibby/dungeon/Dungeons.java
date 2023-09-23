@@ -437,7 +437,7 @@ public class Dungeons
     public static final String GUI = "Gui(bar)";
     public static final String MISC = "Misc";
     static int startEntityid;
-    
+
     public Dungeons() {
         this.COPPER = EnumHelper.addToolMaterial("dungeons_copper", 2, 200, 5.5f, 2.0f, 20);
         this.RUBY = EnumHelper.addToolMaterial("dungeons_ruby", 4, 600, 7.0f, 1.0f, 17);
@@ -477,7 +477,7 @@ public class Dungeons
         this.ACRYSTALLIUM = EnumHelper.addArmorMaterial("dungeons_acrystallium", 86, new int[] { 5, 8, 7, 4 }, 18);
         this.ABLACKIRON = EnumHelper.addArmorMaterial("dungeons_ablackiron", 72, new int[] { 4, 8, 7, 4 }, 18);
     }
-    
+
     @Mod.EventHandler
     public void preinit(final FMLPreInitializationEvent event) {
         final Configuration config = new Configuration(new File(event.getModConfigurationDirectory(), "Arcana_RPG.cfg"));
@@ -544,13 +544,13 @@ public class Dungeons
         Dungeons.quakeblade = new EnchantmentDamage2(Dungeons.quakebladeId, 5, 6);
         Dungeons.lifesteal = new EnchantmentDamage2(Dungeons.lifestealId, 5, 7);
         Dungeons.packetPipeline.initialise();
-        DimensionManager.registerProviderType(Dungeons.crystalDimensionId, (Class)WorldProviderCrystal.class, false);
+        DimensionManager.registerProviderType(Dungeons.crystalDimensionId, WorldProviderCrystal.class, false);
         DimensionManager.registerDimension(Dungeons.crystalDimensionId, Dungeons.crystalDimensionId);
-        DimensionManager.registerProviderType(Dungeons.sunsetDimensionId, (Class)WorldProviderSunset.class, false);
+        DimensionManager.registerProviderType(Dungeons.sunsetDimensionId, WorldProviderSunset.class, false);
         DimensionManager.registerDimension(Dungeons.sunsetDimensionId, Dungeons.sunsetDimensionId);
-        DimensionManager.registerProviderType(Dungeons.montaneDungeonDimensionId, (Class)WorldProviderMontane.class, false);
+        DimensionManager.registerProviderType(Dungeons.montaneDungeonDimensionId, WorldProviderMontane.class, false);
         DimensionManager.registerDimension(Dungeons.montaneDungeonDimensionId, Dungeons.montaneDungeonDimensionId);
-        DimensionManager.registerProviderType(Dungeons.crystalliumPlainsDimensionId, (Class)WorldProviderCrystalliumPlains.class, false);
+        DimensionManager.registerProviderType(Dungeons.crystalliumPlainsDimensionId, WorldProviderCrystalliumPlains.class, false);
         DimensionManager.registerDimension(Dungeons.crystalliumPlainsDimensionId, Dungeons.crystalliumPlainsDimensionId);
         Enchantment.addToBookList(Dungeons.magicProtection);
         Enchantment.addToBookList(Dungeons.voidProtection);
@@ -921,368 +921,368 @@ public class Dungeons
         GameRegistry.registerBlock(Dungeons.crystalLeaves = new BlockCrystalliumLeaves().setBlockName("crystalLeaves").setBlockTextureName("gibby_dungeons" + ":" + "crystalleaves").setCreativeTab(Dungeons.Blocks), "dungeons_crystalLeaves");
         GameRegistry.registerBlock(Dungeons.crystalBamboo = new BlockCrystalliumBamboo().setBlockName("crystalBamboo").setBlockTextureName("gibby_dungeons" + ":" + "crystalbamboo").setCreativeTab(Dungeons.Blocks), "dungeons_crystalBamboo");
         GameRegistry.registerBlock(Dungeons.voidrockOre = new BlockVoidRockOre().setBlockName("voidrockOre").setBlockTextureName("gibby_dungeons" + ":" + "voidrockore").setCreativeTab(Dungeons.Blocks), "dungeons_voidrockOre");
-        EntityRegistry.registerModEntity((Class)EntityIronStar.class, "EntityIronStar", 100, (Object)this, 40, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityProjectileBall.class, "EntityProjectileBall", 101, (Object)this, 40, 2, false);
-        EntityRegistry.registerModEntity((Class)EntityExplosive.class, "EntityExplosive", 102, (Object)this, 40, 2, true);
-        EntityRegistry.registerModEntity((Class)EntitySpit.class, "EntitySpit", 103, (Object)this, 20, 1, true);
-        EntityRegistry.registerModEntity((Class)EntitySodbuster.class, "EntitySodbuster", 104, (Object)this, 20, 1, true);
-        EntityRegistry.registerModEntity((Class)EntityShimmerPearl.class, "EntityShimmerPearl", 105, (Object)this, 60, 5, true);
-        EntityRegistry.registerModEntity((Class)EntityWaterBall.class, "EntityWaterBall", 106, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntitySandBall.class, "EntitySandBall", 107, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityBlizzardBall.class, "EntityBlizzardBall", 108, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityTornadoBall.class, "EntityTornadoBall", 109, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityBloodBall.class, "EntityBloodBall", 110, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityRedBall.class, "EntityRedBall", 111, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityGreenBall.class, "EntityGreenBall", 112, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityBlueBall.class, "EntityBlueBall", 113, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityMiniFireBall.class, "EntityMiniFireBall", 114, (Object)this, 40, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityNetherDriller.class, "EntityNetherDriller", 115, (Object)this, 50, 10, true);
-        EntityRegistry.registerModEntity((Class)EntityNetherDrill.class, "EntityNetherDrill", 116, (Object)this, 50, 10, true);
-        EntityRegistry.registerModEntity((Class)EntityVoidBomb.class, "EntityVoidBomb", 117, (Object)this, 50, 1, true);
-        EntityRegistry.registerModEntity((Class)EntityVoidDisk.class, "EntityVoidDisk", 118, (Object)this, 50, 1, true);
-        EntityRegistry.registerModEntity((Class)EntityRupture.class, "EntityRupture", 119, (Object)this, 30, 1, true);
-        EntityRegistry.registerModEntity((Class)EntityAntigravity.class, "EntityAntigravity", 120, (Object)this, 50, 1, true);
-        EntityRegistry.registerModEntity((Class)EntityEnergy.class, "EntityEnergy", 121, (Object)this, 60, 1, true);
-        EntityRegistry.registerModEntity((Class)EntityExplosionSnake.class, "EntityExplosionSnake", 121, (Object)this, 60, 1, true);
-        EntityRegistry.registerModEntity((Class)EntityBlackEnergy.class, "EntityBlackEnergy", 122, (Object)this, 60, 1, true);
-        EntityRegistry.registerModEntity((Class)EntityColdWind.class, "EntityBlackEnergy", 123, (Object)this, 60, 1, true);
-        EntityRegistry.registerModEntity((Class)EntityHealEffect.class, "EntityHealEffect", 124, (Object)this, 60, 1, true);
-        EntityRegistry.registerModEntity((Class)EntityQuake.class, "EntityQuake", 125, (Object)this, 60, 1, true);
-        EntityRegistry.registerModEntity((Class)EntityAmethystPortal.class, "EntityAmethystPortal", 126, (Object)this, 60, 1, true);
-        EntityRegistry.registerModEntity((Class)EntityDarkWave.class, "EntityDarkWave", 127, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntitySunsetPortal.class, "EntitySunsetPortal", 128, (Object)this, 60, 1, true);
-        EntityRegistry.registerModEntity((Class)EntityDarkExplosion.class, "EntityDarkExplosion", 129, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityBeholderSpawner.class, "EntityBeholderSpawner", 130, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityCursedStone.class, "EntityCursedStone", 131, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityWitherSpawner.class, "EntityWitherSpawner", 132, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityCorruptedArrow.class, "EntityCorruptedArrow", 133, (Object)this, 120, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityRuneExplosion.class, "EntityRuneExplosion", 134, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityThrowback.class, "EntityThrowback", 135, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityDisinigrationArrow.class, "EntityDisinigrationArrow", 136, (Object)this, 120, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityIceShieldBall.class, "EntityIceShieldBall", 137, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityRedBouncer.class, "EntityRedBouncer", 138, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityBlueBeam.class, "EntityBlueBeam", 139, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityIcefire.class, "EntityIcefire", 140, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityIceWanderer.class, "EntityIceWanderer", 141, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityIceSpiker.class, "EntityIceSpiker", 142, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntitySunProjectile.class, "EntitySunProjectile", 143, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityGroundShade.class, "EntityGroundShade", 144, (Object)this, 60, 1, true);
-        EntityRegistry.registerModEntity((Class)EntitySapientDeath.class, "EntitySapientDeath", 145, (Object)this, 60, 1, true);
-        EntityRegistry.registerModEntity((Class)EntityCrystalBeam.class, "EntityCrystalBeam", 146, (Object)this, 60, 1, true);
-        EntityRegistry.registerModEntity((Class)EntityMontanePortal.class, "EntityMontanePortal", 147, (Object)this, 60, 1, true);
-        EntityRegistry.registerModEntity((Class)EntityMagirockBall.class, "EntityMagirockBall", 148, (Object)this, 60, 1, true);
-        EntityRegistry.registerModEntity((Class)EntityVoidrim.class, "EntityVoidrim", 149, (Object)this, 60, 1, true);
-        EntityRegistry.registerModEntity((Class)EntityCrystalToxic.class, "EntityCrystalToxic", 150, (Object)this, 60, 1, true);
-        EntityRegistry.registerModEntity((Class)EntityExawdusSpawner.class, "EntityExawdusSpawner", 151, (Object)this, 60, 1, true);
-        EntityRegistry.registerModEntity((Class)EntityEnchantEffect.class, "EntityEnchantEffect", 152, (Object)this, 60, 1, true);
-        EntityRegistry.registerModEntity((Class)EntityVoidrockBall.class, "EntityVoidrockBall", 153, (Object)this, 60, 1, true);
-        EntityRegistry.registerModEntity((Class)EntityFusionBall.class, "EntityFusionBall", 154, (Object)this, 60, 1, true);
-        EntityRegistry.registerModEntity((Class)EntityCrystalliumPlainsPortal.class, "EntityCrystalliumPlainsPortal", 155, (Object)this, 60, 1, true);
-        EntityRegistry.registerModEntity((Class)EntityCrystalMeteor.class, "EntityCrystalMeteor", 156, (Object)this, 60, 1, true);
-        EntityRegistry.registerModEntity((Class)EntityGoblin.class, "EntityGoblin", 1, (Object)this, 40, 2, true);
-        EntityRegistry.registerModEntity((Class)EntitySkeletonWarrior.class, "EntitySkeletonWarrior", 3, (Object)this, 40, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityZombieWarlord.class, "EntityZombieWarlord", 4, (Object)this, 50, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityEarthGolem.class, "EntityEarthGolem", 5, (Object)this, 40, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityStoneGolem.class, "EntityStoneGolem", 6, (Object)this, 40, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityBigStoneGolem.class, "EntityBigStoneGolem", 7, (Object)this, 50, 3, true);
-        EntityRegistry.registerModEntity((Class)EntitySpecter.class, "EntitySpecter", 8, (Object)this, 50, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityBandit.class, "EntityBandit", 9, (Object)this, 40, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityBanditBoss.class, "EntityBanditLeader", 10, (Object)this, 40, 2, true);
-        EntityRegistry.registerModEntity((Class)EntitySkeletalMage.class, "EntitySkeletalMage", 11, (Object)this, 40, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityBlackKnight.class, "EntityBlackKnight", 12, (Object)this, 30, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityHannibal.class, "EntityHannibal", 13, (Object)this, 30, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityRemnant.class, "EntityRemnant", 14, (Object)this, 100, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityVoidLord.class, "EntityVoidLord", 15, (Object)this, 100, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityDarkKnight.class, "EntityDarkKnight", 16, (Object)this, 100, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityNecro.class, "EntityNecro", 17, (Object)this, 60, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityIceMage.class, "EntityIceMage", 18, (Object)this, 60, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityEarthMage.class, "EntityEarthMage", 19, (Object)this, 60, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityImp.class, "EntityImp", 20, (Object)this, 40, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityTroll.class, "EntityTroll", 21, (Object)this, 40, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityShimmerman.class, "EntityShimmerman", 22, (Object)this, 60, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityCyclops.class, "EntityCyclops", 23, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityTyphoon.class, "EntityTyphoon", 24, (Object)this, 60, 4, true);
-        EntityRegistry.registerModEntity((Class)EntitySandstorm.class, "EntitySandstorm", 25, (Object)this, 60, 4, true);
-        EntityRegistry.registerModEntity((Class)EntityVoidFiend.class, "EntityVoidFiend", 26, (Object)this, 40, 4, true);
-        EntityRegistry.registerModEntity((Class)EntityBlizzard.class, "EntityBlizzard", 27, (Object)this, 60, 4, true);
-        EntityRegistry.registerModEntity((Class)EntityTornado.class, "EntityTornado", 28, (Object)this, 60, 4, true);
-        EntityRegistry.registerModEntity((Class)EntityHermit.class, "EntityHermit", 29, (Object)this, 60, 3, true);
-        EntityRegistry.registerModEntity((Class)EntitySpirit.class, "EntitySpirit", 30, (Object)this, 40, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityWarlock.class, "EntityWarlock", 31, (Object)this, 60, 3, true);
-        EntityRegistry.registerModEntity((Class)EntitySkeletonKnight.class, "EntitySkeletonKnight", 32, (Object)this, 30, 2, true);
-        EntityRegistry.registerModEntity((Class)EntitySapientWarrior.class, "EntitySapientWarrior", 33, (Object)this, 30, 2, true);
-        EntityRegistry.registerModEntity((Class)EntitySapientMiner.class, "EntitySapientMiner", 34, (Object)this, 30, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityNetherGhost.class, "EntityNetherGhost", 35, (Object)this, 50, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityNetherSoul.class, "EntityNetherSoul", 36, (Object)this, 50, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityNetherPigman.class, "EntityNetherPigman", 37, (Object)this, 50, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityAmethystMonster.class, "EntityAmethystMonster", 38, (Object)this, 50, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityVampire.class, "EntityVampire", 39, (Object)this, 50, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityLavaTroll.class, "EntityLavaTroll", 40, (Object)this, 50, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityLavaKnight.class, "EntityLavaKnight", 41, (Object)this, 50, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityNetherBadgerer.class, "EntityNetherBadgerer", 42, (Object)this, 50, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityBeholder.class, "EntityBeholder", 43, (Object)this, 300, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityFireclops.class, "EntityFireclops", 44, (Object)this, 50, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityWitherSkeletonMinion.class, "EntityWitherSkeletonMinion", 45, (Object)this, 50, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityCrystalBadgerer.class, "EntityCrystalBadgerer", 46, (Object)this, 50, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityGhostWither.class, "EntityGhostWither", 47, (Object)this, 50, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityFakeWither.class, "EntityFakeWither", 48, (Object)this, 50, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityChainMummy.class, "EntityChainMummy", 57, (Object)this, 50, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityEyeWarrior.class, "EntityEyeWarrior", 58, (Object)this, 50, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityYeti.class, "EntityYeti", 59, (Object)this, 50, 3, true);
-        EntityRegistry.registerModEntity((Class)EntitySnowGiant.class, "EntitySnowGiant", 60, (Object)this, 50, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityDeathBringer.class, "EntityDeathBringer", 61, (Object)this, 50, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityDungeonBeast.class, "EntityDungeonBeast", 62, (Object)this, 50, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityDesertDragger.class, "EntityDesertDragger", 63, (Object)this, 50, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityNetherWalker.class, "EntityNetherWalker", 66, (Object)this, 50, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityIceShielder.class, "EntityIceShielder", 68, (Object)this, 50, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityOrc.class, "EntityOrc", 69, (Object)this, 50, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityOrcMage.class, "EntityOrcMage", 70, (Object)this, 50, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityOrcDefender.class, "EntityOrcDefender", 71, (Object)this, 50, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityRockTroll.class, "EntityRockTroll", 73, (Object)this, 50, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityEarthRupturer.class, "EntityEarthRupturer", 74, (Object)this, 50, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityIceSpirit.class, "EntityIceSpirit", 75, (Object)this, 50, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityUndefeatableStrength.class, "EntityUndefeatableStrength", 76, (Object)this, 50, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityUndefeatableRegen.class, "EntityUndefeatableRegen", 77, (Object)this, 50, 3, true);
-        EntityRegistry.registerModEntity((Class)EntityUndefeatableResistance.class, "EntityUndefeatableResistance", 78, (Object)this, 50, 3, true);
-        EntityRegistry.registerModEntity((Class)EntitySapientEliteKnight.class, "EntitySapientEliteKnight", 79, (Object)this, 30, 2, true);
-        EntityRegistry.registerModEntity((Class)EntitySapientGeneral.class, "EntitySapientGeneral", 80, (Object)this, 30, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityMidnightShade.class, "EntityMidnightShade", 83, (Object)this, 30, 2, true);
-        EntityRegistry.registerModEntity((Class)EntitySapientMage.class, "EntitySapientMage", 84, (Object)this, 30, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityCrystalTroll.class, "EntityCrystalTroll", 85, (Object)this, 30, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityCrystasis.class, "EntityCrystasis", 86, (Object)this, 30, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityCrystox.class, "EntityCrystox", 87, (Object)this, 30, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityExawdus.class, "EntityExawdus", 88, (Object)this, 30, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityCrystalliumGolem.class, "EntityCrystalliumGolem", 89, (Object)this, 30, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityMoundTrader.class, "EntityMoundTrader", 49, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityAnchorTrader.class, "EntityAnchorTrader", 50, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityStoneBot.class, "EntityStoneBot", 51, (Object)this, 50, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityTreeVillager.class, "EntityTreeVillager", 52, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityQuarryMaster.class, "EntityQuarryMaster", 53, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityOreDealer.class, "EntityOreDealer", 54, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityMinerVillager.class, "EntityMinerVillager", 55, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityTalkingVillager.class, "EntityTalkingVillager", 56, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityTavernMaster.class, "EntityTavernMaster", 64, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityTavernClient.class, "EntityTavernClient", 65, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityFriendlyZombie.class, "EntityFriendlyZombie", 67, (Object)this, 60, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityMontaneVillager.class, "EntityMontaneVillager", 81, (Object)this, 30, 2, true);
-        EntityRegistry.registerModEntity((Class)EntityMontaneTrader.class, "EntityMontaneTrader", 82, (Object)this, 30, 2, true);
+        EntityRegistry.registerModEntity(EntityIronStar.class, "EntityIronStar", 100, this, 40, 2, true);
+        EntityRegistry.registerModEntity(EntityProjectileBall.class, "EntityProjectileBall", 101, this, 40, 2, false);
+        EntityRegistry.registerModEntity(EntityExplosive.class, "EntityExplosive", 102, this, 40, 2, true);
+        EntityRegistry.registerModEntity(EntitySpit.class, "EntitySpit", 103, this, 20, 1, true);
+        EntityRegistry.registerModEntity(EntitySodbuster.class, "EntitySodbuster", 104, this, 20, 1, true);
+        EntityRegistry.registerModEntity(EntityShimmerPearl.class, "EntityShimmerPearl", 105, this, 60, 5, true);
+        EntityRegistry.registerModEntity(EntityWaterBall.class, "EntityWaterBall", 106, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntitySandBall.class, "EntitySandBall", 107, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntityBlizzardBall.class, "EntityBlizzardBall", 108, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntityTornadoBall.class, "EntityTornadoBall", 109, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntityBloodBall.class, "EntityBloodBall", 110, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntityRedBall.class, "EntityRedBall", 111, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntityGreenBall.class, "EntityGreenBall", 112, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntityBlueBall.class, "EntityBlueBall", 113, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntityMiniFireBall.class, "EntityMiniFireBall", 114, this, 40, 2, true);
+        EntityRegistry.registerModEntity(EntityNetherDriller.class, "EntityNetherDriller", 115, this, 50, 10, true);
+        EntityRegistry.registerModEntity(EntityNetherDrill.class, "EntityNetherDrill", 116, this, 50, 10, true);
+        EntityRegistry.registerModEntity(EntityVoidBomb.class, "EntityVoidBomb", 117, this, 50, 1, true);
+        EntityRegistry.registerModEntity(EntityVoidDisk.class, "EntityVoidDisk", 118, this, 50, 1, true);
+        EntityRegistry.registerModEntity(EntityRupture.class, "EntityRupture", 119, this, 30, 1, true);
+        EntityRegistry.registerModEntity(EntityAntigravity.class, "EntityAntigravity", 120, this, 50, 1, true);
+        EntityRegistry.registerModEntity(EntityEnergy.class, "EntityEnergy", 121, this, 60, 1, true);
+        EntityRegistry.registerModEntity(EntityExplosionSnake.class, "EntityExplosionSnake", 121, this, 60, 1, true);
+        EntityRegistry.registerModEntity(EntityBlackEnergy.class, "EntityBlackEnergy", 122, this, 60, 1, true);
+        EntityRegistry.registerModEntity(EntityColdWind.class, "EntityBlackEnergy", 123, this, 60, 1, true);
+        EntityRegistry.registerModEntity(EntityHealEffect.class, "EntityHealEffect", 124, this, 60, 1, true);
+        EntityRegistry.registerModEntity(EntityQuake.class, "EntityQuake", 125, this, 60, 1, true);
+        EntityRegistry.registerModEntity(EntityAmethystPortal.class, "EntityAmethystPortal", 126, this, 60, 1, true);
+        EntityRegistry.registerModEntity(EntityDarkWave.class, "EntityDarkWave", 127, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntitySunsetPortal.class, "EntitySunsetPortal", 128, this, 60, 1, true);
+        EntityRegistry.registerModEntity(EntityDarkExplosion.class, "EntityDarkExplosion", 129, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntityBeholderSpawner.class, "EntityBeholderSpawner", 130, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntityCursedStone.class, "EntityCursedStone", 131, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntityWitherSpawner.class, "EntityWitherSpawner", 132, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntityCorruptedArrow.class, "EntityCorruptedArrow", 133, this, 120, 2, true);
+        EntityRegistry.registerModEntity(EntityRuneExplosion.class, "EntityRuneExplosion", 134, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntityThrowback.class, "EntityThrowback", 135, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntityDisinigrationArrow.class, "EntityDisinigrationArrow", 136, this, 120, 2, true);
+        EntityRegistry.registerModEntity(EntityIceShieldBall.class, "EntityIceShieldBall", 137, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntityRedBouncer.class, "EntityRedBouncer", 138, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntityBlueBeam.class, "EntityBlueBeam", 139, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntityIcefire.class, "EntityIcefire", 140, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntityIceWanderer.class, "EntityIceWanderer", 141, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntityIceSpiker.class, "EntityIceSpiker", 142, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntitySunProjectile.class, "EntitySunProjectile", 143, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntityGroundShade.class, "EntityGroundShade", 144, this, 60, 1, true);
+        EntityRegistry.registerModEntity(EntitySapientDeath.class, "EntitySapientDeath", 145, this, 60, 1, true);
+        EntityRegistry.registerModEntity(EntityCrystalBeam.class, "EntityCrystalBeam", 146, this, 60, 1, true);
+        EntityRegistry.registerModEntity(EntityMontanePortal.class, "EntityMontanePortal", 147, this, 60, 1, true);
+        EntityRegistry.registerModEntity(EntityMagirockBall.class, "EntityMagirockBall", 148, this, 60, 1, true);
+        EntityRegistry.registerModEntity(EntityVoidrim.class, "EntityVoidrim", 149, this, 60, 1, true);
+        EntityRegistry.registerModEntity(EntityCrystalToxic.class, "EntityCrystalToxic", 150, this, 60, 1, true);
+        EntityRegistry.registerModEntity(EntityExawdusSpawner.class, "EntityExawdusSpawner", 151, this, 60, 1, true);
+        EntityRegistry.registerModEntity(EntityEnchantEffect.class, "EntityEnchantEffect", 152, this, 60, 1, true);
+        EntityRegistry.registerModEntity(EntityVoidrockBall.class, "EntityVoidrockBall", 153, this, 60, 1, true);
+        EntityRegistry.registerModEntity(EntityFusionBall.class, "EntityFusionBall", 154, this, 60, 1, true);
+        EntityRegistry.registerModEntity(EntityCrystalliumPlainsPortal.class, "EntityCrystalliumPlainsPortal", 155, this, 60, 1, true);
+        EntityRegistry.registerModEntity(EntityCrystalMeteor.class, "EntityCrystalMeteor", 156, this, 60, 1, true);
+        EntityRegistry.registerModEntity(EntityGoblin.class, "EntityGoblin", 1, this, 40, 2, true);
+        EntityRegistry.registerModEntity(EntitySkeletonWarrior.class, "EntitySkeletonWarrior", 3, this, 40, 2, true);
+        EntityRegistry.registerModEntity(EntityZombieWarlord.class, "EntityZombieWarlord", 4, this, 50, 3, true);
+        EntityRegistry.registerModEntity(EntityEarthGolem.class, "EntityEarthGolem", 5, this, 40, 2, true);
+        EntityRegistry.registerModEntity(EntityStoneGolem.class, "EntityStoneGolem", 6, this, 40, 2, true);
+        EntityRegistry.registerModEntity(EntityBigStoneGolem.class, "EntityBigStoneGolem", 7, this, 50, 3, true);
+        EntityRegistry.registerModEntity(EntitySpecter.class, "EntitySpecter", 8, this, 50, 3, true);
+        EntityRegistry.registerModEntity(EntityBandit.class, "EntityBandit", 9, this, 40, 2, true);
+        EntityRegistry.registerModEntity(EntityBanditBoss.class, "EntityBanditLeader", 10, this, 40, 2, true);
+        EntityRegistry.registerModEntity(EntitySkeletalMage.class, "EntitySkeletalMage", 11, this, 40, 3, true);
+        EntityRegistry.registerModEntity(EntityBlackKnight.class, "EntityBlackKnight", 12, this, 30, 3, true);
+        EntityRegistry.registerModEntity(EntityHannibal.class, "EntityHannibal", 13, this, 30, 3, true);
+        EntityRegistry.registerModEntity(EntityRemnant.class, "EntityRemnant", 14, this, 100, 3, true);
+        EntityRegistry.registerModEntity(EntityVoidLord.class, "EntityVoidLord", 15, this, 100, 3, true);
+        EntityRegistry.registerModEntity(EntityDarkKnight.class, "EntityDarkKnight", 16, this, 100, 3, true);
+        EntityRegistry.registerModEntity(EntityNecro.class, "EntityNecro", 17, this, 60, 3, true);
+        EntityRegistry.registerModEntity(EntityIceMage.class, "EntityIceMage", 18, this, 60, 3, true);
+        EntityRegistry.registerModEntity(EntityEarthMage.class, "EntityEarthMage", 19, this, 60, 3, true);
+        EntityRegistry.registerModEntity(EntityImp.class, "EntityImp", 20, this, 40, 2, true);
+        EntityRegistry.registerModEntity(EntityTroll.class, "EntityTroll", 21, this, 40, 3, true);
+        EntityRegistry.registerModEntity(EntityShimmerman.class, "EntityShimmerman", 22, this, 60, 3, true);
+        EntityRegistry.registerModEntity(EntityCyclops.class, "EntityCyclops", 23, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntityTyphoon.class, "EntityTyphoon", 24, this, 60, 4, true);
+        EntityRegistry.registerModEntity(EntitySandstorm.class, "EntitySandstorm", 25, this, 60, 4, true);
+        EntityRegistry.registerModEntity(EntityVoidFiend.class, "EntityVoidFiend", 26, this, 40, 4, true);
+        EntityRegistry.registerModEntity(EntityBlizzard.class, "EntityBlizzard", 27, this, 60, 4, true);
+        EntityRegistry.registerModEntity(EntityTornado.class, "EntityTornado", 28, this, 60, 4, true);
+        EntityRegistry.registerModEntity(EntityHermit.class, "EntityHermit", 29, this, 60, 3, true);
+        EntityRegistry.registerModEntity(EntitySpirit.class, "EntitySpirit", 30, this, 40, 2, true);
+        EntityRegistry.registerModEntity(EntityWarlock.class, "EntityWarlock", 31, this, 60, 3, true);
+        EntityRegistry.registerModEntity(EntitySkeletonKnight.class, "EntitySkeletonKnight", 32, this, 30, 2, true);
+        EntityRegistry.registerModEntity(EntitySapientWarrior.class, "EntitySapientWarrior", 33, this, 30, 2, true);
+        EntityRegistry.registerModEntity(EntitySapientMiner.class, "EntitySapientMiner", 34, this, 30, 2, true);
+        EntityRegistry.registerModEntity(EntityNetherGhost.class, "EntityNetherGhost", 35, this, 50, 2, true);
+        EntityRegistry.registerModEntity(EntityNetherSoul.class, "EntityNetherSoul", 36, this, 50, 2, true);
+        EntityRegistry.registerModEntity(EntityNetherPigman.class, "EntityNetherPigman", 37, this, 50, 2, true);
+        EntityRegistry.registerModEntity(EntityAmethystMonster.class, "EntityAmethystMonster", 38, this, 50, 2, true);
+        EntityRegistry.registerModEntity(EntityVampire.class, "EntityVampire", 39, this, 50, 2, true);
+        EntityRegistry.registerModEntity(EntityLavaTroll.class, "EntityLavaTroll", 40, this, 50, 3, true);
+        EntityRegistry.registerModEntity(EntityLavaKnight.class, "EntityLavaKnight", 41, this, 50, 3, true);
+        EntityRegistry.registerModEntity(EntityNetherBadgerer.class, "EntityNetherBadgerer", 42, this, 50, 3, true);
+        EntityRegistry.registerModEntity(EntityBeholder.class, "EntityBeholder", 43, this, 300, 3, true);
+        EntityRegistry.registerModEntity(EntityFireclops.class, "EntityFireclops", 44, this, 50, 2, true);
+        EntityRegistry.registerModEntity(EntityWitherSkeletonMinion.class, "EntityWitherSkeletonMinion", 45, this, 50, 2, true);
+        EntityRegistry.registerModEntity(EntityCrystalBadgerer.class, "EntityCrystalBadgerer", 46, this, 50, 3, true);
+        EntityRegistry.registerModEntity(EntityGhostWither.class, "EntityGhostWither", 47, this, 50, 3, true);
+        EntityRegistry.registerModEntity(EntityFakeWither.class, "EntityFakeWither", 48, this, 50, 3, true);
+        EntityRegistry.registerModEntity(EntityChainMummy.class, "EntityChainMummy", 57, this, 50, 3, true);
+        EntityRegistry.registerModEntity(EntityEyeWarrior.class, "EntityEyeWarrior", 58, this, 50, 3, true);
+        EntityRegistry.registerModEntity(EntityYeti.class, "EntityYeti", 59, this, 50, 3, true);
+        EntityRegistry.registerModEntity(EntitySnowGiant.class, "EntitySnowGiant", 60, this, 50, 3, true);
+        EntityRegistry.registerModEntity(EntityDeathBringer.class, "EntityDeathBringer", 61, this, 50, 3, true);
+        EntityRegistry.registerModEntity(EntityDungeonBeast.class, "EntityDungeonBeast", 62, this, 50, 3, true);
+        EntityRegistry.registerModEntity(EntityDesertDragger.class, "EntityDesertDragger", 63, this, 50, 3, true);
+        EntityRegistry.registerModEntity(EntityNetherWalker.class, "EntityNetherWalker", 66, this, 50, 3, true);
+        EntityRegistry.registerModEntity(EntityIceShielder.class, "EntityIceShielder", 68, this, 50, 3, true);
+        EntityRegistry.registerModEntity(EntityOrc.class, "EntityOrc", 69, this, 50, 3, true);
+        EntityRegistry.registerModEntity(EntityOrcMage.class, "EntityOrcMage", 70, this, 50, 3, true);
+        EntityRegistry.registerModEntity(EntityOrcDefender.class, "EntityOrcDefender", 71, this, 50, 3, true);
+        EntityRegistry.registerModEntity(EntityRockTroll.class, "EntityRockTroll", 73, this, 50, 3, true);
+        EntityRegistry.registerModEntity(EntityEarthRupturer.class, "EntityEarthRupturer", 74, this, 50, 3, true);
+        EntityRegistry.registerModEntity(EntityIceSpirit.class, "EntityIceSpirit", 75, this, 50, 3, true);
+        EntityRegistry.registerModEntity(EntityUndefeatableStrength.class, "EntityUndefeatableStrength", 76, this, 50, 3, true);
+        EntityRegistry.registerModEntity(EntityUndefeatableRegen.class, "EntityUndefeatableRegen", 77, this, 50, 3, true);
+        EntityRegistry.registerModEntity(EntityUndefeatableResistance.class, "EntityUndefeatableResistance", 78, this, 50, 3, true);
+        EntityRegistry.registerModEntity(EntitySapientEliteKnight.class, "EntitySapientEliteKnight", 79, this, 30, 2, true);
+        EntityRegistry.registerModEntity(EntitySapientGeneral.class, "EntitySapientGeneral", 80, this, 30, 2, true);
+        EntityRegistry.registerModEntity(EntityMidnightShade.class, "EntityMidnightShade", 83, this, 30, 2, true);
+        EntityRegistry.registerModEntity(EntitySapientMage.class, "EntitySapientMage", 84, this, 30, 2, true);
+        EntityRegistry.registerModEntity(EntityCrystalTroll.class, "EntityCrystalTroll", 85, this, 30, 2, true);
+        EntityRegistry.registerModEntity(EntityCrystasis.class, "EntityCrystasis", 86, this, 30, 2, true);
+        EntityRegistry.registerModEntity(EntityCrystox.class, "EntityCrystox", 87, this, 30, 2, true);
+        EntityRegistry.registerModEntity(EntityExawdus.class, "EntityExawdus", 88, this, 30, 2, true);
+        EntityRegistry.registerModEntity(EntityCrystalliumGolem.class, "EntityCrystalliumGolem", 89, this, 30, 2, true);
+        EntityRegistry.registerModEntity(EntityMoundTrader.class, "EntityMoundTrader", 49, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntityAnchorTrader.class, "EntityAnchorTrader", 50, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntityStoneBot.class, "EntityStoneBot", 51, this, 50, 2, true);
+        EntityRegistry.registerModEntity(EntityTreeVillager.class, "EntityTreeVillager", 52, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntityQuarryMaster.class, "EntityQuarryMaster", 53, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntityOreDealer.class, "EntityOreDealer", 54, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntityMinerVillager.class, "EntityMinerVillager", 55, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntityTalkingVillager.class, "EntityTalkingVillager", 56, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntityTavernMaster.class, "EntityTavernMaster", 64, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntityTavernClient.class, "EntityTavernClient", 65, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntityFriendlyZombie.class, "EntityFriendlyZombie", 67, this, 60, 2, true);
+        EntityRegistry.registerModEntity(EntityMontaneVillager.class, "EntityMontaneVillager", 81, this, 30, 2, true);
+        EntityRegistry.registerModEntity(EntityMontaneTrader.class, "EntityMontaneTrader", 82, this, 30, 2, true);
         GameRegistry.registerWorldGenerator((IWorldGenerator)new DungeonsGenerator(), 30);
         Crafting.Recipes();
         CombatCrafting.Recipes();
         ToolCrafting.Recipes();
         ArmorCrafting.Recipes();
         MagicCrafting.Recipes();
-        registerEntityEgg((Class<? extends Entity>)EntityGoblin.class, 1538054, 14482440);
-        registerEntityEgg((Class<? extends Entity>)EntityImp.class, 7873536, 3679232);
-        registerEntityEgg((Class<? extends Entity>)EntitySkeletonWarrior.class, 13224393, 6367746);
-        registerEntityEgg((Class<? extends Entity>)EntityZombieWarlord.class, 218902, 9408399);
-        registerEntityEgg((Class<? extends Entity>)EntityEarthGolem.class, 9523712, 6890752);
-        registerEntityEgg((Class<? extends Entity>)EntityStoneGolem.class, 6381921, 11382189);
-        registerEntityEgg((Class<? extends Entity>)EntityBigStoneGolem.class, 6381921, 11382189);
-        registerEntityEgg((Class<? extends Entity>)EntityStoneBot.class, 5395026, 10395294);
-        registerEntityEgg((Class<? extends Entity>)EntitySpecter.class, 14606046, 12763842);
-        registerEntityEgg((Class<? extends Entity>)EntityBandit.class, 8728064, 6184542);
-        registerEntityEgg((Class<? extends Entity>)EntityBanditBoss.class, 8728064, 6184542);
-        registerEntityEgg((Class<? extends Entity>)EntitySkeletalMage.class, 7538690, 10262423);
-        registerEntityEgg((Class<? extends Entity>)EntityTroll.class, 8728064, 7362892);
-        registerEntityEgg((Class<? extends Entity>)EntityShimmerman.class, 16772608, 7536751);
-        registerEntityEgg((Class<? extends Entity>)EntityCyclops.class, 11773707, 11760139);
-        registerEntityEgg((Class<? extends Entity>)EntityTyphoon.class, 751795, 12877);
-        registerEntityEgg((Class<? extends Entity>)EntitySandstorm.class, 14926162, 11767838);
-        registerEntityEgg((Class<? extends Entity>)EntityBlizzard.class, 8510171, 1037270);
-        registerEntityEgg((Class<? extends Entity>)EntityTornado.class, 5197390, 2500134);
-        registerEntityEgg((Class<? extends Entity>)EntityVoidFiend.class, 0, 5065473);
-        registerEntityEgg((Class<? extends Entity>)EntitySpirit.class, 13396230, 12715724);
-        registerEntityEgg((Class<? extends Entity>)EntityHermit.class, 13396998, 12715724);
-        registerEntityEgg((Class<? extends Entity>)EntityWarlock.class, 10378777, 10027779);
-        registerEntityEgg((Class<? extends Entity>)EntityNecro.class, 0, 9729);
-        registerEntityEgg((Class<? extends Entity>)EntityIceMage.class, 562831, 12687308);
-        registerEntityEgg((Class<? extends Entity>)EntityEarthMage.class, 5382914, 749570);
-        registerEntityEgg((Class<? extends Entity>)EntitySkeletonKnight.class, 9868950, 2171169);
-        registerEntityEgg((Class<? extends Entity>)EntitySapientWarrior.class, 13619151, 14598270);
-        registerEntityEgg((Class<? extends Entity>)EntitySapientMiner.class, 13619151, 14598270);
-        registerEntityEgg((Class<? extends Entity>)EntityMoundTrader.class, 14598270, 9855439);
-        registerEntityEgg((Class<? extends Entity>)EntityAnchorTrader.class, 14598270, 2359370);
-        registerEntityEgg((Class<? extends Entity>)EntityBlackKnight.class, 9606292, 4868682);
-        registerEntityEgg((Class<? extends Entity>)EntityHannibal.class, 16579836, 7782596);
-        registerEntityEgg((Class<? extends Entity>)EntityRemnant.class, 0, 58879);
-        registerEntityEgg((Class<? extends Entity>)EntityVoidLord.class, 0, 1769216);
-        registerEntityEgg((Class<? extends Entity>)EntityDarkKnight.class, 197379, 7368816);
-        registerEntityEgg((Class<? extends Entity>)EntityNetherGhost.class, 6498825, 7538690);
-        registerEntityEgg((Class<? extends Entity>)EntityNetherSoul.class, 6498825, 7538690);
-        registerEntityEgg((Class<? extends Entity>)EntityNetherPigman.class, 6498825, 7538690);
-        registerEntityEgg((Class<? extends Entity>)EntityVampire.class, 6498825, 7538690);
-        registerEntityEgg((Class<? extends Entity>)EntityLavaTroll.class, 6498825, 7538690);
-        registerEntityEgg((Class<? extends Entity>)EntityLavaKnight.class, 6498825, 7538690);
-        registerEntityEgg((Class<? extends Entity>)EntityNetherBadgerer.class, 6498825, 7538690);
-        registerEntityEgg((Class<? extends Entity>)EntityBeholder.class, 6498825, 16711680);
-        registerEntityEgg((Class<? extends Entity>)EntityFireclops.class, 6498825, 16711680);
-        registerEntityEgg((Class<? extends Entity>)EntityCrystalBadgerer.class, 16711935, 4718722);
-        registerEntityEgg((Class<? extends Entity>)EntityAmethystMonster.class, 16711935, 4718722);
-        registerEntityEgg((Class<? extends Entity>)EntityGhostWither.class, 16711935, 1835295);
-        registerEntityEgg((Class<? extends Entity>)EntityTreeVillager.class, 15122026, 3200019);
-        registerEntityEgg((Class<? extends Entity>)EntityQuarryMaster.class, 15122026, 4013373);
-        registerEntityEgg((Class<? extends Entity>)EntityMinerVillager.class, 15122026, 4013373);
-        registerEntityEgg((Class<? extends Entity>)EntityTalkingVillager.class, 15122026, 6904085);
-        registerEntityEgg((Class<? extends Entity>)EntityChainMummy.class, 3223857, 8388608);
-        registerEntityEgg((Class<? extends Entity>)EntityEyeWarrior.class, 7012459, 13408512);
-        registerEntityEgg((Class<? extends Entity>)EntityYeti.class, 16777164, 13421823);
-        registerEntityEgg((Class<? extends Entity>)EntitySnowGiant.class, 16777215, 102);
-        registerEntityEgg((Class<? extends Entity>)EntityDeathBringer.class, 0, 16777215);
-        registerEntityEgg((Class<? extends Entity>)EntityDungeonBeast.class, 10066329, 8388608);
-        registerEntityEgg((Class<? extends Entity>)EntityDesertDragger.class, 16777062, 16777164);
-        registerEntityEgg((Class<? extends Entity>)EntityTavernMaster.class, 6697728, 16777113);
-        registerEntityEgg((Class<? extends Entity>)EntityTavernClient.class, 6697728, 16777113);
-        registerEntityEgg((Class<? extends Entity>)EntityNetherWalker.class, 8388608, 6776679);
-        registerEntityEgg((Class<? extends Entity>)EntityIceShielder.class, 13434879, 6750207);
-        registerEntityEgg((Class<? extends Entity>)EntityOrc.class, 6704128, 0);
-        registerEntityEgg((Class<? extends Entity>)EntityOrcMage.class, 6704128, 0);
-        registerEntityEgg((Class<? extends Entity>)EntityOrcDefender.class, 6704128, 0);
-        registerEntityEgg((Class<? extends Entity>)EntityRockTroll.class, 6704128, 6697728);
-        registerEntityEgg((Class<? extends Entity>)EntityEarthRupturer.class, 6704128, 13408512);
-        registerEntityEgg((Class<? extends Entity>)EntityIceSpirit.class, 16777215, 13421823);
-        registerEntityEgg((Class<? extends Entity>)EntityUndefeatableStrength.class, 8421504, 5046272);
-        registerEntityEgg((Class<? extends Entity>)EntityUndefeatableRegen.class, 8421504, 6684723);
-        registerEntityEgg((Class<? extends Entity>)EntityUndefeatableResistance.class, 8421504, 9380864);
-        registerEntityEgg((Class<? extends Entity>)EntitySapientEliteKnight.class, 16777062, 0);
-        registerEntityEgg((Class<? extends Entity>)EntitySapientGeneral.class, 16777113, 16776960);
-        registerEntityEgg((Class<? extends Entity>)EntityMontaneVillager.class, 13411154, 8421504);
-        registerEntityEgg((Class<? extends Entity>)EntityMontaneTrader.class, 13411154, 8421504);
-        registerEntityEgg((Class<? extends Entity>)EntityMidnightShade.class, 0, 102);
-        registerEntityEgg((Class<? extends Entity>)EntitySapientMage.class, 16777113, 6684774);
-        registerEntityEgg((Class<? extends Entity>)EntityCrystalTroll.class, 16777113, 6684774);
-        registerEntityEgg((Class<? extends Entity>)EntityCrystasis.class, 16777113, 6684774);
-        registerEntityEgg((Class<? extends Entity>)EntityCrystox.class, 16777113, 6684774);
-        registerEntityEgg((Class<? extends Entity>)EntityExawdus.class, 16777113, 6684774);
-        registerEntityEgg((Class<? extends Entity>)EntityCrystalliumGolem.class, 16777113, 6684774);
+        registerEntityEgg(EntityGoblin.class, 1538054, 14482440);
+        registerEntityEgg(EntityImp.class, 7873536, 3679232);
+        registerEntityEgg(EntitySkeletonWarrior.class, 13224393, 6367746);
+        registerEntityEgg(EntityZombieWarlord.class, 218902, 9408399);
+        registerEntityEgg(EntityEarthGolem.class, 9523712, 6890752);
+        registerEntityEgg(EntityStoneGolem.class, 6381921, 11382189);
+        registerEntityEgg(EntityBigStoneGolem.class, 6381921, 11382189);
+        registerEntityEgg(EntityStoneBot.class, 5395026, 10395294);
+        registerEntityEgg(EntitySpecter.class, 14606046, 12763842);
+        registerEntityEgg(EntityBandit.class, 8728064, 6184542);
+        registerEntityEgg(EntityBanditBoss.class, 8728064, 6184542);
+        registerEntityEgg(EntitySkeletalMage.class, 7538690, 10262423);
+        registerEntityEgg(EntityTroll.class, 8728064, 7362892);
+        registerEntityEgg(EntityShimmerman.class, 16772608, 7536751);
+        registerEntityEgg(EntityCyclops.class, 11773707, 11760139);
+        registerEntityEgg(EntityTyphoon.class, 751795, 12877);
+        registerEntityEgg(EntitySandstorm.class, 14926162, 11767838);
+        registerEntityEgg(EntityBlizzard.class, 8510171, 1037270);
+        registerEntityEgg(EntityTornado.class, 5197390, 2500134);
+        registerEntityEgg(EntityVoidFiend.class, 0, 5065473);
+        registerEntityEgg(EntitySpirit.class, 13396230, 12715724);
+        registerEntityEgg(EntityHermit.class, 13396998, 12715724);
+        registerEntityEgg(EntityWarlock.class, 10378777, 10027779);
+        registerEntityEgg(EntityNecro.class, 0, 9729);
+        registerEntityEgg(EntityIceMage.class, 562831, 12687308);
+        registerEntityEgg(EntityEarthMage.class, 5382914, 749570);
+        registerEntityEgg(EntitySkeletonKnight.class, 9868950, 2171169);
+        registerEntityEgg(EntitySapientWarrior.class, 13619151, 14598270);
+        registerEntityEgg(EntitySapientMiner.class, 13619151, 14598270);
+        registerEntityEgg(EntityMoundTrader.class, 14598270, 9855439);
+        registerEntityEgg(EntityAnchorTrader.class, 14598270, 2359370);
+        registerEntityEgg(EntityBlackKnight.class, 9606292, 4868682);
+        registerEntityEgg(EntityHannibal.class, 16579836, 7782596);
+        registerEntityEgg(EntityRemnant.class, 0, 58879);
+        registerEntityEgg(EntityVoidLord.class, 0, 1769216);
+        registerEntityEgg(EntityDarkKnight.class, 197379, 7368816);
+        registerEntityEgg(EntityNetherGhost.class, 6498825, 7538690);
+        registerEntityEgg(EntityNetherSoul.class, 6498825, 7538690);
+        registerEntityEgg(EntityNetherPigman.class, 6498825, 7538690);
+        registerEntityEgg(EntityVampire.class, 6498825, 7538690);
+        registerEntityEgg(EntityLavaTroll.class, 6498825, 7538690);
+        registerEntityEgg(EntityLavaKnight.class, 6498825, 7538690);
+        registerEntityEgg(EntityNetherBadgerer.class, 6498825, 7538690);
+        registerEntityEgg(EntityBeholder.class, 6498825, 16711680);
+        registerEntityEgg(EntityFireclops.class, 6498825, 16711680);
+        registerEntityEgg(EntityCrystalBadgerer.class, 16711935, 4718722);
+        registerEntityEgg(EntityAmethystMonster.class, 16711935, 4718722);
+        registerEntityEgg(EntityGhostWither.class, 16711935, 1835295);
+        registerEntityEgg(EntityTreeVillager.class, 15122026, 3200019);
+        registerEntityEgg(EntityQuarryMaster.class, 15122026, 4013373);
+        registerEntityEgg(EntityMinerVillager.class, 15122026, 4013373);
+        registerEntityEgg(EntityTalkingVillager.class, 15122026, 6904085);
+        registerEntityEgg(EntityChainMummy.class, 3223857, 8388608);
+        registerEntityEgg(EntityEyeWarrior.class, 7012459, 13408512);
+        registerEntityEgg(EntityYeti.class, 16777164, 13421823);
+        registerEntityEgg(EntitySnowGiant.class, 16777215, 102);
+        registerEntityEgg(EntityDeathBringer.class, 0, 16777215);
+        registerEntityEgg(EntityDungeonBeast.class, 10066329, 8388608);
+        registerEntityEgg(EntityDesertDragger.class, 16777062, 16777164);
+        registerEntityEgg(EntityTavernMaster.class, 6697728, 16777113);
+        registerEntityEgg(EntityTavernClient.class, 6697728, 16777113);
+        registerEntityEgg(EntityNetherWalker.class, 8388608, 6776679);
+        registerEntityEgg(EntityIceShielder.class, 13434879, 6750207);
+        registerEntityEgg(EntityOrc.class, 6704128, 0);
+        registerEntityEgg(EntityOrcMage.class, 6704128, 0);
+        registerEntityEgg(EntityOrcDefender.class, 6704128, 0);
+        registerEntityEgg(EntityRockTroll.class, 6704128, 6697728);
+        registerEntityEgg(EntityEarthRupturer.class, 6704128, 13408512);
+        registerEntityEgg(EntityIceSpirit.class, 16777215, 13421823);
+        registerEntityEgg(EntityUndefeatableStrength.class, 8421504, 5046272);
+        registerEntityEgg(EntityUndefeatableRegen.class, 8421504, 6684723);
+        registerEntityEgg(EntityUndefeatableResistance.class, 8421504, 9380864);
+        registerEntityEgg(EntitySapientEliteKnight.class, 16777062, 0);
+        registerEntityEgg(EntitySapientGeneral.class, 16777113, 16776960);
+        registerEntityEgg(EntityMontaneVillager.class, 13411154, 8421504);
+        registerEntityEgg(EntityMontaneTrader.class, 13411154, 8421504);
+        registerEntityEgg(EntityMidnightShade.class, 0, 102);
+        registerEntityEgg(EntitySapientMage.class, 16777113, 6684774);
+        registerEntityEgg(EntityCrystalTroll.class, 16777113, 6684774);
+        registerEntityEgg(EntityCrystasis.class, 16777113, 6684774);
+        registerEntityEgg(EntityCrystox.class, 16777113, 6684774);
+        registerEntityEgg(EntityExawdus.class, 16777113, 6684774);
+        registerEntityEgg(EntityCrystalliumGolem.class, 16777113, 6684774);
         final BiomeGenBase[] spawn = BiomeGenBase.getBiomeGenArray();
         for (int i = 0; i < spawn.length - 1; ++i) {
             if (spawn[i] != null && spawn[i] != Dungeons.crystal && spawn[i] != Dungeons.sunset && spawn[i] != Dungeons.crystalliumPlainsBiome) {
-                EntityRegistry.addSpawn((Class)EntityImp.class, 17, 4, 4, EnumCreatureType.monster, new BiomeGenBase[] { spawn[i] });
-                EntityRegistry.addSpawn((Class)EntitySpirit.class, 15, 4, 4, EnumCreatureType.monster, new BiomeGenBase[] { spawn[i] });
-                EntityRegistry.addSpawn((Class)EntitySkeletonWarrior.class, 17, 4, 4, EnumCreatureType.monster, new BiomeGenBase[] { spawn[i] });
-                EntityRegistry.addSpawn((Class)EntityBanditBoss.class, 7, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { spawn[i] });
-                EntityRegistry.addSpawn((Class)EntityTroll.class, 20, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { spawn[i] });
-                EntityRegistry.addSpawn((Class)EntitySkeletalMage.class, 5, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { spawn[i] });
-                EntityRegistry.addSpawn((Class)EntityCyclops.class, 30, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { spawn[i] });
-                EntityRegistry.addSpawn((Class)EntityVoidFiend.class, 70, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { spawn[i] });
-                EntityRegistry.addSpawn((Class)EntityEarthGolem.class, 20, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { spawn[i] });
-                EntityRegistry.addSpawn((Class)EntitySapientMiner.class, 40, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { spawn[i] });
-                EntityRegistry.addSpawn((Class)EntityWarlock.class, 15, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { spawn[i] });
-                EntityRegistry.addSpawn((Class)EntityNecro.class, 15, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { spawn[i] });
-                EntityRegistry.addSpawn((Class)EntityEarthMage.class, 15, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { spawn[i] });
-                EntityRegistry.addSpawn((Class)EntitySkeletonKnight.class, 30, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { spawn[i] });
+                EntityRegistry.addSpawn(EntityImp.class, 17, 4, 4, EnumCreatureType.monster, spawn[i]);
+                EntityRegistry.addSpawn(EntitySpirit.class, 15, 4, 4, EnumCreatureType.monster, spawn[i]);
+                EntityRegistry.addSpawn(EntitySkeletonWarrior.class, 17, 4, 4, EnumCreatureType.monster, spawn[i]);
+                EntityRegistry.addSpawn(EntityBanditBoss.class, 7, 1, 1, EnumCreatureType.monster, spawn[i]);
+                EntityRegistry.addSpawn(EntityTroll.class, 20, 1, 1, EnumCreatureType.monster, spawn[i]);
+                EntityRegistry.addSpawn(EntitySkeletalMage.class, 5, 1, 1, EnumCreatureType.monster, spawn[i]);
+                EntityRegistry.addSpawn(EntityCyclops.class, 30, 1, 1, EnumCreatureType.monster, spawn[i]);
+                EntityRegistry.addSpawn(EntityVoidFiend.class, 70, 1, 1, EnumCreatureType.monster, spawn[i]);
+                EntityRegistry.addSpawn(EntityEarthGolem.class, 20, 1, 1, EnumCreatureType.monster, spawn[i]);
+                EntityRegistry.addSpawn(EntitySapientMiner.class, 40, 1, 1, EnumCreatureType.monster, spawn[i]);
+                EntityRegistry.addSpawn(EntityWarlock.class, 15, 1, 1, EnumCreatureType.monster, spawn[i]);
+                EntityRegistry.addSpawn(EntityNecro.class, 15, 1, 1, EnumCreatureType.monster, spawn[i]);
+                EntityRegistry.addSpawn(EntityEarthMage.class, 15, 1, 1, EnumCreatureType.monster, spawn[i]);
+                EntityRegistry.addSpawn(EntitySkeletonKnight.class, 30, 1, 1, EnumCreatureType.monster, spawn[i]);
             }
         }
-        EntityRegistry.removeSpawn((Class)EntityImp.class, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.sky });
-        EntityRegistry.removeSpawn((Class)EntitySkeletalMage.class, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.sky });
-        EntityRegistry.removeSpawn((Class)EntityBanditBoss.class, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.hell });
-        EntityRegistry.removeSpawn((Class)EntityBanditBoss.class, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.sky });
-        EntityRegistry.removeSpawn((Class)EntityTroll.class, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.hell });
-        EntityRegistry.removeSpawn((Class)EntityTroll.class, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.sky });
-        EntityRegistry.removeSpawn((Class)EntityGiantZombie.class, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.hell });
-        EntityRegistry.removeSpawn((Class)EntityGiantZombie.class, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.sky });
-        EntityRegistry.removeSpawn((Class)EntityCyclops.class, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.hell });
-        EntityRegistry.removeSpawn((Class)EntityCyclops.class, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.sky });
-        EntityRegistry.removeSpawn((Class)EntityVoidFiend.class, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.hell });
-        EntityRegistry.removeSpawn((Class)EntityVoidFiend.class, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.sky });
-        EntityRegistry.removeSpawn((Class)EntityEarthGolem.class, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.hell });
-        EntityRegistry.removeSpawn((Class)EntityEarthGolem.class, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.sky });
-        EntityRegistry.removeSpawn((Class)EntitySkeletonWarrior.class, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.hell });
-        EntityRegistry.removeSpawn((Class)EntitySkeletonWarrior.class, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.sky });
-        EntityRegistry.removeSpawn((Class)EntitySpirit.class, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.sky });
-        EntityRegistry.removeSpawn((Class)EntitySapientMiner.class, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.sky });
-        EntityRegistry.removeSpawn((Class)EntitySapientMiner.class, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.hell });
-        EntityRegistry.removeSpawn((Class)EntityWarlock.class, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.sky });
-        EntityRegistry.removeSpawn((Class)EntityWarlock.class, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.hell });
-        EntityRegistry.removeSpawn((Class)EntitySkeletonKnight.class, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.sky });
-        EntityRegistry.removeSpawn((Class)EntityNecro.class, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.sky });
-        EntityRegistry.removeSpawn((Class)EntityNecro.class, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.hell });
-        EntityRegistry.removeSpawn((Class)EntityEarthMage.class, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.sky });
-        EntityRegistry.removeSpawn((Class)EntityEarthMage.class, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.hell });
-        EntityRegistry.addSpawn((Class)EntityTyphoon.class, 20, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.swampland });
-        EntityRegistry.addSpawn((Class)EntityTyphoon.class, 20, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.beach });
-        EntityRegistry.addSpawn((Class)EntitySandstorm.class, 20, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.desert });
-        EntityRegistry.addSpawn((Class)EntitySandstorm.class, 20, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.desertHills });
-        EntityRegistry.addSpawn((Class)EntityDesertDragger.class, 20, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.desert });
-        EntityRegistry.addSpawn((Class)EntityDesertDragger.class, 20, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.desertHills });
-        EntityRegistry.addSpawn((Class)EntityBlizzard.class, 20, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.iceMountains });
-        EntityRegistry.addSpawn((Class)EntityBlizzard.class, 20, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.icePlains });
-        EntityRegistry.addSpawn((Class)EntityBlizzard.class, 20, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.coldTaigaHills });
-        EntityRegistry.addSpawn((Class)EntityBlizzard.class, 20, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.coldTaiga });
-        EntityRegistry.addSpawn((Class)EntityIceMage.class, 20, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.iceMountains });
-        EntityRegistry.addSpawn((Class)EntityIceMage.class, 20, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.icePlains });
-        EntityRegistry.addSpawn((Class)EntityIceMage.class, 20, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.coldTaigaHills });
-        EntityRegistry.addSpawn((Class)EntityIceMage.class, 20, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.coldTaiga });
-        EntityRegistry.addSpawn((Class)EntityTornado.class, 20, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.plains });
-        EntityRegistry.addSpawn((Class)EntityTornado.class, 20, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.savanna });
-        EntityRegistry.addSpawn((Class)EntityHermit.class, 30, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.extremeHills });
-        EntityRegistry.addSpawn((Class)EntityHermit.class, 30, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.extremeHillsEdge });
-        EntityRegistry.addSpawn((Class)EntityHermit.class, 30, 1, 1, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.extremeHillsPlus });
-        EntityRegistry.addSpawn((Class)EntityBandit.class, 60, 4, 4, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.forest });
-        EntityRegistry.addSpawn((Class)EntityBandit.class, 60, 4, 4, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.forestHills });
-        EntityRegistry.addSpawn((Class)EntityBandit.class, 60, 4, 4, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.birchForest });
-        EntityRegistry.addSpawn((Class)EntityBandit.class, 60, 4, 4, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.birchForestHills });
-        EntityRegistry.addSpawn((Class)EntityBandit.class, 60, 4, 4, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.roofedForest });
-        EntityRegistry.addSpawn((Class)EntityNetherPigman.class, 80, 4, 4, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.hell });
-        EntityRegistry.addSpawn((Class)EntityNetherSoul.class, 35, 4, 4, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.hell });
-        EntityRegistry.addSpawn((Class)EntityNetherGhost.class, 60, 4, 4, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.hell });
-        EntityRegistry.addSpawn((Class)EntityVampire.class, 40, 4, 4, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.hell });
-        EntityRegistry.addSpawn((Class)EntityLavaTroll.class, 20, 4, 4, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.hell });
-        EntityRegistry.addSpawn((Class)EntityLavaKnight.class, 40, 4, 4, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.hell });
-        EntityRegistry.addSpawn((Class)EntityNetherBadgerer.class, 5, 4, 4, EnumCreatureType.monster, new BiomeGenBase[] { BiomeGenBase.hell });
-        EntityRegistry.addSpawn((Class)EntityAmethystMonster.class, 240, 4, 4, EnumCreatureType.monster, new BiomeGenBase[] { Dungeons.crystal });
-        EntityRegistry.addSpawn((Class)EntityCrystalBadgerer.class, 1, 4, 4, EnumCreatureType.monster, new BiomeGenBase[] { Dungeons.crystal });
-        EntityRegistry.addSpawn((Class)EntityHannibal.class, 60, 4, 4, EnumCreatureType.monster, new BiomeGenBase[] { Dungeons.crystal });
-        EntityRegistry.addSpawn((Class)EntityCrystalliumGolem.class, 120, 4, 4, EnumCreatureType.monster, new BiomeGenBase[] { Dungeons.crystal });
-        EntityRegistry.addSpawn((Class)EntityCrystasis.class, 120, 4, 4, EnumCreatureType.monster, new BiomeGenBase[] { Dungeons.crystalliumPlainsBiome });
-        EntityRegistry.addSpawn((Class)EntityCrystalTroll.class, 40, 4, 4, EnumCreatureType.monster, new BiomeGenBase[] { Dungeons.crystalliumPlainsBiome });
-        EntityRegistry.addSpawn((Class)EntityShimmerman.class, 20, 4, 4, EnumCreatureType.monster, new BiomeGenBase[] { Dungeons.crystalliumPlainsBiome });
-        EntityRegistry.addSpawn((Class)EntityCrystox.class, 120, 4, 4, EnumCreatureType.monster, new BiomeGenBase[] { Dungeons.crystalliumPlainsBiome });
+        EntityRegistry.removeSpawn(EntityImp.class, EnumCreatureType.monster, BiomeGenBase.sky);
+        EntityRegistry.removeSpawn(EntitySkeletalMage.class, EnumCreatureType.monster, BiomeGenBase.sky);
+        EntityRegistry.removeSpawn(EntityBanditBoss.class, EnumCreatureType.monster, BiomeGenBase.hell);
+        EntityRegistry.removeSpawn(EntityBanditBoss.class, EnumCreatureType.monster, BiomeGenBase.sky);
+        EntityRegistry.removeSpawn(EntityTroll.class, EnumCreatureType.monster, BiomeGenBase.hell );
+        EntityRegistry.removeSpawn(EntityTroll.class, EnumCreatureType.monster, BiomeGenBase.sky);
+        EntityRegistry.removeSpawn(EntityGiantZombie.class, EnumCreatureType.monster, BiomeGenBase.hell);
+        EntityRegistry.removeSpawn(EntityGiantZombie.class, EnumCreatureType.monster, BiomeGenBase.sky);
+        EntityRegistry.removeSpawn(EntityCyclops.class, EnumCreatureType.monster, BiomeGenBase.hell );
+        EntityRegistry.removeSpawn(EntityCyclops.class, EnumCreatureType.monster, BiomeGenBase.sky);
+        EntityRegistry.removeSpawn(EntityVoidFiend.class, EnumCreatureType.monster, BiomeGenBase.hell );
+        EntityRegistry.removeSpawn(EntityVoidFiend.class, EnumCreatureType.monster, BiomeGenBase.sky);
+        EntityRegistry.removeSpawn(EntityEarthGolem.class, EnumCreatureType.monster, BiomeGenBase.hell );
+        EntityRegistry.removeSpawn(EntityEarthGolem.class, EnumCreatureType.monster, BiomeGenBase.sky);
+        EntityRegistry.removeSpawn(EntitySkeletonWarrior.class, EnumCreatureType.monster, BiomeGenBase.hell );
+        EntityRegistry.removeSpawn(EntitySkeletonWarrior.class, EnumCreatureType.monster, BiomeGenBase.sky);
+        EntityRegistry.removeSpawn(EntitySpirit.class, EnumCreatureType.monster, BiomeGenBase.sky);
+        EntityRegistry.removeSpawn(EntitySapientMiner.class, EnumCreatureType.monster, BiomeGenBase.sky);
+        EntityRegistry.removeSpawn(EntitySapientMiner.class, EnumCreatureType.monster, BiomeGenBase.hell);
+        EntityRegistry.removeSpawn(EntityWarlock.class, EnumCreatureType.monster, BiomeGenBase.sky);
+        EntityRegistry.removeSpawn(EntityWarlock.class, EnumCreatureType.monster, BiomeGenBase.hell );
+        EntityRegistry.removeSpawn(EntitySkeletonKnight.class, EnumCreatureType.monster, BiomeGenBase.sky);
+        EntityRegistry.removeSpawn(EntityNecro.class, EnumCreatureType.monster, BiomeGenBase.sky);
+        EntityRegistry.removeSpawn(EntityNecro.class, EnumCreatureType.monster, BiomeGenBase.hell );
+        EntityRegistry.removeSpawn(EntityEarthMage.class, EnumCreatureType.monster, BiomeGenBase.sky);
+        EntityRegistry.removeSpawn(EntityEarthMage.class, EnumCreatureType.monster, BiomeGenBase.hell );
+        EntityRegistry.addSpawn(EntityTyphoon.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.swampland);
+        EntityRegistry.addSpawn(EntityTyphoon.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.beach);
+        EntityRegistry.addSpawn(EntitySandstorm.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.desert);
+        EntityRegistry.addSpawn(EntitySandstorm.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.desertHills);
+        EntityRegistry.addSpawn(EntityDesertDragger.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.desert);
+        EntityRegistry.addSpawn(EntityDesertDragger.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.desertHills);
+        EntityRegistry.addSpawn(EntityBlizzard.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.iceMountains);
+        EntityRegistry.addSpawn(EntityBlizzard.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.icePlains);
+        EntityRegistry.addSpawn(EntityBlizzard.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.coldTaigaHills);
+        EntityRegistry.addSpawn(EntityBlizzard.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.coldTaiga);
+        EntityRegistry.addSpawn(EntityIceMage.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.iceMountains);
+        EntityRegistry.addSpawn(EntityIceMage.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.icePlains);
+        EntityRegistry.addSpawn(EntityIceMage.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.coldTaigaHills);
+        EntityRegistry.addSpawn(EntityIceMage.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.coldTaiga);
+        EntityRegistry.addSpawn(EntityTornado.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.plains);
+        EntityRegistry.addSpawn(EntityTornado.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.savanna);
+        EntityRegistry.addSpawn(EntityHermit.class, 30, 1, 1, EnumCreatureType.monster, BiomeGenBase.extremeHills);
+        EntityRegistry.addSpawn(EntityHermit.class, 30, 1, 1, EnumCreatureType.monster, BiomeGenBase.extremeHillsEdge);
+        EntityRegistry.addSpawn(EntityHermit.class, 30, 1, 1, EnumCreatureType.monster, BiomeGenBase.extremeHillsPlus);
+        EntityRegistry.addSpawn(EntityBandit.class, 60, 4, 4, EnumCreatureType.monster, BiomeGenBase.forest);
+        EntityRegistry.addSpawn(EntityBandit.class, 60, 4, 4, EnumCreatureType.monster, BiomeGenBase.forestHills);
+        EntityRegistry.addSpawn(EntityBandit.class, 60, 4, 4, EnumCreatureType.monster, BiomeGenBase.birchForest);
+        EntityRegistry.addSpawn(EntityBandit.class, 60, 4, 4, EnumCreatureType.monster, BiomeGenBase.birchForestHills);
+        EntityRegistry.addSpawn(EntityBandit.class, 60, 4, 4, EnumCreatureType.monster, BiomeGenBase.roofedForest);
+        EntityRegistry.addSpawn(EntityNetherPigman.class, 80, 4, 4, EnumCreatureType.monster, BiomeGenBase.hell);
+        EntityRegistry.addSpawn(EntityNetherSoul.class, 35, 4, 4, EnumCreatureType.monster, BiomeGenBase.hell);
+        EntityRegistry.addSpawn(EntityNetherGhost.class, 60, 4, 4, EnumCreatureType.monster, BiomeGenBase.hell);
+        EntityRegistry.addSpawn(EntityVampire.class, 40, 4, 4, EnumCreatureType.monster, BiomeGenBase.hell);
+        EntityRegistry.addSpawn(EntityLavaTroll.class, 20, 4, 4, EnumCreatureType.monster, BiomeGenBase.hell);
+        EntityRegistry.addSpawn(EntityLavaKnight.class, 40, 4, 4, EnumCreatureType.monster, BiomeGenBase.hell);
+        EntityRegistry.addSpawn(EntityNetherBadgerer.class, 5, 4, 4, EnumCreatureType.monster, BiomeGenBase.hell);
+        EntityRegistry.addSpawn(EntityAmethystMonster.class, 240, 4, 4, EnumCreatureType.monster, Dungeons.crystal);
+        EntityRegistry.addSpawn(EntityCrystalBadgerer.class, 1, 4, 4, EnumCreatureType.monster, Dungeons.crystal);
+        EntityRegistry.addSpawn(EntityHannibal.class, 60, 4, 4, EnumCreatureType.monster, Dungeons.crystal);
+        EntityRegistry.addSpawn(EntityCrystalliumGolem.class, 120, 4, 4, EnumCreatureType.monster, Dungeons.crystal);
+        EntityRegistry.addSpawn(EntityCrystasis.class, 120, 4, 4, EnumCreatureType.monster, Dungeons.crystalliumPlainsBiome);
+        EntityRegistry.addSpawn(EntityCrystalTroll.class, 40, 4, 4, EnumCreatureType.monster, Dungeons.crystalliumPlainsBiome);
+        EntityRegistry.addSpawn(EntityShimmerman.class, 20, 4, 4, EnumCreatureType.monster, Dungeons.crystalliumPlainsBiome);
+        EntityRegistry.addSpawn(EntityCrystox.class, 120, 4, 4, EnumCreatureType.monster, Dungeons.crystalliumPlainsBiome);
         Dungeons.proxy.registerRenderInformation();
         Dungeons.proxy.registerItemRenderers();
         Dungeons.proxy.registerTileEntities();
         ChestSetup.addChestItems();
     }
-    
+
     @Mod.EventHandler
     public void postInit(final FMLPostInitializationEvent event) {
         Dungeons.packetPipeline.postInitialise();
         if (this.entitylistEnabled == 1) {
-            EntityList.addMapping((Class)EntityGoblin.class, "EntityGoblin", this.setMobId());
-            EntityList.addMapping((Class)EntitySkeletonWarrior.class, "EntitySkeletonWarrior", this.setMobId());
-            EntityList.addMapping((Class)EntityEarthGolem.class, "EntityEarthGolem", this.setMobId());
-            EntityList.addMapping((Class)EntityStoneGolem.class, "EntityStoneGolem", this.setMobId());
-            EntityList.addMapping((Class)EntityBandit.class, "EntityBandit", this.setMobId());
-            EntityList.addMapping((Class)EntityBlackKnight.class, "EntityBlackKnight", this.setMobId());
-            EntityList.addMapping((Class)EntityNecro.class, "EntityNecro", this.setMobId());
-            EntityList.addMapping((Class)EntityTroll.class, "EntityTroll", this.setMobId());
-            EntityList.addMapping((Class)EntityVoidFiend.class, "EntityVoidFiend", this.setMobId());
-            EntityList.addMapping((Class)EntitySpirit.class, "EntitySpirit", this.setMobId());
-            EntityList.addMapping((Class)EntitySkeletonKnight.class, "EntitySkeletonKnight", this.setMobId());
-            EntityList.addMapping((Class)EntitySapientWarrior.class, "EntitySapientWarrior", this.setMobId());
-            EntityList.addMapping((Class)EntityNetherSoul.class, "EntityNetherSoul", this.setMobId());
-            EntityList.addMapping((Class)EntityAmethystMonster.class, "EntityAmethystMonster", this.setMobId());
-            EntityList.addMapping((Class)EntityVampire.class, "EntityVampire", this.setMobId());
-            EntityList.addMapping((Class)EntityLavaKnight.class, "EntityLavaKnight", this.setMobId());
+            EntityList.addMapping(EntityGoblin.class, "EntityGoblin", this.setMobId());
+            EntityList.addMapping(EntitySkeletonWarrior.class, "EntitySkeletonWarrior", this.setMobId());
+            EntityList.addMapping(EntityEarthGolem.class, "EntityEarthGolem", this.setMobId());
+            EntityList.addMapping(EntityStoneGolem.class, "EntityStoneGolem", this.setMobId());
+            EntityList.addMapping(EntityBandit.class, "EntityBandit", this.setMobId());
+            EntityList.addMapping(EntityBlackKnight.class, "EntityBlackKnight", this.setMobId());
+            EntityList.addMapping(EntityNecro.class, "EntityNecro", this.setMobId());
+            EntityList.addMapping(EntityTroll.class, "EntityTroll", this.setMobId());
+            EntityList.addMapping(EntityVoidFiend.class, "EntityVoidFiend", this.setMobId());
+            EntityList.addMapping(EntitySpirit.class, "EntitySpirit", this.setMobId());
+            EntityList.addMapping(EntitySkeletonKnight.class, "EntitySkeletonKnight", this.setMobId());
+            EntityList.addMapping(EntitySapientWarrior.class, "EntitySapientWarrior", this.setMobId());
+            EntityList.addMapping(EntityNetherSoul.class, "EntityNetherSoul", this.setMobId());
+            EntityList.addMapping(EntityAmethystMonster.class, "EntityAmethystMonster", this.setMobId());
+            EntityList.addMapping(EntityVampire.class, "EntityVampire", this.setMobId());
+            EntityList.addMapping(EntityLavaKnight.class, "EntityLavaKnight", this.setMobId());
         }
-        MinecraftForge.EVENT_BUS.register((Object)new DungeonGuiIngame(Minecraft.getMinecraft()));
-        MinecraftForge.EVENT_BUS.register((Object)new DungeonEventHandler());
+        MinecraftForge.EVENT_BUS.register(new DungeonGuiIngame(Minecraft.getMinecraft()));
+        MinecraftForge.EVENT_BUS.register(new DungeonEventHandler());
     }
-    
+
     public static int getUniqueEntityId() {
         do {
             ++Dungeons.startEntityid;
         } while (EntityList.getStringFromID(Dungeons.startEntityid) != null);
         return Dungeons.startEntityid;
     }
-    
+
     public static void registerEntityEgg(final Class<? extends Entity> entity, final int primaryColor, final int secondaryColor) {
         final int id = getUniqueEntityId();
         EntityList.IDtoClassMapping.put(id, entity);
         EntityList.entityEggs.put(id, new EntityList.EntityEggInfo(id, primaryColor, secondaryColor));
     }
-    
+
     public static ItemStack setRare(final ItemStack stack) {
         final Random rand = new Random();
         int bookRand = 0;
@@ -1365,7 +1365,7 @@ public class Dungeons
         stack.addEnchantment(Dungeons.rare, 1);
         return stack;
     }
-    
+
     public static ItemStack setLegendary(final ItemStack stack) {
         final Random rand = new Random();
         if (stack.getItem() instanceof ItemArmor) {
@@ -1436,23 +1436,22 @@ public class Dungeons
         stack.addEnchantment(Dungeons.legendary, 2);
         return stack;
     }
-    
+
     public static double randGauss() {
         final Random rand = new Random();
         return rand.nextGaussian() - rand.nextGaussian();
     }
-    
+
     public static float randFloat() {
         final Random rand = new Random();
         return rand.nextFloat() - rand.nextFloat();
     }
-    
+
     public static int randRange(final int start, final int end) {
         final Random rand = new Random();
-        final int randNum = rand.nextInt(Math.abs(start - end) + 1) + start;
-        return randNum;
+        return rand.nextInt(Math.abs(start - end) + 1) + start;
     }
-    
+
     public static void spawner(final World world, final int x, final int y, final int z, final int mobId, final int mobCount) {
         world.setBlock(x, y, z, Dungeons.dungeonSpawner);
         final TileEntityDungeonSpawner spawner = (TileEntityDungeonSpawner)world.getTileEntity(x, y, z);
@@ -1461,7 +1460,7 @@ public class Dungeons
             spawner.setMobCount(mobCount);
         }
     }
-    
+
     public static void spawnerRepeater(final World world, final int x, final int y, final int z, final int mobId, final int mobCount, final int cooldown) {
         world.setBlock(x, y, z, Dungeons.dungeonSpawnerRepeater);
         final TileEntityDungeonSpawnerRepeater spawner = (TileEntityDungeonSpawnerRepeater)world.getTileEntity(x, y, z);
@@ -1471,7 +1470,7 @@ public class Dungeons
             spawner.setCooldown(cooldown);
         }
     }
-    
+
     int setMobId() {
         int id;
         for (id = 130; EntityList.getClassFromID(id) != null; ++id) {}
@@ -1480,7 +1479,7 @@ public class Dungeons
         }
         return id;
     }
-    
+
     static {
         packetPipeline = new PacketPipeline();
         Materials = new CreativeTabs(CreativeTabs.getNextID(), "Materials and Misc") {
