@@ -35,26 +35,25 @@ public class EntityTavernMaster extends EntityVillager
     private float field_82191_bN;
     public static final Map villagersSellingList;
     public static final Map blacksmithSellingList;
-    private static final String __OBFID = "CL_00001707";
-    
+
     public EntityTavernMaster(final World par1World) {
         this(par1World, 0);
     }
-    
+
     public EntityTavernMaster(final World par1World, final int par2) {
         super(par1World);
         this.villagerGreetings = new String[] { "Welcome to our village", "Hi", "Hello traveler", "Hmm?", "Who are you?", "I have fantastic items for sale!" };
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(20.0);
     }
-    
+
     public boolean isAIEnabled() {
         return true;
     }
-    
+
     protected void updateAITick() {
         final int randomTickDivider = this.randomTickDivider - 1;
         this.randomTickDivider = randomTickDivider;
@@ -97,7 +96,7 @@ public class EntityTavernMaster extends EntityVillager
         }
         super.updateAITick();
     }
-    
+
     public boolean interact(final EntityPlayer par1EntityPlayer) {
         final ItemStack itemstack = par1EntityPlayer.inventory.getCurrentItem();
         final boolean flag = itemstack != null && itemstack.getItem() == Items.spawn_egg;
@@ -111,12 +110,12 @@ public class EntityTavernMaster extends EntityVillager
         }
         return super.interact(par1EntityPlayer);
     }
-    
+
     protected void entityInit() {
         super.entityInit();
         this.dataWatcher.addObject(31, (Object)0);
     }
-    
+
     public void writeEntityToNBT(final NBTTagCompound par1NBTTagCompound) {
         super.writeEntityToNBT(par1NBTTagCompound);
         par1NBTTagCompound.setInteger("Profession", this.getProfession());
@@ -125,7 +124,7 @@ public class EntityTavernMaster extends EntityVillager
             par1NBTTagCompound.setTag("Offers", (NBTBase)this.buyingList.getRecipiesAsTags());
         }
     }
-    
+
     public void readEntityFromNBT(final NBTTagCompound par1NBTTagCompound) {
         super.readEntityFromNBT(par1NBTTagCompound);
         this.setProfession(par1NBTTagCompound.getInteger("Profession"));
@@ -135,47 +134,47 @@ public class EntityTavernMaster extends EntityVillager
             this.buyingList = new MerchantRecipeList(nbttagcompound1);
         }
     }
-    
+
     protected boolean canDespawn() {
         return false;
     }
-    
+
     protected String getLivingSound() {
         return this.isTrading() ? "mob.villager.haggle" : "mob.villager.idle";
     }
-    
+
     protected String getHurtSound() {
         return "mob.villager.hit";
     }
-    
+
     protected String getDeathSound() {
         return "mob.villager.death";
     }
-    
+
     public void setProfession(final int par1) {
         this.dataWatcher.updateObject(16, (Object)par1);
     }
-    
+
     public int getProfession() {
         return this.dataWatcher.getWatchableObjectInt(16);
     }
-    
+
     public boolean isMating() {
         return this.isMating;
     }
-    
+
     public void setMating(final boolean par1) {
         this.isMating = par1;
     }
-    
+
     public void setPlaying(final boolean par1) {
         this.isPlaying = par1;
     }
-    
+
     public boolean isPlaying() {
         return this.isPlaying;
     }
-    
+
     public void setRevengeTarget(final EntityLivingBase par1EntityLivingBase) {
         super.setRevengeTarget(par1EntityLivingBase);
         if (this.villageObj != null && par1EntityLivingBase != null) {
@@ -192,7 +191,7 @@ public class EntityTavernMaster extends EntityVillager
             }
         }
     }
-    
+
     public void onDeath(final DamageSource par1DamageSource) {
         if (this.villageObj != null) {
             final Entity entity = par1DamageSource.getEntity();
@@ -213,19 +212,19 @@ public class EntityTavernMaster extends EntityVillager
         }
         super.onDeath(par1DamageSource);
     }
-    
+
     public void setCustomer(final EntityPlayer par1EntityPlayer) {
         this.buyingPlayer = par1EntityPlayer;
     }
-    
+
     public EntityPlayer getCustomer() {
         return this.buyingPlayer;
     }
-    
+
     public boolean isTrading() {
         return this.buyingPlayer != null;
     }
-    
+
     public void useRecipe(final MerchantRecipe par1MerchantRecipe) {
         par1MerchantRecipe.incrementToolUses();
         this.livingSoundTime = -this.getTalkInterval();
@@ -244,7 +243,7 @@ public class EntityTavernMaster extends EntityVillager
             this.wealth += par1MerchantRecipe.getItemToBuy().stackSize;
         }
     }
-    
+
     public void func_110297_a_(final ItemStack par1ItemStack) {
         if (!this.worldObj.isRemote && this.livingSoundTime > -this.getTalkInterval() + 20) {
             this.livingSoundTime = -this.getTalkInterval();
@@ -256,19 +255,19 @@ public class EntityTavernMaster extends EntityVillager
             }
         }
     }
-    
+
     public MerchantRecipeList getRecipes(final EntityPlayer par1EntityPlayer) {
         if (this.buyingList == null) {
             this.addDefaultEquipmentAndRecipies(6);
         }
         return this.buyingList;
     }
-    
+
     private float adjustProbability(final float par1) {
         final float f1 = par1 + this.field_82191_bN;
         return (f1 > 0.9f) ? (0.9f - (f1 - 0.9f)) : f1;
     }
-    
+
     private void addDefaultEquipmentAndRecipies(final int par1) {
         if (this.buyingList != null) {
             this.field_82191_bN = MathHelper.sqrt_float((float)this.buyingList.size()) * 0.2f;
@@ -295,26 +294,26 @@ public class EntityTavernMaster extends EntityVillager
             this.buyingList.addToListWithCheck((MerchantRecipe)merchantrecipelist.get(l));
         }
     }
-    
+
     @SideOnly(Side.CLIENT)
     public void setRecipes(final MerchantRecipeList par1MerchantRecipeList) {
     }
-    
+
     public static void func_146091_a(final MerchantRecipeList p_146091_0_, final Item p_146091_1_, final Random p_146091_2_, final float p_146091_3_) {
         if (p_146091_2_.nextFloat() < p_146091_3_) {
             p_146091_0_.add((Object)new MerchantRecipe(func_146088_a(p_146091_1_, p_146091_2_), Items.emerald));
         }
     }
-    
+
     private static ItemStack func_146088_a(final Item p_146088_0_, final Random p_146088_1_) {
         return new ItemStack(p_146088_0_, func_146092_b(p_146088_0_, p_146088_1_), 0);
     }
-    
+
     private static int func_146092_b(final Item p_146092_0_, final Random p_146092_1_) {
         final Tuple tuple = EntityTavernMaster.villagersSellingList.get(p_146092_0_);
         return (int)((tuple == null) ? 1 : (((int)tuple.getFirst() >= (int)tuple.getSecond()) ? tuple.getFirst() : ((int)tuple.getFirst() + p_146092_1_.nextInt((int)tuple.getSecond() - (int)tuple.getFirst()))));
     }
-    
+
     public static void func_146089_b(final MerchantRecipeList p_146089_0_, final Item p_146089_1_, final Random p_146089_2_, final float p_146089_3_) {
         if (p_146089_2_.nextFloat() < p_146089_3_) {
             final int i = func_146090_c(p_146089_1_, p_146089_2_);
@@ -331,12 +330,12 @@ public class EntityTavernMaster extends EntityVillager
             p_146089_0_.add((Object)new MerchantRecipe(itemstack, itemstack2));
         }
     }
-    
+
     private static int func_146090_c(final Item p_146090_0_, final Random p_146090_1_) {
         final Tuple tuple = EntityTavernMaster.blacksmithSellingList.get(p_146090_0_);
         return (int)((tuple == null) ? 1 : (((int)tuple.getFirst() >= (int)tuple.getSecond()) ? tuple.getFirst() : ((int)tuple.getFirst() + p_146090_1_.nextInt((int)tuple.getSecond() - (int)tuple.getFirst()))));
     }
-    
+
     @SideOnly(Side.CLIENT)
     public void handleHealthUpdate(final byte par1) {
         if (par1 == 12) {
@@ -352,7 +351,7 @@ public class EntityTavernMaster extends EntityVillager
             super.handleHealthUpdate(par1);
         }
     }
-    
+
     @SideOnly(Side.CLIENT)
     private void generateRandomParticles(final String par1Str) {
         for (int i = 0; i < 5; ++i) {
@@ -362,21 +361,21 @@ public class EntityTavernMaster extends EntityVillager
             this.worldObj.spawnParticle(par1Str, this.posX + this.rand.nextFloat() * this.width * 2.0f - this.width, this.posY + 1.0 + this.rand.nextFloat() * this.height, this.posZ + this.rand.nextFloat() * this.width * 2.0f - this.width, d0, d2, d3);
         }
     }
-    
+
     public void setLookingForHome() {
         this.isLookingForHome = true;
     }
-    
+
     public EntityTavernMaster createChild(final EntityAgeable par1EntityAgeable) {
         final EntityTavernMaster entityvillager = new EntityTavernMaster(this.worldObj);
         entityvillager.onSpawnWithEgg((IEntityLivingData)null);
         return entityvillager;
     }
-    
+
     public boolean allowLeashing() {
         return false;
     }
-    
+
     static {
         villagersSellingList = new HashMap();
         blacksmithSellingList = new HashMap();

@@ -13,21 +13,20 @@ import net.minecraft.nbt.*;
 public class TileEntityDungeonSpawnerRepeater extends TileEntity
 {
     public static final String publicName = "tileEntityDungeonSpawnerRepeater";
-    private static final String __OBFID = "CL_00000360";
     private int mobId;
     private int mobCount;
     private int cooldown;
     private int count;
     private String name;
-    
+
     public TileEntityDungeonSpawnerRepeater() {
         this.name = "tileEntityDungeonSpawnerRepeater";
     }
-    
+
     public String getName() {
         return this.name;
     }
-    
+
     public void updateEntity() {
         super.updateEntity();
         this.worldObj.spawnParticle("flame", this.xCoord + 0.5, this.yCoord + 0.5, this.zCoord + 0.5, 0.0, 0.0, 0.0);
@@ -465,20 +464,20 @@ public class TileEntityDungeonSpawnerRepeater extends TileEntity
             }
         }
     }
-    
+
     public void setMobName(final int mobId) {
         this.mobId = mobId;
     }
-    
+
     public void setMobCount(final int amount) {
         this.mobCount = amount;
     }
-    
+
     public void setCooldown(final int cooldown) {
         this.cooldown = cooldown;
         this.count = cooldown;
     }
-    
+
     public void writeToNBT(final NBTTagCompound compound) {
         super.writeToNBT(compound);
         final NBTTagCompound properties = new NBTTagCompound();
@@ -488,7 +487,7 @@ public class TileEntityDungeonSpawnerRepeater extends TileEntity
         properties.setInteger("Count", this.count);
         compound.setTag("tileEntityDungeonSpawnerRepeater", (NBTBase)properties);
     }
-    
+
     public void readFromNBT(final NBTTagCompound compound) {
         super.readFromNBT(compound);
         final NBTTagCompound properties = (NBTTagCompound)compound.getTag("tileEntityDungeonSpawnerRepeater");

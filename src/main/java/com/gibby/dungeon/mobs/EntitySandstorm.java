@@ -18,62 +18,61 @@ public class EntitySandstorm extends EntityMob
     private float heightOffset;
     private int heightOffsetUpdateTime;
     private int field_70846_g;
-    private static final String __OBFID = "CL_00001682";
-    
+
     public EntitySandstorm(final World par1World) {
         super(par1World);
         this.heightOffset = 0.5f;
         this.isImmuneToFire = true;
         this.experienceValue = 10;
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(6.0);
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(25.0);
     }
-    
+
     protected void entityInit() {
         super.entityInit();
         this.dataWatcher.addObject(16, (Object)new Byte((byte)0));
     }
-    
+
     protected String getLivingSound() {
         return "mob.blaze.breathe";
     }
-    
+
     protected String getHurtSound() {
         return "mob.blaze.hit";
     }
-    
+
     protected String getDeathSound() {
         return "mob.blaze.death";
     }
-    
+
     @SideOnly(Side.CLIENT)
     public int getBrightnessForRender(final float par1) {
         return 15728880;
     }
-    
+
     public float getBrightness(final float par1) {
         return 1.0f;
     }
-    
+
     protected void fall(final float par1) {
     }
-    
+
     protected Item getDropItem() {
         return Dungeons.sandRod;
     }
-    
+
     protected void dropFewItems(final boolean par1, final int par2) {
         this.dropItem(Dungeons.sandRod, 1);
     }
-    
+
     public boolean func_70845_n() {
         return (this.dataWatcher.getWatchableObjectByte(16) & 0x1) != 0x0;
     }
-    
+
     public void func_70844_e(final boolean par1) {
         byte b0 = this.dataWatcher.getWatchableObjectByte(16);
         if (par1) {
@@ -84,11 +83,11 @@ public class EntitySandstorm extends EntityMob
         }
         this.dataWatcher.updateObject(16, (Object)b0);
     }
-    
+
     protected boolean isValidLightLevel() {
         return true;
     }
-    
+
     protected void attackEntity(final Entity par1Entity, final float par2) {
         if (this.attackTime <= 0 && par2 < 2.0f && par1Entity.boundingBox.maxY > this.boundingBox.minY && par1Entity.boundingBox.minY < this.boundingBox.maxY) {
             this.attackTime = 5;
@@ -126,15 +125,15 @@ public class EntitySandstorm extends EntityMob
             this.hasAttacked = true;
         }
     }
-    
+
     protected float getSoundPitch() {
         return 0.5f;
     }
-    
+
     public boolean isBurning() {
         return false;
     }
-    
+
     public void onLivingUpdate() {
         super.onLivingUpdate();
         if (!this.worldObj.isRemote) {
