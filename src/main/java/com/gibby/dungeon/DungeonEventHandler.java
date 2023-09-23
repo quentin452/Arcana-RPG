@@ -25,12 +25,12 @@ public class DungeonEventHandler
     private int totalVoidDefence;
     private float boost;
     private boolean initialMagic;
-    
+
     public DungeonEventHandler() {
         this.boost = 0.0f;
         this.initialMagic = true;
     }
-    
+
     @SubscribeEvent
     public void onEntityConstructing(final EntityEvent.EntityConstructing event) {
         if (event.entity instanceof EntityPlayer && DungeonsExtendedPlayer.get((EntityPlayer)event.entity) == null) {
@@ -40,14 +40,14 @@ public class DungeonEventHandler
             event.entity.registerExtendedProperties("ExtendedPlayer", (IExtendedEntityProperties)new DungeonsExtendedPlayer((EntityPlayer)event.entity));
         }
     }
-    
+
     @SubscribeEvent
     public void handleConstruction(final EntityEvent.EntityConstructing event) {
         if (event.entity instanceof EntityPlayer) {
             ((EntityPlayer)event.entity).field_71079_bU = 21.0f;
         }
     }
-    
+
     @SubscribeEvent
     public void onLivingDeath(final LivingDeathEvent event) {
         if (event.entityLiving instanceof EntityGiantZombie) {
@@ -55,7 +55,7 @@ public class DungeonEventHandler
             event.entityLiving.dropItem(Items.emerald, 1);
         }
     }
-    
+
     @SubscribeEvent
     public void onLivingUpdate(final LivingEvent.LivingUpdateEvent event) {
         final EntityLivingBase entity = event.entityLiving;
@@ -183,9 +183,9 @@ public class DungeonEventHandler
                 final List list = entity.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)entity, entity.boundingBox.expand(10.0, 4.0, 10.0));
                 if (list != null) {
                     for (int k2 = 0; k2 < list.size(); ++k2) {
-                        if (list.get(k2) instanceof EntityLivingBase && !list.get(k2).isBurning()) {
-                            list.get(k2).setFire(5);
-                            list.get(k2).attackEntityFrom(DamageSource.causeMobDamage(entity), 0.01f);
+                        if (list.get(k2) instanceof EntityLivingBase && !((EntityLivingBase) list.get(k2)).isBurning()) {
+                            ((EntityLivingBase) list.get(k2)).setFire(5);
+                            ((EntityLivingBase) list.get(k2)).attackEntityFrom(DamageSource.causeMobDamage(entity), 0.01f);
                         }
                     }
                 }
@@ -280,9 +280,9 @@ public class DungeonEventHandler
                 final List list2 = entity.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)entity, entity.boundingBox.expand(10.0, 4.0, 10.0));
                 if (list2 != null) {
                     for (int k3 = 0; k3 < list2.size(); ++k3) {
-                        if (list2.get(k3) instanceof EntityLivingBase && !list2.get(k3).isBurning()) {
-                            list2.get(k3).addPotionEffect(new PotionEffect(Potion.wither.id, 60, 1));
-                            list2.get(k3).attackEntityFrom(DamageSource.causeMobDamage(entity), 0.01f);
+                        if (list2.get(k3) instanceof EntityLivingBase && !((EntityLivingBase) list2.get(k3)).isBurning()) {
+                            ((EntityLivingBase) list2.get(k3)).addPotionEffect(new PotionEffect(Potion.wither.id, 60, 1));
+                            ((EntityLivingBase) list2.get(k3)).attackEntityFrom(DamageSource.causeMobDamage(entity), 0.01f);
                         }
                     }
                 }
@@ -310,8 +310,8 @@ public class DungeonEventHandler
                 final List list2 = entity.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)entity, entity.boundingBox.expand(10.0, 4.0, 10.0));
                 if (list2 != null) {
                     for (int k3 = 0; k3 < list2.size(); ++k3) {
-                        if (list2.get(k3) instanceof EntityLivingBase && !list2.get(k3).isBurning()) {
-                            list2.get(k3).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 100, 1));
+                        if (list2.get(k3) instanceof EntityLivingBase && !((EntityLivingBase) list2.get(k3)).isBurning()) {
+                            ((EntityLivingBase) list2.get(k3)).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 100, 1));
                         }
                     }
                 }
@@ -324,7 +324,7 @@ public class DungeonEventHandler
             entityLivingBase5.motionZ += Dungeons.randRange(-1, 1) / 1.9999;
         }
     }
-    
+
     @SubscribeEvent
     public void onLivingHurtEvent(final LivingHurtEvent event) {
         if (event.entityLiving instanceof EntityPlayer) {
@@ -346,7 +346,7 @@ public class DungeonEventHandler
             }
         }
     }
-    
+
     public void MagicArmor(final EntityPlayer player) {
         int bootDefence = 0;
         int leggingDefence = 0;
@@ -370,7 +370,7 @@ public class DungeonEventHandler
         }
         this.totalMagicDefence = bootDefence + leggingDefence + chestplateDefence + helmetDefence;
     }
-    
+
     public void voidArmor(final EntityPlayer player) {
         int bootDefence = 0;
         int leggingDefence = 0;

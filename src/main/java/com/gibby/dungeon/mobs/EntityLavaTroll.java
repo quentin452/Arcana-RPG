@@ -16,14 +16,14 @@ import net.minecraft.item.*;
 public class EntityLavaTroll extends EntityMob implements IBossDisplayData
 {
     boolean firewave;
-    
+
     public EntityLavaTroll(final World par1World) {
         super(par1World);
         this.setSize(1.8f, 2.4f);
         this.experienceValue = 100;
         this.isImmuneToFire = true;
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(120.0);
@@ -31,18 +31,18 @@ public class EntityLavaTroll extends EntityMob implements IBossDisplayData
         this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(10.0);
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(30.0);
     }
-    
+
     public int getTotalArmorValue() {
         return 15;
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         if (this.firewave) {
             this.worldObj.spawnParticle("flame", this.posX, this.posY, this.posZ, this.rand.nextGaussian() / 3.0, 0.0, this.rand.nextGaussian() / 3.0);
         }
     }
-    
+
     public void onLivingUpdate() {
         super.onLivingUpdate();
         final int randX = this.rand.nextInt(10) - this.rand.nextInt(10);
@@ -66,8 +66,8 @@ public class EntityLavaTroll extends EntityMob implements IBossDisplayData
             if (list2 != null) {
                 for (int k2 = 0; k2 < list2.size(); ++k2) {
                     if (list2.get(k2) instanceof EntityLivingBase) {
-                        list2.get(k2).setFire(10);
-                        list2.get(k2).attackEntityFrom(DamageSource.magic, 5.0f);
+                        ((EntityLivingBase) list2.get(k2)).setFire(10);
+                        ((EntityLivingBase) list2.get(k2)).attackEntityFrom(DamageSource.magic, 5.0f);
                     }
                 }
             }
@@ -82,30 +82,30 @@ public class EntityLavaTroll extends EntityMob implements IBossDisplayData
             }
         }
     }
-    
+
     protected String getLivingSound() {
         return "mob.zombie.say";
     }
-    
+
     protected String getHurtSound() {
         return "mob.zombie.hurt";
     }
-    
+
     protected String getDeathSound() {
         return "mob.zombie.death";
     }
-    
+
     protected float getSoundPitch() {
         return 0.6f;
     }
-    
+
     public boolean attackEntityAsMob(final Entity par1Entity) {
         if (par1Entity instanceof EntityLivingBase) {
             ((EntityLivingBase)par1Entity).addPotionEffect(new PotionEffect(Dungeons.shock.id, 100, 0));
         }
         return super.attackEntityAsMob(par1Entity);
     }
-    
+
     protected void dropFewItems(final boolean par1, final int par2) {
         final int r = this.rand.nextInt(4);
         if (r == 0) {

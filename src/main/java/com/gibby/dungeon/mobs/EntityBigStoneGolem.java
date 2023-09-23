@@ -21,7 +21,7 @@ public class EntityBigStoneGolem extends EntityIronGolem implements IBossDisplay
     boolean quakeattack;
     int length;
     boolean pound;
-    
+
     public EntityBigStoneGolem(final World par1World) {
         super(par1World);
         this.quakeattack = false;
@@ -31,15 +31,15 @@ public class EntityBigStoneGolem extends EntityIronGolem implements IBossDisplay
         this.isImmuneToFire = true;
         this.experienceValue = 150;
     }
-    
+
     protected float getSoundVolume() {
         return 1.5f;
     }
-    
+
     public int getTotalArmorValue() {
         return 10;
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(161.0);
@@ -47,7 +47,7 @@ public class EntityBigStoneGolem extends EntityIronGolem implements IBossDisplay
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(30.0);
         this.setSize(1.8f, 3.5f);
     }
-    
+
     public void onUpdate() {
         if (!this.worldObj.isRemote && this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL) {
             this.setDead();
@@ -71,9 +71,9 @@ public class EntityBigStoneGolem extends EntityIronGolem implements IBossDisplay
             list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(10.0, 2.0, 10.0));
             if (list2 != null) {
                 for (int k2 = 0; k2 < list2.size(); ++k2) {
-                    if (list2.get(k2) instanceof EntityLivingBase && list2.get(k2).onGround) {
-                        list2.get(k2).attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), 4.0f);
-                        final EntityLivingBase entityLivingBase = list2.get(k2);
+                    if (list2.get(k2) instanceof EntityLivingBase && ((EntityLivingBase) list2.get(k2)).onGround) {
+                        ((EntityLivingBase) list2.get(k2)).attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), 4.0f);
+                        final EntityLivingBase entityLivingBase = (EntityLivingBase) list2.get(k2);
                         entityLivingBase.motionY += 0.8;
                     }
                 }
@@ -104,8 +104,8 @@ public class EntityBigStoneGolem extends EntityIronGolem implements IBossDisplay
             if (list3 != null) {
                 for (int k3 = 0; k3 < list3.size(); ++k3) {
                     if (list3.get(k3) instanceof EntityLivingBase) {
-                        list3.get(k3).hurtResistantTime = 0;
-                        list3.get(k3).attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), 0.01f);
+                        ((EntityLivingBase) list3.get(k3)).hurtResistantTime = 0;
+                        ((EntityLivingBase) list3.get(k3)).attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), 0.01f);
                     }
                 }
             }
@@ -117,14 +117,14 @@ public class EntityBigStoneGolem extends EntityIronGolem implements IBossDisplay
             }
         }
     }
-    
+
     protected void despawnEntity() {
     }
-    
+
     protected boolean canDespawn() {
         return false;
     }
-    
+
     public boolean attackEntityAsMob(final Entity par1Entity) {
         this.worldObj.setEntityState((Entity)this, (byte)4);
         final boolean flag = par1Entity.attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), (float)(6 + this.rand.nextInt(5)));
@@ -137,7 +137,7 @@ public class EntityBigStoneGolem extends EntityIronGolem implements IBossDisplay
         this.playSound("mob.irongolem.throw", 1.0f, 1.0f);
         return flag;
     }
-    
+
     protected void dropFewItems(final boolean par1, final int par2) {
         final int r = this.rand.nextInt(3);
         if (r == 0) {

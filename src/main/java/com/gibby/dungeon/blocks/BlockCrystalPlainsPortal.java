@@ -17,17 +17,18 @@ import net.minecraft.item.*;
 
 public class BlockCrystalPlainsPortal extends Block
 {
+
     public BlockCrystalPlainsPortal() {
         super(Material.circuits);
         this.setLightLevel(6.0f);
         this.setHardness(10000.0f);
         this.setResistance(10000.0f);
     }
-    
+
     public boolean isOpaqueCube() {
         return false;
     }
-    
+
     public void onEntityCollidedWithBlock(final World par1World, final int par2, final int par3, final int par4, final Entity par5Entity) {
         if (par5Entity.ridingEntity == null && par5Entity.riddenByEntity == null && par5Entity instanceof EntityPlayerMP) {
             final EntityPlayerMP player = (EntityPlayerMP)par5Entity;
@@ -46,7 +47,7 @@ public class BlockCrystalPlainsPortal extends Block
             }
         }
     }
-    
+
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(final World p_149734_1_, final int p_149734_2_, final int p_149734_3_, final int p_149734_4_, final Random p_149734_5_) {
         if (p_149734_5_.nextInt(50) == 0) {
@@ -77,7 +78,7 @@ public class BlockCrystalPlainsPortal extends Block
             p_149734_1_.spawnParticle("fireworksspark", p_149734_2_ + p_149734_5_.nextGaussian(), p_149734_3_ + p_149734_5_.nextGaussian(), p_149734_4_ + p_149734_5_.nextGaussian(), p_149734_5_.nextGaussian(), p_149734_5_.nextGaussian(), p_149734_5_.nextGaussian());
         }
     }
-    
+
     public void onNeighborBlockChange(final World par1World, final int par2, final int par3, final int par4, final Block par5) {
         byte b0 = 0;
         byte b2 = 1;
@@ -105,19 +106,19 @@ public class BlockCrystalPlainsPortal extends Block
             }
         }
     }
-    
+
     public AxisAlignedBB getCollisionBoundingBoxFromPool(final World p_149668_1_, final int p_149668_2_, final int p_149668_3_, final int p_149668_4_) {
         return null;
     }
-    
+
     public int quantityDropped(final Random p_149745_1_) {
         return 0;
     }
-    
+
     public static int func_149999_b(final int p_149999_0_) {
         return p_149999_0_ & 0x3;
     }
-    
+
     @SideOnly(Side.CLIENT)
     public Item getItem(final World p_149694_1_, final int p_149694_2_, final int p_149694_3_, final int p_149694_4_) {
         return Item.getItemById(0);

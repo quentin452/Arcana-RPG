@@ -18,7 +18,7 @@ public class EntityVoidLord extends EntityHermit implements IRangedAttackMob, IB
     private EntityAIArrowAttack aiArrowAttack;
     private boolean smokescreen;
     private int smokescreencounter;
-    
+
     public EntityVoidLord(final World par1World) {
         super(par1World);
         this.aiArrowAttack = new EntityAIArrowAttack((IRangedAttackMob)this, 1.0, 20, 50, 25.0f);
@@ -29,7 +29,7 @@ public class EntityVoidLord extends EntityHermit implements IRangedAttackMob, IB
         this.worldObj.playSoundAtEntity((Entity)this, "gibby_dungeons:voidMusic", 0.5f, 1.0f);
         this.setSize(1.4f, 3.0f);
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(200.0);
@@ -37,28 +37,28 @@ public class EntityVoidLord extends EntityHermit implements IRangedAttackMob, IB
         this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.4);
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(35.0);
     }
-    
+
     protected String getLivingSound() {
         return "gibby_dungeons:voidSay";
     }
-    
+
     protected String getHurtSound() {
         return "gibby_dungeons:voidHit";
     }
-    
+
     protected String getDeathSound() {
         return "gibby_dungeons:voidDeath";
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         if (this.smokescreen) {
             final List list = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(10.0, 2.0, 10.0));
             if (list != null) {
                 for (int k2 = 0; k2 < list.size(); ++k2) {
-                    if (list.get(k2) instanceof EntityLivingBase && list.get(k2).onGround) {
-                        list.get(k2).hurtResistantTime = 1;
-                        list.get(k2).attackEntityFrom(DamageSource.outOfWorld, 0.01f);
+                    if (list.get(k2) instanceof EntityLivingBase && ((EntityLivingBase) list.get(k2)).onGround) {
+                        ((EntityLivingBase) list.get(k2)).hurtResistantTime = 1;
+                        ((EntityLivingBase) list.get(k2)).attackEntityFrom(DamageSource.outOfWorld, 0.01f);
                         this.worldObj.playSoundAtEntity((Entity)list.get(k2), "portal.portal", 1.0f, 1.0f);
                     }
                 }
@@ -68,10 +68,10 @@ public class EntityVoidLord extends EntityHermit implements IRangedAttackMob, IB
                 final List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(10.0, 2.0, 10.0));
                 if (list2 != null) {
                     for (int k3 = 0; k3 < list2.size(); ++k3) {
-                        if (list2.get(k3) instanceof EntityLivingBase && list2.get(k3).onGround) {
-                            list2.get(k3).attackEntityFrom(DamageSource.outOfWorld, 6.0f);
-                            list2.get(k3).addPotionEffect(new PotionEffect(Potion.nightVision.id, 100, 0));
-                            list2.get(k3).addPotionEffect(new PotionEffect(Potion.blindness.id, 100, 0));
+                        if (list2.get(k3) instanceof EntityLivingBase && ((EntityLivingBase) list2.get(k3)).onGround) {
+                            ((EntityLivingBase) list2.get(k3)).attackEntityFrom(DamageSource.outOfWorld, 6.0f);
+                            ((EntityLivingBase) list2.get(k3)).addPotionEffect(new PotionEffect(Potion.nightVision.id, 100, 0));
+                            ((EntityLivingBase) list2.get(k3)).addPotionEffect(new PotionEffect(Potion.blindness.id, 100, 0));
                             this.worldObj.playSoundAtEntity((Entity)list2.get(k3), "portal.portal", 1.0f, 1.0f);
                         }
                     }
@@ -85,10 +85,10 @@ public class EntityVoidLord extends EntityHermit implements IRangedAttackMob, IB
             if (list != null) {
                 for (int k2 = 0; k2 < list.size(); ++k2) {
                     if (list.get(k2) instanceof EntityLivingBase) {
-                        final double d0 = list.get(k2).posX - this.posX;
-                        final double d2 = list.get(k2).posZ - this.posZ;
-                        list.get(k2).motionX = d0 / (15.0f * list.get(k2).getDistanceToEntity((Entity)this));
-                        list.get(k2).motionZ = d2 / (15.0f * list.get(k2).getDistanceToEntity((Entity)this));
+                        final double d0 = ((EntityLivingBase) list.get(k2)).posX - this.posX;
+                        final double d2 = ((EntityLivingBase) list.get(k2)).posZ - this.posZ;
+                        ((EntityLivingBase) list.get(k2)).motionX = d0 / (15.0f * ((EntityLivingBase) list.get(k2)).getDistanceToEntity((Entity)this));
+                        ((EntityLivingBase) list.get(k2)).motionZ = d2 / (15.0f * ((EntityLivingBase) list.get(k2)).getDistanceToEntity((Entity)this));
                     }
                 }
             }
@@ -109,7 +109,7 @@ public class EntityVoidLord extends EntityHermit implements IRangedAttackMob, IB
             }
         }
     }
-    
+
     public void attackEntityWithRangedAttack(final EntityLivingBase par1, final float par2) {
         for (int z = 0; z < 100; ++z) {
             this.worldObj.spawnParticle("smoke", this.posX + (this.rand.nextDouble() - 0.5) * this.width, this.posY + this.rand.nextDouble() * this.height, this.posZ + (this.rand.nextDouble() - 0.5) * this.width, 0.0, 0.0, 0.0);
@@ -147,7 +147,7 @@ public class EntityVoidLord extends EntityHermit implements IRangedAttackMob, IB
             this.smokescreen = true;
         }
     }
-    
+
     public boolean attackEntityFrom(final DamageSource par1DamageSource, final float par2) {
         if (this.isEntityInvulnerable() || par1DamageSource == DamageSource.magic) {
             return false;
@@ -184,16 +184,16 @@ public class EntityVoidLord extends EntityHermit implements IRangedAttackMob, IB
         }
         return true;
     }
-    
+
     protected void entityInit() {
         super.entityInit();
         this.dataWatcher.addObject(23, (Object)new Byte((byte)0));
     }
-    
+
     public boolean isAIEnabled() {
         return true;
     }
-    
+
     public int getTotalArmorValue() {
         int i = 0;
         for (final ItemStack itemstack : this.getLastActiveItems()) {
@@ -204,14 +204,14 @@ public class EntityVoidLord extends EntityHermit implements IRangedAttackMob, IB
         }
         return i + 20;
     }
-    
+
     protected void despawnEntity() {
     }
-    
+
     protected boolean canDespawn() {
         return false;
     }
-    
+
     protected void dropFewItems(final boolean par1, final int par2) {
         final int r = this.rand.nextInt(3);
         if (r == 0) {

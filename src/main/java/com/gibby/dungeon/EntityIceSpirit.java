@@ -18,7 +18,7 @@ public class EntityIceSpirit extends EntityFlying implements IRangedAttackMob, I
     private EntityAIArrowAttack aiArrowAttack;
     protected EntityPlayer targetedEntity;
     public int charge;
-    
+
     public EntityIceSpirit(final World par1World) {
         super(par1World);
         this.aiArrowAttack = new EntityAIArrowAttack((IRangedAttackMob)this, 1.0, 20, 60, 10.0f);
@@ -27,16 +27,16 @@ public class EntityIceSpirit extends EntityFlying implements IRangedAttackMob, I
         this.tasks.addTask(6, (EntityAIBase)new EntityAIWatchClosest((EntityLiving)this, (Class)EntityPlayer.class, 8.0f));
         this.addPotionEffect(new PotionEffect(Potion.resistance.id, 10000, 1));
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(200.0);
     }
-    
+
     public int getTotalArmorValue() {
         return 18;
     }
-    
+
     public void attackEntityWithRangedAttack(final EntityLivingBase var1, final float var2) {
         if (!this.worldObj.isRemote) {
             final int rand = Dungeons.randRange(0, 4);
@@ -68,7 +68,7 @@ public class EntityIceSpirit extends EntityFlying implements IRangedAttackMob, I
             }
         }
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         final List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(20.0, 10.0, 20.0));
@@ -93,7 +93,7 @@ public class EntityIceSpirit extends EntityFlying implements IRangedAttackMob, I
         if (list3 != null) {
             for (int k3 = 0; k3 < list3.size(); ++k3) {
                 if (list3.get(k3) instanceof EntityPlayer && this.targetedEntity == null) {
-                    this.targetedEntity = list3.get(k3);
+                    this.targetedEntity = (EntityPlayer) list3.get(k3);
                 }
             }
         }
@@ -114,30 +114,30 @@ public class EntityIceSpirit extends EntityFlying implements IRangedAttackMob, I
             }
         }
     }
-    
+
     protected String getLivingSound() {
         return "random.fuse";
     }
-    
+
     protected String getHurtSound() {
         return "dig.glass";
     }
-    
+
     protected String getDeathSound() {
         return "dig.glass";
     }
-    
+
     protected float getSoundPitch() {
         return 0.7f;
     }
-    
+
     protected void despawnEntity() {
     }
-    
+
     protected boolean canDespawn() {
         return false;
     }
-    
+
     protected void dropFewItems(final boolean par1, final int par2) {
         super.dropFewItems(par1, par2);
         this.dropItem(Dungeons.blueKey, 1);

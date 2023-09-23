@@ -109,11 +109,11 @@ public class EntityGhostWither extends EntityWither implements IRangedAttackMob,
                     if (list2 != null) {
                         for (int k2 = 0; k2 < list2.size(); ++k2) {
                             if (list2.get(k2) instanceof EntityLivingBase) {
-                                final double X = list2.get(k2).posX - this.posX;
-                                final double Z = list2.get(k2).posZ - this.posZ;
-                                list2.get(k2).addVelocity(X / 10.0, 0.0, Z / 10.0);
-                                list2.get(k2).attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), 8.0f);
-                                list2.get(k2).addPotionEffect(new PotionEffect(Dungeons.shock.id, 40, 0));
+                                final double X = ((EntityLivingBase) list2.get(k2)).posX - this.posX;
+                                final double Z = ((EntityLivingBase) list2.get(k2)).posZ - this.posZ;
+                                ((EntityLivingBase) list2.get(k2)).addVelocity(X / 10.0, 0.0, Z / 10.0);
+                                ((EntityLivingBase) list2.get(k2)).attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), 8.0f);
+                                ((EntityLivingBase) list2.get(k2)).addPotionEffect(new PotionEffect(Dungeons.shock.id, 40, 0));
                             }
                         }
                     }

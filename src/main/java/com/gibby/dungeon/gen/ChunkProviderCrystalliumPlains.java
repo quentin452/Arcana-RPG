@@ -20,6 +20,7 @@ import net.minecraft.world.*;
 
 public class ChunkProviderCrystalliumPlains implements IChunkProvider
 {
+
     private Random rand;
     private NoiseGeneratorOctaves noiseGen1;
     private NoiseGeneratorOctaves noiseGen2;
@@ -43,7 +44,7 @@ public class ChunkProviderCrystalliumPlains implements IChunkProvider
     double[] noise2;
     double[] noise5;
     int[][] field_73219_j;
-    
+
     public ChunkProviderCrystalliumPlains(final World world, final long seed, final boolean mapFeaturesEnabled) {
         this.stoneNoise = new double[256];
         this.caveGenerator = new MapGenAmethystCaves();
@@ -82,7 +83,7 @@ public class ChunkProviderCrystalliumPlains implements IChunkProvider
         this.noiseGen6 = (NoiseGeneratorOctaves)noiseGens[5];
         this.mobSpawnerNoise = (NoiseGeneratorOctaves)noiseGens[6];
     }
-    
+
     public void func_147424_a(final int par1, final int par2, final Block[] blocks) {
         final byte b0 = 63;
         this.biomesForGeneration = this.worldObj.getWorldChunkManager().loadBlockGeneratorData((BiomeGenBase[])null, par1 * 16, par2 * 16, 16, 16);
@@ -141,7 +142,7 @@ public class ChunkProviderCrystalliumPlains implements IChunkProvider
             }
         }
     }
-    
+
     public void replaceBlocksForBiome(final int p_147422_1_, final int p_147422_2_, final Block[] p_147422_3_, final byte[] p_147422_4_, final BiomeGenBase[] p_147422_5_) {
         final ChunkProviderEvent.ReplaceBiomeBlocks event = new ChunkProviderEvent.ReplaceBiomeBlocks((IChunkProvider)this, p_147422_1_, p_147422_2_, p_147422_3_, p_147422_5_);
         MinecraftForge.EVENT_BUS.post((Event)event);
@@ -159,11 +160,11 @@ public class ChunkProviderCrystalliumPlains implements IChunkProvider
             }
         }
     }
-    
+
     public Chunk loadChunk(final int par1, final int par2) {
         return this.provideChunk(par1, par2);
     }
-    
+
     public Chunk provideChunk(final int par1, final int par2) {
         this.rand.setSeed(par1 * 341873128712L + par2 * 132897987541L);
         final Block[] ablock = new Block[65536];
@@ -183,7 +184,7 @@ public class ChunkProviderCrystalliumPlains implements IChunkProvider
         chunk.generateSkylightMap();
         return chunk;
     }
-    
+
     private void func_147423_a(final int p_147423_1_, final int p_147423_2_, final int p_147423_3_) {
         this.noise5 = this.noiseGen6.generateNoiseOctaves(this.noise5, p_147423_1_, p_147423_3_, 5, 5, 200.0, 200.0, 0.5);
         this.noise3 = this.noiseGen3.generateNoiseOctaves(this.noise3, p_147423_1_, p_147423_2_, p_147423_3_, 5, 33, 5, 8.555150000000001, 4.277575000000001, 8.555150000000001);
@@ -264,11 +265,11 @@ public class ChunkProviderCrystalliumPlains implements IChunkProvider
             }
         }
     }
-    
+
     public boolean chunkExists(final int par1, final int par2) {
         return true;
     }
-    
+
     public void populate(final IChunkProvider par1IChunkProvider, final int par2, final int par3) {
         BlockFalling.fallInstantly = true;
         final int k = par2 * 16;
@@ -372,38 +373,38 @@ public class ChunkProviderCrystalliumPlains implements IChunkProvider
         MinecraftForge.EVENT_BUS.post((Event)new PopulateChunkEvent.Post(par1IChunkProvider, this.worldObj, this.rand, par2, par3, flag));
         BlockFalling.fallInstantly = false;
     }
-    
+
     public boolean saveChunks(final boolean par1, final IProgressUpdate par2IProgressUpdate) {
         return true;
     }
-    
+
     public void saveExtraData() {
     }
-    
+
     public boolean unloadQueuedChunks() {
         return false;
     }
-    
+
     public boolean canSave() {
         return true;
     }
-    
+
     public String makeString() {
         return "RandomLevelSource";
     }
-    
+
     public List getPossibleCreatures(final EnumCreatureType par1EnumCreatureType, final int par2, final int par3, final int par4) {
         return Dungeons.crystalliumPlainsBiome.getSpawnableList(par1EnumCreatureType);
     }
-    
+
     public int getLoadedChunkCount() {
         return 0;
     }
-    
+
     public void recreateStructures(final int par1, final int par2) {
         if (this.mapFeaturesEnabled) {}
     }
-    
+
     public ChunkPosition func_147416_a(final World world, final String arg1, final int arg2, final int arg3, final int arg4) {
         return null;
     }

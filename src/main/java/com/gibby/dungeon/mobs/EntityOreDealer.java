@@ -79,10 +79,13 @@ public class EntityOreDealer extends EntityVillager
             if (this.timeUntilReset <= 0) {
                 if (this.needsInitilization) {
                     if (this.buyingList.size() > 1) {
-                        for (final MerchantRecipe merchantrecipe : this.buyingList) {
+                        for (final Object obj : this.buyingList) {
+                            if (obj instanceof MerchantRecipe) {
+                                MerchantRecipe merchantrecipe = (MerchantRecipe) obj;
                             if (merchantrecipe.isRecipeDisabled()) {
                                 merchantrecipe.func_82783_a(this.rand.nextInt(6) + this.rand.nextInt(6) + 2);
                             }
+                        }
                         }
                     }
                     this.addDefaultEquipmentAndRecipies(1);
@@ -320,7 +323,7 @@ public class EntityOreDealer extends EntityVillager
     }
 
     private static int func_146092_b(final Item p_146092_0_, final Random p_146092_1_) {
-        final Tuple tuple = EntityOreDealer.villagersSellingList.get(p_146092_0_);
+        final Tuple tuple = (Tuple) EntityOreDealer.villagersSellingList.get(p_146092_0_);
         return (int)((tuple == null) ? 1 : (((int)tuple.getFirst() >= (int)tuple.getSecond()) ? tuple.getFirst() : ((int)tuple.getFirst() + p_146092_1_.nextInt((int)tuple.getSecond() - (int)tuple.getFirst()))));
     }
 

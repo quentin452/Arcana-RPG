@@ -21,7 +21,7 @@ public class EntityNetherSoul extends EntityMob
     boolean pound;
     int Y;
     int counter;
-    
+
     public EntityNetherSoul(final World par1World) {
         super(par1World);
         this.tornado = false;
@@ -33,7 +33,7 @@ public class EntityNetherSoul extends EntityMob
         this.targetTasks.addTask(1, (EntityAIBase)new EntityAINearestAttackableTarget((EntityCreature)this, (Class)EntityIronGolem.class, 0, false));
         this.targetTasks.addTask(2, (EntityAIBase)new EntityAINearestAttackableTarget((EntityCreature)this, (Class)EntityAnimal.class, 0, false));
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(30.0);
@@ -42,7 +42,7 @@ public class EntityNetherSoul extends EntityMob
         this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(5.0);
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(30.0);
     }
-    
+
     public int getTotalArmorValue() {
         int i = super.getTotalArmorValue() + 16;
         if (i > 20) {
@@ -50,7 +50,7 @@ public class EntityNetherSoul extends EntityMob
         }
         return i;
     }
-    
+
     public void onUpdate() {
         this.worldObj.spawnParticle("flame", this.posX, this.posY, this.posZ, this.rand.nextGaussian() / 10.0, this.rand.nextGaussian() / 10.0, this.rand.nextGaussian() / 10.0);
         this.worldObj.spawnParticle("smoke", this.posX, this.posY, this.posZ, this.rand.nextGaussian() / 10.0, this.rand.nextGaussian() / 10.0, this.rand.nextGaussian() / 10.0);
@@ -65,8 +65,8 @@ public class EntityNetherSoul extends EntityMob
                 if (list != null) {
                     for (int k2 = 0; k2 < list.size(); ++k2) {
                         if (list.get(k2) instanceof EntityLivingBase && !(list.get(k2) instanceof EntityNetherSoul)) {
-                            list.get(k2).setFire(8);
-                            list.get(k2).motionY = 0.9 + this.rand.nextInt(10) / 10;
+                            ((EntityLivingBase) list.get(k2)).setFire(8);
+                            ((EntityLivingBase) list.get(k2)).motionY = 0.9 + this.rand.nextInt(10) / 10;
                         }
                     }
                 }
@@ -97,7 +97,7 @@ public class EntityNetherSoul extends EntityMob
         }
         super.onUpdate();
     }
-    
+
     public boolean attackEntityAsMob(final Entity par1Entity) {
         final boolean flag = super.attackEntityAsMob(par1Entity);
         if (flag) {
@@ -107,7 +107,7 @@ public class EntityNetherSoul extends EntityMob
         }
         return flag;
     }
-    
+
     protected void dropFewItems(final boolean par1, final int par2) {
         final int r = this.rand.nextInt(8);
         if (r == 0) {

@@ -19,7 +19,7 @@ public class EntityOrcDefender extends EntityMob
         this.setSize(1.2f, 2.4f);
         this.addPotionEffect(new PotionEffect(Potion.resistance.id, 10000, 2));
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(30.0);
@@ -28,45 +28,45 @@ public class EntityOrcDefender extends EntityMob
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(60.0);
         this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.6);
     }
-    
+
     public int getTotalArmorValue() {
         return 21;
     }
-    
+
     protected String getLivingSound() {
         return "gibby_dungeons:orcTalk";
     }
-    
+
     protected String getHurtSound() {
         return "mob.blaze.hit";
     }
-    
+
     protected String getDeathSound() {
         return "gibby_dungeons:orcDeath";
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         final List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(1.4, 1.4, 1.4));
         if (list2 != null && this.getHealth() > 0.0f) {
             for (int k2 = 0; k2 < list2.size(); ++k2) {
                 if (list2.get(k2) instanceof EntityPlayer && this.ticksExisted % 10 == 0) {
-                    list2.get(k2).attackEntityFrom(DamageSource.outOfWorld, 3.0f);
-                    list2.get(k2).hurtResistantTime = 0;
-                    list2.get(k2).attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), 11.0f);
+                    ((EntityPlayer) list2.get(k2)).attackEntityFrom(DamageSource.outOfWorld, 3.0f);
+                    ((EntityPlayer) list2.get(k2)).hurtResistantTime = 0;
+                    ((EntityPlayer) list2.get(k2)).attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), 11.0f);
                 }
             }
         }
     }
-    
+
     protected float getSoundPitch() {
         return 0.8f;
     }
-    
+
     public boolean attackEntityAsMob(final Entity par1Entity) {
         return super.attackEntityAsMob(par1Entity);
     }
-    
+
     protected void dropFewItems(final boolean par1, final int par2) {
         final int i = Dungeons.randRange(0, 30);
         if (i == 0) {
@@ -94,7 +94,7 @@ public class EntityOrcDefender extends EntityMob
             this.dropItem(Dungeons.blackIronScraps, 1);
         }
     }
-    
+
     protected void dropRareDrop(final int par1) {
         this.entityDropItem(new ItemStack(Dungeons.voidCoin), 1.0f);
     }

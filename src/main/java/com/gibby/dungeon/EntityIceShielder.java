@@ -16,7 +16,7 @@ public class EntityIceShielder extends EntityFlying implements IRangedAttackMob
     private EntityAIArrowAttack aiArrowAttack;
     protected EntityPlayer targetedEntity;
     public int charge;
-    
+
     public EntityIceShielder(final World par1World) {
         super(par1World);
         this.aiArrowAttack = new EntityAIArrowAttack((IRangedAttackMob)this, 1.0, 20, 60, 10.0f);
@@ -25,17 +25,17 @@ public class EntityIceShielder extends EntityFlying implements IRangedAttackMob
         this.tasks.addTask(6, (EntityAIBase)new EntityAIWatchClosest((EntityLiving)this, (Class)EntityPlayer.class, 8.0f));
         this.addPotionEffect(new PotionEffect(Potion.resistance.id, 10000, 1));
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(40.0);
         this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.5);
     }
-    
+
     public int getTotalArmorValue() {
         return 16;
     }
-    
+
     public void attackEntityWithRangedAttack(final EntityLivingBase var1, final float var2) {
         if (!this.worldObj.isRemote) {
             final EntityIceShieldBall ball = new EntityIceShieldBall(this.worldObj, (EntityLivingBase)this);
@@ -48,7 +48,7 @@ public class EntityIceShielder extends EntityFlying implements IRangedAttackMob
             this.worldObj.spawnEntityInWorld((Entity)ball);
         }
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         if (!this.worldObj.isRemote && this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL) {
@@ -58,7 +58,7 @@ public class EntityIceShielder extends EntityFlying implements IRangedAttackMob
         if (list != null) {
             for (int k2 = 0; k2 < list.size(); ++k2) {
                 if (list.get(k2) instanceof EntityPlayer && this.targetedEntity == null) {
-                    this.targetedEntity = list.get(k2);
+                    this.targetedEntity = (EntityPlayer) list.get(k2);
                 }
             }
         }
@@ -79,23 +79,23 @@ public class EntityIceShielder extends EntityFlying implements IRangedAttackMob
             }
         }
     }
-    
+
     protected String getLivingSound() {
         return "random.fuse";
     }
-    
+
     protected String getHurtSound() {
         return "dig.glass";
     }
-    
+
     protected String getDeathSound() {
         return "dig.glass";
     }
-    
+
     protected float getSoundPitch() {
         return 0.7f;
     }
-    
+
     protected void dropFewItems(final boolean par1, final int par2) {
         super.dropFewItems(par1, par2);
         if (this.rand.nextInt(2) == 0) {

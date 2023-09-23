@@ -14,23 +14,23 @@ import net.minecraft.util.*;
 public class EntityRedBouncer extends EntityThrowable
 {
     public static int color;
-    
+
     public EntityRedBouncer(final World par1World) {
         super(par1World);
     }
-    
+
     public EntityRedBouncer(final World par1World, final EntityLivingBase par2EntityLivingBase) {
         super(par1World, par2EntityLivingBase);
     }
-    
+
     public EntityRedBouncer(final World par1World, final double par2, final double par4, final double par6) {
         super(par1World, par2, par4, par6);
     }
-    
+
     protected float getGravityVelocity() {
         return 0.0f;
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         if (this.ticksExisted > 100) {
@@ -48,7 +48,7 @@ public class EntityRedBouncer extends EntityThrowable
                 final float smallestDistance = 10.0f;
                 for (int k2 = 0; k2 < list.size(); ++k2) {
                     if (list.get(k2) instanceof EntityPlayer) {
-                        final EntityPlayer player = list.get(k2);
+                        final EntityPlayer player = (EntityPlayer) list.get(k2);
                         final double d0 = player.posX - this.posX;
                         final double d2 = player.boundingBox.minY + player.height / 2.0f - (this.posY + this.height / 2.0f);
                         final double d3 = player.posZ - this.posZ;
@@ -65,7 +65,7 @@ public class EntityRedBouncer extends EntityThrowable
                 final float smallestDistance = 10.0f;
                 for (int k2 = 0; k2 < list.size(); ++k2) {
                     if (list.get(k2) instanceof EntityLivingBase) {
-                        final EntityLivingBase player2 = list.get(k2);
+                        final EntityLivingBase player2 = (EntityLivingBase) list.get(k2);
                         final double d0 = player2.posX - this.posX;
                         final double d2 = player2.boundingBox.minY + player2.height / 2.0f - (this.posY + this.height / 2.0f);
                         final double d3 = player2.posZ - this.posZ;
@@ -77,7 +77,7 @@ public class EntityRedBouncer extends EntityThrowable
             }
         }
     }
-    
+
     protected void onImpact(final MovingObjectPosition var1) {
         if (var1.entityHit != null) {
             if (this.getThrower() instanceof EntityPlayer) {
@@ -90,7 +90,7 @@ public class EntityRedBouncer extends EntityThrowable
             }
         }
     }
-    
+
     static {
         EntityRedBouncer.color = 0;
     }

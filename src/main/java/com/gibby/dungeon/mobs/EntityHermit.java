@@ -21,15 +21,15 @@ public class EntityHermit extends EntityMob implements IRangedAttackMob
     public EntityHermit(final World par1World) {
         super(par1World);
         this.aiArrowAttack = new EntityAIArrowAttack((IRangedAttackMob)this, 1.0, 20, 60, 20.0f);
-        this.aiAttackOnCollide = new EntityAIAttackOnCollide((EntityCreature)this, (Class)EntityPlayer.class, 1.2, false);
+        this.aiAttackOnCollide = new EntityAIAttackOnCollide((EntityCreature)this, EntityPlayer.class, 1.2, false);
         this.tasks.addTask(1, (EntityAIBase)new EntityAISwimming((EntityLiving)this));
         this.tasks.addTask(2, (EntityAIBase)new EntityAIRestrictSun((EntityCreature)this));
         this.tasks.addTask(3, (EntityAIBase)new EntityAIFleeSun((EntityCreature)this, 1.0));
         this.tasks.addTask(5, (EntityAIBase)new EntityAIWander((EntityCreature)this, 1.0));
-        this.tasks.addTask(6, (EntityAIBase)new EntityAIWatchClosest((EntityLiving)this, (Class)EntityPlayer.class, 8.0f));
+        this.tasks.addTask(6, (EntityAIBase)new EntityAIWatchClosest((EntityLiving)this, EntityPlayer.class, 8.0f));
         this.tasks.addTask(6, (EntityAIBase)new EntityAILookIdle((EntityLiving)this));
         this.targetTasks.addTask(1, (EntityAIBase)new EntityAIHurtByTarget((EntityCreature)this, false));
-        this.targetTasks.addTask(2, (EntityAIBase)new EntityAINearestAttackableTarget((EntityCreature)this, (Class)EntityPlayer.class, 0, true));
+        this.targetTasks.addTask(2, (EntityAIBase)new EntityAINearestAttackableTarget((EntityCreature)this, EntityPlayer.class, 0, true));
         this.addPotionEffect(new PotionEffect(Dungeons.magicBoost.id, 10000, 0));
         if (par1World != null && !par1World.isRemote) {
             this.setCombatTask();

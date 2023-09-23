@@ -17,7 +17,7 @@ public class EntityMidnightShade extends EntityFlying implements IRangedAttackMo
     private EntityAIArrowAttack aiArrowAttack;
     protected EntityPlayer targetedEntity;
     public int charge;
-    
+
     public EntityMidnightShade(final World par1World) {
         super(par1World);
         this.aiArrowAttack = new EntityAIArrowAttack((IRangedAttackMob)this, 1.0, 20, 60, 10.0f);
@@ -26,16 +26,16 @@ public class EntityMidnightShade extends EntityFlying implements IRangedAttackMo
         this.tasks.addTask(6, (EntityAIBase)new EntityAIWatchClosest((EntityLiving)this, (Class)EntityPlayer.class, 8.0f));
         this.addPotionEffect(new PotionEffect(Potion.resistance.id, 10000, 1));
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(150.0);
     }
-    
+
     public int getTotalArmorValue() {
         return 22;
     }
-    
+
     public void attackEntityWithRangedAttack(final EntityLivingBase var1, final float var2) {
         if (!this.worldObj.isRemote) {
             final int rand = Dungeons.randRange(0, 4);
@@ -67,7 +67,7 @@ public class EntityMidnightShade extends EntityFlying implements IRangedAttackMo
             }
         }
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         final List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(20.0, 10.0, 20.0));
@@ -92,7 +92,7 @@ public class EntityMidnightShade extends EntityFlying implements IRangedAttackMo
         if (list3 != null) {
             for (int k3 = 0; k3 < list3.size(); ++k3) {
                 if (list3.get(k3) instanceof EntityPlayer && this.targetedEntity == null) {
-                    this.targetedEntity = list3.get(k3);
+                    this.targetedEntity = (EntityPlayer) list3.get(k3);
                 }
             }
         }
@@ -113,27 +113,27 @@ public class EntityMidnightShade extends EntityFlying implements IRangedAttackMo
             }
         }
     }
-    
+
     protected String getLivingSound() {
         return "gibby_dungeons:midnightSay";
     }
-    
+
     protected String getHurtSound() {
         return "gibby_dungeons:voidHit";
     }
-    
+
     protected String getDeathSound() {
         return "minecraft.none";
     }
-    
+
     protected float getSoundPitch() {
         return 0.7f;
     }
-    
+
     protected float getSoundVolume() {
         return 0.7f;
     }
-    
+
     protected void dropFewItems(final boolean par1, final int par2) {
         super.dropFewItems(par1, par2);
         if (this.rand.nextInt(2) == 0) {

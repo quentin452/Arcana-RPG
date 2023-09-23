@@ -17,7 +17,7 @@ public class EntityRupture extends EntityThrowable
     double freezeX;
     double freezeY;
     double freezeZ;
-    
+
     public EntityRupture(final World par1World) {
         super(par1World);
         this.damage = 4;
@@ -25,7 +25,7 @@ public class EntityRupture extends EntityThrowable
         this.freezeY = 0.0;
         this.freezeZ = 0.0;
     }
-    
+
     public EntityRupture(final World par1World, final EntityLivingBase par2EntityLivingBase) {
         super(par1World, par2EntityLivingBase);
         this.damage = 4;
@@ -36,11 +36,11 @@ public class EntityRupture extends EntityThrowable
         this.motionY += this.rand.nextGaussian() / 10.0;
         this.motionZ += this.rand.nextGaussian() / 10.0;
     }
-    
+
     protected float getGravityVelocity() {
         return -0.0f;
     }
-    
+
     public EntityRupture(final World par1World, final double par2, final double par4, final double par6) {
         super(par1World, par2, par4, par6);
         this.damage = 4;
@@ -48,7 +48,7 @@ public class EntityRupture extends EntityThrowable
         this.freezeY = 0.0;
         this.freezeZ = 0.0;
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         if (this.impacted) {
@@ -70,8 +70,8 @@ public class EntityRupture extends EntityThrowable
                     final List list = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(3.0, 1.0, 3.0));
                     if (list != null) {
                         for (int k2 = 0; k2 < list.size(); ++k2) {
-                            if (list.get(k2) instanceof EntityLivingBase && list.get(k2).onGround) {
-                                list.get(k2).attackEntityFrom(DamageSource.causeMobDamage(this.getThrower()), (float)this.damage);
+                            if (list.get(k2) instanceof EntityLivingBase && ((EntityLivingBase) list.get(k2)).onGround) {
+                                ((EntityLivingBase) list.get(k2)).attackEntityFrom(DamageSource.causeMobDamage(this.getThrower()), (float)this.damage);
                             }
                         }
                     }
@@ -82,7 +82,7 @@ public class EntityRupture extends EntityThrowable
             }
         }
     }
-    
+
     protected void onImpact(final MovingObjectPosition var1) {
         if (this.worldObj != null && var1.entityHit == null) {
             this.impacted = true;

@@ -16,7 +16,7 @@ import net.minecraft.item.*;
 public class EntityHannibal extends EntityMob
 {
     boolean quake;
-    
+
     public EntityHannibal(final World par1World) {
         super(par1World);
         this.quake = false;
@@ -24,7 +24,7 @@ public class EntityHannibal extends EntityMob
         this.targetTasks.addTask(3, (EntityAIBase)new EntityAINearestAttackableTarget((EntityCreature)this, (Class)EntityBlackKnight.class, 0, true));
         this.experienceValue = 20;
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(30.0);
@@ -32,20 +32,20 @@ public class EntityHannibal extends EntityMob
         this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(8.0);
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(60.0);
     }
-    
+
     public int getTotalArmorValue() {
         return 20;
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         if (this.quake && this.onGround) {
             final List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(10.0, 2.0, 10.0));
             if (list2 != null) {
                 for (int k2 = 0; k2 < list2.size(); ++k2) {
-                    if (list2.get(k2) instanceof EntityLivingBase && list2.get(k2).onGround) {
-                        list2.get(k2).attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), 4.0f);
-                        final EntityLivingBase entityLivingBase = list2.get(k2);
+                    if (list2.get(k2) instanceof EntityLivingBase && ((EntityLivingBase) list2.get(k2)).onGround) {
+                        ((EntityLivingBase) list2.get(k2)).attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), 4.0f);
+                        final EntityLivingBase entityLivingBase = (EntityLivingBase) list2.get(k2);
                         ++entityLivingBase.motionY;
                     }
                 }
@@ -70,23 +70,23 @@ public class EntityHannibal extends EntityMob
             }
         }
     }
-    
+
     protected String getLivingSound() {
         return "mob.enderdragon.growl";
     }
-    
+
     protected String getHurtSound() {
         return "mob.enderdragon.growlmob";
     }
-    
+
     protected String getDeathSound() {
         return "mob.enderdragon.hit";
     }
-    
+
     protected float getSoundPitch() {
         return 0.8f;
     }
-    
+
     protected void dropFewItems(final boolean par1, final int par2) {
         final int r = this.rand.nextInt(10);
         if (r == 0) {

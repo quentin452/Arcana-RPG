@@ -78,11 +78,15 @@ public class EntityMontaneTrader extends EntityVillager
             if (this.timeUntilReset <= 0) {
                 if (this.needsInitilization) {
                     if (this.buyingList.size() > 1) {
-                        for (final MerchantRecipe merchantrecipe : this.buyingList) {
-                            if (merchantrecipe.isRecipeDisabled()) {
-                                merchantrecipe.func_82783_a(this.rand.nextInt(6) + this.rand.nextInt(6) + 2);
+                        for (final Object obj : this.buyingList) {
+                            if (obj instanceof MerchantRecipe) {
+                                MerchantRecipe merchantrecipe = (MerchantRecipe) obj;
+                                if (merchantrecipe.isRecipeDisabled()) {
+                                    merchantrecipe.func_82783_a(this.rand.nextInt(6) + this.rand.nextInt(6) + 2);
+                                }
                             }
                         }
+
                     }
                     this.addDefaultEquipmentAndRecipies(1);
                     this.needsInitilization = false;
@@ -113,7 +117,7 @@ public class EntityMontaneTrader extends EntityVillager
 
     protected void entityInit() {
         super.entityInit();
-        this.dataWatcher.addObject(31, (Object)0);
+        this.dataWatcher.addObject(31, 0);
     }
 
     public void writeEntityToNBT(final NBTTagCompound par1NBTTagCompound) {
@@ -320,8 +324,8 @@ public class EntityMontaneTrader extends EntityVillager
     }
 
     private static int func_146092_b(final Item p_146092_0_, final Random p_146092_1_) {
-        final Tuple tuple = EntityMontaneTrader.villagersSellingList.get(p_146092_0_);
-        return (int)((tuple == null) ? 1 : (((int)tuple.getFirst() >= (int)tuple.getSecond()) ? tuple.getFirst() : ((int)tuple.getFirst() + p_146092_1_.nextInt((int)tuple.getSecond() - (int)tuple.getFirst()))));
+        final Tuple tuple = (Tuple) EntityMontaneTrader.villagersSellingList.get(p_146092_0_);
+        return (tuple == null) ? 1 : (((int)tuple.getFirst() >= (int)tuple.getSecond()) ? (int) tuple.getFirst() : ((int)tuple.getFirst() + p_146092_1_.nextInt((int)tuple.getSecond() - (int)tuple.getFirst())));
     }
 
     public static void func_146089_b(final MerchantRecipeList p_146089_0_, final Item p_146089_1_, final Random p_146089_2_, final float p_146089_3_) {
@@ -342,7 +346,7 @@ public class EntityMontaneTrader extends EntityVillager
     }
 
     private static int func_146090_c(final Item p_146090_0_, final Random p_146090_1_) {
-        final Tuple tuple = EntityMontaneTrader.blacksmithSellingList.get(p_146090_0_);
+        final Tuple tuple = (Tuple) EntityMontaneTrader.blacksmithSellingList.get(p_146090_0_);
         return (int)((tuple == null) ? 1 : (((int)tuple.getFirst() >= (int)tuple.getSecond()) ? tuple.getFirst() : ((int)tuple.getFirst() + p_146090_1_.nextInt((int)tuple.getSecond() - (int)tuple.getFirst()))));
     }
 

@@ -32,7 +32,7 @@ public class EntityRemnant extends EntityMob implements IRangedAttackMob, IBossD
     int dZ;
     int rZ;
     int rX;
-    
+
     public EntityRemnant(final World par1World) {
         super(par1World);
         this.charge = 0;
@@ -55,7 +55,7 @@ public class EntityRemnant extends EntityMob implements IRangedAttackMob, IBossD
         this.targetTasks.addTask(3, (EntityAIBase)new EntityAINearestAttackableTarget((EntityCreature)this, (Class)EntityPlayer.class, 1, true));
         this.targetTasks.addTask(4, (EntityAIBase)new EntityAINearestAttackableTarget((EntityCreature)this, (Class)EntityLiving.class, 1, true));
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(25.0);
@@ -63,11 +63,11 @@ public class EntityRemnant extends EntityMob implements IRangedAttackMob, IBossD
         this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(10000.0);
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(60.0);
     }
-    
+
     public boolean canBePushed() {
         return false;
     }
-    
+
     public void onLivingUpdate() {
         super.onLivingUpdate();
         final int qcounter = 0;
@@ -93,15 +93,15 @@ public class EntityRemnant extends EntityMob implements IRangedAttackMob, IBossD
             for (int k2 = 0; k2 < list.size(); ++k2) {
                 if (list.get(k2) instanceof EntityLivingBase && !(list.get(k2) instanceof EntityVillager)) {
                     this.worldObj.setWorldTime(14000L);
-                    final double d0 = list.get(k2).posX - this.posX;
-                    final double d2 = list.get(k2).posZ - this.posZ;
-                    if (list.get(k2).onGround) {
-                        list.get(k2).motionX = d0 / (20.0f * list.get(k2).getDistanceToEntity((Entity)this));
-                        list.get(k2).motionZ = d2 / (20.0f * list.get(k2).getDistanceToEntity((Entity)this));
+                    final double d0 = ((EntityLivingBase) list.get(k2)).posX - this.posX;
+                    final double d2 = ((EntityLivingBase) list.get(k2)).posZ - this.posZ;
+                    if (((EntityLivingBase) list.get(k2)).onGround) {
+                        ((EntityLivingBase) list.get(k2)).motionX = d0 / (20.0f * ((EntityLivingBase) list.get(k2)).getDistanceToEntity((Entity)this));
+                        ((EntityLivingBase) list.get(k2)).motionZ = d2 / (20.0f * ((EntityLivingBase) list.get(k2)).getDistanceToEntity((Entity)this));
                     }
-                    list.get(k2).addPotionEffect(new PotionEffect(Dungeons.shock.id, 40, 0));
+                    ((EntityLivingBase) list.get(k2)).addPotionEffect(new PotionEffect(Dungeons.shock.id, 40, 0));
                     if (this.rand.nextInt(10) == 0) {
-                        list.get(k2).addPotionEffect(new PotionEffect(Potion.blindness.id, 10, 0));
+                        ((EntityLivingBase) list.get(k2)).addPotionEffect(new PotionEffect(Potion.blindness.id, 10, 0));
                     }
                 }
             }
@@ -110,13 +110,13 @@ public class EntityRemnant extends EntityMob implements IRangedAttackMob, IBossD
         if (list2 != null) {
             for (int k3 = 0; k3 < list2.size(); ++k3) {
                 if ((!(list2.get(k3) instanceof EntityLivingBase) && list2.get(k3) instanceof EntityThrowable) || list2.get(k3) instanceof EntityArrow) {
-                    list2.get(k3).worldObj.newExplosion((Entity)this, list2.get(k3).posX + 0.3, list2.get(k3).posY - 0.3, list2.get(k3).posZ, 1.0f, false, false);
-                    list2.get(k3).setDead();
+                    ((Entity) list2.get(k3)).worldObj.newExplosion((Entity)this, ((Entity) list2.get(k3)).posX + 0.3, ((Entity) list2.get(k3)).posY - 0.3, ((Entity) list2.get(k3)).posZ, 1.0f, false, false);
+                    ((Entity) list2.get(k3)).setDead();
                 }
             }
         }
     }
-    
+
     protected void dropFewItems(final boolean par1, final int par2) {
         final int r = this.rand.nextInt(3);
         if (r == 0) {
@@ -131,13 +131,13 @@ public class EntityRemnant extends EntityMob implements IRangedAttackMob, IBossD
         this.dropItem(Dungeons.cursedWand, 1);
         this.dropItem(Dungeons.magicCoin, 6);
     }
-    
+
     protected void despawnEntity() {
     }
-    
+
     public void attackEntityWithRangedAttack(final EntityLivingBase var1, final float var2) {
     }
-    
+
     static {
         EntityRemnant.entitystate = 0;
     }

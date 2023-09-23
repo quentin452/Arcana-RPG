@@ -348,7 +348,7 @@ public class TeleporterCrystal extends Teleporter
             final Iterator iterator = this.destinationCoordinateKeys.iterator();
             final long j = par1 - 600L;
             while (iterator.hasNext()) {
-                final Long olong = iterator.next();
+                final Long olong = (Long) iterator.next();
                 final PortalPosition portalposition = (PortalPosition)this.destinationCoordinateCache.getValueByKey((long)olong);
                 if (portalposition == null || portalposition.lastUpdateTime < j) {
                     iterator.remove();

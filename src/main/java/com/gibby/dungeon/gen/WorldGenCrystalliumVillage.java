@@ -1,7 +1,25 @@
 package com.gibby.dungeon.gen;
 
-import com.gibby.dungeon.Dungeons;
 
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.gen.feature.WorldGenerator;
+import cpw.mods.fml.common.IWorldGenerator;
+import net.minecraft.world.gen.structure.*;
+import net.minecraft.world.biome.*;
+import net.minecraft.world.gen.*;
+import com.gibby.dungeon.*;
+import net.minecraft.init.*;
+import net.minecraftforge.common.*;
+import cpw.mods.fml.common.eventhandler.*;
+import net.minecraft.world.chunk.*;
+import net.minecraft.block.*;
+import net.minecraftforge.event.terraingen.*;
+import net.minecraft.world.gen.feature.*;
+import net.minecraft.util.*;
+import net.minecraft.entity.*;
+import java.util.*;
+import net.minecraft.world.*;
 public class WorldGenCrystalliumVillage extends WorldGenerator implements IWorldGenerator
 {
     public void generate(final Random random, final int chunkX, final int chunkZ, final World world, final IChunkProvider chunkGenerator, final IChunkProvider chunkProvider) {
@@ -15,7 +33,7 @@ public class WorldGenCrystalliumVillage extends WorldGenerator implements IWorld
     }
 
     public boolean generate(final World world, final Random rand, final int i, final int j, final int k) {
-            this.setBlock(world, i + 7, j + 52, k + 30, Dungeons.crystalliumDirt, 0);
+        this.setBlock(world, i + 7, j + 52, k + 30, Dungeons.crystalliumDirt, 0);
         this.setBlock(world, i + 7, j + 52, k + 31, Dungeons.crystalliumDirt, 0);
         this.setBlock(world, i + 7, j + 52, k + 32, Dungeons.crystalliumGrass, 0);
         this.setBlock(world, i + 7, j + 52, k + 33, Dungeons.crystalliumGrass, 0);
@@ -34,7 +52,7 @@ public class WorldGenCrystalliumVillage extends WorldGenerator implements IWorld
         this.setBlock(world, i + 5, j + 51, k + 32, Dungeons.crystalliumGrass, 0);
         this.setBlock(world, i + 5, j + 51, k + 33, Dungeons.crystalliumGrass, 0);
         this.setBlock(world, i + 5, j + 51, k + 34, Dungeons.crystalliumGrass, 0);
-                this.setBlock(world, i + 6, j + 24, k + 26, Dungeons.crystalliumDirt, 0);
+        this.setBlock(world, i + 6, j + 24, k + 26, Dungeons.crystalliumDirt, 0);
         this.setBlock(world, i + 6, j + 24, k + 27, Dungeons.crystalliumDirt, 0);
         this.setBlock(world, i + 6, j + 24, k + 28, Dungeons.crystalliumDirt, 0);
         this.setBlock(world, i + 6, j + 24, k + 29, Dungeons.crystalliumDirt, 0);
@@ -75,15 +93,15 @@ public class WorldGenCrystalliumVillage extends WorldGenerator implements IWorld
         this.setBlock(world, i + 6, j + 39, k + 28, Blocks.obsidian, 0);
         this.setBlock(world, i + 6, j + 40, k + 28, Blocks.obsidian, 0);
         this.setBlock(world, i + 6, j + 45, k + 28, Blocks.obsidian, 0);
-                this.setBlock(world, i + 6, j + 51, k + 32, Dungeons.crystalliumDirt, 0);
+        this.setBlock(world, i + 6, j + 51, k + 32, Dungeons.crystalliumDirt, 0);
         this.setBlock(world, i + 6, j + 51, k + 33, Dungeons.crystalliumGrass, 0);
         this.setBlock(world, i + 6, j + 51, k + 34, Dungeons.crystalliumGrass, 0);
         this.setBlock(world, i + 6, j + 51, k + 35, Dungeons.crystalliumGrass, 0);
         this.setBlock(world, i + 6, j + 52, k + 30, Dungeons.crystalliumGrass, 0);
         this.setBlock(world, i + 6, j + 52, k + 31, Dungeons.crystalliumGrass, 0);
         this.setBlock(world, i + 6, j + 52, k + 32, Dungeons.crystalliumGrass, 0);
-               this.setBlock(world, i + 6, j + 46, k + 28, Blocks.obsidian, 0);
-                   this.setBlock(world, i + 7, j + 24, k + 23, Dungeons.crystalliumDirt, 0);
+        this.setBlock(world, i + 6, j + 46, k + 28, Blocks.obsidian, 0);
+        this.setBlock(world, i + 7, j + 24, k + 23, Dungeons.crystalliumDirt, 0);
         this.setBlock(world, i + 7, j + 24, k + 24, Dungeons.crystalliumDirt, 0);
         this.setBlock(world, i + 7, j + 24, k + 25, Dungeons.crystalliumDirt, 0);
         this.setBlock(world, i + 7, j + 24, k + 26, Dungeons.crystalliumDirt, 0);
@@ -126,7 +144,7 @@ public class WorldGenCrystalliumVillage extends WorldGenerator implements IWorld
         this.setBlock(world, i + 7, j + 26, k + 35, Dungeons.crystalliumGrass, 0);
         this.setBlock(world, i + 7, j + 26, k + 36, Dungeons.crystalliumGrass, 0);
         this.setBlock(world, i + 7, j + 26, k + 37, Dungeons.crystalliumGrass, 0);
-                this.setBlock(world, i + 7, j + 45, k + 27, Blocks.obsidian, 0);
+        this.setBlock(world, i + 7, j + 45, k + 27, Blocks.obsidian, 0);
         this.setBlock(world, i + 7, j + 45, k + 28, Blocks.obsidian, 0);
         this.setBlock(world, i + 7, j + 30, k + 27, Blocks.obsidian, 0);
         this.setBlock(world, i + 7, j + 30, k + 28, Blocks.obsidian, 0);
@@ -153,7 +171,7 @@ public class WorldGenCrystalliumVillage extends WorldGenerator implements IWorld
         this.setBlock(world, i + 7, j + 43, k + 29, Blocks.obsidian, 0);
         this.setBlock(world, i + 7, j + 44, k + 27, Blocks.obsidian, 0);
         this.setBlock(world, i + 7, j + 44, k + 29, Blocks.obsidian, 0);
-                this.setBlock(world, i + 7, j + 52, k + 24, Dungeons.amethystStone, 0);
+        this.setBlock(world, i + 7, j + 52, k + 24, Dungeons.amethystStone, 0);
         this.setBlock(world, i + 7, j + 52, k + 25, Dungeons.amethystStone, 0);
         this.setBlock(world, i + 7, j + 52, k + 26, Dungeons.amethystStone, 0);
         this.setBlock(world, i + 7, j + 52, k + 27, Dungeons.amethystStone, 0);
@@ -32484,3 +32502,4 @@ public class WorldGenCrystalliumVillage extends WorldGenerator implements IWorld
         return true;
     }
 }
+

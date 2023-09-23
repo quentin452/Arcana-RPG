@@ -19,7 +19,7 @@ public class EntityDarkKnight extends EntityMob implements IBossDisplayData
     private boolean quakeattack;
     private int length;
     private int attackTimer;
-    
+
     public EntityDarkKnight(final World par1World) {
         super(par1World);
         this.quakeattack = false;
@@ -30,7 +30,7 @@ public class EntityDarkKnight extends EntityMob implements IBossDisplayData
         this.tasks.addTask(4, (EntityAIBase)new EntityAIAttackOnCollide((EntityCreature)this, (Class)EntityLivingBase.class, 6.0, false));
         this.targetTasks.addTask(3, (EntityAIBase)new EntityAINearestAttackableTarget((EntityCreature)this, (Class)EntityHannibal.class, 0, true));
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(30.0);
@@ -39,23 +39,23 @@ public class EntityDarkKnight extends EntityMob implements IBossDisplayData
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(360.0);
         this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1.0);
     }
-    
+
     protected String getLivingSound() {
         return "mob.wither.idle";
     }
-    
+
     protected String getHurtSound() {
         return "mob.blaze.hit";
     }
-    
+
     protected String getDeathSound() {
         return "mob.blaze.death";
     }
-    
+
     protected float getSoundPitch() {
         return 0.6f;
     }
-    
+
     public void onLivingUpdate() {
         super.onLivingUpdate();
         ++this.attackTimer;
@@ -63,11 +63,11 @@ public class EntityDarkKnight extends EntityMob implements IBossDisplayData
             final List list = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(20.0, 5.0, 20.0));
             if (list != null) {
                 for (int k2 = 0; k2 < list.size(); ++k2) {
-                    if (list.get(k2) instanceof EntityLivingBase && list.get(k2).onGround) {
-                        final double d0 = list.get(k2).posX - this.posX;
-                        final double d2 = list.get(k2).posZ - this.posZ;
-                        list.get(k2).motionX = -d0 / (11.0f * list.get(k2).getDistanceToEntity((Entity)this));
-                        list.get(k2).motionZ = -d2 / (11.0f * list.get(k2).getDistanceToEntity((Entity)this));
+                    if (list.get(k2) instanceof EntityLivingBase && ((EntityLivingBase) list.get(k2)).onGround) {
+                        final double d0 = ((EntityLivingBase) list.get(k2)).posX - this.posX;
+                        final double d2 = ((EntityLivingBase) list.get(k2)).posZ - this.posZ;
+                        ((EntityLivingBase) list.get(k2)).motionX = -d0 / (11.0f * ((EntityLivingBase) list.get(k2)).getDistanceToEntity((Entity)this));
+                        ((EntityLivingBase) list.get(k2)).motionZ = -d2 / (11.0f * ((EntityLivingBase) list.get(k2)).getDistanceToEntity((Entity)this));
                     }
                 }
             }
@@ -101,8 +101,8 @@ public class EntityDarkKnight extends EntityMob implements IBossDisplayData
             if (list3 != null) {
                 for (int k4 = 0; k4 < list3.size(); ++k4) {
                     if (list3.get(k4) instanceof EntityLivingBase) {
-                        list3.get(k4).hurtResistantTime = 0;
-                        list3.get(k4).attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), 0.01f);
+                        ((EntityLivingBase) list3.get(k4)).hurtResistantTime = 0;
+                        ((EntityLivingBase) list3.get(k4)).attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), 0.01f);
                     }
                 }
             }
@@ -114,7 +114,7 @@ public class EntityDarkKnight extends EntityMob implements IBossDisplayData
             }
         }
     }
-    
+
     public int getTotalArmorValue() {
         int i = 0;
         for (final ItemStack itemstack : this.getLastActiveItems()) {
@@ -125,7 +125,7 @@ public class EntityDarkKnight extends EntityMob implements IBossDisplayData
         }
         return i + 22;
     }
-    
+
     public boolean attackEntityAsMob(final Entity par1Entity) {
         if (par1Entity instanceof EntityLivingBase) {
             ((EntityLivingBase)par1Entity).attackEntityFrom(DamageSource.outOfWorld, 8.0f);
@@ -141,14 +141,14 @@ public class EntityDarkKnight extends EntityMob implements IBossDisplayData
         }
         return super.attackEntityAsMob(par1Entity);
     }
-    
+
     protected void despawnEntity() {
     }
-    
+
     protected boolean canDespawn() {
         return false;
     }
-    
+
     protected void dropFewItems(final boolean par1, final int par2) {
         final int r = this.rand.nextInt(2);
         if (r == 0) {
@@ -161,7 +161,7 @@ public class EntityDarkKnight extends EntityMob implements IBossDisplayData
         this.dropItem(Dungeons.metalCoin, 7);
         this.dropItem(Dungeons.dungeonPiece5, 1);
     }
-    
+
     public boolean attackEntityFrom(final DamageSource par1DamageSource, final float par2) {
         if (this.isEntityInvulnerable() || par1DamageSource == DamageSource.magic) {
             return false;

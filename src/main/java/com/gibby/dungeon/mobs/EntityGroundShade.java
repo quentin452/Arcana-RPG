@@ -15,22 +15,22 @@ public class EntityGroundShade extends EntityThrowable
     boolean impacted;
     int counter;
     double freezeY;
-    
+
     public EntityGroundShade(final World par1World) {
         super(par1World);
         this.freezeY = 0.0;
     }
-    
+
     public EntityGroundShade(final World par1World, final EntityLivingBase par2EntityLivingBase) {
         super(par1World, par2EntityLivingBase);
         this.freezeY = 0.0;
     }
-    
+
     public EntityGroundShade(final World par1World, final double par2, final double par4, final double par6) {
         super(par1World, par2, par4, par6);
         this.freezeY = 0.0;
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         final int X = (int)this.posX;
@@ -61,7 +61,7 @@ public class EntityGroundShade extends EntityThrowable
             if (list != null) {
                 for (int k2 = 0; k2 < list.size(); ++k2) {
                     if (list.get(k2) instanceof EntityLivingBase && !(list.get(k2) instanceof EntityMidnightShade)) {
-                        list.get(k2).attackEntityFrom(DamageSource.outOfWorld, 4.0f);
+                        ((EntityLivingBase) list.get(k2)).attackEntityFrom(DamageSource.outOfWorld, 4.0f);
                     }
                 }
             }
@@ -70,7 +70,7 @@ public class EntityGroundShade extends EntityThrowable
             }
         }
     }
-    
+
     protected void onImpact(final MovingObjectPosition var1) {
         if (this.worldObj != null && var1.entityHit == null) {
             this.impacted = true;

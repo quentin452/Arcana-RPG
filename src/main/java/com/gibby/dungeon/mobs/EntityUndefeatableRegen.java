@@ -17,13 +17,13 @@ public class EntityUndefeatableRegen extends EntityUndefeatable implements IBoss
     public static final String publicName = "undefeatableTag";
     float distancedivider;
     boolean undefeatableResistance;
-    
+
     public EntityUndefeatableRegen(final World par1World) {
         super(par1World);
         this.distancedivider = 2.5f;
         this.undefeatableResistance = false;
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(20.0, 10.0, 20.0));
@@ -48,8 +48,8 @@ public class EntityUndefeatableRegen extends EntityUndefeatable implements IBoss
         if (list2 != null && this.getHealth() > 0.0f) {
             for (int k2 = 0; k2 < list2.size(); ++k2) {
                 if (list2.get(k2) instanceof EntityPlayer && this.ticksExisted % 10 == 0) {
-                    list2.get(k2).attackEntityFrom(DamageSource.outOfWorld, 3.0f);
-                    list2.get(k2).hurtResistantTime = 0;
+                    ((EntityPlayer) list2.get(k2)).attackEntityFrom(DamageSource.outOfWorld, 3.0f);
+                    ((EntityPlayer) list2.get(k2)).hurtResistantTime = 0;
                     this.attackEntityAsMob((Entity)list2.get(k2));
                 }
             }
@@ -58,7 +58,7 @@ public class EntityUndefeatableRegen extends EntityUndefeatable implements IBoss
         if (list2 != null && this.getHealth() > 0.0f) {
             for (int k2 = 0; k2 < list2.size(); ++k2) {
                 if (list2.get(k2) instanceof EntityUndefeatable && this.ticksExisted % 20 == 0) {
-                    final EntityLivingBase entity = list2.get(k2);
+                    final EntityLivingBase entity = (EntityLivingBase) list2.get(k2);
                     entity.heal(6.0f);
                     final EntityHealEffect ball = new EntityHealEffect(this.worldObj, entity.posX, entity.posY, entity.posZ);
                     this.worldObj.spawnEntityInWorld((Entity)ball);
@@ -79,22 +79,22 @@ public class EntityUndefeatableRegen extends EntityUndefeatable implements IBoss
             }
         }
     }
-    
+
     protected void despawnEntity() {
     }
-    
+
     protected boolean canDespawn() {
         return false;
     }
-    
+
     protected float getSoundPitch() {
         return 0.8f;
     }
-    
+
     public boolean attackEntityAsMob(final Entity par1Entity) {
         return super.attackEntityAsMob(par1Entity);
     }
-    
+
     protected void dropFewItems(final boolean par1, final int par2) {
         this.dropItem(Dungeons.sapientWarWand, 1);
     }

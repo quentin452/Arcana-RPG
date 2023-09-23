@@ -17,7 +17,7 @@ public class EntityRuneExplosion extends EntityThrowable
     double freezeX;
     double freezeY;
     double freezeZ;
-    
+
     public EntityRuneExplosion(final World par1World) {
         super(par1World);
         this.impacted = false;
@@ -26,7 +26,7 @@ public class EntityRuneExplosion extends EntityThrowable
         this.freezeY = 0.0;
         this.freezeZ = 0.0;
     }
-    
+
     public EntityRuneExplosion(final World par1World, final EntityLivingBase par2EntityLivingBase) {
         super(par1World, par2EntityLivingBase);
         this.impacted = false;
@@ -35,7 +35,7 @@ public class EntityRuneExplosion extends EntityThrowable
         this.freezeY = 0.0;
         this.freezeZ = 0.0;
     }
-    
+
     public EntityRuneExplosion(final World par1World, final double par2, final double par4, final double par6) {
         super(par1World, par2, par4, par6);
         this.impacted = false;
@@ -44,7 +44,7 @@ public class EntityRuneExplosion extends EntityThrowable
         this.freezeY = 0.0;
         this.freezeZ = 0.0;
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         if (this.impacted) {
@@ -70,9 +70,9 @@ public class EntityRuneExplosion extends EntityThrowable
                 if (list2 != null) {
                     for (int k2 = 0; k2 < list2.size(); ++k2) {
                         if (list2.get(k2) instanceof EntityLivingBase && !(list2.get(k2) instanceof EntityDeathBringer)) {
-                            list2.get(k2).attackEntityFrom(DamageSource.magic, (float)(16.0 - this.getDistanceSqToEntity((Entity)list2.get(k2))));
+                            ((EntityLivingBase) list2.get(k2)).attackEntityFrom(DamageSource.magic, (float)(16.0 - this.getDistanceSqToEntity((Entity)list2.get(k2))));
                             if (Dungeons.randRange(0, 4) == 0) {
-                                list2.get(k2).addPotionEffect(new PotionEffect(Dungeons.shock.id, 100, 0));
+                                ((EntityLivingBase) list2.get(k2)).addPotionEffect(new PotionEffect(Dungeons.shock.id, 100, 0));
                             }
                         }
                     }
@@ -81,7 +81,7 @@ public class EntityRuneExplosion extends EntityThrowable
             }
         }
     }
-    
+
     protected void onImpact(final MovingObjectPosition var1) {
         if (this.worldObj != null && var1.entityHit == null) {
             this.impacted = true;
