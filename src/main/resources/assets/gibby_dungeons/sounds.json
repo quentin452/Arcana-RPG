@@ -1,0 +1,36 @@
+ {
+  "voidSay": {"category": "master","sounds": [{"name": "voidSay","stream": false}]},
+  "voidHit": {"category": "master","sounds": [{"name": "voidHit","stream": false}]},
+  "voidDeath": {"category": "master","sounds": [{"name": "voidDeath","stream": false}]},
+  "voidMusic": {"category": "master","sounds": [{"name": "voidMusic","stream": false}]},
+  
+  "crystalSay": {"category": "master","sounds": [{"name": "crystalSay","stream": false}]},
+  "crystalHurt": {"category": "master","sounds": [{"name": "crystalHurt","stream": false}]},
+  "crystalDeath": {"category": "master","sounds": [{"name": "crystalDeath","stream": false}]},
+  
+  "draggerIdle": {"category": "master","sounds": [{"name": "draggerIdle","stream": false}]},
+  "draggerHit": {"category": "master","sounds": [{"name": "draggerHit","stream": false}]},
+  "draggerDeath": {"category": "master","sounds": [{"name": "draggerDeath","stream": false}]},
+  
+  "nethergolemSay": {"category": "master","sounds": [{"name": "nethergolemSay","stream": false}]},
+  "nethergolemHit": {"category": "master","sounds": [{"name": "nethergolemHit","stream": false}]},
+  "nethergolemDeath": {"category": "master","sounds": [{"name": "nethergolemDeath","stream": false}]},
+  
+  "orcTalk": {"category": "master","sounds": [{"name": "orcTalk","stream": false}]},
+  "orcHit": {"category": "master","sounds": [{"name": "orcHit","stream": false}]},
+  "orcDeath": {"category": "master","sounds": [{"name": "orcDeath","stream": false}]},
+  
+  "rupturerSay": {"category": "master","sounds": [{"name": "rupturerSay","stream": false}]},
+  "rupturerHit": {"category": "master","sounds": [{"name": "rupturerHit","stream": false}]},
+  
+  "undefeatableSay": {"category": "master","sounds": [{"name": "undefeatableSay","stream": false}]},
+  "undefeatableHit": {"category": "master","sounds": [{"name": "undefeatableHit","stream": false}]},
+  
+  "crystasisSay": {"category": "master","sounds": [{"name": "crystasisSay","stream": false}]},
+  
+  "crystasisHit": {"category": "master","sounds": [{"name": "crystasisHit","stream": false}]},
+  "crystasisDeath": {"category": "master","sounds": [{"name": "crystasisDeath","stream": false}]},
+  
+  "midnightSay": {"category": "master","sounds": [{"name": "midnightSay","stream": false}]}
+ 
+  }
