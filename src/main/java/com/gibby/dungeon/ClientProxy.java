@@ -1,0 +1,156 @@
+
+
+package com.gibby.dungeon;
+
+import net.minecraftforge.client.*;
+import cpw.mods.fml.client.registry.*;
+import net.minecraft.client.model.*;
+import net.minecraft.client.renderer.entity.*;
+import net.minecraft.init.*;
+import com.gibby.dungeon.mobs.*;
+
+public class ClientProxy extends CommonProxy
+{
+    @Override
+    public void registerItemRenderers() {
+        MinecraftForgeClient.registerItemRenderer(Dungeons.blackIronSword, (IItemRenderer)new RenderBlackIronSword());
+        MinecraftForgeClient.registerItemRenderer(Dungeons.orcWarWand, (IItemRenderer)new RenderOrcWarWand());
+        MinecraftForgeClient.registerItemRenderer(Dungeons.sunAxe, (IItemRenderer)new RenderSunAxe());
+        MinecraftForgeClient.registerItemRenderer(Dungeons.exawdusSmasher, (IItemRenderer)new RenderExawdusSmasher());
+    }
+    
+    @Override
+    public void registerRenderInformation() {
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityGoblin.class, (Render)new RenderGoblin((ModelBiped)new ModelZombie(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityBigStoneGolem.class, (Render)new RenderGolem(new ModelGolem(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityImp.class, (Render)new RenderImp((ModelBiped)new ModelZombie(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntitySpecter.class, (Render)new RenderSpecter(new ModelSpecter(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityZombieWarlord.class, (Render)new RenderZombieWarlord());
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityEarthGolem.class, (Render)new RenderEarthGolem(new ModelEarthGolem(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityBandit.class, (Render)new RenderTheif(new ModelBiped(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityBanditBoss.class, (Render)new RenderBigTheif(new ModelBiped(), 1.0f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityTroll.class, (Render)new RenderTroll(new ModelTroll(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityShimmerman.class, (Render)new RenderShimmerman(new ModelShimmerman(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityCyclops.class, (Render)new RenderCyclops(new ModelBiped(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityStoneGolem.class, (Render)new RenderStoneGolem(new ModelIronGolem(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityTyphoon.class, (Render)new RenderTyphoon());
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntitySandstorm.class, (Render)new RenderSandstorm());
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityVoidFiend.class, (Render)new RenderVoidFiend());
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityBlizzard.class, (Render)new RenderBlizzard());
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityTornado.class, (Render)new RenderTornado());
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntitySpirit.class, (Render)new RenderTheif(new ModelBiped(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntitySkeletalMage.class, (Render)new RenderSkeletalMage());
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityHermit.class, (Render)new RenderHermit(new ModelBiped(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityWarlock.class, (Render)new RenderWarlock(new ModelBiped(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityEarthMage.class, (Render)new RenderHermit(new ModelBiped(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityNecro.class, (Render)new RenderNecro(new ModelBiped(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityIceMage.class, (Render)new RenderIceMage(new ModelBiped(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntitySapientWarrior.class, (Render)new RenderSapient(new ModelBiped(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityBlackKnight.class, (Render)new RenderBlackKnight(new ModelKnight(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityHannibal.class, (Render)new RenderHannibal(new ModelHannibal(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityRemnant.class, (Render)new RenderRemnant(new Modeldaybreak(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityVoidLord.class, (Render)new RenderVoidLord(new ModelVoidLord(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityDarkKnight.class, (Render)new RenderDarkKnight(new ModelKnight(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityNetherGhost.class, (Render)new RenderNetherGhost(new Ghost(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityNetherSoul.class, (Render)new RenderNetherSoul(new ModelBiped(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityNetherPigman.class, (Render)new RenderNetherPigman());
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntitySapientMiner.class, (Render)new RenderSapient(new ModelBiped(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityAmethystMonster.class, (Render)new RenderAmethystMonster(new ModelAmethystMonster(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityStoneBot.class, (Render)new RenderStoneBot(new ModelIronGolem(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityVampire.class, (Render)new RenderVampire(new ModelBiped(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityLavaTroll.class, (Render)new RenderLavaTroll(new ModelMoltroll(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityLavaKnight.class, (Render)new RenderLavaKnight(new ModelKnight(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityNetherBadgerer.class, (Render)new RenderNetherBadgerer(new ModelCrystalBadger(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityBeholder.class, (Render)new RenderBeholder(new ModelBeholder(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityFireclops.class, (Render)new RenderFireclops(new ModelBiped(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityWitherSkeletonMinion.class, (Render)new RenderMiniChaosGolem(new ModelIronGolem(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityCrystalBadgerer.class, (Render)new RenderCrystalBadgerer(new ModelCrystalBadger(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityMoundTrader.class, (Render)new RenderMoundTrader());
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityAnchorTrader.class, (Render)new RenderMoundTrader());
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityTreeVillager.class, (Render)new RenderTreeVillager());
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityQuarryMaster.class, (Render)new RenderQuarryMaster());
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityGhostWither.class, (Render)new RenderGhostWither(new ModelGhostWither(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityChainMummy.class, (Render)new RenderChainMummy(new ModelBiped(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityEyeWarrior.class, (Render)new RenderEyeWarrior(new ModelBiped(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityYeti.class, (Render)new RenderYeti(new ModelBiped(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntitySnowGiant.class, (Render)new RenderSnowGiant(new ModelBiped(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityDeathBringer.class, (Render)new RenderDeathBringer(new ModelHannibal(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityDungeonBeast.class, (Render)new RenderDungeonBeast(new ModelDungeonBeast(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityDesertDragger.class, (Render)new RenderDesertDragger(new ModelDesertDragger(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityNetherWalker.class, (Render)new RenderNetherGolem(new ModelNetherGolem(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityFriendlyZombie.class, (Render)new RenderFriendlyZombie(new ModelZombie(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityIceShielder.class, (Render)new RenderIceShielder(new ModelIceShielder(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityOrc.class, (Render)new RenderOrc(new ModelOrc(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityOrcMage.class, (Render)new RenderOrcMage(new ModelOrcMage(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityOrcDefender.class, (Render)new RenderOrcDefender(new ModelOrcDefender(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityRockTroll.class, (Render)new RenderRockTroll(new ModelRockTroll(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityEarthRupturer.class, (Render)new RenderEarthRupturer(new ModelEarthRupturer(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityIceSpirit.class, (Render)new RenderIceSpirit(new ModelIceSpirit(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityUndefeatableStrength.class, (Render)new RenderUndefeatable(new ModelUndefeatable(), 0.5f, 1));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityUndefeatableRegen.class, (Render)new RenderUndefeatable(new ModelUndefeatable(), 0.5f, 2));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityUndefeatableResistance.class, (Render)new RenderUndefeatable(new ModelUndefeatable(), 0.5f, 3));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntitySapientEliteKnight.class, (Render)new RenderSapient(new ModelBiped(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntitySapientGeneral.class, (Render)new RenderSapient(new ModelBiped(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityMidnightShade.class, (Render)new RenderMidnightShade(new ModelMidnightShade(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntitySapientMage.class, (Render)new RenderSapient(new ModelBiped(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityCrystalTroll.class, (Render)new RenderCrystalTroll(new ModelRockTroll(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityCrystasis.class, (Render)new RenderCrystasis(new ModelCrystasis(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityCrystox.class, (Render)new RenderCrystox(new ModelCrystox(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityExawdus.class, (Render)new RenderExawdus(new ModelExawdus(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityCrystalliumGolem.class, (Render)new RenderCrystalliumGolem(new ModelCrystalliumGolem(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityIronStar.class, (Render)new RenderSnowball(Dungeons.castIronStar));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityProjectileBall.class, (Render)new RenderProjectileBall(Items.fire_charge));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityExplosive.class, (Render)new RenderSnowball(Dungeons.cpurple));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntitySpit.class, (Render)new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntitySodbuster.class, (Render)new RenderSnowball(Dungeons.cgreen));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityShimmerPearl.class, (Render)new RenderSnowball(Dungeons.shimmerPearl));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityWaterBall.class, (Render)new RenderSnowball(Dungeons.cblue));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntitySandBall.class, (Render)new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityBlizzardBall.class, (Render)new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityTornadoBall.class, (Render)new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityBloodBall.class, (Render)new RenderSnowball(Items.fire_charge));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityRedBall.class, (Render)new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityGreenBall.class, (Render)new RenderSnowball(Dungeons.cgreen));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityBlueBall.class, (Render)new RenderSnowball(Dungeons.cblue));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityMiniFireBall.class, (Render)new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityNetherDriller.class, (Render)new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityNetherDrill.class, (Render)new RenderSnowball(Dungeons.corruptedNetherSoul));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityVoidBomb.class, (Render)new RenderSnowball(Dungeons.cgreen));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityVoidDisk.class, (Render)new RenderSnowball(Dungeons.voidCoin));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityRupture.class, (Render)new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityAntigravity.class, (Render)new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityExplosionSnake.class, (Render)new RenderSnowball(Dungeons.cgray));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityEnergy.class, (Render)new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityBlackEnergy.class, (Render)new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityColdWind.class, (Render)new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityHealEffect.class, (Render)new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityQuake.class, (Render)new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityDarkWave.class, (Render)new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityAmethystPortal.class, (Render)new RenderSnowball(Dungeons.corruptedMagicOrb));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntitySunsetPortal.class, (Render)new RenderSnowball(Dungeons.sunsetOrb));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityBeholderSpawner.class, (Render)new RenderSnowball(Dungeons.corruptedNetherSoul));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityCursedStone.class, (Render)new RenderSnowball(Dungeons.cursedStone));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityWitherSpawner.class, (Render)new RenderSnowball(Items.nether_star));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityRuneExplosion.class, (Render)new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityThrowback.class, (Render)new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityIceShieldBall.class, (Render)new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityRedBouncer.class, (Render)new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityBlueBeam.class, (Render)new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityIcefire.class, (Render)new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityIceWanderer.class, (Render)new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntitySunProjectile.class, (Render)new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityGroundShade.class, (Render)new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntitySapientDeath.class, (Render)new RenderSnowball(Dungeons.dungeonDimensionSpawner));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityCrystalBeam.class, (Render)new RenderSnowball(Dungeons.cpurple));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityMontanePortal.class, (Render)new RenderSnowball(Dungeons.dungeonDimensionSpawner));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityMagirockBall.class, (Render)new RenderSnowball(Dungeons.cpurple));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityVoidrim.class, (Render)new RenderSnowball(Dungeons.cvoidrim));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityExawdusSpawner.class, (Render)new RenderSnowball(Dungeons.corruptedMagicOrb));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityEnchantEffect.class, (Render)new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityCrystalToxic.class, (Render)new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityVoidrockBall.class, (Render)new RenderSnowball(Dungeons.cgreen));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityFusionBall.class, (Render)new RenderSnowball(Dungeons.magirockCharge));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityCrystalliumPlainsPortal.class, (Render)new RenderSnowball(Dungeons.magicalOrb));
+        RenderingRegistry.registerEntityRenderingHandler((Class)EntityCrystalMeteor.class, (Render)new RenderSnowball(Dungeons.cpurple));
+    }
+}

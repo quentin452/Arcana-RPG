@@ -1,0 +1,16 @@
+
+
+package com.gibby.dungeon.blocks;
+
+import net.minecraft.block.*;
+import com.gibby.dungeon.*;
+
+public class BlockCrystalOre extends BlockOre
+{
+    public BlockCrystalOre() {
+        this.setHarvestLevel("pickaxe", 6);
+        this.setHardness(17.0f);
+        this.setResistance(30.0f);
+        this.setCreativeTab(Dungeons.Blocks);
+    }
+}
