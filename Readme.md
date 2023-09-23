@@ -14,12 +14,6 @@ Go here : [Wiki](https://github.com/quentin452/Arcana-RPG/wiki)
 
 [*Curseforge*](https://legacy.curseforge.com/minecraft/mc-mods/arcana-rpg-continuation)
 
-# Requirement
-
-This mod require [Unimixins](https://legacy.curseforge.com/minecraft/mc-mods/unimixins/files/4600285)
-
-This mod require [FalsePatternLib](https://legacy.curseforge.com/minecraft/mc-mods/fplib/files/4701057)
-
 # Secial Thanks
 
 Special thanks to Falsetweaks code : [HERE](https://github.com/FalsePattern/FalseTweaks)
