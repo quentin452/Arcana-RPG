@@ -1,24 +1,18 @@
 # Description
 
-This mod add multithreading for some features in 1.7.10. that can improve tps and fps in some situations.
-
-This mod add some tweaks in the config file to fix bugs.
-
-This mod is in early stages , so he can have somes bugs and unexpected behavior.
-
-this mod isn't a solution to fix magically all tps issues.
+This mod is a fork of this mod : https://www.curseforge.com/minecraft/mc-mods/arcana-rpg
 
 # What this mod have for now?
 
-Go here : [Wiki](https://github.com/quentin452/Multithreadingandtweaks/wiki)
+Go here : [Wiki](https://github.com/quentin452/Arcana-RPG/wiki)
 
 # Links to descriptions of my projects.
 
-[*Modrinth*](https://modrinth.com/mod/multithreadingandtweaks)
+[*Modrinth*](https://modrinth.com/mod/) (WIP)
 
-[*Github*](https://github.com/quentin452/Multithreadingandtweaks)
+[*Github*](https://github.com/quentin452/Arcana-RPG)
 
-[*Curseforge*](https://legacy.curseforge.com/minecraft/mc-mods/multithreadingandtweaks)
+[*Curseforge*](https://legacy.curseforge.com/minecraft/mc-mods/arcana-rpg-continuation)
 
 # Requirement
 
