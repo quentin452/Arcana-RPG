@@ -17,21 +17,20 @@ public class EnchantmentDamage2 extends Enchantment
     private static final int[] levelEnchantability;
     private static final int[] thresholdEnchantability;
     public final int damageType;
-    private static final String __OBFID = "CL_00000102";
-    
+
     public EnchantmentDamage2(final int par1, final int par2, final int par3) {
         super(par1, par2, EnumEnchantmentType.weapon);
         this.damageType = par3;
     }
-    
+
     public int getMinEnchantability(final int par1) {
         return EnchantmentDamage2.baseEnchantability[this.damageType] + (par1 - 1) * EnchantmentDamage2.levelEnchantability[this.damageType];
     }
-    
+
     public int getMaxEnchantability(final int par1) {
         return this.getMinEnchantability(par1) + EnchantmentDamage2.thresholdEnchantability[this.damageType];
     }
-    
+
     public int getMaxLevel() {
         if (this.damageType == 0 || this.damageType == 1) {
             return 5;
@@ -41,15 +40,15 @@ public class EnchantmentDamage2 extends Enchantment
         }
         return 0;
     }
-    
+
     public String getName() {
         return "enchantment.damage." + EnchantmentDamage2.protectionName[this.damageType];
     }
-    
+
     public boolean canApply(final ItemStack par1ItemStack) {
         return par1ItemStack.getItem() instanceof ItemAxe || super.canApply(par1ItemStack);
     }
-    
+
     public void func_151368_a(final EntityLivingBase p_151368_1_, final Entity p_151368_2_, final int p_151368_3_) {
         if (p_151368_2_ instanceof EntityLivingBase) {
             final EntityLivingBase entitylivingbase1 = (EntityLivingBase)p_151368_2_;
@@ -74,15 +73,15 @@ public class EnchantmentDamage2 extends Enchantment
             else if (this.damageType == 5) {
                 final int i = (int)(p_151368_3_ * 0.4f);
                 final EntityLivingBase entityLivingBase = entitylivingbase1;
-                entityLivingBase.motionY += i.46;
+                entityLivingBase.motionY += i + 0.46;
             }
             else if (this.damageType == 6) {
                 final int i = (int)(p_151368_3_ * 2.0f);
-                final List list = entitylivingbase1.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)entitylivingbase1, entitylivingbase1.boundingBox.expand(6.0, 4.0, 6.0));
+                final List list = entitylivingbase1.worldObj.getEntitiesWithinAABBExcludingEntity(entitylivingbase1, entitylivingbase1.boundingBox.expand(6.0, 4.0, 6.0));
                 if (list != null) {
                     for (int k2 = 0; k2 < list.size(); ++k2) {
-                        if (list.get(k2) instanceof EntityLivingBase && !(list.get(k2) instanceof EntityPlayer) && list.get(k2).onGround) {
-                            list.get(k2).attackEntityFrom(DamageSource.causeMobDamage(p_151368_1_), (float)i);
+                        if (list.get(k2) instanceof EntityLivingBase && !(list.get(k2) instanceof EntityPlayer) && ((EntityLivingBase) list.get(k2)).onGround) {
+                            ((EntityLivingBase) list.get(k2)).attackEntityFrom(DamageSource.causeMobDamage(p_151368_1_), (float)i);
                         }
                     }
                 }
@@ -93,7 +92,7 @@ public class EnchantmentDamage2 extends Enchantment
             }
         }
     }
-    
+
     static {
         protectionName = new String[] { "magic", "void", "rare", "legendary", "frost", "wind", "quake", "lifesteal" };
         baseEnchantability = new int[] { 10, 10, 30, 30, 15, 15, 15, 10 };

@@ -15,7 +15,7 @@ public class TeleporterMontane extends Teleporter
     private final Random random;
     private final LongHashMap destinationCoordinateCache;
     private final List destinationCoordinateKeys;
-    
+
     public TeleporterMontane(final WorldServer par1WorldServer) {
         super(par1WorldServer);
         this.destinationCoordinateCache = new LongHashMap();
@@ -23,7 +23,7 @@ public class TeleporterMontane extends Teleporter
         this.worldServerInstance = par1WorldServer;
         this.random = new Random(par1WorldServer.getSeed());
     }
-    
+
     public void placeInPortal(final Entity par1Entity, final double par2, final double par4, final double par6, final float par8) {
         if (this.worldServerInstance.provider.dimensionId == Dungeons.montaneDungeonDimensionId || this.worldServerInstance.provider.dimensionId == 0) {
             if (!this.placeInExistingPortal(par1Entity, par2, par4, par6, par8)) {
@@ -48,14 +48,14 @@ public class TeleporterMontane extends Teleporter
                     }
                 }
             }
-            par1Entity.setLocationAndAngles((double)i, (double)j, (double)k, par1Entity.rotationYaw, 0.0f);
+            par1Entity.setLocationAndAngles(i, j, k, par1Entity.rotationYaw, 0.0f);
             final double motionX = 0.0;
             par1Entity.motionZ = motionX;
             par1Entity.motionY = motionX;
             par1Entity.motionX = motionX;
         }
     }
-    
+
     public boolean placeInExistingPortal(final Entity par1Entity, final double par2, final double par4, final double par6, final float par8) {
         final short short1 = 128;
         double d3 = -1.0;
@@ -100,10 +100,10 @@ public class TeleporterMontane extends Teleporter
         }
         if (d3 >= 0.0) {
             if (flag) {
-                this.destinationCoordinateCache.add(j2, (Object)new PortalPosition(i, j, k, this.worldServerInstance.getTotalWorldTime()));
+                this.destinationCoordinateCache.add(j2, new PortalPosition(i, j, k, this.worldServerInstance.getTotalWorldTime()));
                 this.destinationCoordinateKeys.add(j2);
             }
-            double d8 = i.5;
+            double d8 = i + 0.5;
             final double d9 = j + 0.5;
             double d6 = k + 0.5;
             int j3 = -1;
@@ -192,7 +192,7 @@ public class TeleporterMontane extends Teleporter
         }
         return false;
     }
-    
+
     public boolean makePortal(final Entity par1Entity) {
         final byte b0 = 16;
         final double d0 = -1.0;
@@ -210,31 +210,31 @@ public class TeleporterMontane extends Teleporter
             final int y = j - 21;
             final int z = k - 45;
             System.out.println("generating at " + x + " " + y + " " + z);
-            new WorldGenMontaneDungeon_1().generate((World)this.worldServerInstance, this.random, x, y, z);
-            new WorldGenMontaneDungeon_2().generate((World)this.worldServerInstance, this.random, x + 73, y, z);
-            new WorldGenMontaneDungeon_3().generate((World)this.worldServerInstance, this.random, x + 113, y, z);
-            new WorldGenMontaneDungeon_4().generate((World)this.worldServerInstance, this.random, x + 154, y - 3, z - 59);
-            new WorldGenMontaneDungeon_5().generate((World)this.worldServerInstance, this.random, x + 205, y - 3, z - 59);
-            new WorldGenMontaneDungeon_6().generate((World)this.worldServerInstance, this.random, x + 271, y - 9, z - 59);
-            new WorldGenMontaneDungeon_7().generate((World)this.worldServerInstance, this.random, x + 289, y - 9, z - 59);
-            new WorldGenMontaneDungeon_8().generate((World)this.worldServerInstance, this.random, x + 299, y - 9, z - 59);
-            new WorldGenMontaneDungeon_9().generate((World)this.worldServerInstance, this.random, x + 305, y - 9, z - 59);
-            new WorldGenMontaneDungeon_10().generate((World)this.worldServerInstance, this.random, x + 310, y - 9, z - 59);
-            new WorldGenMontaneDungeon_11().generate((World)this.worldServerInstance, this.random, x + 314, y - 9, z - 59);
-            new WorldGenMontaneDungeon_12().generate((World)this.worldServerInstance, this.random, x + 317, y - 9, z - 59);
-            new WorldGenMontaneDungeon_13().generate((World)this.worldServerInstance, this.random, x + 320, y - 9, z - 59);
-            new WorldGenMontaneDungeon_14().generate((World)this.worldServerInstance, this.random, x + 323, y - 9, z - 59);
-            new WorldGenMontaneDungeon_15().generate((World)this.worldServerInstance, this.random, x + 326, y - 9, z - 59);
-            new WorldGenMontaneDungeon_16().generate((World)this.worldServerInstance, this.random, x + 329, y - 9, z - 59);
-            new WorldGenMontaneDungeon_17().generate((World)this.worldServerInstance, this.random, x + 332, y - 9, z - 59);
-            new WorldGenMontaneDungeon_18().generate((World)this.worldServerInstance, this.random, x + 335, y - 9, z - 59);
-            new WorldGenMontaneDungeon_19().generate((World)this.worldServerInstance, this.random, x + 338, y - 9, z - 59);
-            new WorldGenMontaneDungeon_20().generate((World)this.worldServerInstance, this.random, x + 341, y - 9, z - 59);
-            new WorldGenMontaneDungeon_21().generate((World)this.worldServerInstance, this.random, x + 344, y - 9, z - 59);
-            new WorldGenMontaneDungeon_22().generate((World)this.worldServerInstance, this.random, x + 347, y - 9, z - 59);
-            new WorldGenMontaneDungeon_23().generate((World)this.worldServerInstance, this.random, x + 350, y - 9, z - 59);
-            new WorldGenMontaneDungeon_24().generate((World)this.worldServerInstance, this.random, x + 353, y - 9, z - 59);
-            new WorldGenMontaneDungeon_25().generate((World)this.worldServerInstance, this.random, x + 356, y - 9, z - 59);
+            new WorldGenMontaneDungeon_1().generate(this.worldServerInstance, this.random, x, y, z);
+            new WorldGenMontaneDungeon_2().generate(this.worldServerInstance, this.random, x + 73, y, z);
+            new WorldGenMontaneDungeon_3().generate(this.worldServerInstance, this.random, x + 113, y, z);
+            new WorldGenMontaneDungeon_4().generate(this.worldServerInstance, this.random, x + 154, y - 3, z - 59);
+            new WorldGenMontaneDungeon_5().generate(this.worldServerInstance, this.random, x + 205, y - 3, z - 59);
+            new WorldGenMontaneDungeon_6().generate(this.worldServerInstance, this.random, x + 271, y - 9, z - 59);
+            new WorldGenMontaneDungeon_7().generate(this.worldServerInstance, this.random, x + 289, y - 9, z - 59);
+            new WorldGenMontaneDungeon_8().generate(this.worldServerInstance, this.random, x + 299, y - 9, z - 59);
+            new WorldGenMontaneDungeon_9().generate(this.worldServerInstance, this.random, x + 305, y - 9, z - 59);
+            new WorldGenMontaneDungeon_10().generate(this.worldServerInstance, this.random, x + 310, y - 9, z - 59);
+            new WorldGenMontaneDungeon_11().generate(this.worldServerInstance, this.random, x + 314, y - 9, z - 59);
+            new WorldGenMontaneDungeon_12().generate(this.worldServerInstance, this.random, x + 317, y - 9, z - 59);
+            new WorldGenMontaneDungeon_13().generate(this.worldServerInstance, this.random, x + 320, y - 9, z - 59);
+            new WorldGenMontaneDungeon_14().generate(this.worldServerInstance, this.random, x + 323, y - 9, z - 59);
+            new WorldGenMontaneDungeon_15().generate(this.worldServerInstance, this.random, x + 326, y - 9, z - 59);
+            new WorldGenMontaneDungeon_16().generate(this.worldServerInstance, this.random, x + 329, y - 9, z - 59);
+            new WorldGenMontaneDungeon_17().generate(this.worldServerInstance, this.random, x + 332, y - 9, z - 59);
+            new WorldGenMontaneDungeon_18().generate(this.worldServerInstance, this.random, x + 335, y - 9, z - 59);
+            new WorldGenMontaneDungeon_19().generate(this.worldServerInstance, this.random, x + 338, y - 9, z - 59);
+            new WorldGenMontaneDungeon_20().generate(this.worldServerInstance, this.random, x + 341, y - 9, z - 59);
+            new WorldGenMontaneDungeon_21().generate(this.worldServerInstance, this.random, x + 344, y - 9, z - 59);
+            new WorldGenMontaneDungeon_22().generate(this.worldServerInstance, this.random, x + 347, y - 9, z - 59);
+            new WorldGenMontaneDungeon_23().generate(this.worldServerInstance, this.random, x + 350, y - 9, z - 59);
+            new WorldGenMontaneDungeon_24().generate(this.worldServerInstance, this.random, x + 353, y - 9, z - 59);
+            new WorldGenMontaneDungeon_25().generate(this.worldServerInstance, this.random, x + 356, y - 9, z - 59);
         }
         for (int x = 0; x < 7; ++x) {
             for (int z2 = 0; z2 < 7; ++z2) {
@@ -253,26 +253,26 @@ public class TeleporterMontane extends Teleporter
         }
         return true;
     }
-    
+
     public void removeStalePortalLocations(final long par1) {
         if (par1 % 100L == 0L) {
             final Iterator iterator = this.destinationCoordinateKeys.iterator();
             final long j = par1 - 600L;
             while (iterator.hasNext()) {
-                final Long olong = iterator.next();
+                final Long olong = (Long) iterator.next();
                 final PortalPosition portalposition = (PortalPosition)this.destinationCoordinateCache.getValueByKey((long)olong);
                 if (portalposition == null || portalposition.lastUpdateTime < j) {
                     iterator.remove();
-                    this.destinationCoordinateCache.remove((long)olong);
+                    this.destinationCoordinateCache.remove(olong);
                 }
             }
         }
     }
-    
+
     public class PortalPosition extends ChunkCoordinates
     {
         public long lastUpdateTime;
-        
+
         public PortalPosition(final int par2, final int par3, final int par4, final long par5) {
             super(par2, par3, par4);
             this.lastUpdateTime = par5;

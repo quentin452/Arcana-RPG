@@ -15,7 +15,7 @@ public class TeleporterCrystalliumPlains extends Teleporter
     private final Random random;
     private final LongHashMap destinationCoordinateCache;
     private final List destinationCoordinateKeys;
-    
+
     public TeleporterCrystalliumPlains(final WorldServer par1WorldServer) {
         super(par1WorldServer);
         this.destinationCoordinateCache = new LongHashMap();
@@ -23,7 +23,7 @@ public class TeleporterCrystalliumPlains extends Teleporter
         this.worldServerInstance = par1WorldServer;
         this.random = new Random(par1WorldServer.getSeed());
     }
-    
+
     public void placeInPortal(final Entity par1Entity, final double par2, final double par4, final double par6, final float par8) {
         if (this.worldServerInstance.provider.dimensionId == Dungeons.crystalliumPlainsDimensionId || this.worldServerInstance.provider.dimensionId == 0) {
             if (!this.placeInExistingPortal(par1Entity, par2, par4, par6, par8)) {
@@ -55,7 +55,7 @@ public class TeleporterCrystalliumPlains extends Teleporter
             par1Entity.motionX = motionX;
         }
     }
-    
+
     public boolean placeInExistingPortal(final Entity par1Entity, final double par2, final double par4, final double par6, final float par8) {
         final short short1 = 128;
         double d3 = -1.0;
@@ -103,7 +103,7 @@ public class TeleporterCrystalliumPlains extends Teleporter
                 this.destinationCoordinateCache.add(j2, (Object)new PortalPosition(i, j, k, this.worldServerInstance.getTotalWorldTime()));
                 this.destinationCoordinateKeys.add(j2);
             }
-            double d8 = i.5;
+            double d8 = i + 0.5;
             final double d9 = j + 0.5;
             double d6 = k + 0.5;
             int j3 = -1;
@@ -192,7 +192,7 @@ public class TeleporterCrystalliumPlains extends Teleporter
         }
         return false;
     }
-    
+
     public boolean makePortal(final Entity par1Entity) {
         final byte b0 = 16;
         final double d0 = -1.0;
@@ -222,7 +222,7 @@ public class TeleporterCrystalliumPlains extends Teleporter
         }
         return true;
     }
-    
+
     public void removeStalePortalLocations(final long par1) {
         if (par1 % 100L == 0L) {
             final Iterator iterator = this.destinationCoordinateKeys.iterator();
@@ -237,11 +237,11 @@ public class TeleporterCrystalliumPlains extends Teleporter
             }
         }
     }
-    
+
     public class PortalPosition extends ChunkCoordinates
     {
         public long lastUpdateTime;
-        
+
         public PortalPosition(final int par2, final int par3, final int par4, final long par5) {
             super(par2, par3, par4);
             this.lastUpdateTime = par5;
