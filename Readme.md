@@ -8,7 +8,7 @@ Go here : [Wiki](https://github.com/quentin452/Arcana-RPG/wiki)
 
 # Links to descriptions of my projects.
 
-[*Modrinth*](https://modrinth.com/mod/) (WIP)
+[*Modrinth*](https://modrinth.com/mod/arcana-rpg-continuation)
 
 [*Github*](https://github.com/quentin452/Arcana-RPG)
 
