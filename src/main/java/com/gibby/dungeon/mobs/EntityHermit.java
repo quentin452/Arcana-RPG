@@ -17,8 +17,7 @@ public class EntityHermit extends EntityMob implements IRangedAttackMob
 {
     private EntityAIArrowAttack aiArrowAttack;
     private EntityAIAttackOnCollide aiAttackOnCollide;
-    private static final String __OBFID = "CL_00001697";
-    
+
     public EntityHermit(final World par1World) {
         super(par1World);
         this.aiArrowAttack = new EntityAIArrowAttack((IRangedAttackMob)this, 1.0, 20, 60, 20.0f);
@@ -37,39 +36,39 @@ public class EntityHermit extends EntityMob implements IRangedAttackMob
         }
         this.addRandomArmor();
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25);
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(25.0);
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(30.0);
     }
-    
+
     protected void entityInit() {
         super.entityInit();
         this.dataWatcher.addObject(13, (Object)new Byte((byte)0));
     }
-    
+
     public boolean isAIEnabled() {
         return true;
     }
-    
+
     protected String getLivingSound() {
         return "mob.villager.idle";
     }
-    
+
     protected String getHurtSound() {
         return "mob.villager.hit";
     }
-    
+
     protected String getDeathSound() {
         return "mob.villager.death";
     }
-    
+
     protected float getSoundPitch() {
         return 0.6f;
     }
-    
+
     public void updateRidden() {
         super.updateRidden();
         if (this.ridingEntity instanceof EntityCreature) {
@@ -77,11 +76,11 @@ public class EntityHermit extends EntityMob implements IRangedAttackMob
             this.renderYawOffset = entitycreature.renderYawOffset;
         }
     }
-    
+
     protected Item getDropItem() {
         return Items.stick;
     }
-    
+
     protected void dropFewItems(final boolean par1, final int par2) {
         if (this.rand.nextInt(2) == 0) {
             this.dropItem((Item)Items.leather_chestplate, 1);
@@ -93,20 +92,20 @@ public class EntityHermit extends EntityMob implements IRangedAttackMob
             this.entityDropItem(new ItemStack(Dungeons.magicCoin), 1.0f);
         }
     }
-    
+
     protected void dropRareDrop(final int par1) {
         this.entityDropItem(new ItemStack(Dungeons.bloodWand), 1.0f);
     }
-    
+
     protected void addRandomArmor() {
         super.addRandomArmor();
         this.setCurrentItemOrArmor(0, new ItemStack(Dungeons.bloodWand));
     }
-    
+
     public void setCombatTask() {
         this.tasks.addTask(4, (EntityAIBase)this.aiArrowAttack);
     }
-    
+
     public void attackEntityWithRangedAttack(final EntityLivingBase par1, final float par2) {
         final int rand = this.worldObj.rand.nextInt(3);
         if (rand == 0) {
@@ -140,7 +139,7 @@ public class EntityHermit extends EntityMob implements IRangedAttackMob
             this.worldObj.spawnEntityInWorld((Entity)ball3);
         }
     }
-    
+
     public boolean attackEntityFrom(final DamageSource par1DamageSource, final float par2) {
         if (this.isEntityInvulnerable() || par1DamageSource == DamageSource.magic) {
             return false;
@@ -157,14 +156,14 @@ public class EntityHermit extends EntityMob implements IRangedAttackMob
         }
         return true;
     }
-    
+
     public void setCurrentItemOrArmor(final int par1, final ItemStack par2ItemStack) {
         super.setCurrentItemOrArmor(par1, par2ItemStack);
         if (!this.worldObj.isRemote && par1 == 0) {
             this.setCombatTask();
         }
     }
-    
+
     public double getYOffset() {
         return super.getYOffset() - 0.5;
     }

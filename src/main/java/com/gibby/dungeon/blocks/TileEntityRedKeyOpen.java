@@ -8,17 +8,16 @@ import com.gibby.dungeon.*;
 public class TileEntityRedKeyOpen extends TileEntity
 {
     public static final String publicName = "tileEntityRedKeyOpen";
-    private static final String __OBFID = "CL_00000360";
     private String name;
-    
+
     public TileEntityRedKeyOpen() {
         this.name = "tileEntityRedKeyOpen";
     }
-    
+
     public String getName() {
         return this.name;
     }
-    
+
     public void updateEntity() {
         super.updateEntity();
         final int x = this.xCoord;

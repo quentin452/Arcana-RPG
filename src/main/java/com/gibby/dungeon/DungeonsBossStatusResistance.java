@@ -11,8 +11,7 @@ public final class DungeonsBossStatusResistance
     public static int statusBarTime;
     public static String bossName;
     public static int type;
-    private static final String __OBFID = "CL_00000941";
-    
+
     public static void setBossStatus(final IDungeonsBossDisplayDataResistance par0IBossDisplayData, final boolean b) {
         DungeonsBossStatusResistance.healthScale = par0IBossDisplayData.getHealth() / par0IBossDisplayData.getMaxHealth();
         DungeonsBossStatusResistance.statusBarTime = 100;

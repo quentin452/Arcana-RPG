@@ -13,12 +13,11 @@ import com.gibby.dungeon.*;
 
 public class MapGenAmethystCaves extends MapGenBase
 {
-    private static final String __OBFID = "CL_00000393";
-    
+
     protected void func_151542_a(final long p_151542_1_, final int p_151542_3_, final int p_151542_4_, final Block[] p_151542_5_, final double p_151542_6_, final double p_151542_8_, final double p_151542_10_) {
         this.func_151541_a(p_151542_1_, p_151542_3_, p_151542_4_, p_151542_5_, p_151542_6_, p_151542_8_, p_151542_10_, 5.0f + this.rand.nextFloat() * 8.0f, 0.0f, 0.0f, -2, -2, 1.0);
     }
-    
+
     protected void func_151541_a(final long p_151541_1_, final int p_151541_3_, final int p_151541_4_, final Block[] p_151541_5_, double p_151541_6_, double p_151541_8_, double p_151541_10_, final float p_151541_12_, float p_151541_13_, float p_151541_14_, int p_151541_15_, int p_151541_16_, final double p_151541_17_) {
         final double d4 = p_151541_3_ * 16 + 8;
         final double d5 = p_151541_4_ * 16 + 8;
@@ -142,7 +141,7 @@ public class MapGenAmethystCaves extends MapGenBase
             ++p_151541_15_;
         }
     }
-    
+
     protected void func_151538_a(final World p_151538_1_, final int p_151538_2_, final int p_151538_3_, final int p_151538_4_, final int p_151538_5_, final Block[] p_151538_6_) {
         int i1 = this.rand.nextInt(this.rand.nextInt(this.rand.nextInt(15) + 1) + 1);
         if (this.rand.nextInt(7) != 0) {
@@ -168,15 +167,15 @@ public class MapGenAmethystCaves extends MapGenBase
             }
         }
     }
-    
+
     protected boolean isOceanBlock(final Block[] data, final int index, final int x, final int y, final int z, final int chunkX, final int chunkZ) {
         return data[index] == Blocks.flowing_water || data[index] == Blocks.water;
     }
-    
+
     private boolean isExceptionBiome(final BiomeGenBase biome) {
         return biome == BiomeGenBase.mushroomIsland || biome == BiomeGenBase.beach || biome == BiomeGenBase.desert;
     }
-    
+
     private boolean isTopBlock(final Block[] data, final int index, final int x, final int y, final int z, final int chunkX, final int chunkZ) {
         final BiomeGenBase biome = this.worldObj.getBiomeGenForCoords(x + chunkX * 16, z + chunkZ * 16);
         if (this.isExceptionBiome(biome)) {
@@ -192,7 +191,7 @@ public class MapGenAmethystCaves extends MapGenBase
         }
         return true;
     }
-    
+
     protected void digBlock(final Block[] data, final int index, final int x, final int y, final int z, final int chunkX, final int chunkZ, final boolean foundTop) {
         final BiomeGenBase biome = this.worldObj.getBiomeGenForCoords(x + chunkX * 16, z + chunkZ * 16);
         final Block top = this.isExceptionBiome(biome) ? Dungeons.crystalliumGrass : Dungeons.crystalliumGrass;

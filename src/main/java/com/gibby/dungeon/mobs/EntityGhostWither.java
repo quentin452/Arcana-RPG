@@ -31,7 +31,7 @@ public class EntityGhostWither extends EntityWither implements IRangedAttackMob,
     private double particlePositionY;
     private double particlePositionZ;
     private static final IEntitySelector attackEntitySelector;
-    
+
     public EntityGhostWither(final World par1World) {
         super(par1World);
         this.setHealth(this.getMaxHealth());
@@ -47,16 +47,16 @@ public class EntityGhostWither extends EntityWither implements IRangedAttackMob,
         this.targetTasks.addTask(2, (EntityAIBase)new EntityAINearestAttackableTarget((EntityCreature)this, (Class)EntityLiving.class, 0, false, false, EntityGhostWither.attackEntitySelector));
         this.experienceValue = 2000;
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(250.0);
     }
-    
+
     public int getTotalArmorValue() {
         return 23;
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(60.0, 60.0, 60.0));
@@ -201,7 +201,7 @@ public class EntityGhostWither extends EntityWither implements IRangedAttackMob,
             }
         }
     }
-    
+
     public void attackEntityWithRangedAttack(final EntityLivingBase var1, final float var2) {
         super.attackEntityWithRangedAttack(var1, var2);
         final int randAttack = this.rand.nextInt(8);
@@ -250,22 +250,21 @@ public class EntityGhostWither extends EntityWither implements IRangedAttackMob,
             }
         }
     }
-    
+
     protected void dropFewItems(final boolean par1, final int par2) {
         this.dropItem(Items.nether_star, 1);
         this.dropItem(Dungeons.valesis, 1);
         this.dropItem(Dungeons.magicCoin, 20);
         this.dropItem(Dungeons.voidCoin, 10);
     }
-    
+
     public boolean attackEntityFrom(final DamageSource par1DamageSource, final float par2) {
         return !this.isEntityInvulnerable() && par1DamageSource != DamageSource.setExplosionSource(new Explosion(this.worldObj, (Entity)this, this.posX, this.posY, this.posZ, 20.0f)) && super.attackEntityFrom(par1DamageSource, par2);
     }
-    
+
     static {
         attackEntitySelector = (IEntitySelector)new IEntitySelector() {
-            private static final String __OBFID = "CL_00001662";
-            
+
             public boolean isEntityApplicable(final Entity par1Entity) {
                 return par1Entity instanceof EntityLivingBase && ((EntityLivingBase)par1Entity).getCreatureAttribute() != EnumCreatureAttribute.UNDEAD;
             }

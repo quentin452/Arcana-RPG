@@ -22,15 +22,14 @@ public class ItemHarpBow extends ItemBow
     public static final String[] bowPullIconNameArray;
     @SideOnly(Side.CLIENT)
     private IIcon[] iconArray;
-    private static final String __OBFID = "CL_00001777";
-    
+
     public ItemHarpBow() {
         this.maxStackSize = 1;
         this.bFull3D = true;
         this.setMaxDamage(550);
         this.setCreativeTab(Dungeons.Weapons);
     }
-    
+
     public IIcon getIcon(final ItemStack stack, final int renderPass, final EntityPlayer player, final ItemStack usingItem, final int useRemaining) {
         final int k = useRemaining;
         if (k > 71995) {
@@ -47,7 +46,7 @@ public class ItemHarpBow extends ItemBow
         }
         return this.getItemIconForUseDuration(0);
     }
-    
+
     public void onPlayerStoppedUsing(final ItemStack par1ItemStack, final World par2World, final EntityPlayer par3EntityPlayer, final int par4) {
         int j = this.getMaxItemUseDuration(par1ItemStack) - par4;
         final ArrowLooseEvent event = new ArrowLooseEvent(par3EntityPlayer, par1ItemStack, j);
@@ -95,19 +94,19 @@ public class ItemHarpBow extends ItemBow
             }
         }
     }
-    
+
     public ItemStack onEaten(final ItemStack par1ItemStack, final World par2World, final EntityPlayer par3EntityPlayer) {
         return par1ItemStack;
     }
-    
+
     public int getMaxItemUseDuration(final ItemStack par1ItemStack) {
         return 72000;
     }
-    
+
     public EnumAction getItemUseAction(final ItemStack par1ItemStack) {
         return EnumAction.bow;
     }
-    
+
     public ItemStack onItemRightClick(final ItemStack par1ItemStack, final World par2World, final EntityPlayer par3EntityPlayer) {
         final ArrowNockEvent event = new ArrowNockEvent(par3EntityPlayer, par1ItemStack);
         MinecraftForge.EVENT_BUS.post((Event)event);
@@ -119,7 +118,7 @@ public class ItemHarpBow extends ItemBow
         }
         return par1ItemStack;
     }
-    
+
     @SideOnly(Side.CLIENT)
     public void registerIcons(final IIconRegister par1IconRegister) {
         this.itemIcon = par1IconRegister.registerIcon(this.getIconString() + "_0");
@@ -128,12 +127,12 @@ public class ItemHarpBow extends ItemBow
             this.iconArray[i] = par1IconRegister.registerIcon(this.getIconString() + ItemHarpBow.bowPullIconNameArray[i]);
         }
     }
-    
+
     @SideOnly(Side.CLIENT)
     public IIcon getItemIconForUseDuration(final int par1) {
         return this.iconArray[par1];
     }
-    
+
     static {
         bowPullIconNameArray = new String[] { "_0", "_1", "_2", "_3" };
     }

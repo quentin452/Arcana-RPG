@@ -10,8 +10,7 @@ public final class DungeonsBossStatus
     public static float healthScale;
     public static int statusBarTime;
     public static String bossName;
-    private static final String __OBFID = "CL_00000941";
-    
+
     public static void setBossStatus(final IDungeonsBossDisplayData par0IBossDisplayData, final boolean b) {
         DungeonsBossStatus.healthScale = par0IBossDisplayData.getHealth() / par0IBossDisplayData.getMaxHealth();
         DungeonsBossStatus.statusBarTime = 100;

@@ -13,20 +13,20 @@ import net.minecraft.nbt.*;
 public class TileEntityDungeonSpawner extends TileEntity
 {
     public static final String publicName = "tileEntityDungeonSpawner";
-    private static final String __OBFID = "CL_00000360";
+
     private int mobId;
     private int mobCount;
     private String name;
-    
+
     public TileEntityDungeonSpawner() {
         this.mobCount = 1;
         this.name = "tileEntityDungeonSpawner";
     }
-    
+
     public String getName() {
         return this.name;
     }
-    
+
     public void updateEntity() {
         this.worldObj.spawnParticle("flame", this.xCoord + 0.5, this.yCoord + 0.5, this.zCoord + 0.5, 0.0, 0.0, 0.0);
         super.updateEntity();
@@ -469,15 +469,15 @@ public class TileEntityDungeonSpawner extends TileEntity
             }
         }
     }
-    
+
     public void setMobName(final int mobId) {
         this.mobId = mobId;
     }
-    
+
     public void setMobCount(final int amount) {
         this.mobCount = amount;
     }
-    
+
     public void writeToNBT(final NBTTagCompound compound) {
         super.writeToNBT(compound);
         final NBTTagCompound properties = new NBTTagCompound();
@@ -485,7 +485,7 @@ public class TileEntityDungeonSpawner extends TileEntity
         properties.setInteger("Amount", this.mobCount);
         compound.setTag("tileEntityDungeonSpawner", (NBTBase)properties);
     }
-    
+
     public void readFromNBT(final NBTTagCompound compound) {
         super.readFromNBT(compound);
         final NBTTagCompound properties = (NBTTagCompound)compound.getTag("tileEntityDungeonSpawner");

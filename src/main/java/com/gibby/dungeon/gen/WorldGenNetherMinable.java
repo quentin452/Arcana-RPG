@@ -14,24 +14,23 @@ public class WorldGenNetherMinable extends WorldGenerator
     private Block field_150519_a;
     private int numberOfBlocks;
     private Block field_150518_c;
-    private static final String __OBFID = "CL_00000426";
     private int mineableBlockMeta;
-    
+
     public WorldGenNetherMinable(final Block p_i45459_1_, final int p_i45459_2_) {
         this(p_i45459_1_, p_i45459_2_, Blocks.netherrack);
     }
-    
+
     public WorldGenNetherMinable(final Block p_i45460_1_, final int p_i45460_2_, final Block p_i45460_3_) {
         this.field_150519_a = p_i45460_1_;
         this.numberOfBlocks = p_i45460_2_;
         this.field_150518_c = p_i45460_3_;
     }
-    
+
     public WorldGenNetherMinable(final Block block, final int meta, final int number, final Block target) {
         this(block, number, target);
         this.mineableBlockMeta = meta;
     }
-    
+
     public boolean generate(final World par1World, final Random par2Random, final int par3, final int par4, final int par5) {
         final float f = par2Random.nextFloat() * 3.1415927f;
         final double d0 = par3 + 8 + MathHelper.sin(f) * this.numberOfBlocks / 8.0f;
