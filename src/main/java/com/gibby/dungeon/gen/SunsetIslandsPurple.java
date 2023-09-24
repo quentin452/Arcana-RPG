@@ -10774,7 +10774,7 @@ public class SunsetIslandsPurple extends WorldGenerator
         world.setBlock(i + 3, j + 81, k + 18, Blocks.stone);
         world.setBlock(i + 3, j + 81, k + 19, Blocks.stone);
         world.setBlock(i + 3, j + 81, k + 20, Blocks.stone);
-        world.setBlock(i + 3, j + 81, k + 36, (Block)Blocks.piston, 1, 0);
+        world.setBlock(i + 3, j + 81, k + 36, Blocks.piston, 1, 0);
         world.setBlock(i + 3, j + 81, k + 40, Blocks.stone);
         world.setBlock(i + 3, j + 81, k + 41, Blocks.stone);
         world.setBlock(i + 3, j + 81, k + 42, Blocks.stone);

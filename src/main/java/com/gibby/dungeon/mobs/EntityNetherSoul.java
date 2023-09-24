@@ -58,7 +58,7 @@ public class EntityNetherSoul extends EntityMob
             if (this.onGround) {
                 for (int x1 = 0; x1 < 6; ++x1) {
                     for (int z1 = 0; z1 < 6; ++z1) {
-                        this.worldObj.setBlock(MathHelper.floor_double(this.posX) + x1 - 3, MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ) + z1 - 3, (Block)Blocks.fire);
+                        this.worldObj.setBlock(MathHelper.floor_double(this.posX) + x1 - 3, MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ) + z1 - 3, Blocks.fire);
                     }
                 }
                 final List list = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(7.0, 7.0, 7.0));
@@ -84,7 +84,7 @@ public class EntityNetherSoul extends EntityMob
         final int y = MathHelper.floor_double(this.boundingBox.minY);
         final int z2 = MathHelper.floor_double(this.posZ);
         if (this.worldObj.getBlock(x2, y, z2) != Blocks.fire && !this.worldObj.isRemote) {
-            this.worldObj.setBlock(x2, y, z2, (Block)Blocks.fire);
+            this.worldObj.setBlock(x2, y, z2, Blocks.fire);
         }
         if (this.rand.nextInt(200) == 0 && this.entityToAttack != null) {
             this.tornado = true;

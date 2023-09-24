@@ -236,7 +236,7 @@ public class EntityGhostWither extends EntityWither implements IRangedAttackMob,
                         }
                         else if (this.worldObj.getBlock(x + X, y + Y, z + Z) instanceof BlockBush) {
                             if (this.worldObj.getBlock(x + X, y + Y - 1, z + Z) == Blocks.dirt) {
-                                this.worldObj.setBlock(x + X, y + Y, z + Z, (Block)Blocks.deadbush);
+                                this.worldObj.setBlock(x + X, y + Y, z + Z, Blocks.deadbush);
                             }
                             else {
                                 this.worldObj.setBlock(x + X, y + Y, z + Z, Blocks.air);

@@ -208,10 +208,10 @@ public class WorldGenDesertTemple2 extends WorldGenerator implements IWorldGener
         this.setBlock(world, i + 3, j + 2, k + 25, Blocks.sandstone, 0);
         this.setBlock(world, i + 3, j + 2, k + 26, Blocks.sandstone, 0);
         this.setBlock(world, i + 3, j + 2, k + 27, Blocks.sandstone, 0);
-        this.setBlock(world, i + 3, j + 3, k + 3, (Block)Blocks.stone_slab, 1);
-        this.setBlock(world, i + 3, j + 3, k + 4, (Block)Blocks.stone_slab, 1);
-        this.setBlock(world, i + 3, j + 3, k + 5, (Block)Blocks.stone_slab, 1);
-        this.setBlock(world, i + 3, j + 3, k + 6, (Block)Blocks.stone_slab, 1);
+        this.setBlock(world, i + 3, j + 3, k + 3, Blocks.stone_slab, 1);
+        this.setBlock(world, i + 3, j + 3, k + 4, Blocks.stone_slab, 1);
+        this.setBlock(world, i + 3, j + 3, k + 5, Blocks.stone_slab, 1);
+        this.setBlock(world, i + 3, j + 3, k + 6, Blocks.stone_slab, 1);
         this.setBlock(world, i + 3, j + 3, k + 7, Blocks.sandstone, 0);
         this.setBlock(world, i + 3, j + 3, k + 8, Blocks.sandstone, 0);
         this.setBlock(world, i + 3, j + 3, k + 9, Blocks.sandstone, 0);
@@ -226,10 +226,10 @@ public class WorldGenDesertTemple2 extends WorldGenerator implements IWorldGener
         this.setBlock(world, i + 3, j + 3, k + 21, Blocks.sandstone, 0);
         this.setBlock(world, i + 3, j + 3, k + 22, Blocks.sandstone, 0);
         this.setBlock(world, i + 3, j + 3, k + 23, Blocks.sandstone, 0);
-        this.setBlock(world, i + 3, j + 3, k + 24, (Block)Blocks.stone_slab, 1);
-        this.setBlock(world, i + 3, j + 3, k + 25, (Block)Blocks.stone_slab, 1);
-        this.setBlock(world, i + 3, j + 3, k + 26, (Block)Blocks.stone_slab, 1);
-        this.setBlock(world, i + 3, j + 3, k + 27, (Block)Blocks.stone_slab, 1);
+        this.setBlock(world, i + 3, j + 3, k + 24, Blocks.stone_slab, 1);
+        this.setBlock(world, i + 3, j + 3, k + 25, Blocks.stone_slab, 1);
+        this.setBlock(world, i + 3, j + 3, k + 26, Blocks.stone_slab, 1);
+        this.setBlock(world, i + 3, j + 3, k + 27, Blocks.stone_slab, 1);
         this.setBlock(world, i + 3, j + 4, k + 9, Blocks.sandstone, 0);
         this.setBlock(world, i + 3, j + 4, k + 10, Blocks.sandstone, 0);
         this.setBlock(world, i + 3, j + 4, k + 11, Blocks.sandstone, 0);
@@ -285,7 +285,7 @@ public class WorldGenDesertTemple2 extends WorldGenerator implements IWorldGener
         this.setBlock(world, i + 4, j + 2, k + 4, Blocks.wool, 4);
         this.setBlock(world, i + 4, j + 2, k + 26, Blocks.wool, 4);
         this.setBlock(world, i + 4, j + 2, k + 27, Blocks.sandstone, 0);
-        this.setBlock(world, i + 4, j + 3, k + 3, (Block)Blocks.stone_slab, 1);
+        this.setBlock(world, i + 4, j + 3, k + 3, Blocks.stone_slab, 1);
         this.setBlock(world, i + 4, j + 3, k + 4, Blocks.sandstone, 0);
         this.setBlock(world, i + 4, j + 3, k + 5, Blocks.sandstone, 0);
         this.setBlock(world, i + 4, j + 3, k + 6, Blocks.sandstone, 0);
@@ -296,7 +296,7 @@ public class WorldGenDesertTemple2 extends WorldGenerator implements IWorldGener
         this.setBlock(world, i + 4, j + 3, k + 24, Blocks.sandstone, 0);
         this.setBlock(world, i + 4, j + 3, k + 25, Blocks.sandstone, 0);
         this.setBlock(world, i + 4, j + 3, k + 26, Blocks.sandstone, 0);
-        this.setBlock(world, i + 4, j + 3, k + 27, (Block)Blocks.stone_slab, 1);
+        this.setBlock(world, i + 4, j + 3, k + 27, Blocks.stone_slab, 1);
         this.setBlock(world, i + 4, j + 4, k + 5, Blocks.sandstone, 0);
         this.setBlock(world, i + 4, j + 4, k + 6, Blocks.sandstone, 0);
         this.setBlock(world, i + 4, j + 4, k + 7, Blocks.sandstone, 0);
@@ -305,7 +305,7 @@ public class WorldGenDesertTemple2 extends WorldGenerator implements IWorldGener
         this.setBlock(world, i + 4, j + 4, k + 23, Blocks.sandstone, 0);
         this.setBlock(world, i + 4, j + 4, k + 24, Blocks.sandstone, 0);
         this.setBlock(world, i + 4, j + 4, k + 25, Blocks.sandstone, 0);
-        this.setBlock(world, i + 4, j + 4, k + 26, (Block)Blocks.stone_slab, 1);
+        this.setBlock(world, i + 4, j + 4, k + 26, Blocks.stone_slab, 1);
         this.setBlock(world, i + 4, j + 5, k + 8, Blocks.sandstone, 0);
         this.setBlock(world, i + 4, j + 5, k + 9, Blocks.sandstone, 0);
         this.setBlock(world, i + 4, j + 5, k + 10, Blocks.sandstone, 0);
@@ -359,10 +359,10 @@ public class WorldGenDesertTemple2 extends WorldGenerator implements IWorldGener
         this.setBlock(world, i + 5, j + 1, k + 27, Blocks.sandstone, 0);
         this.setBlock(world, i + 5, j + 2, k + 3, Blocks.sandstone, 0);
         this.setBlock(world, i + 5, j + 2, k + 27, Blocks.sandstone, 0);
-        this.setBlock(world, i + 5, j + 3, k + 3, (Block)Blocks.stone_slab, 1);
+        this.setBlock(world, i + 5, j + 3, k + 3, Blocks.stone_slab, 1);
         this.setBlock(world, i + 5, j + 3, k + 4, Blocks.sandstone, 0);
         this.setBlock(world, i + 5, j + 3, k + 26, Blocks.sandstone, 0);
-        this.setBlock(world, i + 5, j + 3, k + 27, (Block)Blocks.stone_slab, 1);
+        this.setBlock(world, i + 5, j + 3, k + 27, Blocks.stone_slab, 1);
         this.setBlock(world, i + 5, j + 4, k + 4, Blocks.sandstone, 0);
         this.setBlock(world, i + 5, j + 4, k + 26, Blocks.sandstone, 0);
         this.setBlock(world, i + 5, j + 5, k + 5, Blocks.sandstone, 0);
@@ -426,10 +426,10 @@ public class WorldGenDesertTemple2 extends WorldGenerator implements IWorldGener
         this.setBlock(world, i + 6, j + 1, k + 27, Blocks.sandstone, 0);
         this.setBlock(world, i + 6, j + 2, k + 3, Blocks.sandstone, 0);
         this.setBlock(world, i + 6, j + 2, k + 27, Blocks.sandstone, 0);
-        this.setBlock(world, i + 6, j + 3, k + 3, (Block)Blocks.stone_slab, 1);
+        this.setBlock(world, i + 6, j + 3, k + 3, Blocks.stone_slab, 1);
         this.setBlock(world, i + 6, j + 3, k + 4, Blocks.sandstone, 0);
         this.setBlock(world, i + 6, j + 3, k + 26, Blocks.sandstone, 0);
-        this.setBlock(world, i + 6, j + 3, k + 27, (Block)Blocks.stone_slab, 1);
+        this.setBlock(world, i + 6, j + 3, k + 27, Blocks.stone_slab, 1);
         this.setBlock(world, i + 6, j + 4, k + 4, Blocks.sandstone, 0);
         this.setBlock(world, i + 6, j + 4, k + 26, Blocks.sandstone, 0);
         this.setBlock(world, i + 6, j + 5, k + 5, Blocks.sandstone, 0);
@@ -1711,7 +1711,7 @@ public class WorldGenDesertTemple2 extends WorldGenerator implements IWorldGener
         this.setBlock(world, i + 23, j + 1, k + 27, Blocks.sandstone, 0);
         this.setBlock(world, i + 23, j + 2, k + 3, Blocks.sandstone, 0);
         this.setBlock(world, i + 23, j + 2, k + 27, Blocks.sandstone, 0);
-        this.setBlock(world, i + 23, j + 3, k + 3, (Block)Blocks.stone_slab, 1);
+        this.setBlock(world, i + 23, j + 3, k + 3, Blocks.stone_slab, 1);
         this.setBlock(world, i + 23, j + 3, k + 4, Blocks.sandstone, 0);
         this.setBlock(world, i + 23, j + 3, k + 26, Blocks.sandstone, 0);
         this.setBlock(world, i + 23, j + 3, k + 27, Blocks.sandstone, 0);
@@ -1775,10 +1775,10 @@ public class WorldGenDesertTemple2 extends WorldGenerator implements IWorldGener
         this.setBlock(world, i + 24, j + 1, k + 27, Blocks.sandstone, 0);
         this.setBlock(world, i + 24, j + 2, k + 3, Blocks.sandstone, 0);
         this.setBlock(world, i + 24, j + 2, k + 27, Blocks.sandstone, 0);
-        this.setBlock(world, i + 24, j + 3, k + 3, (Block)Blocks.stone_slab, 1);
+        this.setBlock(world, i + 24, j + 3, k + 3, Blocks.stone_slab, 1);
         this.setBlock(world, i + 24, j + 3, k + 4, Blocks.sandstone, 0);
         this.setBlock(world, i + 24, j + 3, k + 26, Blocks.sandstone, 0);
-        this.setBlock(world, i + 24, j + 3, k + 27, (Block)Blocks.stone_slab, 1);
+        this.setBlock(world, i + 24, j + 3, k + 27, Blocks.stone_slab, 1);
         this.setBlock(world, i + 24, j + 4, k + 4, Blocks.sandstone, 0);
         this.setBlock(world, i + 24, j + 4, k + 26, Blocks.sandstone, 0);
         this.setBlock(world, i + 24, j + 5, k + 5, Blocks.sandstone, 0);
@@ -1840,10 +1840,10 @@ public class WorldGenDesertTemple2 extends WorldGenerator implements IWorldGener
         this.setBlock(world, i + 25, j + 1, k + 27, Blocks.sandstone, 0);
         this.setBlock(world, i + 25, j + 2, k + 3, Blocks.sandstone, 0);
         this.setBlock(world, i + 25, j + 2, k + 27, Blocks.sandstone, 0);
-        this.setBlock(world, i + 25, j + 3, k + 3, (Block)Blocks.stone_slab, 1);
+        this.setBlock(world, i + 25, j + 3, k + 3, Blocks.stone_slab, 1);
         this.setBlock(world, i + 25, j + 3, k + 4, Blocks.sandstone, 0);
         this.setBlock(world, i + 25, j + 3, k + 26, Blocks.sandstone, 0);
-        this.setBlock(world, i + 25, j + 3, k + 27, (Block)Blocks.stone_slab, 1);
+        this.setBlock(world, i + 25, j + 3, k + 27, Blocks.stone_slab, 1);
         this.setBlock(world, i + 25, j + 4, k + 4, Blocks.sandstone, 0);
         this.setBlock(world, i + 25, j + 4, k + 26, Blocks.sandstone, 0);
         this.setBlock(world, i + 25, j + 5, k + 5, Blocks.sandstone, 0);
@@ -1911,7 +1911,7 @@ public class WorldGenDesertTemple2 extends WorldGenerator implements IWorldGener
         this.setBlock(world, i + 26, j + 2, k + 4, Blocks.wool, 4);
         this.setBlock(world, i + 26, j + 2, k + 26, Blocks.wool, 4);
         this.setBlock(world, i + 26, j + 2, k + 27, Blocks.sandstone, 0);
-        this.setBlock(world, i + 26, j + 3, k + 3, (Block)Blocks.stone_slab, 1);
+        this.setBlock(world, i + 26, j + 3, k + 3, Blocks.stone_slab, 1);
         this.setBlock(world, i + 26, j + 3, k + 4, Blocks.sandstone, 0);
         this.setBlock(world, i + 26, j + 3, k + 5, Blocks.sandstone, 0);
         this.setBlock(world, i + 26, j + 3, k + 6, Blocks.sandstone, 0);
@@ -1922,7 +1922,7 @@ public class WorldGenDesertTemple2 extends WorldGenerator implements IWorldGener
         this.setBlock(world, i + 26, j + 3, k + 24, Blocks.sandstone, 0);
         this.setBlock(world, i + 26, j + 3, k + 25, Blocks.sandstone, 0);
         this.setBlock(world, i + 26, j + 3, k + 26, Blocks.sandstone, 0);
-        this.setBlock(world, i + 26, j + 3, k + 27, (Block)Blocks.stone_slab, 1);
+        this.setBlock(world, i + 26, j + 3, k + 27, Blocks.stone_slab, 1);
         this.setBlock(world, i + 26, j + 4, k + 4, Blocks.sandstone, 0);
         this.setBlock(world, i + 26, j + 4, k + 5, Blocks.sandstone, 0);
         this.setBlock(world, i + 26, j + 4, k + 6, Blocks.sandstone, 0);
@@ -2031,10 +2031,10 @@ public class WorldGenDesertTemple2 extends WorldGenerator implements IWorldGener
         this.setBlock(world, i + 27, j + 2, k + 25, Blocks.sandstone, 0);
         this.setBlock(world, i + 27, j + 2, k + 26, Blocks.sandstone, 0);
         this.setBlock(world, i + 27, j + 2, k + 27, Blocks.sandstone, 0);
-        this.setBlock(world, i + 27, j + 3, k + 3, (Block)Blocks.stone_slab, 1);
-        this.setBlock(world, i + 27, j + 3, k + 4, (Block)Blocks.stone_slab, 1);
-        this.setBlock(world, i + 27, j + 3, k + 5, (Block)Blocks.stone_slab, 1);
-        this.setBlock(world, i + 27, j + 3, k + 6, (Block)Blocks.stone_slab, 1);
+        this.setBlock(world, i + 27, j + 3, k + 3, Blocks.stone_slab, 1);
+        this.setBlock(world, i + 27, j + 3, k + 4, Blocks.stone_slab, 1);
+        this.setBlock(world, i + 27, j + 3, k + 5, Blocks.stone_slab, 1);
+        this.setBlock(world, i + 27, j + 3, k + 6, Blocks.stone_slab, 1);
         this.setBlock(world, i + 27, j + 3, k + 7, Blocks.sandstone, 0);
         this.setBlock(world, i + 27, j + 3, k + 8, Blocks.sandstone, 0);
         this.setBlock(world, i + 27, j + 3, k + 9, Blocks.sandstone, 0);
@@ -2049,10 +2049,10 @@ public class WorldGenDesertTemple2 extends WorldGenerator implements IWorldGener
         this.setBlock(world, i + 27, j + 3, k + 21, Blocks.sandstone, 0);
         this.setBlock(world, i + 27, j + 3, k + 22, Blocks.sandstone, 0);
         this.setBlock(world, i + 27, j + 3, k + 23, Blocks.sandstone, 0);
-        this.setBlock(world, i + 27, j + 3, k + 24, (Block)Blocks.stone_slab, 1);
-        this.setBlock(world, i + 27, j + 3, k + 25, (Block)Blocks.stone_slab, 1);
-        this.setBlock(world, i + 27, j + 3, k + 26, (Block)Blocks.stone_slab, 1);
-        this.setBlock(world, i + 27, j + 3, k + 27, (Block)Blocks.stone_slab, 1);
+        this.setBlock(world, i + 27, j + 3, k + 24, Blocks.stone_slab, 1);
+        this.setBlock(world, i + 27, j + 3, k + 25, Blocks.stone_slab, 1);
+        this.setBlock(world, i + 27, j + 3, k + 26, Blocks.stone_slab, 1);
+        this.setBlock(world, i + 27, j + 3, k + 27, Blocks.stone_slab, 1);
         this.setBlock(world, i + 27, j + 4, k + 9, Blocks.sandstone, 0);
         this.setBlock(world, i + 27, j + 4, k + 10, Blocks.sandstone, 0);
         this.setBlock(world, i + 27, j + 4, k + 11, Blocks.sandstone, 0);
@@ -2235,7 +2235,7 @@ public class WorldGenDesertTemple2 extends WorldGenerator implements IWorldGener
         world.setBlockMetadataWithNotify(i + 13, j + 0, k + 13, 1, 2);
         world.setBlockMetadataWithNotify(i + 13, j + 0, k + 17, 1, 2);
         world.setBlockMetadataWithNotify(i + 17, j + 0, k + 13, 1, 2);
-        this.setBlock(world, i + 17, j + 0, k + 17, (Block)Blocks.sand, 0);
+        this.setBlock(world, i + 17, j + 0, k + 17, Blocks.sand, 0);
         return true;
     }
 }

@@ -3175,7 +3175,7 @@ public class SunsetIslandsCyan extends WorldGenerator
         world.setBlock(i + 1, j + 48, k + 28, Blocks.stone);
         world.setBlock(i + 1, j + 48, k + 29, Blocks.stone);
         world.setBlock(i + 1, j + 48, k + 30, Blocks.stone);
-        world.setBlock(i + 1, j + 48, k + 31, (Block)Blocks.piston, 1, 0);
+        world.setBlock(i + 1, j + 48, k + 31, Blocks.piston, 1, 0);
         final EntityVillager villager = new EntityVillager(world);
         villager.setPosition((double)(i + 1), (double)(j + 48), (double)(k + 31));
         world.spawnEntityInWorld((Entity)villager);
@@ -11226,7 +11226,7 @@ public class SunsetIslandsCyan extends WorldGenerator
         world.setBlock(i + 4, j + 50, k + 28, Blocks.stone);
         world.setBlock(i + 4, j + 50, k + 29, Blocks.stone);
         world.setBlock(i + 4, j + 50, k + 30, Blocks.stone);
-        world.setBlock(i + 4, j + 50, k + 32, (Block)Blocks.piston, 1, 0);
+        world.setBlock(i + 4, j + 50, k + 32, Blocks.piston, 1, 0);
         final EntityVillager villager = new EntityVillager(world);
         villager.setPosition((double)(i + 4), (double)(j + 50), (double)(k + 32));
         world.spawnEntityInWorld((Entity)villager);

@@ -162,7 +162,7 @@ public class EntitySandstorm extends EntityMob
         }
         for (int i = 0; i < 5; ++i) {
             this.worldObj.spawnParticle("crit", this.posX + (this.rand.nextDouble() - 0.5) * this.width, this.posY + this.rand.nextDouble() * this.height, this.posZ + (this.rand.nextDouble() - 0.5) * this.width, this.rand.nextGaussian(), this.rand.nextGaussian(), this.rand.nextGaussian());
-            this.worldObj.spawnParticle("blockcrack_" + Block.getIdFromBlock((Block)Blocks.sand) + "_0", this.posX + (this.rand.nextDouble() - 0.5) * this.width, this.posY + this.rand.nextDouble() * this.height, this.posZ + (this.rand.nextDouble() - 0.5) * this.width, this.rand.nextGaussian(), this.rand.nextGaussian(), this.rand.nextGaussian());
+            this.worldObj.spawnParticle("blockcrack_" + Block.getIdFromBlock(Blocks.sand) + "_0", this.posX + (this.rand.nextDouble() - 0.5) * this.width, this.posY + this.rand.nextDouble() * this.height, this.posZ + (this.rand.nextDouble() - 0.5) * this.width, this.rand.nextGaussian(), this.rand.nextGaussian(), this.rand.nextGaussian());
         }
     }
 }

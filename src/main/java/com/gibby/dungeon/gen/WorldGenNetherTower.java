@@ -112,7 +112,7 @@ public class WorldGenNetherTower extends WorldGenerator implements IWorldGenerat
         this.setBlock(world, i + 6, j + 1, k + 10, Blocks.nether_brick, 0);
         this.setBlock(world, i + 6, j + 1, k + 11, Blocks.obsidian, 0);
         this.setBlock(world, i + 6, j + 1, k + 12, Blocks.obsidian, 0);
-        this.setBlock(world, i + 6, j + 1, k + 14, (Block)Blocks.chest, 5);
+        this.setBlock(world, i + 6, j + 1, k + 14, Blocks.chest, 5);
         WorldGenWarlordDungeon.chest(world, rand, i + 6, j + 1, k + 14, "NetherStructure", 10);
         this.setBlock(world, i + 6, j + 1, k + 16, Blocks.nether_brick, 0);
         this.setBlock(world, i + 6, j + 1, k + 17, Blocks.nether_brick, 0);

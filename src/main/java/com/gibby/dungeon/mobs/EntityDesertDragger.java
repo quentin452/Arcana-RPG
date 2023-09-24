@@ -54,7 +54,7 @@ public class EntityDesertDragger extends EntityMob implements IBossDisplayData
     }
     
     protected void dropFewItems(final boolean par1, final int par2) {
-        this.entityDropItem(new ItemStack((Block)Blocks.sand), 2.0f);
+        this.entityDropItem(new ItemStack(Blocks.sand), 2.0f);
         if (Dungeons.randRange(0, 20) == 0) {
             this.entityDropItem(new ItemStack(Dungeons.metalCoin), 1.0f);
         }

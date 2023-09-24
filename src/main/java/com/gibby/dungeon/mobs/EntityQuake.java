@@ -42,7 +42,7 @@ public class EntityQuake extends EntityThrowable
                 final double particlePosX = this.posX + (this.rand.nextGaussian() - this.rand.nextGaussian());
                 final double particlePosY = this.freezeY + (this.rand.nextGaussian() - this.rand.nextGaussian()) / 5.0;
                 final double particlePosZ = this.posZ + (this.rand.nextGaussian() - this.rand.nextGaussian());
-                this.worldObj.spawnParticle("blockcrack_" + Block.getIdFromBlock(block) + "_0", particlePosX, particlePosY, particlePosZ, (double)this.rand.nextFloat(), (double)this.rand.nextFloat(), (double)this.rand.nextFloat());
+                this.worldObj.spawnParticle("blockcrack_" + Block.getIdFromBlock(block) + "_0", particlePosX, particlePosY, particlePosZ, this.rand.nextFloat(), this.rand.nextFloat(), this.rand.nextFloat());
             }
         }
         if (this.impacted) {

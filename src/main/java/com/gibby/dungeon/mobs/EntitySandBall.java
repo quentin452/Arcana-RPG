@@ -33,7 +33,7 @@ public class EntitySandBall extends EntityThrowable
             this.worldObj.spawnParticle("crit", this.posX, this.posY, this.posZ, this.rand.nextGaussian(), this.rand.nextGaussian(), this.rand.nextGaussian());
         }
         for (int i = 0; i < 10; ++i) {
-            this.worldObj.spawnParticle("blockcrack_" + Block.getIdFromBlock((Block)Blocks.sand) + "_0", this.posX, this.posY, this.posZ, this.rand.nextGaussian(), this.rand.nextGaussian(), this.rand.nextGaussian());
+            this.worldObj.spawnParticle("blockcrack_" + Block.getIdFromBlock(Blocks.sand) + "_0", this.posX, this.posY, this.posZ, this.rand.nextGaussian(), this.rand.nextGaussian(), this.rand.nextGaussian());
         }
     }
     

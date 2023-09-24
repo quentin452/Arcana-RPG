@@ -23020,9 +23020,9 @@ public class WorldGenCrystalliumVillage extends WorldGenerator implements IWorld
         this.setBlock(world, i + 33, j + 25, k + 12, Dungeons.crystalliumDirt, 0);
         this.setBlock(world, i + 33, j + 25, k + 13, Dungeons.crystalliumDirt, 0);
         this.setBlock(world, i + 33, j + 25, k + 14, Dungeons.crystalliumDirt, 0);
-        this.setBlock(world, i + 33, j + 25, k + 15, (Block)Blocks.chest, 4);
+        this.setBlock(world, i + 33, j + 25, k + 15, Blocks.chest, 4);
         this.setBlock(world, i + 33, j + 25, k + 16, Dungeons.crystalliumDirt, 0);
-        this.setBlock(world, i + 33, j + 25, k + 17, (Block)Blocks.chest, 4);
+        this.setBlock(world, i + 33, j + 25, k + 17, Blocks.chest, 4);
         this.setBlock(world, i + 33, j + 25, k + 18, Dungeons.crystalliumDirt, 0);
         this.setBlock(world, i + 33, j + 25, k + 19, Dungeons.crystalliumDirt, 0);
         this.setBlock(world, i + 33, j + 25, k + 20, Dungeons.crystalliumDirt, 0);
