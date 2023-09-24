@@ -2,6 +2,7 @@
 
 package com.gibby.dungeon;
 
+import com.gibby.dungeon.init.EggInit;
 import com.gibby.dungeon.packetPipelines.PacketPipeline;
 import net.minecraft.world.biome.*;
 import net.minecraft.enchantment.*;
@@ -1072,89 +1073,6 @@ public class Dungeons
         ToolCrafting.Recipes();
         ArmorCrafting.Recipes();
         MagicCrafting.Recipes();
-        registerEntityEgg(EntityGoblin.class, 1538054, 14482440);
-        registerEntityEgg(EntityImp.class, 7873536, 3679232);
-        registerEntityEgg(EntitySkeletonWarrior.class, 13224393, 6367746);
-        registerEntityEgg(EntityZombieWarlord.class, 218902, 9408399);
-        registerEntityEgg(EntityEarthGolem.class, 9523712, 6890752);
-        registerEntityEgg(EntityStoneGolem.class, 6381921, 11382189);
-        registerEntityEgg(EntityBigStoneGolem.class, 6381921, 11382189);
-        registerEntityEgg(EntityStoneBot.class, 5395026, 10395294);
-        registerEntityEgg(EntitySpecter.class, 14606046, 12763842);
-        registerEntityEgg(EntityBandit.class, 8728064, 6184542);
-        registerEntityEgg(EntityBanditBoss.class, 8728064, 6184542);
-        registerEntityEgg(EntitySkeletalMage.class, 7538690, 10262423);
-        registerEntityEgg(EntityTroll.class, 8728064, 7362892);
-        registerEntityEgg(EntityShimmerman.class, 16772608, 7536751);
-        registerEntityEgg(EntityCyclops.class, 11773707, 11760139);
-        registerEntityEgg(EntityTyphoon.class, 751795, 12877);
-        registerEntityEgg(EntitySandstorm.class, 14926162, 11767838);
-        registerEntityEgg(EntityBlizzard.class, 8510171, 1037270);
-        registerEntityEgg(EntityTornado.class, 5197390, 2500134);
-        registerEntityEgg(EntityVoidFiend.class, 0, 5065473);
-        registerEntityEgg(EntitySpirit.class, 13396230, 12715724);
-        registerEntityEgg(EntityHermit.class, 13396998, 12715724);
-        registerEntityEgg(EntityWarlock.class, 10378777, 10027779);
-        registerEntityEgg(EntityNecro.class, 0, 9729);
-        registerEntityEgg(EntityIceMage.class, 562831, 12687308);
-        registerEntityEgg(EntityEarthMage.class, 5382914, 749570);
-        registerEntityEgg(EntitySkeletonKnight.class, 9868950, 2171169);
-        registerEntityEgg(EntitySapientWarrior.class, 13619151, 14598270);
-        registerEntityEgg(EntitySapientMiner.class, 13619151, 14598270);
-        registerEntityEgg(EntityMoundTrader.class, 14598270, 9855439);
-        registerEntityEgg(EntityAnchorTrader.class, 14598270, 2359370);
-        registerEntityEgg(EntityBlackKnight.class, 9606292, 4868682);
-        registerEntityEgg(EntityHannibal.class, 16579836, 7782596);
-        registerEntityEgg(EntityRemnant.class, 0, 58879);
-        registerEntityEgg(EntityVoidLord.class, 0, 1769216);
-        registerEntityEgg(EntityDarkKnight.class, 197379, 7368816);
-        registerEntityEgg(EntityNetherGhost.class, 6498825, 7538690);
-        registerEntityEgg(EntityNetherSoul.class, 6498825, 7538690);
-        registerEntityEgg(EntityNetherPigman.class, 6498825, 7538690);
-        registerEntityEgg(EntityVampire.class, 6498825, 7538690);
-        registerEntityEgg(EntityLavaTroll.class, 6498825, 7538690);
-        registerEntityEgg(EntityLavaKnight.class, 6498825, 7538690);
-        registerEntityEgg(EntityNetherBadgerer.class, 6498825, 7538690);
-        registerEntityEgg(EntityBeholder.class, 6498825, 16711680);
-        registerEntityEgg(EntityFireclops.class, 6498825, 16711680);
-        registerEntityEgg(EntityCrystalBadgerer.class, 16711935, 4718722);
-        registerEntityEgg(EntityAmethystMonster.class, 16711935, 4718722);
-        registerEntityEgg(EntityGhostWither.class, 16711935, 1835295);
-        registerEntityEgg(EntityTreeVillager.class, 15122026, 3200019);
-        registerEntityEgg(EntityQuarryMaster.class, 15122026, 4013373);
-        registerEntityEgg(EntityMinerVillager.class, 15122026, 4013373);
-        registerEntityEgg(EntityTalkingVillager.class, 15122026, 6904085);
-        registerEntityEgg(EntityChainMummy.class, 3223857, 8388608);
-        registerEntityEgg(EntityEyeWarrior.class, 7012459, 13408512);
-        registerEntityEgg(EntityYeti.class, 16777164, 13421823);
-        registerEntityEgg(EntitySnowGiant.class, 16777215, 102);
-        registerEntityEgg(EntityDeathBringer.class, 0, 16777215);
-        registerEntityEgg(EntityDungeonBeast.class, 10066329, 8388608);
-        registerEntityEgg(EntityDesertDragger.class, 16777062, 16777164);
-        registerEntityEgg(EntityTavernMaster.class, 6697728, 16777113);
-        registerEntityEgg(EntityTavernClient.class, 6697728, 16777113);
-        registerEntityEgg(EntityNetherWalker.class, 8388608, 6776679);
-        registerEntityEgg(EntityIceShielder.class, 13434879, 6750207);
-        registerEntityEgg(EntityOrc.class, 6704128, 0);
-        registerEntityEgg(EntityOrcMage.class, 6704128, 0);
-        registerEntityEgg(EntityOrcDefender.class, 6704128, 0);
-        registerEntityEgg(EntityRockTroll.class, 6704128, 6697728);
-        registerEntityEgg(EntityEarthRupturer.class, 6704128, 13408512);
-        registerEntityEgg(EntityIceSpirit.class, 16777215, 13421823);
-        registerEntityEgg(EntityUndefeatableStrength.class, 8421504, 5046272);
-        registerEntityEgg(EntityUndefeatableRegen.class, 8421504, 6684723);
-        registerEntityEgg(EntityUndefeatableResistance.class, 8421504, 9380864);
-        registerEntityEgg(EntitySapientEliteKnight.class, 16777062, 0);
-        registerEntityEgg(EntitySapientGeneral.class, 16777113, 16776960);
-        registerEntityEgg(EntityMontaneVillager.class, 13411154, 8421504);
-        registerEntityEgg(EntityMontaneTrader.class, 13411154, 8421504);
-        registerEntityEgg(EntityMidnightShade.class, 0, 102);
-        registerEntityEgg(EntitySapientMage.class, 16777113, 6684774);
-        registerEntityEgg(EntityCrystalTroll.class, 16777113, 6684774);
-        registerEntityEgg(EntityCrystasis.class, 16777113, 6684774);
-        registerEntityEgg(EntityCrystox.class, 16777113, 6684774);
-        registerEntityEgg(EntityExawdus.class, 16777113, 6684774);
-        registerEntityEgg(EntityCrystalliumGolem.class, 16777113, 6684774);
         final BiomeGenBase[] spawn = BiomeGenBase.getBiomeGenArray();
         for (int i = 0; i < spawn.length - 1; ++i) {
             if (spawn[i] != null && spawn[i] != Dungeons.crystal && spawn[i] != Dungeons.sunset && spawn[i] != Dungeons.crystalliumPlainsBiome) {
@@ -1243,6 +1161,7 @@ public class Dungeons
         Dungeons.proxy.registerItemRenderers();
         Dungeons.proxy.registerTileEntities();
         ChestSetup.addChestItems();
+        EggInit.preInit(event);
     }
 
     @Mod.EventHandler
@@ -1276,13 +1195,6 @@ public class Dungeons
         } while (EntityList.getStringFromID(Dungeons.startEntityid) != null);
         return Dungeons.startEntityid;
     }
-
-    public static void registerEntityEgg(final Class<? extends Entity> entity, final int primaryColor, final int secondaryColor) {
-        final int id = getUniqueEntityId();
-        EntityList.IDtoClassMapping.put(id, entity);
-        EntityList.entityEggs.put(id, new EntityList.EntityEggInfo(id, primaryColor, secondaryColor));
-    }
-
     public static ItemStack setRare(final ItemStack stack) {
         final Random rand = new Random();
         int bookRand = 0;
