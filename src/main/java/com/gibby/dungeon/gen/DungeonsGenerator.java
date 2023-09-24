@@ -4,6 +4,8 @@ package com.gibby.dungeon.gen;
 
 import cpw.mods.fml.common.*;
 import java.util.*;
+
+import net.minecraft.block.Block;
 import net.minecraft.world.*;
 import net.minecraft.world.chunk.*;
 import com.gibby.dungeon.*;
@@ -15,178 +17,100 @@ public class DungeonsGenerator implements IWorldGenerator
 {
     public void generate(final Random random, final int chunkX, final int chunkZ, final World world, final IChunkProvider chunkGenerator, final IChunkProvider chunkProvider) {
         if (world.provider.dimensionId == 0) {
-            this.GenerateSurface(random, chunkX * 16, chunkZ * 16, world);
+            this.generateSurface(random, chunkX * 16, chunkZ * 16, world);
         }
         if (world.provider.dimensionId == -1) {
-            this.GenerateNether(random, chunkX * 16, chunkZ * 16, world);
+            this.generateNether(random, chunkX * 16, chunkZ * 16, world);
         }
     }
 
-    private void GenerateNether(final Random random, final int chunkX, final int chunkZ, final World world) {
-        for (int i = 0; i < 3; ++i) {
-            final int coordX = chunkX + random.nextInt(16);
-            final int coordZ = chunkZ + random.nextInt(16);
-            final int coordY = random.nextInt(120);
-            new WorldGenNetherMinable(Dungeons.lithiumOre, 6).generate(world, random, coordX, coordY, coordZ);
+    private void generateNether(Random random, int chunkX, int chunkZ, World world) {
+        generateNetherOre(random, chunkX, chunkZ, world, Dungeons.lithiumOre, 6, 120, 3);
+        generateNetherOre(random, chunkX, chunkZ, world, Dungeons.netherSteelOre, 4, 120, 1);
+        generateNetherStructures(random, chunkX, chunkZ, world, new WorldGenNetherRuins(), 7, 40);
+        generateNetherStructures(random, chunkX, chunkZ, world, new WorldGenTallNetherRuins(), 7, 40);
+        generateNetherStructures(random, chunkX, chunkZ, world, new WorldGenNetherTower(), 7, 40);
+        generateNetherVampireCastle(random, chunkX, chunkZ, world, 15, 55);
+    }
+
+    private void generateNetherOre(Random random, int chunkX, int chunkZ, World world, Block oreBlock, int veinSize, int maxHeight, int count) {
+        for (int i = 0; i < count; ++i) {
+            int coordX = chunkX + random.nextInt(16);
+            int coordZ = chunkZ + random.nextInt(16);
+            int coordY = random.nextInt(maxHeight);
+            new WorldGenNetherMinable(oreBlock, veinSize).generate(world, random, coordX, coordY, coordZ);
         }
-        final int coordX2 = chunkX + random.nextInt(16);
-        final int coordZ2 = chunkZ + random.nextInt(16);
-        final int coordY2 = random.nextInt(120);
-        new WorldGenNetherMinable(Dungeons.netherSteelOre, 4).generate(world, random, coordX2, coordY2, coordZ2);
-        for (int i = 0; i < 7; ++i) {
-            final int coordX = chunkX + random.nextInt(16);
-            final int coordZ = chunkZ + random.nextInt(16);
-            final int coordY = random.nextInt(50) + 40;
-            new WorldGenNetherRuins().generate(world, random, coordX, coordY, coordZ);
+    }
+
+    private void generateNetherStructures(Random random, int chunkX, int chunkZ, World world, WorldGenerator generator, int count, int minHeight) {
+        for (int i = 0; i < count; ++i) {
+            int coordX = chunkX + random.nextInt(16);
+            int coordZ = chunkZ + random.nextInt(16);
+            int coordY = random.nextInt(50) + minHeight;
+            generator.generate(world, random, coordX, coordY, coordZ);
         }
-        for (int i = 0; i < 7; ++i) {
-            final int coordX = chunkX + random.nextInt(16);
-            final int coordZ = chunkZ + random.nextInt(16);
-            final int coordY = random.nextInt(50) + 40;
-            new WorldGenTallNetherRuins().generate(world, random, coordX, coordY, coordZ);
-        }
-        for (int i = 0; i < 7; ++i) {
-            final int coordX = chunkX + random.nextInt(16);
-            final int coordZ = chunkZ + random.nextInt(16);
-            final int coordY = random.nextInt(50) + 40;
-            new WorldGenNetherTower().generate(world, random, coordX, coordY, coordZ);
-        }
-        for (int i = 0; i < 15; ++i) {
-            final int coordX = chunkX + random.nextInt(16);
-            final int coordZ = chunkZ + random.nextInt(16);
-            final int coordY = random.nextInt(20) + 55;
+    }
+
+    private void generateNetherVampireCastle(Random random, int chunkX, int chunkZ, World world, int chance, int minHeight) {
+        for (int i = 0; i < chance; ++i) {
+            int coordX = chunkX + random.nextInt(16);
+            int coordZ = chunkZ + random.nextInt(16);
+            int coordY = random.nextInt(20) + 55;
             if (world.getBlock(coordX, coordY, coordZ) == Blocks.netherrack && world.getBlock(coordX + 25, coordY, coordZ + 22) == Blocks.netherrack && world.getBlock(coordX, coordY + 1, coordZ) == Blocks.air && world.getBlock(coordX + 25, coordY + 1, coordZ + 22) == Blocks.air && world.getBlock(coordX, coordY + 40, coordZ) == Blocks.air && world.getBlock(coordX + 25, coordY + 40, coordZ + 22) == Blocks.air) {
                 new WorldGenVampireCastle().generate(world, random, coordX, coordY, coordZ);
             }
         }
     }
-
-    private void GenerateSurface(final Random random, final int chunkX, final int chunkZ, final World world) {
+    private void generateSurface(Random random, int chunkX, int chunkZ, World world) {
         for (int i = 0; i < 18; ++i) {
-            final int coordX = chunkX + random.nextInt(16);
-            final int coordZ = chunkZ + random.nextInt(16);
-            final int coordY = random.nextInt(60);
-            new WorldGenMinable(Dungeons.copperore, 8).generate(world, random, coordX, coordY, coordZ);
+            generateOre(random, chunkX, chunkZ, world, Dungeons.copperore, 8, 60);
         }
         for (int i = 0; i < 7; ++i) {
-            final int coordX = chunkX + random.nextInt(16);
-            final int coordZ = chunkZ + random.nextInt(16);
-            final int coordY = random.nextInt(60);
-            new WorldGenMinable(Dungeons.amazoniteOre, 8).generate(world, random, coordX, coordY, coordZ);
+            generateOre(random, chunkX, chunkZ, world, Dungeons.amazoniteOre, 8, 60);
         }
         for (int i = 0; i < 2; ++i) {
-            final int coordX = chunkX + random.nextInt(16);
-            final int coordZ = chunkZ + random.nextInt(16);
-            final int coordY = random.nextInt(40);
-            new WorldGenMinable(Dungeons.rubyOre, 8).generate(world, random, coordX, coordY, coordZ);
+            generateOre(random, chunkX, chunkZ, world, Dungeons.rubyOre, 8, 40);
         }
         for (int i = 0; i < 1; ++i) {
-            final int coordX = chunkX + random.nextInt(16);
-            final int coordZ = chunkZ + random.nextInt(16);
-            final int coordY = random.nextInt(30);
-            new WorldGenMinable(Dungeons.silverOre, 8).generate(world, random, coordX, coordY, coordZ);
+            generateOre(random, chunkX, chunkZ, world, Dungeons.silverOre, 8, 30);
         }
         for (int i = 0; i < 2; ++i) {
-            final int coordX = chunkX + random.nextInt(16);
-            final int coordZ = chunkZ + random.nextInt(16);
-            final int coordY = random.nextInt(10);
-            new WorldGenMinable(Dungeons.bedrockOre, 5).generate(world, random, coordX, coordY, coordZ);
+            generateOre(random, chunkX, chunkZ, world, Dungeons.bedrockOre, 5, 10);
         }
         for (int i = 0; i < 1; ++i) {
-            final int coordX = chunkX + random.nextInt(16);
-            final int coordZ = chunkZ + random.nextInt(16);
-            final int coordY = random.nextInt(40);
-            new WorldGenMinable(Dungeons.amethystOre, 4).generate(world, random, coordX, coordY, coordZ);
+            generateOre(random, chunkX, chunkZ, world, Dungeons.amethystOre, 4, 40);
         }
-        if (random.nextInt(100) == 0) {
-            final int coordX2 = chunkX + random.nextInt(16);
-            final int coordZ2 = chunkZ + random.nextInt(16);
-            final int coordY2 = random.nextInt(10) + 60;
-            new WorldGenWarlordDungeon().generate(world, random, coordX2, coordY2, coordZ2);
-        }
-        if (random.nextInt(100) == 0) {
-            final int coordX2 = chunkX + random.nextInt(16);
-            final int coordZ2 = chunkZ + random.nextInt(16);
-            final int coordY2 = random.nextInt(10) + 60;
-            new WorldGenBleachedDungeon().generate(world, random, coordX2, coordY2, coordZ2);
-        }
-        if (random.nextInt(100) == 0) {
-            final int coordX2 = chunkX + random.nextInt(16);
-            final int coordZ2 = chunkZ + random.nextInt(16);
-            final int coordY2 = random.nextInt(10) + 60;
-            new WorldGenStoneGolemDungeon().generate(world, random, coordX2, coordY2, coordZ2);
-        }
-        if (random.nextInt(2) == 0) {
-            final int coordX2 = chunkX + random.nextInt(16);
-            final int coordZ2 = chunkZ + random.nextInt(16);
-            final int coordY2 = random.nextInt(10) + 60;
-            new squareruins().generate(world, random, coordX2, coordY2, coordZ2);
-        }
-        if (random.nextInt(15) == 0) {
-            final int coordX2 = chunkX + random.nextInt(16);
-            final int coordZ2 = chunkZ + random.nextInt(16);
-            final int coordY2 = random.nextInt(10) + 60;
-            new treefortress().generate(world, random, coordX2, coordY2, coordZ2);
-        }
-        if (random.nextInt(2) == 0) {
-            final int coordX2 = chunkX + random.nextInt(16);
-            final int coordZ2 = chunkZ + random.nextInt(16);
-            final int coordY2 = random.nextInt(10) + 60;
-            new archruins().generate(world, random, coordX2, coordY2, coordZ2);
-        }
-        if (random.nextInt(2) == 0) {
-            final int coordX2 = chunkX + random.nextInt(16);
-            final int coordZ2 = chunkZ + random.nextInt(16);
-            final int coordY2 = random.nextInt(15) + 60;
-            new SmallCastle().generate(world, random, coordX2, coordY2, coordZ2);
-        }
-        for (int i = 0; i < 1; ++i) {
-            final int coordX = chunkX + random.nextInt(16);
-            final int coordZ = chunkZ + random.nextInt(16);
-            final int coordY = random.nextInt(15) + 55;
-            new LargeCastle3().generate(world, random, coordX, coordY, coordZ);
-        }
-        for (int i = 0; i < 3; ++i) {
-            final int coordX = chunkX + random.nextInt(16);
-            final int coordZ = chunkZ + random.nextInt(16);
-            final int coordY = random.nextInt(15) + 55;
-            new WorldGenMoundVillage().generate(world, random, coordX, coordY, coordZ);
-        }
-        if (random.nextInt(130) == 0) {
-            final int coordX2 = chunkX + random.nextInt(16);
-            final int coordZ2 = chunkZ + random.nextInt(16);
-            final int coordY2 = random.nextInt(10) + 60;
-            new WorldGenVoidDungeon().generate(world, random, coordX2, coordY2, coordZ2);
-        }
-        if (random.nextInt(130) == 0) {
-            final int coordX2 = chunkX + random.nextInt(16);
-            final int coordZ2 = chunkZ + random.nextInt(16);
-            final int coordY2 = random.nextInt(10) + 60;
-            new WorldGenKnightDungeon().generate(world, random, coordX2, coordY2, coordZ2);
-        }
-        if (random.nextInt(5) == 0) {
-            final int coordX2 = chunkX + random.nextInt(16);
-            final int coordZ2 = chunkZ + random.nextInt(16);
-            final int coordY2 = random.nextInt(15) + 55;
-            new WorldGenObelisk().generate(world, random, coordX2, coordY2, coordZ2);
-        }
-        if (random.nextInt(2) == 0) {
-            final int coordX2 = chunkX + random.nextInt(16);
-            final int coordZ2 = chunkZ + random.nextInt(16);
-            final int coordY2 = random.nextInt(15) + 55;
-            new WorldGenJungleTemple().generate(world, random, coordX2, coordY2, coordZ2);
-        }
-        if (random.nextInt(2) == 0) {
-            final int coordX2 = chunkX + random.nextInt(16);
-            final int coordZ2 = chunkZ + random.nextInt(16);
-            final int coordY2 = random.nextInt(15) + 55;
-            new WorldGenTavern().generate(world, random, coordX2, coordY2, coordZ2);
-        }
-        if (random.nextInt(4) == 0) {
-            final int coordX2 = chunkX + random.nextInt(16);
-            final int coordZ2 = chunkZ + random.nextInt(16);
-            final int coordY2 = random.nextInt(15) + 55;
-            new WorldGenDesertTemple2().generate(world, random, coordX2, coordY2, coordZ2);
+
+        generateStructure(random, chunkX, chunkZ, world, new WorldGenWarlordDungeon(), 100, 60);
+        generateStructure(random, chunkX, chunkZ, world, new WorldGenBleachedDungeon(), 100, 60);
+        generateStructure(random, chunkX, chunkZ, world, new WorldGenStoneGolemDungeon(), 100, 60);
+        generateStructure(random, chunkX, chunkZ, world, new squareruins(), 2, 60);
+        generateStructure(random, chunkX, chunkZ, world, new treefortress(), 15, 60);
+        generateStructure(random, chunkX, chunkZ, world, new archruins(), 2, 60);
+        generateStructure(random, chunkX, chunkZ, world, new SmallCastle(), 2, 60);
+        generateStructure(random, chunkX, chunkZ, world, new LargeCastle3(), 1, 55);
+        generateStructure(random, chunkX, chunkZ, world, new WorldGenMoundVillage(), 3, 55);
+        generateStructure(random, chunkX, chunkZ, world, new WorldGenVoidDungeon(), 130, 60);
+        generateStructure(random, chunkX, chunkZ, world, new WorldGenKnightDungeon(), 130, 60);
+        generateStructure(random, chunkX, chunkZ, world, new WorldGenObelisk(), 5, 55);
+        generateStructure(random, chunkX, chunkZ, world, new WorldGenJungleTemple(), 2, 55);
+        generateStructure(random, chunkX, chunkZ, world, new WorldGenTavern(), 2, 55);
+        generateStructure(random, chunkX, chunkZ, world, new WorldGenDesertTemple2(), 4, 55);
+    }
+
+    private void generateOre(Random random, int chunkX, int chunkZ, World world, Block oreBlock, int veinSize, int maxHeight) {
+        int coordX = chunkX + random.nextInt(16);
+        int coordZ = chunkZ + random.nextInt(16);
+        int coordY = random.nextInt(maxHeight);
+        new WorldGenMinable(oreBlock, veinSize).generate(world, random, coordX, coordY, coordZ);
+    }
+
+    private void generateStructure(Random random, int chunkX, int chunkZ, World world, WorldGenerator generator, int chance, int minHeight) {
+        if (random.nextInt(chance) == 0) {
+            int coordX = chunkX + random.nextInt(16);
+            int coordZ = chunkZ + random.nextInt(16);
+            int coordY = random.nextInt(10) + minHeight;
+            generator.generate(world, random, coordX, coordY, coordZ);
         }
     }
 }
