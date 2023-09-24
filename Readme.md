@@ -1,35 +1,17 @@
-# mobsnorender
+# Arcana RPG
 
-skip entity render of entities if they are higher or lower value in X Y Z in function of the player coords
-
-# motivation
-
-Have more performance in my 1.7.10 modpacks
-
-# todo
-
-dynamically change X Y Z coord if alot of mobs are rendered
-
-add tile entity canceller
-
-add ingame config
-
-add a way to auto delete old config if the mod get updated
-
-add config to disabling all entity from rendering ambient/agressive entity/passive entity
-
-add a blackist to the entity rendering removal
+This mod is a fork of https://www.curseforge.com/minecraft/mc-mods/arcana-rpg , to see new changes thats not maked in the original you can see https://github.com/quentin452/Arcana-RPG/wiki
 
 # Links to descriptions of my projects.
 
-[*Modrinth*](https://modrinth.com/mod/mobs-no-render)
+[*Modrinth*](https://modrinth.com/mod/arcana-rpg-continuation)
 
-[*Github*](https://github.com/quentin452/mobsnorender)
+[*Github*](https://github.com/quentin452/Arcana-RPG)
 
-[*Curseforge*](https://legacy.curseforge.com/minecraft/mc-mods/mobs-no-render)
+[*Curseforge*](https://legacy.curseforge.com/minecraft/mc-mods/arcana-rpg-continuation)
 
 # Discord
 
-Add me on discord : I'm A Cat[FR]#7202
+Add me on discord : iamacatfr
 
 Discord server : https://discord.gg/ZnmHKJzKkZ 
