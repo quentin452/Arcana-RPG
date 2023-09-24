@@ -1,6 +1,8 @@
 # Arcana RPG
 
-This mod is a fork of https://www.curseforge.com/minecraft/mc-mods/arcana-rpg , to see new changes thats not maked in the original you can see https://github.com/quentin452/Arcana-RPG/wiki
+This mod is a fork of https://www.curseforge.com/minecraft/mc-mods/arcana-rpg 
+
+To see new changes thats maked in the fork you can see https://github.com/quentin452/Arcana-RPG/wiki
 
 # Links to descriptions of my projects.
 
