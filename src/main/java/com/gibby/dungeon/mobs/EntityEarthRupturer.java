@@ -18,7 +18,7 @@ public class EntityEarthRupturer extends EntityMob
         super(par1World);
         this.setSize(1.5f, 2.0f);
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(40.0);
@@ -26,11 +26,11 @@ public class EntityEarthRupturer extends EntityMob
         this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(4.0);
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(24.0);
     }
-    
+
     public int getTotalArmorValue() {
         return 22;
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         final List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(4.0, 2.0, 4.0));
@@ -47,34 +47,34 @@ public class EntityEarthRupturer extends EntityMob
                             this.worldObj.spawnParticle("blockcrack_" + Block.getIdFromBlock(Blocks.dirt) + "_0", this.posX - 5.0 + x, this.posY + 0.5, this.posZ - 5.0 + z, this.rand.nextGaussian(), this.rand.nextGaussian(), this.rand.nextGaussian());
                         }
                     }
-                    if (list2.get(k2).onGround && list2.get(k2).getDistanceSqToEntity((Entity)this) < 30.0) {
-                        list2.get(k2).attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), 8.0f);
+                    if (((EntityPlayer) list2.get(k2)).onGround && ((EntityPlayer) list2.get(k2)).getDistanceToEntity((Entity)this) < 30.0) {
+                        ((EntityPlayer) list2.get(k2)).attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), 8.0f);
                     }
                 }
             }
         }
     }
-    
+
     protected String getLivingSound() {
         return "gibby_dungeons:rupturerSay";
     }
-    
+
     protected String getHurtSound() {
         return "gibby_dungeons:rupturerHit";
     }
-    
+
     protected String getDeathSound() {
         return "gibby_dungeons:rupturerHit";
     }
-    
+
     protected float getSoundPitch() {
         return 1.0f;
     }
-    
+
     protected float getSoundVolume() {
         return 0.8f;
     }
-    
+
     public boolean attackEntityAsMob(final Entity par1Entity) {
         par1Entity.attackEntityFrom(DamageSource.magic, 3.0f);
         return true;

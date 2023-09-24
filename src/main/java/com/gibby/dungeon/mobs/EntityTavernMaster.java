@@ -78,9 +78,12 @@ public class EntityTavernMaster extends EntityVillager
             if (this.timeUntilReset <= 0) {
                 if (this.needsInitilization) {
                     if (this.buyingList.size() > 1) {
-                        for (final MerchantRecipe merchantrecipe : this.buyingList) {
-                            if (merchantrecipe.isRecipeDisabled()) {
-                                merchantrecipe.func_82783_a(this.rand.nextInt(6) + this.rand.nextInt(6) + 2);
+                        for (final Object obj : this.buyingList) {
+                            if (obj instanceof MerchantRecipe) {
+                                MerchantRecipe merchantrecipe = (MerchantRecipe) obj;
+                                if (merchantrecipe.isRecipeDisabled()) {
+                                    merchantrecipe.func_82783_a(this.rand.nextInt(6) + this.rand.nextInt(6) + 2);
+                                }
                             }
                         }
                     }
@@ -310,7 +313,7 @@ public class EntityTavernMaster extends EntityVillager
     }
 
     private static int func_146092_b(final Item p_146092_0_, final Random p_146092_1_) {
-        final Tuple tuple = EntityTavernMaster.villagersSellingList.get(p_146092_0_);
+        final Tuple tuple = (Tuple) EntityTavernMaster.villagersSellingList.get(p_146092_0_);
         return (int)((tuple == null) ? 1 : (((int)tuple.getFirst() >= (int)tuple.getSecond()) ? tuple.getFirst() : ((int)tuple.getFirst() + p_146092_1_.nextInt((int)tuple.getSecond() - (int)tuple.getFirst()))));
     }
 
@@ -332,7 +335,7 @@ public class EntityTavernMaster extends EntityVillager
     }
 
     private static int func_146090_c(final Item p_146090_0_, final Random p_146090_1_) {
-        final Tuple tuple = EntityTavernMaster.blacksmithSellingList.get(p_146090_0_);
+        final Tuple tuple = (Tuple) EntityTavernMaster.blacksmithSellingList.get(p_146090_0_);
         return (int)((tuple == null) ? 1 : (((int)tuple.getFirst() >= (int)tuple.getSecond()) ? tuple.getFirst() : ((int)tuple.getFirst() + p_146090_1_.nextInt((int)tuple.getSecond() - (int)tuple.getFirst()))));
     }
 

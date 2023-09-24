@@ -345,8 +345,8 @@ public class EntityOreDealer extends EntityVillager
     }
 
     private static int func_146090_c(final Item p_146090_0_, final Random p_146090_1_) {
-        final Tuple tuple = EntityOreDealer.blacksmithSellingList.get(p_146090_0_);
-        return (int)((tuple == null) ? 1 : (((int)tuple.getFirst() >= (int)tuple.getSecond()) ? tuple.getFirst() : ((int)tuple.getFirst() + p_146090_1_.nextInt((int)tuple.getSecond() - (int)tuple.getFirst()))));
+        final Tuple tuple = (Tuple) EntityOreDealer.blacksmithSellingList.get(p_146090_0_);
+        return ((tuple == null) ? 1 : (((int)tuple.getFirst() >= (int)tuple.getSecond()) ? (int) tuple.getFirst() : ((int)tuple.getFirst() + p_146090_1_.nextInt((int)tuple.getSecond() - (int)tuple.getFirst()))));
     }
 
     @SideOnly(Side.CLIENT)

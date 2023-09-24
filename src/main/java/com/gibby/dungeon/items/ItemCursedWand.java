@@ -21,7 +21,7 @@ public class ItemCursedWand extends ItemForceWand
         this.setMaxDamage(500);
         this.setFull3D();
     }
-    
+
     @Override
     public boolean onEntitySwing(final EntityLivingBase entityLiving, final ItemStack stack) {
         if (entityLiving instanceof EntityPlayer) {
@@ -40,7 +40,7 @@ public class ItemCursedWand extends ItemForceWand
         }
         return false;
     }
-    
+
     @Override
     public ItemStack onItemRightClick(final ItemStack par1ItemStack, final World par2World, final EntityPlayer par3) {
         final DungeonsExtendedPlayer par4 = DungeonsExtendedPlayer.get(par3);
@@ -58,7 +58,7 @@ public class ItemCursedWand extends ItemForceWand
             if (list != null) {
                 for (int k2 = 0; k2 < list.size(); ++k2) {
                     if (list.get(k2) instanceof EntityLivingBase) {
-                        list.get(k2).addPotionEffect(new PotionEffect(Dungeons.shock.id, 140, 0));
+                        ((EntityLivingBase) list.get(k2)).addPotionEffect(new PotionEffect(Dungeons.shock.id, 140, 0));
                     }
                 }
             }
@@ -67,7 +67,7 @@ public class ItemCursedWand extends ItemForceWand
         }
         return par1ItemStack;
     }
-    
+
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(final ItemStack par1ItemStack, final EntityPlayer par2EntityPlayer, final List par3List, final boolean par4) {

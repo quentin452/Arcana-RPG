@@ -33,8 +33,8 @@ public class EntityAnchorTrader extends EntityVillager
     private String lastBuyingPlayer;
     private boolean isLookingForHome;
     private float field_82191_bN;
-    public static final Map villagersSellingList;
-    public static final Map blacksmithSellingList;
+    public static final Map<Item, Tuple> villagersSellingList;
+    public static final Map<Item, Tuple> blacksmithSellingList;
 
     public EntityAnchorTrader(final World par1World) {
         this(par1World, 0);
@@ -79,11 +79,12 @@ public class EntityAnchorTrader extends EntityVillager
             if (this.timeUntilReset <= 0) {
                 if (this.needsInitilization) {
                     if (this.buyingList.size() > 1) {
-                        for (final MerchantRecipe merchantrecipe : this.buyingList) {
+                        for (MerchantRecipe merchantrecipe : (List<MerchantRecipe>) this.buyingList) {
                             if (merchantrecipe.isRecipeDisabled()) {
                                 merchantrecipe.func_82783_a(this.rand.nextInt(6) + this.rand.nextInt(6) + 2);
                             }
                         }
+
                     }
                     this.addDefaultEquipmentAndRecipies(1);
                     this.needsInitilization = false;
@@ -409,8 +410,8 @@ public class EntityAnchorTrader extends EntityVillager
     }
 
     static {
-        villagersSellingList = new HashMap();
-        blacksmithSellingList = new HashMap();
+        villagersSellingList = new HashMap<Item, Tuple>();
+        blacksmithSellingList = new HashMap<>();
         EntityAnchorTrader.villagersSellingList.put(Dungeons.copper, new Tuple((Object)10, (Object)15));
         EntityAnchorTrader.villagersSellingList.put(Items.iron_ingot, new Tuple((Object)10, (Object)15));
         EntityAnchorTrader.villagersSellingList.put(Dungeons.ruby, new Tuple((Object)7, (Object)12));

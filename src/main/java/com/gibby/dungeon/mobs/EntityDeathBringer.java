@@ -18,12 +18,12 @@ public class EntityDeathBringer extends EntityMob implements IBossDisplayData
 {
     boolean throwback;
     boolean speedboost;
-    
+
     public EntityDeathBringer(final World par1World) {
         super(par1World);
         this.setSize(1.5f, 3.0f);
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(20.0);
@@ -31,7 +31,7 @@ public class EntityDeathBringer extends EntityMob implements IBossDisplayData
         this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(15.0);
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(250.0);
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(20.0, 10.0, 20.0));
@@ -47,8 +47,8 @@ public class EntityDeathBringer extends EntityMob implements IBossDisplayData
         if (list2 != null) {
             for (int k2 = 0; k2 < list2.size(); ++k2) {
                 if ((!(list2.get(k2) instanceof EntityLivingBase) && list2.get(k2) instanceof EntityThrowable && !(list2.get(k2) instanceof EntityRuneExplosion) && !(list2.get(k2) instanceof EntityThrowback)) || list2.get(k2) instanceof EntityArrow) {
-                    list2.get(k2).worldObj.newExplosion((Entity)this, list2.get(k2).posX + 0.3, list2.get(k2).posY - 0.3, list2.get(k2).posZ, 1.0f, false, false);
-                    list2.get(k2).setDead();
+                    ((Entity) list2.get(k2)).worldObj.newExplosion((Entity)this, ((Entity) list2.get(k2)).posX + 0.3, ((Entity) list2.get(k2)).posY - 0.3, ((Entity) list2.get(k2)).posZ, 1.0f, false, false);
+                    ((Entity) list2.get(k2)).setDead();
                 }
             }
         }
@@ -57,7 +57,7 @@ public class EntityDeathBringer extends EntityMob implements IBossDisplayData
             if (list2 != null) {
                 for (int k2 = 0; k2 < list2.size(); ++k2) {
                     if (list2.get(k2) instanceof EntityPlayer) {
-                        final EntityPlayer player = list2.get(k2);
+                        final EntityPlayer player = (EntityPlayer) list2.get(k2);
                         final EntityRuneExplosion explosion = new EntityRuneExplosion(this.worldObj, player.posX, player.posY, player.posZ);
                         this.worldObj.spawnEntityInWorld((Entity)explosion);
                     }
@@ -70,7 +70,7 @@ public class EntityDeathBringer extends EntityMob implements IBossDisplayData
             if (list2 != null) {
                 for (int k2 = 0; k2 < list2.size(); ++k2) {
                     if (list2.get(k2) instanceof EntityPlayer) {
-                        final EntityPlayer player = list2.get(k2);
+                        final EntityPlayer player = (EntityPlayer) list2.get(k2);
                         final EntityThrowback explosion2 = new EntityThrowback(this.worldObj, player.posX, player.posY, player.posZ);
                         this.worldObj.spawnEntityInWorld((Entity)explosion2);
                     }
@@ -82,34 +82,34 @@ public class EntityDeathBringer extends EntityMob implements IBossDisplayData
             this.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 150, 15));
         }
     }
-    
+
     public int getTotalArmorValue() {
         return 24;
     }
-    
+
     protected void despawnEntity() {
     }
-    
+
     protected boolean canDespawn() {
         return false;
     }
-    
+
     protected String getLivingSound() {
         return "portal.portal";
     }
-    
+
     protected String getHurtSound() {
         return "mob.enderdragon.hit";
     }
-    
+
     protected String getDeathSound() {
         return "portal.travel";
     }
-    
+
     protected float getSoundPitch() {
         return 0.8f;
     }
-    
+
     public boolean attackEntityFrom(final DamageSource par1DamageSource, final float par2) {
         if (Dungeons.randRange(0, 15) == 0) {
             this.throwback = true;
@@ -119,7 +119,7 @@ public class EntityDeathBringer extends EntityMob implements IBossDisplayData
         }
         return super.attackEntityFrom(par1DamageSource, par2);
     }
-    
+
     public boolean attackEntityAsMob(final Entity par1Entity) {
         if (par1Entity instanceof EntityLivingBase) {
             ((EntityLivingBase)par1Entity).addPotionEffect(new PotionEffect(Potion.blindness.id, 100, 0));
@@ -129,7 +129,7 @@ public class EntityDeathBringer extends EntityMob implements IBossDisplayData
         }
         return super.attackEntityAsMob(par1Entity);
     }
-    
+
     protected void dropFewItems(final boolean par1, final int par2) {
         this.entityDropItem(new ItemStack(Dungeons.deathBringerWand), 1.0f);
         this.entityDropItem(new ItemStack(Dungeons.voidCoin), 10.0f);

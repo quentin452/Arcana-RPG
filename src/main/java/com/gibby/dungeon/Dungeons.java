@@ -2,7 +2,7 @@
 
 package com.gibby.dungeon;
 
-import packetPipelines.*;
+import com.gibby.dungeon.packetPipelines.PacketPipeline;
 import net.minecraft.world.biome.*;
 import net.minecraft.enchantment.*;
 import net.minecraft.potion.*;

@@ -20,7 +20,7 @@ public class ItemIonicWand extends ItemForceWand
         this.setMaxDamage(500);
         this.setFull3D();
     }
-    
+
     public boolean onEntitySwing(final EntityLivingBase entityLiving, final ItemStack stack) {
         if (entityLiving instanceof EntityPlayer) {
             final EntityPlayer par3 = (EntityPlayer)entityLiving;
@@ -56,7 +56,7 @@ public class ItemIonicWand extends ItemForceWand
         }
         return false;
     }
-    
+
     public ItemStack onItemRightClick(final ItemStack par1ItemStack, final World par2World, final EntityPlayer par3) {
         final DungeonsExtendedPlayer par4 = DungeonsExtendedPlayer.get(par3);
         if (par4.magicAmount() >= 9 || par3.capabilities.isCreativeMode) {
@@ -78,10 +78,10 @@ public class ItemIonicWand extends ItemForceWand
             if (list != null) {
                 for (int k2 = 0; k2 < list.size(); ++k2) {
                     if (list.get(k2) instanceof EntityLivingBase) {
-                        final double posX = list.get(k2).posX;
-                        final double posY = list.get(k2).posY;
-                        final double posZ = list.get(k2).posZ;
-                        list.get(k2).worldObj.newExplosion((Entity)par3, posX, posY, posZ, 1.6f, false, false);
+                        final double posX = ((EntityLivingBase) list.get(k2)).posX;
+                        final double posY = ((EntityLivingBase) list.get(k2)).posY;
+                        final double posZ = ((EntityLivingBase) list.get(k2)).posZ;
+                        ((EntityLivingBase) list.get(k2)).worldObj.newExplosion((Entity)par3, posX, posY, posZ, 1.6f, false, false);
                     }
                 }
             }
@@ -90,7 +90,7 @@ public class ItemIonicWand extends ItemForceWand
         }
         return par1ItemStack;
     }
-    
+
     @SideOnly(Side.CLIENT)
     public void addInformation(final ItemStack par1ItemStack, final EntityPlayer par2EntityPlayer, final List par3List, final boolean par4) {
         par3List.add(EnumChatFormatting.DARK_PURPLE + "Left Click to shoot a magical beam(3 magic)");

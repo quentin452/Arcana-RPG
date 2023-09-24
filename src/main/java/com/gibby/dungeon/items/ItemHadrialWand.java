@@ -21,7 +21,7 @@ public class ItemHadrialWand extends ItemForceWand
         this.setMaxDamage(100000);
         this.setFull3D();
     }
-    
+
     public boolean onEntitySwing(final EntityLivingBase entityLiving, final ItemStack stack) {
         if (entityLiving instanceof EntityPlayer) {
             final EntityPlayer par3 = (EntityPlayer)entityLiving;
@@ -55,7 +55,7 @@ public class ItemHadrialWand extends ItemForceWand
         }
         return false;
     }
-    
+
     public ItemStack onItemRightClick(final ItemStack par1ItemStack, final World par2World, final EntityPlayer par3) {
         final DungeonsExtendedPlayer par4 = DungeonsExtendedPlayer.get(par3);
         if (par4.magicAmount() >= 15 || par3.capabilities.isCreativeMode) {
@@ -81,8 +81,8 @@ public class ItemHadrialWand extends ItemForceWand
                         par3.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 300, 2));
                         par3.addPotionEffect(new PotionEffect(Potion.regeneration.id, 60, 1));
                         par3.addPotionEffect(new PotionEffect(Dungeons.shadowAura.id, 500, 1));
-                        list.get(k2).setFire(15);
-                        list.get(k2).addPotionEffect(new PotionEffect(Potion.wither.id, 1200, 0));
+                        ((EntityLivingBase) list.get(k2)).setFire(15);
+                        ((EntityLivingBase) list.get(k2)).addPotionEffect(new PotionEffect(Potion.wither.id, 1200, 0));
                     }
                 }
             }
@@ -90,7 +90,7 @@ public class ItemHadrialWand extends ItemForceWand
         }
         return par1ItemStack;
     }
-    
+
     @SideOnly(Side.CLIENT)
     public void addInformation(final ItemStack par1ItemStack, final EntityPlayer par2EntityPlayer, final List par3List, final boolean par4) {
         par3List.add(EnumChatFormatting.DARK_PURPLE + "Left Click to shoot a beam of fire at enemies(4 magic)");

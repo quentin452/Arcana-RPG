@@ -78,7 +78,7 @@ public class EntityMoundTrader extends EntityVillager
             if (this.timeUntilReset <= 0) {
                 if (this.needsInitilization) {
                     if (this.buyingList.size() > 1) {
-                        for (final MerchantRecipe merchantrecipe : this.buyingList) {
+                        for (final MerchantRecipe merchantrecipe : (Iterable<MerchantRecipe>) this.buyingList) {
                             if (merchantrecipe.isRecipeDisabled()) {
                                 merchantrecipe.func_82783_a(this.rand.nextInt(6) + this.rand.nextInt(6) + 2);
                             }
@@ -348,7 +348,7 @@ public class EntityMoundTrader extends EntityVillager
     }
 
     private static int func_146092_b(final Item p_146092_0_, final Random p_146092_1_) {
-        final Tuple tuple = EntityMoundTrader.villagersSellingList.get(p_146092_0_);
+        final Tuple tuple = (Tuple) EntityMoundTrader.villagersSellingList.get(p_146092_0_);
         return (int)((tuple == null) ? 1 : (((int)tuple.getFirst() >= (int)tuple.getSecond()) ? tuple.getFirst() : ((int)tuple.getFirst() + p_146092_1_.nextInt((int)tuple.getSecond() - (int)tuple.getFirst()))));
     }
 
@@ -370,7 +370,7 @@ public class EntityMoundTrader extends EntityVillager
     }
 
     private static int func_146090_c(final Item p_146090_0_, final Random p_146090_1_) {
-        final Tuple tuple = EntityMoundTrader.blacksmithSellingList.get(p_146090_0_);
+        final Tuple tuple = (Tuple) EntityMoundTrader.blacksmithSellingList.get(p_146090_0_);
         return (int)((tuple == null) ? 1 : (((int)tuple.getFirst() >= (int)tuple.getSecond()) ? tuple.getFirst() : ((int)tuple.getFirst() + p_146090_1_.nextInt((int)tuple.getSecond() - (int)tuple.getFirst()))));
     }
 

@@ -9,7 +9,8 @@ import net.minecraft.world.*;
 import java.util.*;
 import net.minecraft.util.*;
 
-public class TeleporterMontane extends Teleporter
+public class
+TeleporterMontane extends Teleporter
 {
     private final WorldServer worldServerInstance;
     private final Random random;

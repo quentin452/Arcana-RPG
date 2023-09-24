@@ -19,7 +19,7 @@ public class ItemMagicWand extends ItemForceWand
         this.setMaxStackSize(1);
         this.setMaxDamage(500);
     }
-    
+
     public boolean onEntitySwing(final EntityLivingBase entityLiving, final ItemStack stack) {
         if (entityLiving instanceof EntityPlayer) {
             final EntityPlayer par3 = (EntityPlayer)entityLiving;
@@ -46,7 +46,7 @@ public class ItemMagicWand extends ItemForceWand
         }
         return false;
     }
-    
+
     public ItemStack onItemRightClick(final ItemStack par1ItemStack, final World par2World, final EntityPlayer par3) {
         final DungeonsExtendedPlayer par4 = DungeonsExtendedPlayer.get(par3);
         if (par4.magicAmount() >= 8 || par3.capabilities.isCreativeMode) {
@@ -63,21 +63,21 @@ public class ItemMagicWand extends ItemForceWand
             if (list != null) {
                 for (int k2 = 0; k2 < list.size(); ++k2) {
                     if (list.get(k2) instanceof EntityLivingBase) {
-                        final double d0 = list.get(k2).posX - par3.posX;
-                        final double d2 = list.get(k2).posZ - par3.posZ;
-                        list.get(k2).attackEntityFrom(DamageSource.magic, 7.0f);
-                        list.get(k2).motionY = 0.65;
-                        list.get(k2).motionX = d0 / 10.0;
-                        list.get(k2).motionZ = d2 / 10.0;
+                        final double d0 = ((EntityLivingBase) list.get(k2)).posX - par3.posX;
+                        final double d2 = ((EntityLivingBase) list.get(k2)).posZ - par3.posZ;
+                        ((EntityLivingBase) list.get(k2)).attackEntityFrom(DamageSource.magic, 7.0f);
+                        ((EntityLivingBase) list.get(k2)).motionY = 0.65;
+                        ((EntityLivingBase) list.get(k2)).motionX = d0 / 10.0;
+                        ((EntityLivingBase) list.get(k2)).motionZ = d2 / 10.0;
                     }
                 }
             }
-            par1ItemStack.damageItem(1, (EntityLivingBase)par3);
+            par1ItemStack.damageItem(1, par3);
             par4.consumeMagic(8);
         }
         return par1ItemStack;
     }
-    
+
     @SideOnly(Side.CLIENT)
     public void addInformation(final ItemStack par1ItemStack, final EntityPlayer par2EntityPlayer, final List par3List, final boolean par4) {
         par3List.add(EnumChatFormatting.DARK_PURPLE + "Left Click to shoot three explosive magic projectiles(1 magic)");

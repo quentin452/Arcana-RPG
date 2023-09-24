@@ -17,7 +17,7 @@ public class EntityThrowback extends EntityThrowable
     double freezeX;
     double freezeY;
     double freezeZ;
-    
+
     public EntityThrowback(final World par1World) {
         super(par1World);
         this.impacted = false;
@@ -26,7 +26,7 @@ public class EntityThrowback extends EntityThrowable
         this.freezeY = 0.0;
         this.freezeZ = 0.0;
     }
-    
+
     public EntityThrowback(final World par1World, final EntityLivingBase par2EntityLivingBase) {
         super(par1World, par2EntityLivingBase);
         this.impacted = false;
@@ -35,7 +35,7 @@ public class EntityThrowback extends EntityThrowable
         this.freezeY = 0.0;
         this.freezeZ = 0.0;
     }
-    
+
     public EntityThrowback(final World par1World, final double par2, final double par4, final double par6) {
         super(par1World, par2, par4, par6);
         this.impacted = false;
@@ -44,7 +44,7 @@ public class EntityThrowback extends EntityThrowable
         this.freezeY = 0.0;
         this.freezeZ = 0.0;
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         if (this.impacted) {
@@ -69,7 +69,7 @@ public class EntityThrowback extends EntityThrowable
                 if (list2 != null) {
                     for (int k2 = 0; k2 < list2.size(); ++k2) {
                         if (list2.get(k2) instanceof EntityLivingBase && !(list2.get(k2) instanceof EntityDeathBringer)) {
-                            final EntityLivingBase entity = list2.get(k2);
+                            final EntityLivingBase entity = (EntityLivingBase) list2.get(k2);
                             entity.attackEntityFrom(DamageSource.outOfWorld, (float)(17.0 - this.getDistanceSqToEntity((Entity)entity)));
                             entity.addPotionEffect(new PotionEffect(Dungeons.imbalance.id, 200, 0));
                             final EntityLivingBase entityLivingBase = entity;
@@ -83,7 +83,7 @@ public class EntityThrowback extends EntityThrowable
             }
         }
     }
-    
+
     protected void onImpact(final MovingObjectPosition var1) {
         if (this.worldObj != null && var1.entityHit == null) {
             this.impacted = true;

@@ -16,7 +16,7 @@ public class EntityAntigravity extends EntityThrowable
     double freezeX;
     double freezeY;
     double freezeZ;
-    
+
     public EntityAntigravity(final World par1World) {
         super(par1World);
         this.power = 1.0f;
@@ -25,7 +25,7 @@ public class EntityAntigravity extends EntityThrowable
         this.freezeZ = 0.0;
         this.setDead();
     }
-    
+
     public EntityAntigravity(final World par1World, final EntityLivingBase par2EntityLivingBase) {
         super(par1World, par2EntityLivingBase);
         this.power = 1.0f;
@@ -33,7 +33,7 @@ public class EntityAntigravity extends EntityThrowable
         this.freezeY = 0.0;
         this.freezeZ = 0.0;
     }
-    
+
     public EntityAntigravity(final World par1World, final double par2, final double par4, final double par6) {
         super(par1World, par2, par4, par6);
         this.power = 1.0f;
@@ -41,7 +41,7 @@ public class EntityAntigravity extends EntityThrowable
         this.freezeY = 0.0;
         this.freezeZ = 0.0;
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         for (int i = 0; i < 10; ++i) {
@@ -53,16 +53,16 @@ public class EntityAntigravity extends EntityThrowable
             this.posY = this.freezeY;
             this.posZ = this.freezeZ;
             if (this.counter <= this.power * 40.0f) {
-                final List list = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(5.0, 5.0, 5.0));
+                final List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(5.0, 5.0, 5.0));
                 if (list != null) {
                     for (int k2 = 0; k2 < list.size(); ++k2) {
                         if (list.get(k2) instanceof EntityLivingBase) {
-                            final double VelX = (list.get(k2).posX - this.posX) / 5.0;
-                            final double VelY = (list.get(k2).posY - this.posY) / 5.0;
-                            final double VelZ = (list.get(k2).posZ - this.posZ) / 5.0;
-                            list.get(k2).motionX = -VelX;
-                            list.get(k2).motionY = -VelY;
-                            list.get(k2).motionZ = -VelZ;
+                            final double VelX = (((EntityLivingBase) list.get(k2)).posX - this.posX) / 5.0;
+                            final double VelY = (((EntityLivingBase) list.get(k2)).posY - this.posY) / 5.0;
+                            final double VelZ = (((EntityLivingBase) list.get(k2)).posZ - this.posZ) / 5.0;
+                            ((EntityLivingBase) list.get(k2)).motionX = -VelX;
+                            ((EntityLivingBase) list.get(k2)).motionY = -VelY;
+                            ((EntityLivingBase) list.get(k2)).motionZ = -VelZ;
                         }
                     }
                 }
@@ -91,12 +91,12 @@ public class EntityAntigravity extends EntityThrowable
                 if (list2 != null) {
                     for (int k3 = 0; k3 < list2.size(); ++k3) {
                         if (list2.get(k3) instanceof EntityLivingBase) {
-                            final double VelX2 = list2.get(k3).posX - this.posX;
-                            final double VelY2 = list2.get(k3).posY - this.posY;
-                            final double VelZ2 = list2.get(k3).posZ - this.posZ;
-                            list2.get(k3).motionX = VelX2;
-                            list2.get(k3).motionY = VelY2 + this.power;
-                            list2.get(k3).motionZ = VelZ2;
+                            final double VelX2 = ((EntityLivingBase) list2.get(k3)).posX - this.posX;
+                            final double VelY2 = ((EntityLivingBase) list2.get(k3)).posY - this.posY;
+                            final double VelZ2 = ((EntityLivingBase) list2.get(k3)).posZ - this.posZ;
+                            ((EntityLivingBase) list2.get(k3)).motionX = VelX2;
+                            ((EntityLivingBase) list2.get(k3)).motionY = VelY2 + this.power;
+                            ((EntityLivingBase) list2.get(k3)).motionZ = VelZ2;
                         }
                     }
                 }
@@ -104,7 +104,7 @@ public class EntityAntigravity extends EntityThrowable
             }
         }
     }
-    
+
     protected void onImpact(final MovingObjectPosition var1) {
         if (this.worldObj != null) {
             this.impacted = true;

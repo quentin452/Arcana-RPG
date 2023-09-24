@@ -15,14 +15,14 @@ public class EntityExawdus extends EntityMob implements IBossDisplayData
 {
     boolean quakeAttack;
     int counter;
-    
+
     public EntityExawdus(final World par1World) {
         super(par1World);
         this.quakeAttack = false;
         this.counter = 0;
         this.setSize(2.0f, 2.4f);
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(1000.0);
@@ -31,23 +31,23 @@ public class EntityExawdus extends EntityMob implements IBossDisplayData
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(250.0);
         this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(0.7);
     }
-    
+
     public int getTotalArmorValue() {
         return 20;
     }
-    
+
     protected String getLivingSound() {
         return "gibby_dungeons:crystalSay";
     }
-    
+
     protected String getHurtSound() {
         return "gibby_dungeons:crystalHurt";
     }
-    
+
     protected String getDeathSound() {
         return "gibby_dungeons:crystalDeath";
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         for (int i = 0; i < this.getMaxHealth() - this.getHealth() - 160.0f; ++i) {
@@ -66,9 +66,9 @@ public class EntityExawdus extends EntityMob implements IBossDisplayData
             final List list3 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(6.0, 6.0, 6.0));
             if (list3 != null) {
                 for (int k3 = 0; k3 < list3.size(); ++k3) {
-                    if (list3.get(k3) instanceof EntityPlayer && !list3.get(k3).capabilities.isCreativeMode) {
-                        final double X = list3.get(k3).posX - this.posX;
-                        final double Z = list3.get(k3).posZ - this.posZ;
+                    if (list3.get(k3) instanceof EntityPlayer && !((EntityPlayer) list3.get(k3)).capabilities.isCreativeMode) {
+                        final double X = ((EntityPlayer) list3.get(k3)).posX - this.posX;
+                        final double Z = ((EntityPlayer) list3.get(k3)).posZ - this.posZ;
                         this.addVelocity(X / 5.3, 0.5, Z / 5.3);
                     }
                 }
@@ -79,9 +79,9 @@ public class EntityExawdus extends EntityMob implements IBossDisplayData
             if (list3 != null) {
                 for (int k3 = 0; k3 < list3.size(); ++k3) {
                     if (list3.get(k3) instanceof EntityLivingBase) {
-                        list3.get(k3).worldObj.playSoundAtEntity((Entity)list3.get(k3), "mob.bat.idle", 1.0f, 1.0f);
-                        list3.get(k3).hurtResistantTime = 0;
-                        list3.get(k3).attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), 0.01f);
+                        ((EntityLivingBase) list3.get(k3)).worldObj.playSoundAtEntity((Entity)list3.get(k3), "mob.bat.idle", 1.0f, 1.0f);
+                        ((EntityLivingBase) list3.get(k3)).hurtResistantTime = 0;
+                        ((EntityLivingBase) list3.get(k3)).attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), 0.01f);
                     }
                 }
             }
@@ -97,28 +97,28 @@ public class EntityExawdus extends EntityMob implements IBossDisplayData
             for (int k2 = 0; k2 < list2.size(); ++k2) {
                 if (list2.get(k2) instanceof EntityPlayer && this.ticksExisted % 10 == 0 && !this.worldObj.isRemote) {
                     this.quakeAttack = true;
-                    list2.get(k2).addVelocity((list2.get(k2).posX - this.posX) / 2.0, 0.6, (list2.get(k2).posZ - this.posZ) / 2.0);
-                    list2.get(k2).attackEntityFrom(DamageSource.magic, (this.getMaxHealth() - this.getHealth()) / 7.0f);
+                    ((EntityPlayer) list2.get(k2)).addVelocity((((EntityPlayer) list2.get(k2)).posX - this.posX) / 2.0, 0.6, (((EntityPlayer) list2.get(k2)).posZ - this.posZ) / 2.0);
+                    ((EntityPlayer) list2.get(k2)).attackEntityFrom(DamageSource.magic, (this.getMaxHealth() - this.getHealth()) / 7.0f);
                 }
             }
         }
     }
-    
+
     protected void despawnEntity() {
     }
-    
+
     protected boolean canDespawn() {
         return false;
     }
-    
+
     public boolean attackEntityFrom(final DamageSource par1DamageSource, final float par2) {
         return super.attackEntityFrom(par1DamageSource, par2 / 2.0f);
     }
-    
+
     public boolean attackEntityAsMob(final Entity par1Entity) {
         return false;
     }
-    
+
     protected void dropFewItems(final boolean par1, final int par2) {
         this.dropItem(Dungeons.exawdusSmasher, 1);
         this.dropItem(Dungeons.magirockCrystal, 10);

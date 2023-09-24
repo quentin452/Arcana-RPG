@@ -11,27 +11,27 @@ import java.util.*;
 public class EntityBlueBall extends EntityThrowable
 {
     private Entity targetedEntity;
-    
+
     public EntityBlueBall(final World par1World, final double par2, final double par4, final double par6) {
         super(par1World, par2, par4, par6);
     }
-    
+
     public EntityBlueBall(final World par1World, final EntityLivingBase par2EntityLivingBase) {
         super(par1World, par2EntityLivingBase);
     }
-    
+
     public EntityBlueBall(final World par1World) {
         super(par1World);
         this.setDead();
     }
-    
+
     protected void onImpact(final MovingObjectPosition var1) {
         if (!this.worldObj.isRemote) {
             this.worldObj.newExplosion((Entity)this, this.posX, this.posY, this.posZ, 2.3f, false, false);
         }
         this.setDead();
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         this.worldObj.spawnParticle("magicCrit", this.posX, this.posY, this.posZ, 0.0, 0.0, 0.0);
@@ -40,8 +40,8 @@ public class EntityBlueBall extends EntityThrowable
             if (list != null) {
                 float smallestDistance = 10.0f;
                 for (int k2 = 0; k2 < list.size(); ++k2) {
-                    if (list.get(k2) instanceof EntityLivingBase && list.get(k2).onGround) {
-                        final float distance = list.get(k2).getDistanceToEntity((Entity)this);
+                    if (list.get(k2) instanceof EntityLivingBase && ((EntityLivingBase) list.get(k2)).onGround) {
+                        final float distance = ((EntityLivingBase) list.get(k2)).getDistanceToEntity((Entity)this);
                         if (distance < smallestDistance) {
                             smallestDistance = distance;
                             this.targetedEntity = (Entity)list.get(k2);

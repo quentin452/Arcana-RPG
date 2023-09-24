@@ -15,21 +15,21 @@ public class EntityVoidDisk extends EntityThrowable
     private double freezeX;
     private double freezeY;
     private double freezeZ;
-    
+
     public EntityVoidDisk(final World par1World, final double par2, final double par4, final double par6) {
         super(par1World, par2, par4, par6);
         this.freezeX = 0.0;
         this.freezeY = 0.0;
         this.freezeZ = 0.0;
     }
-    
+
     public EntityVoidDisk(final World par1World, final EntityLivingBase par2EntityLivingBase) {
         super(par1World, par2EntityLivingBase);
         this.freezeX = 0.0;
         this.freezeY = 0.0;
         this.freezeZ = 0.0;
     }
-    
+
     public EntityVoidDisk(final World par1World) {
         super(par1World);
         this.freezeX = 0.0;
@@ -37,7 +37,7 @@ public class EntityVoidDisk extends EntityThrowable
         this.freezeZ = 0.0;
         this.setDead();
     }
-    
+
     protected void onImpact(final MovingObjectPosition var1) {
         if (!this.worldObj.isRemote && !this.impact) {
             this.impact = true;
@@ -53,7 +53,7 @@ public class EntityVoidDisk extends EntityThrowable
             }
         }
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         if (this.impact) {
@@ -63,7 +63,7 @@ public class EntityVoidDisk extends EntityThrowable
                 if (list != null) {
                     for (int k2 = 0; k2 < list.size(); ++k2) {
                         if (list.get(k2) instanceof EntityLivingBase) {
-                            list.get(k2).attackEntityFrom(DamageSource.causeThrownDamage((Entity)this, (Entity)list.get(k2)), 5.0f);
+                            ((EntityLivingBase) list.get(k2)).attackEntityFrom(DamageSource.causeThrownDamage((Entity)this, (Entity)list.get(k2)), 5.0f);
                         }
                     }
                 }
