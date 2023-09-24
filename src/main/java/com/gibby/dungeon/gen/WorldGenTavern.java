@@ -15,14 +15,14 @@ public class WorldGenTavern extends WorldGenerator implements IWorldGenerator
 {
     public void generate(final Random random, final int chunkX, final int chunkZ, final World world, final IChunkProvider chunkGenerator, final IChunkProvider chunkProvider) {
     }
-    
+
     public void setBlock(final World world, final int x, final int y, final int z, final Block block, final int metadata) {
         final Block b1 = world.getBlock(x, y, z);
         if (b1.isAir((IBlockAccess)world, x, y, z) || b1.isLeaves((IBlockAccess)world, x, y, z)) {
             world.setBlock(x, y, z, block, metadata, 2);
         }
     }
-    
+
     public boolean generate(final World world, final Random rand, final int i, final int j, final int k) {
         if (!world.isAirBlock(i, j, k) || !world.isAirBlock(i + 20, j, k + 20) || world.getBlock(i, j - 1, k) != Blocks.grass || world.getBlock(i + 20, j - 1, k + 20) != Blocks.grass) {
             return false;
@@ -603,7 +603,10 @@ public class WorldGenTavern extends WorldGenerator implements IWorldGenerator
         this.setBlock(world, i + 9, j + 0, k + 22, Blocks.grass, 0);
         this.setBlock(world, i + 9, j + 0, k + 23, Blocks.grass, 0);
         this.setBlock(world, i + 9, j + 1, k + 8, Blocks.stone_stairs, 2);
-        this.setBlock(world, i + 9, j + 2, k + 8, Blocks.wooden_door, 2);
+        world.setBlock(i + 9, j + 2, k + 9, Blocks.wooden_door, 3, 2);
+        world.setBlock(i + 9, j + 2, k + 9, Blocks.wooden_door, 1, 2);
+        world.setBlock(i + 9, j + 3, k + 9, Blocks.wooden_door, 8, 2);
+        world.setBlock(i + 9, j + 3, k + 9, Blocks.wooden_door, 8, 2);
         this.setBlock(world, i + 9, j + 1, k + 9, Blocks.cobblestone, 0);
         this.setBlock(world, i + 9, j + 1, k + 10, Blocks.cobblestone, 0);
         this.setBlock(world, i + 9, j + 1, k + 11, Blocks.cobblestone, 0);
@@ -700,7 +703,10 @@ public class WorldGenTavern extends WorldGenerator implements IWorldGenerator
         this.setBlock(world, i + 10, j + 0, k + 22, Blocks.grass, 0);
         this.setBlock(world, i + 10, j + 0, k + 23, Blocks.grass, 0);
         this.setBlock(world, i + 10, j + 1, k + 8, Blocks.stone_stairs, 2);
-        this.setBlock(world, i + 10, j + 2, k + 8, Blocks.wooden_door, 2);
+        world.setBlock(i + 10, j + 2, k + 9, Blocks.wooden_door, 3, 2);
+        world.setBlock(i + 10, j + 2, k + 9, Blocks.wooden_door, 1, 2);
+        world.setBlock(i + 10, j + 3, k + 9, Blocks.wooden_door, 8, 2);
+        world.setBlock(i + 10, j + 3, k + 9, Blocks.wooden_door, 8, 2);
         this.setBlock(world, i + 10, j + 1, k + 9, Blocks.cobblestone, 0);
         this.setBlock(world, i + 10, j + 1, k + 10, Blocks.cobblestone, 0);
         this.setBlock(world, i + 10, j + 1, k + 11, Blocks.cobblestone, 0);
