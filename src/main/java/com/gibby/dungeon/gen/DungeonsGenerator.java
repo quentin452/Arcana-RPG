@@ -14,13 +14,8 @@ import net.minecraft.world.gen.feature.*;
 public class DungeonsGenerator implements IWorldGenerator
 {
     public void generate(final Random random, final int chunkX, final int chunkZ, final World world, final IChunkProvider chunkGenerator, final IChunkProvider chunkProvider) {
-        if(world.provider.dimensionId == 0) {
-            // Générer seulement si le chunk est généré
-            if(!world.getChunkProvider().chunkExists(chunkX, chunkZ)) {
-
-                this.GenerateSurface(random, chunkX * 16, chunkZ * 16, world);
-
-            }
+        if (world.provider.dimensionId == 0) {
+            this.GenerateSurface(random, chunkX * 16, chunkZ * 16, world);
         }
         if (world.provider.dimensionId == -1) {
             this.GenerateNether(random, chunkX * 16, chunkZ * 16, world);
@@ -65,7 +60,7 @@ public class DungeonsGenerator implements IWorldGenerator
             }
         }
     }
-    
+
     private void GenerateSurface(final Random random, final int chunkX, final int chunkZ, final World world) {
         for (int i = 0; i < 18; ++i) {
             final int coordX = chunkX + random.nextInt(16);
