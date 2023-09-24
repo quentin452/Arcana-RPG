@@ -1265,8 +1265,8 @@ public class SmallCastle extends WorldGenerator
         world.setBlock(i + 19, j + 0, k + 17, Blocks.grass);
         world.setBlock(i + 19, j + 0, k + 18, Blocks.grass);
         world.setBlock(i + 19, j + 0, k + 19, Blocks.grass);
-        world.setBlock(i + 1, j + 4, k + 1, Blocks.torch, 4, 0);
-        world.setBlock(i + 1, j + 4, k + 18, Blocks.torch, 4, 2);
+        world.setBlock(i + 1, j + 4, k + 1, Blocks.torch, 0, 0);
+        world.setBlock(i + 1, j + 4, k + 18, Blocks.torch, 0, 2);
         world.setBlock(i + 8, j + 1, k + 8, Blocks.ladder, 4, 0);
         world.setBlock(i + 8, j + 1, k + 11, Blocks.ladder, 4, 2);
         world.setBlock(i + 8, j + 2, k + 8, Blocks.ladder, 4, 0);
@@ -1311,8 +1311,8 @@ public class SmallCastle extends WorldGenerator
         world.setBlock(i + 11, j + 10, k + 11, Blocks.ladder, 4, 2);
         world.setBlock(i + 11, j + 11, k + 8, Blocks.ladder, 4, 0);
         world.setBlock(i + 11, j + 11, k + 11, Blocks.ladder, 4, 2);
-        world.setBlock(i + 18, j + 4, k + 1, Blocks.torch, 4, 0);
-        world.setBlock(i + 18, j + 4, k + 18, Blocks.torch, 4, 0);
+        world.setBlock(i + 18, j + 4, k + 1, Blocks.torch, 0, 0);
+        world.setBlock(i + 18, j + 4, k + 18, Blocks.torch, 0, 0);
         return true;
     }
 }
