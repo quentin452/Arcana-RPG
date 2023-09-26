@@ -85,7 +85,6 @@ public class DungeonsGenerator implements IWorldGenerator
         generateStructure(random, chunkX, chunkZ, world, new WorldGenBleachedDungeon(), 100, 60);
         generateStructure(random, chunkX, chunkZ, world, new WorldGenStoneGolemDungeon(), 100, 60);
         generateStructure(random, chunkX, chunkZ, world, new squareruins(), 2, 60);
-        generateStructure(random, chunkX, chunkZ, world, new treefortress(), 15, 60);
         generateStructure(random, chunkX, chunkZ, world, new archruins(), 2, 60);
         generateStructure(random, chunkX, chunkZ, world, new SmallCastle(), 2, 60);
         generateStructure(random, chunkX, chunkZ, world, new LargeCastle3(), 1, 55);
