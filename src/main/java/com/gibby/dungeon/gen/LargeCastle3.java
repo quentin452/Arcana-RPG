@@ -12,6 +12,9 @@ import com.gibby.dungeon.*;
 public class LargeCastle3 extends WorldGenerator
 {
     public boolean generate(final World world, final Random rand, final int i, final int j, final int k) {
+        if (world.getBlock(i, j - 1, k) != Blocks.grass || world.getBlock(i + 42, j - 1, k) != Blocks.grass || world.getBlock(i + 42, j - 1, k + 30) != Blocks.grass || world.getBlock(i, j - 1, k + 30) != Blocks.grass || world.getBlock(i, j, k) != Blocks.air || world.getBlock(i + 42, j, k) != Blocks.air || world.getBlock(i + 42, j, k + 30) != Blocks.air || world.getBlock(i, j, k + 30) != Blocks.air) {
+            return false;
+        }
         world.setBlock(i + 0, j, k, Blocks.grass);
         world.setBlock(i + 0, j, k + 1, Blocks.grass);
         world.setBlock(i + 0, j, k + 2, Blocks.grass);

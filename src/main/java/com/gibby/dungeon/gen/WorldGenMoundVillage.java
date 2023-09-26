@@ -14,6 +14,9 @@ import net.minecraft.entity.passive.*;
 public class WorldGenMoundVillage extends WorldGenerator
 {
     public boolean generate(final World world, final Random rand, final int i, final int j, final int k) {
+        if (world.getBlock(i, j, k) != Blocks.grass || world.getBlock(i + 66, j, k) != Blocks.grass || world.getBlock(i + 66, j, k + 42) != Blocks.grass || world.getBlock(i, j, k + 42) != Blocks.grass || world.getBlock(i, j + 1, k) != Blocks.air || world.getBlock(i + 66, j + 1, k) != Blocks.air || world.getBlock(i + 66, j + 1, k + 42) != Blocks.air || world.getBlock(i, j + 1, k + 42) != Blocks.air) {
+            return false;
+        }
         world.setBlock(i, j, k, Blocks.grass);
         world.setBlock(i, j, k + 1, Blocks.grass);
         world.setBlock(i, j, k + 2, Blocks.grass);

@@ -24,6 +24,9 @@ public class WorldGenDesertTemple2 extends WorldGenerator implements IWorldGener
     }
 
     public boolean generate(final World world, final Random rand, final int i, final int j, final int k) {
+        if (world.getBlock(i, j, k) != Blocks.sand || world.getBlock(i + 30, j, k + 30) != Blocks.sand || world.getBlock(i, j + 1, k) != Blocks.air || world.getBlock(i + 30, j + 1, k + 30) != Blocks.air) {
+            return false;
+        }
         this.setBlock(world, i, j, k, Blocks.sandstone, 0);
         this.setBlock(world, i, j, k + 1, Blocks.sandstone, 0);
         this.setBlock(world, i, j, k + 2, Blocks.sandstone, 0);

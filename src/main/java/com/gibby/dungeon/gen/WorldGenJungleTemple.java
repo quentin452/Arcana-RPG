@@ -11,6 +11,9 @@ import net.minecraft.block.*;
 public class WorldGenJungleTemple extends WorldGenerator
 {
     public boolean generate(final World world, final Random rand, final int i, final int j, final int k) {
+        if (world.getBlock(i, j, k) != Blocks.grass || world.getBlock(i + 24, j, k) != Blocks.grass || world.getBlock(i + 24, j, k + 32) != Blocks.grass || world.getBlock(i, j, k + 32) != Blocks.grass || world.getBlock(i, j + 2, k) != Blocks.air || world.getBlock(i + 24, j + 2, k) != Blocks.air || world.getBlock(i + 24, j + 2, k + 32) != Blocks.air || world.getBlock(i, j + 2, k + 32) != Blocks.air) {
+            return false;
+        }
         world.setBlock(i + 2, j, k + 2, Blocks.cobblestone);
         world.setBlock(i + 2, j, k + 3, Blocks.cobblestone);
         world.setBlock(i + 2, j, k + 4, Blocks.mossy_cobblestone);
