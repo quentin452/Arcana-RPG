@@ -24,9 +24,9 @@ public class WorldGenMontaneDungeon_14 extends WorldGenerator implements IWorldG
     }
     
     public boolean generate(final World world, final Random rand, final int i, final int j, final int k) {
-        this.setBlock(world, i, j + 0, k + 118, Blocks.stone, 0);
-        this.setBlock(world, i, j + 0, k + 119, Blocks.stone, 0);
-        this.setBlock(world, i, j + 0, k + 120, Blocks.stone, 0);
+        this.setBlock(world, i, j, k + 118, Blocks.stone, 0);
+        this.setBlock(world, i, j, k + 119, Blocks.stone, 0);
+        this.setBlock(world, i, j, k + 120, Blocks.stone, 0);
         this.setBlock(world, i, j + 1, k + 116, Blocks.stone, 0);
         this.setBlock(world, i, j + 1, k + 117, Blocks.stone, 0);
         this.setBlock(world, i, j + 1, k + 118, Blocks.stone, 0);

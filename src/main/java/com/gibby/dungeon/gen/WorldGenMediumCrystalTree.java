@@ -92,7 +92,7 @@ public class WorldGenMediumCrystalTree extends WorldGenerator implements IWorldG
         this.setBlock(world, i + 6, j + 16, k + 11, Dungeons.crystalliumLeaves, 0);
         this.setBlock(world, i + 6, j + 17, k + 6, Dungeons.crystalliumLeaves, 0);
         this.setBlock(world, i + 6, j + 17, k + 10, Dungeons.crystalliumLeaves, 0);
-        this.setBlock(world, i + 7, j + 0, k + 8, Dungeons.crystalWood, 0);
+        this.setBlock(world, i + 7, j, k + 8, Dungeons.crystalWood, 0);
         this.setBlock(world, i + 7, j + 1, k + 8, Dungeons.crystalWood, 0);
         this.setBlock(world, i + 7, j + 2, k + 8, Dungeons.crystalWood, 0);
         this.setBlock(world, i + 7, j + 3, k + 7, Dungeons.crystalliumLeaves, 0);
@@ -136,9 +136,9 @@ public class WorldGenMediumCrystalTree extends WorldGenerator implements IWorldG
         this.setBlock(world, i + 7, j + 16, k + 10, Dungeons.crystalliumLeaves, 0);
         this.setBlock(world, i + 7, j + 17, k + 7, Dungeons.crystalliumLeaves, 0);
         this.setBlock(world, i + 7, j + 17, k + 9, Dungeons.crystalliumLeaves, 0);
-        this.setBlock(world, i + 8, j + 0, k + 7, Dungeons.crystalWood, 0);
-        this.setBlock(world, i + 8, j + 0, k + 8, Dungeons.crystalWood, 0);
-        this.setBlock(world, i + 8, j + 0, k + 9, Dungeons.crystalWood, 0);
+        this.setBlock(world, i + 8, j, k + 7, Dungeons.crystalWood, 0);
+        this.setBlock(world, i + 8, j, k + 8, Dungeons.crystalWood, 0);
+        this.setBlock(world, i + 8, j, k + 9, Dungeons.crystalWood, 0);
         this.setBlock(world, i + 8, j + 1, k + 7, Dungeons.crystalWood, 0);
         this.setBlock(world, i + 8, j + 1, k + 8, Dungeons.crystalWood, 0);
         this.setBlock(world, i + 8, j + 1, k + 9, Dungeons.crystalWood, 0);
@@ -189,7 +189,7 @@ public class WorldGenMediumCrystalTree extends WorldGenerator implements IWorldG
         this.setBlock(world, i + 8, j + 16, k + 8, Dungeons.crystalWood, 0);
         this.setBlock(world, i + 8, j + 17, k + 8, Dungeons.crystalliumLeaves, 0);
         this.setBlock(world, i + 8, j + 18, k + 8, Dungeons.crystalliumLeaves, 0);
-        this.setBlock(world, i + 9, j + 0, k + 8, Dungeons.crystalWood, 0);
+        this.setBlock(world, i + 9, j, k + 8, Dungeons.crystalWood, 0);
         this.setBlock(world, i + 9, j + 1, k + 8, Dungeons.crystalWood, 0);
         this.setBlock(world, i + 9, j + 2, k + 8, Dungeons.crystalWood, 0);
         this.setBlock(world, i + 9, j + 2, k + 9, Dungeons.crystalliumLeaves, 0);

@@ -35,7 +35,7 @@ public class WorldGenMiniCrystalTree extends WorldGenerator implements IWorldGen
         this.setBlock(world, i + 2, j + 8, k + 3, Dungeons.crystalliumLeaves, 0);
         this.setBlock(world, i + 2, j + 8, k + 4, Dungeons.crystalliumLeaves, 0);
         this.setBlock(world, i + 2, j + 9, k + 3, Dungeons.crystalliumLeaves, 0);
-        this.setBlock(world, i + 3, j + 0, k + 3, Dungeons.crystalWood, 0);
+        this.setBlock(world, i + 3, j, k + 3, Dungeons.crystalWood, 0);
         this.setBlock(world, i + 3, j + 1, k + 3, Dungeons.crystalWood, 0);
         this.setBlock(world, i + 3, j + 2, k + 3, Dungeons.crystalWood, 0);
         this.setBlock(world, i + 3, j + 3, k + 2, Dungeons.crystalliumLeaves, 0);

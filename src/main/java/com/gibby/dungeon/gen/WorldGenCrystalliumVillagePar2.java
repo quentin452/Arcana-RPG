@@ -3819,7 +3819,7 @@ public class WorldGenCrystalliumVillagePar2
        setBlock(world, i + 25, j + 71, k + 21, Dungeons.crystalliumLeaves, 2);
        setBlock(world, i + 25, j + 71, k + 22, Dungeons.crystalliumLeaves, 2);
        setBlock(world, i + 25, j + 71, k + 23, Dungeons.crystalliumLeaves, 2);
-       setBlock(world, i + 26, j + 0, k + 29, Dungeons.amethystStone, 0);
+       setBlock(world, i + 26, j, k + 29, Dungeons.amethystStone, 0);
        setBlock(world, i + 26, j + 1, k + 28, Dungeons.amethystStone, 0);
        setBlock(world, i + 26, j + 1, k + 29, Dungeons.amethystStone, 0);
        setBlock(world, i + 26, j + 2, k + 28, Dungeons.amethystStone, 0);

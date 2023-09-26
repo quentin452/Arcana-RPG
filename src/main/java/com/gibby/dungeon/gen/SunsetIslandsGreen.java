@@ -176,7 +176,7 @@ public class SunsetIslandsGreen extends WorldGenerator
         world.setBlock(i, j + 46, k + 79, Blocks.stone);
         world.setBlock(i, j + 46, k + 80, Blocks.stone);
         world.setBlock(i, j + 46, k + 82, Blocks.stone);
-        world.setBlock(i, j + 110, k + 0, Blocks.wool, 6, 0);
+        world.setBlock(i, j + 110, k, Blocks.wool, 6, 0);
         world.setBlock(i + 1, j + 36, k + 73, Blocks.stone);
         world.setBlock(i + 1, j + 36, k + 74, Blocks.stone);
         world.setBlock(i + 1, j + 36, k + 75, Blocks.stone);

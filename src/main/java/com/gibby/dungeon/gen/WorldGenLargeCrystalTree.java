@@ -158,9 +158,9 @@ public class WorldGenLargeCrystalTree extends WorldGenerator implements IWorldGe
         this.setBlock(world, i + 9, j + 26, k + 8, Dungeons.crystalliumLeaves, 0);
         this.setBlock(world, i + 9, j + 26, k + 9, Dungeons.crystalWood, 0);
         this.setBlock(world, i + 9, j + 27, k + 8, Dungeons.crystalliumLeaves, 0);
-        this.setBlock(world, i + 10, j + 0, k + 8, Dungeons.crystalWood, 0);
-        this.setBlock(world, i + 10, j + 0, k + 9, Dungeons.crystalWood, 0);
-        this.setBlock(world, i + 10, j + 0, k + 10, Dungeons.crystalWood, 0);
+        this.setBlock(world, i + 10, j, k + 8, Dungeons.crystalWood, 0);
+        this.setBlock(world, i + 10, j, k + 9, Dungeons.crystalWood, 0);
+        this.setBlock(world, i + 10, j, k + 10, Dungeons.crystalWood, 0);
         this.setBlock(world, i + 10, j + 1, k + 8, Dungeons.crystalWood, 0);
         this.setBlock(world, i + 10, j + 1, k + 9, Dungeons.crystalWood, 0);
         this.setBlock(world, i + 10, j + 1, k + 10, Dungeons.crystalWood, 0);
@@ -241,9 +241,9 @@ public class WorldGenLargeCrystalTree extends WorldGenerator implements IWorldGe
         this.setBlock(world, i + 10, j + 26, k + 9, Dungeons.crystalWood, 0);
         this.setBlock(world, i + 10, j + 26, k + 10, Dungeons.crystalliumLeaves, 0);
         this.setBlock(world, i + 10, j + 27, k + 9, Dungeons.crystalliumLeaves, 0);
-        this.setBlock(world, i + 11, j + 0, k + 8, Dungeons.crystalWood, 0);
-        this.setBlock(world, i + 11, j + 0, k + 9, Dungeons.crystalWood, 0);
-        this.setBlock(world, i + 11, j + 0, k + 10, Dungeons.crystalWood, 0);
+        this.setBlock(world, i + 11, j, k + 8, Dungeons.crystalWood, 0);
+        this.setBlock(world, i + 11, j, k + 9, Dungeons.crystalWood, 0);
+        this.setBlock(world, i + 11, j, k + 10, Dungeons.crystalWood, 0);
         this.setBlock(world, i + 11, j + 1, k + 8, Dungeons.crystalWood, 0);
         this.setBlock(world, i + 11, j + 1, k + 9, Dungeons.crystalWood, 0);
         this.setBlock(world, i + 11, j + 1, k + 10, Dungeons.crystalWood, 0);
@@ -380,9 +380,9 @@ public class WorldGenLargeCrystalTree extends WorldGenerator implements IWorldGe
         this.setBlock(world, i + 11, j + 27, k + 9, Dungeons.crystalliumLeaves, 0);
         this.setBlock(world, i + 11, j + 27, k + 10, Dungeons.crystalliumLeaves, 0);
         this.setBlock(world, i + 11, j + 28, k + 9, Dungeons.crystalliumLeaves, 0);
-        this.setBlock(world, i + 12, j + 0, k + 8, Dungeons.crystalWood, 0);
-        this.setBlock(world, i + 12, j + 0, k + 9, Dungeons.crystalWood, 0);
-        this.setBlock(world, i + 12, j + 0, k + 10, Dungeons.crystalWood, 0);
+        this.setBlock(world, i + 12, j, k + 8, Dungeons.crystalWood, 0);
+        this.setBlock(world, i + 12, j, k + 9, Dungeons.crystalWood, 0);
+        this.setBlock(world, i + 12, j, k + 10, Dungeons.crystalWood, 0);
         this.setBlock(world, i + 12, j + 1, k + 8, Dungeons.crystalWood, 0);
         this.setBlock(world, i + 12, j + 1, k + 9, Dungeons.crystalWood, 0);
         this.setBlock(world, i + 12, j + 1, k + 10, Dungeons.crystalWood, 0);

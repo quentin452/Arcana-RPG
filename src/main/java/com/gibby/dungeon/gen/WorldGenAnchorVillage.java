@@ -6546,8 +6546,8 @@ public class WorldGenAnchorVillage extends WorldGenerator
         world.setBlock(i + 26, j + 33, k + 28, Blocks.planks);
         world.setBlock(i + 26, j + 33, k + 29, Blocks.stone_stairs, 3, 0);
         world.setBlock(i + 26, j + 34, k + 28, Blocks.cobblestone);
-        world.setBlock(i + 27, j + 0, k + 27, Dungeons.amethystCrystalized);
-        world.setBlock(i + 27, j + 0, k + 28, Dungeons.amethystCrystalized);
+        world.setBlock(i + 27, j, k + 27, Dungeons.amethystCrystalized);
+        world.setBlock(i + 27, j, k + 28, Dungeons.amethystCrystalized);
         world.setBlock(i + 27, j + 1, k + 27, Dungeons.amethystCrystalized);
         world.setBlock(i + 27, j + 1, k + 28, Dungeons.amethystCrystalized);
         world.setBlock(i + 27, j + 2, k + 26, Dungeons.amethystCrystalized);
