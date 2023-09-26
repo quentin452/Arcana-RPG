@@ -6,6 +6,7 @@ import cpw.mods.fml.common.*;
 import java.util.*;
 
 import net.minecraft.block.Block;
+import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.*;
 import net.minecraft.world.chunk.*;
 import com.gibby.dungeon.*;
@@ -14,7 +15,9 @@ import cpw.mods.fml.relauncher.*;
 import net.minecraft.world.gen.feature.*;
 
 public class DungeonsGenerator implements IWorldGenerator
-{
+{private final List<ChunkCoordinates> generatedStructureCoordinates = new ArrayList<>();
+    private static final int MIN_DISTANCE_BETWEEN_STRUCTURES = 80;
+
     public void generate(final Random random, final int chunkX, final int chunkZ, final World world, final IChunkProvider chunkGenerator, final IChunkProvider chunkProvider) {
         if (world.provider.dimensionId == 0) {
             this.generateSurface(random, chunkX * 16, chunkZ * 16, world);
@@ -44,11 +47,15 @@ public class DungeonsGenerator implements IWorldGenerator
 
     private void generateNetherStructures(Random random, int chunkX, int chunkZ, World world, WorldGenerator generator, int count, int minHeight) {
         for (int i = 0; i < count; ++i) {
-            int coordX = chunkX + random.nextInt(16);
-            int coordZ = chunkZ + random.nextInt(16);
-            int coordY = random.nextInt(50) + minHeight;
-            generator.generate(world, random, coordX, coordY, coordZ);
+            generateStructure(random, chunkX, chunkZ, world, generator, minHeight);
         }
+    }
+
+    private void generateStructure(Random random, int chunkX, int chunkZ, World world, WorldGenerator generator, int minHeight) {
+        int coordX = chunkX + random.nextInt(16);
+        int coordZ = chunkZ + random.nextInt(16);
+        int coordY = random.nextInt(50) + minHeight;
+        generator.generate(world, random, coordX, coordY, coordZ);
     }
 
     private void generateNetherVampireCastle(Random random, int chunkX, int chunkZ, World world, int chance, int minHeight) {
@@ -103,13 +110,28 @@ public class DungeonsGenerator implements IWorldGenerator
         int coordY = random.nextInt(maxHeight);
         new WorldGenMinable(oreBlock, veinSize).generate(world, random, coordX, coordY, coordZ);
     }
-
     private void generateStructure(Random random, int chunkX, int chunkZ, World world, WorldGenerator generator, int chance, int minHeight) {
-        if (random.nextInt(chance) == 0) {
+        boolean canGenerateStructure = true; // Déclarer en dehors de la boucle
+
+        if (random.nextInt(chance) == 10) {
             int coordX = chunkX + random.nextInt(16);
             int coordZ = chunkZ + random.nextInt(16);
             int coordY = random.nextInt(10) + minHeight;
-            generator.generate(world, random, coordX, coordY, coordZ);
+
+            // Vérifier la distance minimale par rapport aux structures déjà générées
+            for (ChunkCoordinates structureCoords : generatedStructureCoordinates) {
+                double distance = Math.sqrt(Math.pow(coordX - structureCoords.posX, 2) + Math.pow(coordZ - structureCoords.posZ, 2));
+                if (distance < MIN_DISTANCE_BETWEEN_STRUCTURES) {
+                    canGenerateStructure = false; // Si trop proche, ne pas générer
+                    break;
+                }
+            }
+
+            if (canGenerateStructure) {
+                generator.generate(world, random, coordX, coordY, coordZ);
+                // Enregistrer les coordonnées de la structure générée
+                generatedStructureCoordinates.add(new ChunkCoordinates(coordX, coordY, coordZ));
+            }
         }
     }
 }

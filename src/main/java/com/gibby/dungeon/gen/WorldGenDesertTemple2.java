@@ -15,18 +15,15 @@ public class WorldGenDesertTemple2 extends WorldGenerator implements IWorldGener
 {
     public void generate(final Random random, final int chunkX, final int chunkZ, final World world, final IChunkProvider chunkGenerator, final IChunkProvider chunkProvider) {
     }
-    
+
     public void setBlock(final World world, final int x, final int y, final int z, final Block block, final int metadata) {
         final Block b1 = world.getBlock(x, y, z);
         if (b1.isAir((IBlockAccess)world, x, y, z) || b1.isLeaves((IBlockAccess)world, x, y, z)) {
             world.setBlock(x, y, z, block, metadata, 2);
         }
     }
-    
+
     public boolean generate(final World world, final Random rand, final int i, final int j, final int k) {
-        if (world.getBlock(i, j, k) != Blocks.sand || world.getBlock(i + 30, j, k + 30) != Blocks.sand || world.getBlock(i, j + 1, k) != Blocks.air || world.getBlock(i + 30, j + 1, k + 30) != Blocks.air) {
-            return false;
-        }
         this.setBlock(world, i, j, k, Blocks.sandstone, 0);
         this.setBlock(world, i, j, k + 1, Blocks.sandstone, 0);
         this.setBlock(world, i, j, k + 2, Blocks.sandstone, 0);
@@ -1530,7 +1527,7 @@ public class WorldGenDesertTemple2 extends WorldGenerator implements IWorldGener
         this.generate2(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate2(final World world, final Random rand, final int i, final int j, final int k) {
         this.setBlock(world, i + 20, j + 13, k + 18, Blocks.sandstone, 0);
         this.setBlock(world, i + 20, j + 13, k + 19, Blocks.sandstone, 0);

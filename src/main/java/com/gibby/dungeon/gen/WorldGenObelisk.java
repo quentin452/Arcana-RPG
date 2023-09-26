@@ -10,9 +10,6 @@ import net.minecraft.init.*;
 public class WorldGenObelisk extends WorldGenerator
 {
     public boolean generate(final World world, final Random rand, final int i, final int j, final int k) {
-        if (world.getBlock(i, j, k) != Blocks.sand || world.getBlock(i + 10, j, k) != Blocks.sand || world.getBlock(i + 10, j, k + 10) != Blocks.sand || world.getBlock(i, j, k + 10) != Blocks.sand || world.getBlock(i, j + 1, k) != Blocks.air || world.getBlock(i + 10, j + 1, k) != Blocks.air || world.getBlock(i + 10, j + 1, k + 10) != Blocks.air || world.getBlock(i, j + 1, k + 10) != Blocks.air) {
-            return false;
-        }
         world.setBlock(i + 2, j, k + 2, Blocks.sandstone);
         world.setBlock(i + 2, j, k + 3, Blocks.sandstone);
         world.setBlock(i + 2, j, k + 4, Blocks.sandstone);

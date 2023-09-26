@@ -14,9 +14,6 @@ import net.minecraft.entity.passive.*;
 public class WorldGenMoundVillage extends WorldGenerator
 {
     public boolean generate(final World world, final Random rand, final int i, final int j, final int k) {
-        if (world.getBlock(i, j, k) != Blocks.grass || world.getBlock(i + 66, j, k) != Blocks.grass || world.getBlock(i + 66, j, k + 42) != Blocks.grass || world.getBlock(i, j, k + 42) != Blocks.grass || world.getBlock(i, j + 1, k) != Blocks.air || world.getBlock(i + 66, j + 1, k) != Blocks.air || world.getBlock(i + 66, j + 1, k + 42) != Blocks.air || world.getBlock(i, j + 1, k + 42) != Blocks.air) {
-            return false;
-        }
         world.setBlock(i, j, k, Blocks.grass);
         world.setBlock(i, j, k + 1, Blocks.grass);
         world.setBlock(i, j, k + 2, Blocks.grass);
@@ -1530,7 +1527,7 @@ public class WorldGenMoundVillage extends WorldGenerator
         this.generate2(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate2(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 14, j, k + 41, Blocks.dirt);
         world.setBlock(i + 14, j, k + 42, Blocks.grass);
@@ -3045,7 +3042,7 @@ public class WorldGenMoundVillage extends WorldGenerator
         this.generate3(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate3(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 25, j + 5, k + 32, Blocks.dirt);
         world.setBlock(i + 25, j + 5, k + 33, Blocks.dirt);
@@ -4565,7 +4562,7 @@ public class WorldGenMoundVillage extends WorldGenerator
         this.generate4(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate4(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 35, j + 6, k + 5, Blocks.dirt);
         world.setBlock(i + 35, j + 6, k + 6, Blocks.dirt);
@@ -6075,7 +6072,7 @@ public class WorldGenMoundVillage extends WorldGenerator
         this.generate5(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate5(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 48, j + 7, k + 35, Blocks.dirt);
         world.setBlock(i + 48, j + 7, k + 36, Blocks.dirt);
@@ -7600,7 +7597,7 @@ public class WorldGenMoundVillage extends WorldGenerator
         this.generate6(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate6(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 56, j + 11, k + 37, Blocks.bookshelf);
         world.setBlock(i + 56, j + 11, k + 38, Blocks.planks);
@@ -9082,7 +9079,7 @@ public class WorldGenMoundVillage extends WorldGenerator
         this.generate7(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate7(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 39, j, k + 15, Blocks.gravel);
         world.setBlock(i + 39, j, k + 16, Blocks.gravel);

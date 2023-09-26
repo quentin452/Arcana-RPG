@@ -12,10 +12,6 @@ import com.gibby.dungeon.*;
 public class squareruins extends WorldGenerator
 {
     public boolean generate(final World world, final Random rand, final int i, final int j, final int k) {
-        if (world.getBlock(i, j, k) != Blocks.grass || world.getBlock(i + 19, j, k + 18) != Blocks.grass || world.getBlock(i, j, k + 18) != Blocks.grass || world.getBlock(i + 19, j, k) != Blocks.grass || world.getBlock(i, j + 1, k) != Blocks.air || world.getBlock(i + 19, j + 1, k + 18) != Blocks.air || world.getBlock(i, j + 1, k + 18) != Blocks.air || world.getBlock(i + 19, j + 1, k) != Blocks.air) {
-            return false;
-        }
-        System.out.println("Generating at " + i + " " + j + " " + k);
         world.setBlock(i, j + 0, k + 0, Blocks.cobblestone);
         world.setBlock(i, j + 0, k + 1, Blocks.dirt);
         world.setBlock(i, j + 0, k + 2, Blocks.dirt);

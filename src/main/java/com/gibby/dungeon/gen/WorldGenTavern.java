@@ -24,9 +24,6 @@ public class WorldGenTavern extends WorldGenerator implements IWorldGenerator
     }
 
     public boolean generate(final World world, final Random rand, final int i, final int j, final int k) {
-        if (!world.isAirBlock(i, j, k) || !world.isAirBlock(i + 20, j, k + 20) || world.getBlock(i, j - 1, k) != Blocks.grass || world.getBlock(i + 20, j - 1, k + 20) != Blocks.grass) {
-            return false;
-        }
         this.setBlock(world, i, j, k, Blocks.grass, 0);
         this.setBlock(world, i, j, k + 1, Blocks.grass, 0);
         this.setBlock(world, i, j, k + 2, Blocks.grass, 0);

@@ -12,9 +12,6 @@ import com.gibby.dungeon.*;
 public class archruins extends WorldGenerator
 {
     public boolean generate(final World world, final Random rand, final int i, final int j, final int k) {
-        if (world.getBlock(i, j, k) != Blocks.grass || world.getBlock(i + 19, j, k + 18) != Blocks.grass || world.getBlock(i, j, k + 18) != Blocks.grass || world.getBlock(i + 19, j, k) != Blocks.grass || world.getBlock(i, j + 1, k) != Blocks.air || world.getBlock(i + 19, j + 1, k + 18) != Blocks.air || world.getBlock(i, j + 1, k + 18) != Blocks.air || world.getBlock(i + 19, j + 1, k) != Blocks.air) {
-            return false;
-        }
         world.setBlock(i, j, k, Blocks.grass);
         world.setBlock(i, j, k + 1, Blocks.grass);
         world.setBlock(i, j, k + 2, Blocks.grass);

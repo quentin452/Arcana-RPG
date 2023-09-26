@@ -12,9 +12,6 @@ import com.gibby.dungeon.*;
 public class LargeCastle3 extends WorldGenerator
 {
     public boolean generate(final World world, final Random rand, final int i, final int j, final int k) {
-        if (world.getBlock(i, j - 1, k) != Blocks.grass || world.getBlock(i + 42, j - 1, k) != Blocks.grass || world.getBlock(i + 42, j - 1, k + 30) != Blocks.grass || world.getBlock(i, j - 1, k + 30) != Blocks.grass || world.getBlock(i, j, k) != Blocks.air || world.getBlock(i + 42, j, k) != Blocks.air || world.getBlock(i + 42, j, k + 30) != Blocks.air || world.getBlock(i, j, k + 30) != Blocks.air) {
-            return false;
-        }
         world.setBlock(i + 0, j, k, Blocks.grass);
         world.setBlock(i + 0, j, k + 1, Blocks.grass);
         world.setBlock(i + 0, j, k + 2, Blocks.grass);
@@ -1518,7 +1515,7 @@ public class LargeCastle3 extends WorldGenerator
         this.generate2(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate2(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 8, j + 12, k + 13, Blocks.stonebrick);
         world.setBlock(i + 8, j + 12, k + 14, Blocks.stonebrick);
@@ -3023,7 +3020,7 @@ public class LargeCastle3 extends WorldGenerator
         this.generate3(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate3(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 13, j + 15, k + 15, Blocks.stonebrick);
         world.setBlock(i + 13, j + 15, k + 16, Blocks.stonebrick);
@@ -4528,7 +4525,7 @@ public class LargeCastle3 extends WorldGenerator
         this.generate4(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate4(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 23, j + 9, k + 6, Blocks.stonebrick);
         world.setBlock(i + 23, j + 9, k + 7, Blocks.stonebrick);
@@ -6033,7 +6030,7 @@ public class LargeCastle3 extends WorldGenerator
         this.generate5(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate5(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 35, j + 4, k + 9, Blocks.cobblestone);
         world.setBlock(i + 35, j + 4, k + 10, Blocks.cobblestone);
