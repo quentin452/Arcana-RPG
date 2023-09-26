@@ -14,11 +14,11 @@ public class RenderExawdusSmasher implements IItemRenderer
 {
     private static final ResourceLocation swordTextures;
     ModelExawdusSmasher swordmodel;
-    
+
     public RenderExawdusSmasher() {
         this.swordmodel = new ModelExawdusSmasher();
     }
-    
+
     public void renderItem(final IItemRenderer.ItemRenderType type, final ItemStack item, final Object... data) {
         switch (type) {
             case EQUIPPED: {
@@ -70,11 +70,11 @@ public class RenderExawdusSmasher implements IItemRenderer
             }
         }
     }
-    
+
     public boolean handleRenderType(final ItemStack item, final IItemRenderer.ItemRenderType type) {
         return true;
     }
-    
+
     public boolean shouldUseRenderHelper(final IItemRenderer.ItemRenderType type, final ItemStack item, final IItemRenderer.ItemRendererHelper helper) {
         switch (type) {
             case INVENTORY: {
@@ -85,8 +85,8 @@ public class RenderExawdusSmasher implements IItemRenderer
             }
         }
     }
-    
+
     static {
-        swordTextures = new ResourceLocation("gibby_dungeons:textures/mobs/ExawdusSmasher.png");
+        swordTextures = new ResourceLocation(Dungeons.MODID + ":textures/items/exawdusSmasher.png");
     }
 }

@@ -21,8 +21,6 @@ public class BlockChargedMagiTable extends BlockEndPortalFrame
 {
     @SideOnly(Side.CLIENT)
     private IIcon iconEndPortalFrameTop;
-    @SideOnly(Side.CLIENT)
-    private IIcon iconEndPortalFrameEye;
 
     public BlockChargedMagiTable() {
         this.setHardness(10.0f);
@@ -51,7 +49,6 @@ public class BlockChargedMagiTable extends BlockEndPortalFrame
     public void registerBlockIcons(final IIconRegister p_149651_1_) {
         this.blockIcon = p_149651_1_.registerIcon(this.getTextureName() + "_side");
         this.iconEndPortalFrameTop = p_149651_1_.registerIcon(this.getTextureName() + "_top");
-        this.iconEndPortalFrameEye = p_149651_1_.registerIcon(this.getTextureName() + "_eye");
     }
 
     public boolean onBlockActivated(final World world, final int x, final int y, final int z, final EntityPlayer player, final int p_149727_6_, final float p_149727_7_, final float p_149727_8_, final float p_149727_9_) {

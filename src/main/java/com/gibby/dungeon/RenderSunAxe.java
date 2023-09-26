@@ -14,11 +14,11 @@ public class RenderSunAxe implements IItemRenderer
 {
     private static final ResourceLocation swordTextures;
     ModelSunAxe swordmodel;
-    
+
     public RenderSunAxe() {
         this.swordmodel = new ModelSunAxe();
     }
-    
+
     public void renderItem(final IItemRenderer.ItemRenderType type, final ItemStack item, final Object... data) {
         switch (type) {
             case EQUIPPED: {
@@ -74,11 +74,11 @@ public class RenderSunAxe implements IItemRenderer
             }
         }
     }
-    
+
     public boolean handleRenderType(final ItemStack item, final IItemRenderer.ItemRenderType type) {
         return true;
     }
-    
+
     public boolean shouldUseRenderHelper(final IItemRenderer.ItemRenderType type, final ItemStack item, final IItemRenderer.ItemRendererHelper helper) {
         switch (type) {
             case INVENTORY: {
@@ -89,8 +89,8 @@ public class RenderSunAxe implements IItemRenderer
             }
         }
     }
-    
+
     static {
-        swordTextures = new ResourceLocation("gibby_dungeons:textures/mobs/sunaxe.png");
+        swordTextures = new ResourceLocation("gibby_dungeons:textures/items/sunaxe.png");
     }
 }
