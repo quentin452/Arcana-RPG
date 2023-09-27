@@ -26,3 +26,9 @@ Discord server : https://discord.gg/ZnmHKJzKkZ
 # Compat problems
 
 The mod is only compatible with this fork of [Battletower](https://github.com/quentin452/battle-tower-continuation/releases/tag/V1.11) and not the original
+
+# Note
+
+Original description : https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/minecraft-mods/2453697-arcana-rpg-5-dimensions-100-mobs-bosses-minibosses
+
+Original wiki : https://arcana-rpg.fandom.com/wiki/Arcana_RPG_Wikia (might defer from the work) 
