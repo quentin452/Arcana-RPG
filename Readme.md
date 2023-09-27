@@ -25,4 +25,4 @@ Discord server : https://discord.gg/ZnmHKJzKkZ
 
 # Compat problems
 
-The mod is only compatible with this fork of [Battletower](https://github.com/quentin452/battle-tower-continuation/releases/tag/V1.11) ant not the original
+The mod is only compatible with this fork of [Battletower](https://github.com/quentin452/battle-tower-continuation/releases/tag/V1.11) and not the original
