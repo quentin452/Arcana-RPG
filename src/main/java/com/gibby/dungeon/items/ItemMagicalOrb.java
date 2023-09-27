@@ -1,5 +1,3 @@
-
-
 package com.gibby.dungeon.items;
 
 import com.gibby.dungeon.mobs.entityinstance.EntityCrystalliumPlainsPortal;
@@ -10,22 +8,26 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.FakePlayer;
 
 import java.util.List;
 
-public class ItemMagicalOrb extends Item
-{
-    public ItemStack onItemRightClick(final ItemStack par1ItemStack, final World par2World, final EntityPlayer par3) {
-        if (!par2World.isRemote && par3.dimension == 0) {
-            final EntityCrystalliumPlainsPortal portal = new EntityCrystalliumPlainsPortal(par2World, par3);
-            par2World.spawnEntityInWorld(portal);
-            --par1ItemStack.stackSize;
+public class ItemMagicalOrb extends Item {
+    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3) {
+        if (!par2World.isRemote && par3.dimension == 0 && !(par3 instanceof FakePlayer)) {
+            spawnCrystalliumPlainsPortal(par2World, par3);
+            par1ItemStack.stackSize--;
         }
         return par1ItemStack;
     }
 
+    private void spawnCrystalliumPlainsPortal(World world, EntityPlayer player) {
+        EntityCrystalliumPlainsPortal portal = new EntityCrystalliumPlainsPortal(world, player);
+        world.spawnEntityInWorld(portal);
+    }
+
     @SideOnly(Side.CLIENT)
-    public void addInformation(final ItemStack par1ItemStack, final EntityPlayer par2EntityPlayer, final List par3List, final boolean par4) {
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
         par3List.add(EnumChatFormatting.DARK_PURPLE + "Summons a portal to the Crystallium Plains dimension");
     }
 }

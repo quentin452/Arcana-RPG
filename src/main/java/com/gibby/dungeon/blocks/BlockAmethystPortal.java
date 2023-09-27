@@ -41,9 +41,9 @@ public class BlockAmethystPortal extends BlockPortal
         }
     }
 
-    public boolean isOpaqueCube() {
-        return true;
-    }
+  //  public boolean isOpaqueCube() {
+  //      return true;
+ //   }
 
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(final World p_149734_1_, final int p_149734_2_, final int p_149734_3_, final int p_149734_4_, final Random p_149734_5_) {

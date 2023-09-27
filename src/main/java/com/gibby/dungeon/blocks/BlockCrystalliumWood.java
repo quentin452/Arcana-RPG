@@ -1,5 +1,3 @@
-
-
 package com.gibby.dungeon.blocks;
 
 import com.gibby.dungeon.Dungeons;
@@ -16,11 +14,10 @@ import java.util.Random;
 public class BlockCrystalliumWood extends Block
 {
     @SideOnly(Side.CLIENT)
-    public IIcon[] icons;
+    private IIcon[] icons;
 
     public BlockCrystalliumWood() {
         super(Material.wood);
-        this.icons = new IIcon[6];
         this.setHarvestLevel("axe", 0);
         this.setStepSound(BlockCrystalliumWood.soundTypeWood);
         this.setHardness(2.0f);
@@ -31,7 +28,9 @@ public class BlockCrystalliumWood extends Block
         return Item.getItemFromBlock(Dungeons.crystalWood);
     }
 
+    @SideOnly(Side.CLIENT)
     public void registerBlockIcons(final IIconRegister reg) {
+        this.icons = new IIcon[6];
         this.icons[0] = reg.registerIcon(this.textureName);
         this.icons[1] = reg.registerIcon(this.textureName);
         for (int i = 2; i <= 5; ++i) {
@@ -39,6 +38,7 @@ public class BlockCrystalliumWood extends Block
         }
     }
 
+    @SideOnly(Side.CLIENT)
     public IIcon getIcon(final int side, final int meta) {
         return this.icons[side];
     }

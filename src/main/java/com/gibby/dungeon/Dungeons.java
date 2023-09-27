@@ -15,6 +15,7 @@ import com.gibby.dungeon.proxy.CommonProxy;
 import com.gibby.dungeon.util.DungeonEventHandler;
 import com.gibby.dungeon.util.DungeonPotion;
 import com.gibby.dungeon.util.DungeonPotions;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -51,7 +52,7 @@ public class Dungeons
 {
     public static final String MODID = "gibby_dungeons";
     public static final String VERSION = "1.3";
-    @SidedProxy(clientSide = "com.gibby.dungeon.proxy.ClientProxy", serverSide = "com.gibby.dungeon.commonProxy")
+    @SidedProxy(clientSide = "com.gibby.dungeon.proxy.ClientProxy", serverSide = "com.gibby.dungeon.proxy.CommonProxy")
     public static CommonProxy proxy;
     @Mod.Instance("gibby_dungeons")
     public static Dungeons instance;
@@ -889,7 +890,7 @@ public class Dungeons
         GameRegistry.registerBlock(Dungeons.blackBrick = new BlockOre().setBlockName("blackBrick").setBlockTextureName("gibby_dungeons" + ":" + "blackbrick").setCreativeTab(Dungeons.Blocks).setHardness(10.0f).setResistance(20.0f), "dungeons_blackBrick");
         GameRegistry.registerBlock(Dungeons.amethystStone = new BlockAmethystStone().setBlockName("amethystStone").setBlockTextureName("gibby_dungeons" + ":" + "amethyststone").setCreativeTab(Dungeons.Blocks).setHardness(10.0f).setResistance(20.0f), "dungeons_amethystStone");
         GameRegistry.registerBlock(Dungeons.amethystCrystalized = new BlockOre().setBlockName("amethystCrystalized").setBlockTextureName("gibby_dungeons" + ":" + "crystalizedamethyststone").setCreativeTab(Dungeons.Blocks).setHardness(10.0f).setResistance(20.0f), "dungeons_amethystCrystalized");
-        GameRegistry.registerBlock(Dungeons.amethystCracks = new BlockOre().setBlockName("amethystCracks").setBlockTextureName("gibby_dungeons" + ":" + "amethystcracks").setCreativeTab(Dungeons.Blocks).setHardness(10.0f).setResistance(20.0f).setLightLevel(10.0f), "dungeons_amethystCracks");
+        GameRegistry.registerBlock(Dungeons.amethystCracks = new BlockOre().setBlockName("amethystCracks").setBlockTextureName("gibby_dungeons" + ":" + "amethystcracks").setCreativeTab(Dungeons.Blocks).setHardness(10.0f).setResistance(20.0f), "dungeons_amethystCracks");
         GameRegistry.registerBlock(Dungeons.crystalOre = new BlockCrystalOre().setBlockName("crystalOre").setBlockTextureName("gibby_dungeons" + ":" + "crystalore").setCreativeTab(Dungeons.Blocks), "dungeons_crystalOre");
         GameRegistry.registerBlock(Dungeons.portalAmethyst = new BlockAmethystPortal().setBlockName("portalAmethyst").setCreativeTab(Dungeons.Blocks), "dungeons_portalAmethyst");
         GameRegistry.registerBlock(Dungeons.portalSunset = new BlockSunsetPortal().setBlockName("portalSunset").setCreativeTab(Dungeons.Blocks).setBlockTextureName("gibby_dungeons" + ":" + "sunsetportal2"), "dungeons_portalSunset");
@@ -1201,7 +1202,9 @@ public class Dungeons
             EntityList.addMapping(EntityVampire.class, "EntityVampire", this.setMobId());
             EntityList.addMapping(EntityLavaKnight.class, "EntityLavaKnight", this.setMobId());
         }
+        if(FMLCommonHandler.instance().getSide()==Side.CLIENT) {
         MinecraftForge.EVENT_BUS.register(new DungeonGuiIngame(Minecraft.getMinecraft()));
+        }
         MinecraftForge.EVENT_BUS.register(new DungeonEventHandler());
     }
 

@@ -26,7 +26,7 @@ public class ItemVoidrimWand extends ItemForceWand
     public ItemVoidrimWand() {
         this.tier = 5;
     }
-
+    @SideOnly(Side.CLIENT)
     public ItemStack onItemRightClick(final ItemStack par1ItemStack, final World par2World, final EntityPlayer par3) {
         final DungeonsExtendedPlayer par4 = DungeonsExtendedPlayer.get(par3);
         if (par4.magicAmount() >= 25 || par3.capabilities.isCreativeMode) {

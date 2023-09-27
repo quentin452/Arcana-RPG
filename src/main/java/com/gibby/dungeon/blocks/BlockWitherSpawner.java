@@ -4,6 +4,8 @@ package com.gibby.dungeon.blocks;
 
 import com.gibby.dungeon.Dungeons;
 import com.gibby.dungeon.mobs.entityinstance.EntityWitherSpawner;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -22,7 +24,7 @@ public class BlockWitherSpawner extends Block
         this.setHardness(10.0f);
         this.setResistance(10.0f);
     }
-
+    @SideOnly(Side.CLIENT)
     public void randomDisplayTick(final World world, final int x, final int y, final int z, final Random random) {
         if (world.isRemote) {
             for (int i = 0; i < 50; ++i) {

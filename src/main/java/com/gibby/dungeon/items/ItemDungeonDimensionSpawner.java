@@ -1,5 +1,3 @@
-
-
 package com.gibby.dungeon.items;
 
 import com.gibby.dungeon.mobs.entityinstance.EntityMontanePortal;
@@ -10,18 +8,25 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.FakePlayer;
 
 import java.util.List;
 
-public class ItemDungeonDimensionSpawner extends Item
-{
-    public ItemStack onItemRightClick(final ItemStack par1ItemStack, final World par2World, final EntityPlayer par3) {
+public class ItemDungeonDimensionSpawner extends Item {
+    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3) {
         if (!par2World.isRemote && par3.dimension == 0) {
-            final EntityMontanePortal portal = new EntityMontanePortal(par2World, par3);
-            par2World.spawnEntityInWorld(portal);
-            --par1ItemStack.stackSize;
+            if (par3 instanceof FakePlayer) {
+                return par1ItemStack;
+            }
+            spawnMontanePortal(par2World, par3);
+            par1ItemStack.stackSize--;
         }
         return par1ItemStack;
+    }
+
+    private void spawnMontanePortal(World world, EntityPlayer player) {
+        EntityMontanePortal portal = new EntityMontanePortal(world, player);
+        world.spawnEntityInWorld(portal);
     }
 
     @SideOnly(Side.CLIENT)

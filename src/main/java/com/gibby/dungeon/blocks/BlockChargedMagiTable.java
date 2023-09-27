@@ -32,7 +32,7 @@ public class BlockChargedMagiTable extends BlockEndPortalFrame
     public Item getItemDropped(final int p_149650_1_, final Random p_149650_2_, final int p_149650_3_) {
         return Item.getItemFromBlock(Dungeons.magitableCharged);
     }
-
+    @SideOnly(Side.CLIENT)
     public void randomDisplayTick(final World world, final int x, final int y, final int z, final Random random) {
         if (world.isRemote) {
             for (int i = 0; i < 50; ++i) {

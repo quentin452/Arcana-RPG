@@ -9,6 +9,8 @@ import com.gibby.dungeon.util.DungeonsExtendedPlayer;
 import com.gibby.dungeon.items.ItemTripleArmor;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.FontRenderer;
@@ -97,7 +99,7 @@ public class DungeonGuiIngame extends GuiIngameForge
             this.func_110327_c(k, l);
         }
     }
-
+    @SideOnly(Side.CLIENT)
     protected void renderDamage(final int par1, final int par2) {
         GL11.glDisable(2929);
         GL11.glDepthMask(false);
@@ -122,7 +124,7 @@ public class DungeonGuiIngame extends GuiIngameForge
         GL11.glEnable(3008);
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 0.1f);
     }
-
+    @SideOnly(Side.CLIENT)
     protected void renderPotionEffect(final int par1, final int par2) {
         final int ticks = this.mc.thePlayer.ticksExisted;
         GL11.glDisable(2929);
@@ -143,7 +145,7 @@ public class DungeonGuiIngame extends GuiIngameForge
         GL11.glEnable(3008);
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 0.1f + 0.1f * (ticks % 50));
     }
-
+    @SideOnly(Side.CLIENT)
     protected void func_110327_c(final int par1, final int par2) {
         if (this.mc.thePlayer != null) {
             final DungeonsExtendedPlayer par3 = DungeonsExtendedPlayer.get((EntityPlayer)this.mc.thePlayer);
@@ -252,7 +254,7 @@ public class DungeonGuiIngame extends GuiIngameForge
             this.mc.mcProfiler.endSection();
         }
     }
-
+    @SideOnly(Side.CLIENT)
     protected void renderResistanceBossHealth() {
         if (DungeonsBossStatusResistance.bossName != null && DungeonsBossStatusResistance.statusBarTime > 0) {
             this.mc.getTextureManager().bindTexture(this.voidarmor);
@@ -273,7 +275,7 @@ public class DungeonGuiIngame extends GuiIngameForge
             this.mc.getTextureManager().bindTexture(DungeonGuiIngame.icons);
         }
     }
-
+    @SideOnly(Side.CLIENT)
     protected void renderStrengthBossHealth() {
         if (DungeonsBossStatus.bossName != null && DungeonsBossStatus.statusBarTime > 0) {
             this.mc.getTextureManager().bindTexture(this.magic);
@@ -294,7 +296,7 @@ public class DungeonGuiIngame extends GuiIngameForge
             this.mc.getTextureManager().bindTexture(DungeonGuiIngame.icons);
         }
     }
-
+    @SideOnly(Side.CLIENT)
     public int TotalMagicDefence(final EntityClientPlayerMP player) {
         int bootDefence = 0;
         int leggingDefence = 0;
@@ -318,7 +320,7 @@ public class DungeonGuiIngame extends GuiIngameForge
         }
         return bootDefence + leggingDefence + chestplateDefence + helmetDefence;
     }
-
+    @SideOnly(Side.CLIENT)
     public int totalVoidDefence(final EntityClientPlayerMP player) {
         int bootDefence = 0;
         int leggingDefence = 0;

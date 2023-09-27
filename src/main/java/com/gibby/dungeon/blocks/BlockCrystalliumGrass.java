@@ -1,5 +1,3 @@
-
-
 package com.gibby.dungeon.blocks;
 
 import com.gibby.dungeon.Dungeons;
@@ -18,9 +16,12 @@ public class BlockCrystalliumGrass extends Block
     @SideOnly(Side.CLIENT)
     public IIcon[] icons;
 
+    @SideOnly(Side.CLIENT)
+    public void initIcons() {
+        icons = new IIcon[6];
+    }
     public BlockCrystalliumGrass() {
         super(Material.grass);
-        this.icons = new IIcon[6];
         this.setHarvestLevel("shovel", 0);
         this.setStepSound(BlockCrystalliumGrass.soundTypeGrass);
         this.setHardness(1.0f);
@@ -34,7 +35,9 @@ public class BlockCrystalliumGrass extends Block
         return Item.getItemFromBlock(Dungeons.crystalDirt);
     }
 
+    @SideOnly(Side.CLIENT)
     public void registerBlockIcons(final IIconRegister reg) {
+        initIcons();
         this.icons[0] = reg.registerIcon(this.textureName + "_" + "bottom");
         this.icons[1] = reg.registerIcon(this.textureName + "_" + "top");
         for (int i = 2; i <= 5; ++i) {
@@ -42,6 +45,7 @@ public class BlockCrystalliumGrass extends Block
         }
     }
 
+    @SideOnly(Side.CLIENT)
     public IIcon getIcon(final int side, final int meta) {
         return this.icons[side];
     }

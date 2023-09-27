@@ -3,10 +3,10 @@
 package com.gibby.dungeon.mobs.entityinstance;
 
 import com.gibby.dungeon.Dungeons;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.particle.EntityFireworkSparkFX;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
@@ -50,19 +50,24 @@ public class EntityMontanePortal extends EntityThrowable
         this.freezeZ = 0.0;
     }
 
+    @SideOnly(Side.CLIENT)
+    private void spawnParticles() {
+        for (int i = 0; i < 60; ++i) {
+            final double particlePositionX = Math.cos(i * 6) * 6.0;
+            final double particlePositionY = Math.sin((double) this.ticksExisted / 2 + i * 6) * 4.0;
+            final double particlePositionZ = Math.sin(i * 6) * 6.0;
+            final EntityFireworkSparkFX particle = new EntityFireworkSparkFX(this.worldObj, this.posX + particlePositionX, this.posY + particlePositionY + 8.0, this.posZ + particlePositionZ, 0.0, 0.0, 0.0, Minecraft.getMinecraft().effectRenderer);
+            particle.setRBGColorF(1.0f, 1.0f, 1.0f);
+            particle.setFadeColour(0);
+            Minecraft.getMinecraft().effectRenderer.addEffect(particle);
+        }
+    }
+
     public void onUpdate() {
         super.onUpdate();
         if (this.impacted) {
             if (this.worldObj.isRemote) {
-                for (int i = 0; i < 60; ++i) {
-                    final double particlePositionX = Math.cos(i * 6) * 6.0;
-                    final double particlePositionY = Math.sin(this.ticksExisted / 2 + i * 6) * 4.0;
-                    final double particlePositionZ = Math.sin(i * 6) * 6.0;
-                    final EntityFireworkSparkFX particle = new EntityFireworkSparkFX(this.worldObj, this.posX + particlePositionX, this.posY + particlePositionY + 8.0, this.posZ + particlePositionZ, 0.0, 0.0, 0.0, Minecraft.getMinecraft().effectRenderer);
-                    particle.setRBGColorF(1.0f, 1.0f, 1.0f);
-                    particle.setFadeColour(0);
-                    Minecraft.getMinecraft().effectRenderer.addEffect((EntityFX)particle);
-                }
+                spawnParticles();
             }
             ++this.counter;
             this.posX = this.freezeX;
@@ -203,7 +208,7 @@ public class EntityMontanePortal extends EntityThrowable
                             break;
                         }
                     }
-                    this.worldObj.playSoundAtEntity((Entity)this, "step.wood", 1.5f, 1.0f);
+                    this.worldObj.playSoundAtEntity(this, "step.wood", 1.5f, 1.0f);
                 }
                 if (this.stage >= 9) {
                     this.setDead();

@@ -3,6 +3,8 @@
 package com.gibby.dungeon.mobs.entityinstance;
 
 import com.gibby.dungeon.Dungeons;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFireworkSparkFX;
 import net.minecraft.entity.EntityLivingBase;
@@ -47,30 +49,33 @@ public class EntityCrystalliumPlainsPortal extends EntityThrowable
         this.freezeY = 0.0;
         this.freezeZ = 0.0;
     }
-
+    @SideOnly(Side.CLIENT)
+    private void spawnParticles() {
+        for (int i = 0; i < 60; ++i) {
+            final double particlePositionX = Math.cos(i * 6) * 6.0;
+            final double particlePositionZ = Math.sin(i * 6) * 6.0;
+            EntityFireworkSparkFX particle = new EntityFireworkSparkFX(this.worldObj, this.posX + particlePositionX, this.posY + 6.0, this.posZ + particlePositionZ, 0.0, 0.0, 0.0, Minecraft.getMinecraft().effectRenderer);
+            particle.setRBGColorF(0.5f, 0.0f, 0.5f);
+            particle.setFadeColour(0);
+            particle.setTwinkle(true);
+            Minecraft.getMinecraft().effectRenderer.addEffect(particle);
+            particle = new EntityFireworkSparkFX(this.worldObj, this.posX + particlePositionX, this.posY + 8.0, this.posZ + particlePositionZ, 0.0, 0.0, 0.0, Minecraft.getMinecraft().effectRenderer);
+            particle.setRBGColorF(0.8f, 0.2f, 0.8f);
+            particle.setFadeColour(0);
+            particle.setTwinkle(true);
+            Minecraft.getMinecraft().effectRenderer.addEffect(particle);
+            particle = new EntityFireworkSparkFX(this.worldObj, this.posX + particlePositionX, this.posY + 10.0, this.posZ + particlePositionZ, 0.0, 0.0, 0.0, Minecraft.getMinecraft().effectRenderer);
+            particle.setRBGColorF(1.0f, 0.5f, 1.0f);
+            particle.setFadeColour(0);
+            particle.setTwinkle(true);
+            Minecraft.getMinecraft().effectRenderer.addEffect(particle);
+        }
+    }
     public void onUpdate() {
         super.onUpdate();
         if (this.impacted) {
             if (this.worldObj.isRemote) {
-                for (int i = 0; i < 60; ++i) {
-                    final double particlePositionX = Math.cos(i * 6) * 6.0;
-                    final double particlePositionZ = Math.sin(i * 6) * 6.0;
-                    EntityFireworkSparkFX particle = new EntityFireworkSparkFX(this.worldObj, this.posX + particlePositionX, this.posY + 6.0, this.posZ + particlePositionZ, 0.0, 0.0, 0.0, Minecraft.getMinecraft().effectRenderer);
-                    particle.setRBGColorF(0.5f, 0.0f, 0.5f);
-                    particle.setFadeColour(0);
-                    particle.setTwinkle(true);
-                    Minecraft.getMinecraft().effectRenderer.addEffect(particle);
-                    particle = new EntityFireworkSparkFX(this.worldObj, this.posX + particlePositionX, this.posY + 8.0, this.posZ + particlePositionZ, 0.0, 0.0, 0.0, Minecraft.getMinecraft().effectRenderer);
-                    particle.setRBGColorF(0.8f, 0.2f, 0.8f);
-                    particle.setFadeColour(0);
-                    particle.setTwinkle(true);
-                    Minecraft.getMinecraft().effectRenderer.addEffect(particle);
-                    particle = new EntityFireworkSparkFX(this.worldObj, this.posX + particlePositionX, this.posY + 10.0, this.posZ + particlePositionZ, 0.0, 0.0, 0.0, Minecraft.getMinecraft().effectRenderer);
-                    particle.setRBGColorF(1.0f, 0.5f, 1.0f);
-                    particle.setFadeColour(0);
-                    particle.setTwinkle(true);
-                    Minecraft.getMinecraft().effectRenderer.addEffect(particle);
-                }
+                spawnParticles();
             }
             ++this.counter;
             this.posX = this.freezeX;

@@ -3,6 +3,8 @@
 package com.gibby.dungeon.blocks;
 
 import com.gibby.dungeon.Dungeons;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -12,7 +14,7 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 public class BlockMidnightPortalSpawner extends Block
-{
+{@SideOnly(Side.CLIENT)
     public void randomDisplayTick(final World world, final int x, final int y, final int z, final Random random) {
         if (world.isRemote) {
             for (int i = 0; i < 10; ++i) {

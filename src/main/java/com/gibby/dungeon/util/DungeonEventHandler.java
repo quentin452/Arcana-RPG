@@ -6,6 +6,8 @@ import com.gibby.dungeon.Dungeons;
 import com.gibby.dungeon.items.ItemTripleArmor;
 import com.gibby.dungeon.mobs.entityinstance.EntityCrystalMeteor;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFlameFX;
@@ -53,7 +55,7 @@ public class DungeonEventHandler
             event.entityLiving.dropItem(Items.emerald, 1);
         }
     }
-
+    @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void onLivingUpdate(final LivingEvent.LivingUpdateEvent event) {
         final EntityLivingBase entity = event.entityLiving;
