@@ -3,7 +3,7 @@
 package com.gibby.dungeon.items;
 
 import com.gibby.dungeon.Dungeons;
-import com.gibby.dungeon.mobs.EntityShimmerPearl;
+import com.gibby.dungeon.mobs.entityinstance.EntityShimmerPearl;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

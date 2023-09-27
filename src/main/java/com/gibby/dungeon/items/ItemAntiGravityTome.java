@@ -2,11 +2,10 @@
 
 package com.gibby.dungeon.items;
 
-import com.gibby.dungeon.DungeonsExtendedPlayer;
-import com.gibby.dungeon.mobs.EntityAntigravity;
+import com.gibby.dungeon.util.DungeonsExtendedPlayer;
+import com.gibby.dungeon.mobs.entityinstance.EntityAntigravity;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

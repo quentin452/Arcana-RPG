@@ -3,7 +3,7 @@
 package com.gibby.dungeon.blocks;
 
 import com.gibby.dungeon.Dungeons;
-import com.gibby.dungeon.mobs.EntityWitherSpawner;
+import com.gibby.dungeon.mobs.entityinstance.EntityWitherSpawner;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;

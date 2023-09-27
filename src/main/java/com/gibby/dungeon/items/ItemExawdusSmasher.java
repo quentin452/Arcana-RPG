@@ -2,7 +2,7 @@
 
 package com.gibby.dungeon.items;
 
-import com.gibby.dungeon.DungeonsExtendedPlayer;
+import com.gibby.dungeon.util.DungeonsExtendedPlayer;
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

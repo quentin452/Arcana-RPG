@@ -2,7 +2,7 @@
 
 package com.gibby.dungeon.gen;
 
-import com.gibby.dungeon.mobs.EntityMinerVillager;
+import com.gibby.dungeon.mobs.entityinstance.EntityMinerVillager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.passive.EntityVillager;

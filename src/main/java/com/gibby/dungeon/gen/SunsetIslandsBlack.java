@@ -3,8 +3,8 @@
 package com.gibby.dungeon.gen;
 
 import com.gibby.dungeon.Dungeons;
-import com.gibby.dungeon.mobs.EntityMoundTrader;
-import com.gibby.dungeon.mobs.EntityTalkingVillager;
+import com.gibby.dungeon.mobs.entityinstance.EntityMoundTrader;
+import com.gibby.dungeon.mobs.entityinstance.EntityTalkingVillager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.monster.EntityIronGolem;

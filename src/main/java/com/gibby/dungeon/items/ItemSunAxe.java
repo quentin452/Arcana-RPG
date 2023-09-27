@@ -2,8 +2,8 @@
 
 package com.gibby.dungeon.items;
 
-import com.gibby.dungeon.DungeonsExtendedPlayer;
-import com.gibby.dungeon.mobs.EntitySunProjectile;
+import com.gibby.dungeon.util.DungeonsExtendedPlayer;
+import com.gibby.dungeon.mobs.entityinstance.EntitySunProjectile;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;

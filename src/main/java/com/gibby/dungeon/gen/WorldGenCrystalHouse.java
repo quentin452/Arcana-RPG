@@ -3,11 +3,9 @@
 package com.gibby.dungeon.gen;
 
 import com.gibby.dungeon.Dungeons;
-import com.gibby.dungeon.mobs.EntityAnchorTrader;
+import com.gibby.dungeon.mobs.entityinstance.EntityAnchorTrader;
 import cpw.mods.fml.common.IWorldGenerator;
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;

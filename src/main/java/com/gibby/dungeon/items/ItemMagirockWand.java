@@ -2,8 +2,8 @@
 
 package com.gibby.dungeon.items;
 
-import com.gibby.dungeon.DungeonsExtendedPlayer;
-import com.gibby.dungeon.mobs.EntityMagirockBall;
+import com.gibby.dungeon.util.DungeonsExtendedPlayer;
+import com.gibby.dungeon.mobs.entityinstance.EntityMagirockBall;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;

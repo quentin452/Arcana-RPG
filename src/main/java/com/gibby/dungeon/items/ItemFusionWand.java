@@ -3,13 +3,12 @@
 package com.gibby.dungeon.items;
 
 import com.gibby.dungeon.Dungeons;
-import com.gibby.dungeon.DungeonsExtendedPlayer;
-import com.gibby.dungeon.mobs.EntityFusionBall;
+import com.gibby.dungeon.util.DungeonsExtendedPlayer;
+import com.gibby.dungeon.mobs.entityinstance.EntityFusionBall;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFireworkSparkFX;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

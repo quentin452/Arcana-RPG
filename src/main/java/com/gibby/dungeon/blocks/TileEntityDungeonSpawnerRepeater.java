@@ -2,8 +2,7 @@
 
 package com.gibby.dungeon.blocks;
 
-import com.gibby.dungeon.EntityIceShielder;
-import com.gibby.dungeon.mobs.*;
+import com.gibby.dungeon.mobs.entityinstance.*;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;

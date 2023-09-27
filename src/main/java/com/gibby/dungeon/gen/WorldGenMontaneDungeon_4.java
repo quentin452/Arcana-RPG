@@ -3,8 +3,8 @@
 package com.gibby.dungeon.gen;
 
 import com.gibby.dungeon.Dungeons;
-import com.gibby.dungeon.mobs.EntityMontaneTrader;
-import com.gibby.dungeon.mobs.EntityMontaneVillager;
+import com.gibby.dungeon.mobs.entityinstance.EntityMontaneTrader;
+import com.gibby.dungeon.mobs.entityinstance.EntityMontaneVillager;
 import cpw.mods.fml.common.IWorldGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;

@@ -3,9 +3,7 @@
 package com.gibby.dungeon.items;
 
 import com.gibby.dungeon.Dungeons;
-import com.gibby.dungeon.mobs.EntityIronStar;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import com.gibby.dungeon.mobs.entityinstance.EntityIronStar;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

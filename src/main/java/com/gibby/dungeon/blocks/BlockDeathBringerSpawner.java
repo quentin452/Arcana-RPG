@@ -2,7 +2,7 @@
 
 package com.gibby.dungeon.blocks;
 
-import com.gibby.dungeon.mobs.EntityDeathBringer;
+import com.gibby.dungeon.mobs.entityinstance.EntityDeathBringer;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;

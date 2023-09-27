@@ -2,9 +2,9 @@
 
 package com.gibby.dungeon.items;
 
-import com.gibby.dungeon.DungeonsExtendedPlayer;
-import com.gibby.dungeon.mobs.EntityVoidBomb;
-import com.gibby.dungeon.mobs.EntityVoidDisk;
+import com.gibby.dungeon.util.DungeonsExtendedPlayer;
+import com.gibby.dungeon.mobs.entityinstance.EntityVoidBomb;
+import com.gibby.dungeon.mobs.entityinstance.EntityVoidDisk;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;

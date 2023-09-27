@@ -1,9 +1,7 @@
 package com.gibby.dungeon.init;
 
-import com.gibby.dungeon.EntityIceShielder;
-import com.gibby.dungeon.EntityIceSpirit;
-import com.gibby.dungeon.SpawnEggsHandler;
-import com.gibby.dungeon.mobs.*;
+import com.gibby.dungeon.mobs.entityinstance.*;
+import com.gibby.dungeon.items.SpawnEggsHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;

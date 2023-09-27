@@ -2,7 +2,7 @@
 
 package com.gibby.dungeon.items;
 
-import com.gibby.dungeon.mobs.EntityCursedStone;
+import com.gibby.dungeon.mobs.entityinstance.EntityCursedStone;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;

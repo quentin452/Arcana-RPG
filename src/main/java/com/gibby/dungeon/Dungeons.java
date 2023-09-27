@@ -4,10 +4,17 @@ package com.gibby.dungeon;
 
 import com.gibby.dungeon.blocks.*;
 import com.gibby.dungeon.gen.*;
+import com.gibby.dungeon.gui.DungeonGuiIngame;
+import com.gibby.dungeon.init.ChestSetup;
 import com.gibby.dungeon.init.EggInit;
+import com.gibby.dungeon.init.recipeinit.*;
 import com.gibby.dungeon.items.*;
-import com.gibby.dungeon.mobs.*;
-import com.gibby.dungeon.packetPipelines.PacketPipeline;
+import com.gibby.dungeon.mobs.entityinstance.*;
+import com.gibby.dungeon.proxy.packetPipelines.PacketPipeline;
+import com.gibby.dungeon.proxy.CommonProxy;
+import com.gibby.dungeon.util.DungeonEventHandler;
+import com.gibby.dungeon.util.DungeonPotion;
+import com.gibby.dungeon.util.DungeonPotions;
 import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -44,7 +51,7 @@ public class Dungeons
 {
     public static final String MODID = "gibby_dungeons";
     public static final String VERSION = "1.3";
-    @SidedProxy(clientSide = "com.gibby.dungeon.ClientProxy", serverSide = "com.gibby.dungeon.commonProxy")
+    @SidedProxy(clientSide = "com.gibby.dungeon.proxy.ClientProxy", serverSide = "com.gibby.dungeon.commonProxy")
     public static CommonProxy proxy;
     @Mod.Instance("gibby_dungeons")
     public static Dungeons instance;

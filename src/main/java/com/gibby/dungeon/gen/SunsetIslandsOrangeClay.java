@@ -2,8 +2,8 @@
 
 package com.gibby.dungeon.gen;
 
-import com.gibby.dungeon.mobs.EntityTalkingVillager;
-import com.gibby.dungeon.mobs.EntityTreeVillager;
+import com.gibby.dungeon.mobs.entityinstance.EntityTalkingVillager;
+import com.gibby.dungeon.mobs.entityinstance.EntityTreeVillager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.init.Blocks;

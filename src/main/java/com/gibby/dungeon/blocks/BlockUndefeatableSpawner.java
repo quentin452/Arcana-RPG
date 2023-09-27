@@ -2,10 +2,10 @@
 
 package com.gibby.dungeon.blocks;
 
-import com.gibby.dungeon.mobs.EntityUndefeatable;
-import com.gibby.dungeon.mobs.EntityUndefeatableRegen;
-import com.gibby.dungeon.mobs.EntityUndefeatableResistance;
-import com.gibby.dungeon.mobs.EntityUndefeatableStrength;
+import com.gibby.dungeon.mobs.entityinstance.EntityUndefeatable;
+import com.gibby.dungeon.mobs.entityinstance.EntityUndefeatableRegen;
+import com.gibby.dungeon.mobs.entityinstance.EntityUndefeatableResistance;
+import com.gibby.dungeon.mobs.entityinstance.EntityUndefeatableStrength;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;

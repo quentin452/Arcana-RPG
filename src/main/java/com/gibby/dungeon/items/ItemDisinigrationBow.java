@@ -3,7 +3,7 @@
 package com.gibby.dungeon.items;
 
 import com.gibby.dungeon.Dungeons;
-import com.gibby.dungeon.mobs.EntityDisinigrationArrow;
+import com.gibby.dungeon.mobs.entityinstance.EntityDisinigrationArrow;
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

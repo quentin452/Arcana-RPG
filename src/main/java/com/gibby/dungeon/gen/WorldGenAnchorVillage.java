@@ -3,7 +3,7 @@
 package com.gibby.dungeon.gen;
 
 import com.gibby.dungeon.Dungeons;
-import com.gibby.dungeon.mobs.EntityAnchorTrader;
+import com.gibby.dungeon.mobs.entityinstance.EntityAnchorTrader;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.passive.EntityVillager;

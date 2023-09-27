@@ -2,9 +2,9 @@
 
 package com.gibby.dungeon.items;
 
-import com.gibby.dungeon.DungeonsExtendedPlayer;
-import com.gibby.dungeon.mobs.EntityBlueBeam;
-import com.gibby.dungeon.mobs.EntityRedBouncer;
+import com.gibby.dungeon.util.DungeonsExtendedPlayer;
+import com.gibby.dungeon.mobs.entityinstance.EntityBlueBeam;
+import com.gibby.dungeon.mobs.entityinstance.EntityRedBouncer;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
