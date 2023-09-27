@@ -2,13 +2,15 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.entity.projectile.*;
-import net.minecraft.world.*;
-import net.minecraft.entity.*;
-import com.gibby.dungeon.*;
-import net.minecraft.potion.*;
-import java.util.*;
-import net.minecraft.util.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.World;
+
+import java.util.List;
 
 public class EntityThrowback extends EntityThrowable
 {
@@ -54,28 +56,25 @@ public class EntityThrowback extends EntityThrowable
             this.posZ = this.freezeZ;
             for (int i = 0; i < 60; ++i) {
                 final double particlePositionX = Math.cos(i * 6) * 3.0;
-                final double particlePositionY = Math.sin(i * 6) * 3.0;
                 final double particlePositionZ = Math.sin(i * 6) * 3.0;
                 this.worldObj.spawnParticle("witchMagic", this.posX + particlePositionX, this.posY, this.posZ + particlePositionZ, 0.0, 0.0, 0.0);
                 this.worldObj.spawnParticle("witchMagic", this.posX + particlePositionX / 2.0, this.posY, this.posZ + particlePositionZ / 2.0, 0.0, 0.0, 0.0);
                 this.worldObj.spawnParticle("witchMagic", this.posX + particlePositionX / 4.0, this.posY, this.posZ + particlePositionZ / 4.0, 0.0, 0.0, 0.0);
             }
             if (this.counter > 70 && this.worldObj != null) {
-                this.worldObj.playSoundAtEntity((Entity)this, "mob.blaze.breathe", 1.0f, 1.4f);
+                this.worldObj.playSoundAtEntity(this, "mob.blaze.breathe", 1.0f, 1.4f);
                 for (int i = 0; i < 1000; ++i) {
                     this.worldObj.spawnParticle("witchMagic", this.posX + Dungeons.randGauss() * 2.0, this.posY + Dungeons.randGauss() * 2.0, this.posZ + Dungeons.randGauss() * 2.0, 0.0, 0.5, 0.0);
                 }
-                final List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(15.0, 15.0, 15.0));
+                final List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(15.0, 15.0, 15.0));
                 if (list2 != null) {
                     for (int k2 = 0; k2 < list2.size(); ++k2) {
                         if (list2.get(k2) instanceof EntityLivingBase && !(list2.get(k2) instanceof EntityDeathBringer)) {
                             final EntityLivingBase entity = (EntityLivingBase) list2.get(k2);
-                            entity.attackEntityFrom(DamageSource.outOfWorld, (float)(17.0 - this.getDistanceSqToEntity((Entity)entity)));
+                            entity.attackEntityFrom(DamageSource.outOfWorld, (float)(17.0 - this.getDistanceSqToEntity(entity)));
                             entity.addPotionEffect(new PotionEffect(Dungeons.imbalance.id, 200, 0));
-                            final EntityLivingBase entityLivingBase = entity;
-                            entityLivingBase.motionX += entity.posX - this.posX;
-                            final EntityLivingBase entityLivingBase2 = entity;
-                            entityLivingBase2.motionX += entity.posZ - this.posZ;
+                            entity.motionX += entity.posX - this.posX;
+                            entity.motionX += entity.posZ - this.posZ;
                         }
                     }
                 }

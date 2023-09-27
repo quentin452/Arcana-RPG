@@ -2,35 +2,44 @@
 
 package com.gibby.dungeon;
 
-import com.gibby.dungeon.init.EggInit;
-import com.gibby.dungeon.packetPipelines.PacketPipeline;
-import net.minecraft.world.biome.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.potion.*;
-import net.minecraft.creativetab.*;
-import net.minecraftforge.common.util.*;
-import java.io.*;
-import net.minecraftforge.common.config.*;
-import com.gibby.dungeon.items.*;
-import net.minecraft.block.material.*;
-import net.minecraft.block.*;
-import cpw.mods.fml.common.registry.*;
-import com.gibby.dungeon.mobs.*;
-import com.gibby.dungeon.gen.*;
-import cpw.mods.fml.common.*;
-import net.minecraft.entity.monster.*;
-import cpw.mods.fml.common.event.*;
-import net.minecraft.entity.*;
-import net.minecraftforge.common.*;
-import net.minecraft.client.*;
-import java.util.*;
-import net.minecraft.init.*;
-import net.minecraft.item.*;
-import net.minecraft.world.*;
 import com.gibby.dungeon.blocks.*;
-import cpw.mods.fml.relauncher.*;
+import com.gibby.dungeon.gen.*;
+import com.gibby.dungeon.init.EggInit;
+import com.gibby.dungeon.items.*;
+import com.gibby.dungeon.mobs.*;
+import com.gibby.dungeon.packetPipelines.PacketPipeline;
+import cpw.mods.fml.common.IWorldGenerator;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.registry.EntityRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockOre;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.entity.monster.EntityGiantZombie;
+import net.minecraft.init.Items;
+import net.minecraft.item.*;
+import net.minecraft.potion.Potion;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.util.EnumHelper;
 
-@Mod(modid = "gibby_dungeons", version = "1.3")
+import java.io.File;
+import java.util.Random;
+
+@Mod(modid = "gibby_dungeons", version = "1.3",dependencies = "required-after:reccomplex;")
 public class Dungeons
 {
     public static final String MODID = "gibby_dungeons";

@@ -2,10 +2,11 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.entity.projectile.*;
-import net.minecraft.world.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.World;
 
 public class EntityExplosionSnake extends EntityThrowable
 {
@@ -13,29 +14,29 @@ public class EntityExplosionSnake extends EntityThrowable
     boolean impacted;
     int counter;
     double freezeY;
-    
+
     public EntityExplosionSnake(final World par1World) {
         super(par1World);
         this.damage = 4;
         this.freezeY = 0.0;
     }
-    
+
     public EntityExplosionSnake(final World par1World, final EntityLivingBase par2EntityLivingBase) {
         super(par1World, par2EntityLivingBase);
         this.damage = 4;
         this.freezeY = 0.0;
     }
-    
+
     protected float getGravityVelocity() {
         return 0.03f;
     }
-    
+
     public EntityExplosionSnake(final World par1World, final double par2, final double par4, final double par6) {
         super(par1World, par2, par4, par6);
         this.damage = 4;
         this.freezeY = 0.0;
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         if (this.impacted) {
@@ -47,7 +48,7 @@ public class EntityExplosionSnake extends EntityThrowable
             }
         }
     }
-    
+
     protected void onImpact(final MovingObjectPosition var1) {
         if (this.worldObj != null && var1.entityHit == null) {
             this.impacted = true;

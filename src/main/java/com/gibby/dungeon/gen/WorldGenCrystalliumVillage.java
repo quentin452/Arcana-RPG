@@ -2,24 +2,14 @@ package com.gibby.dungeon.gen;
 
 
 import com.gibby.dungeon.Dungeons;
-import net.minecraft.init.Blocks;
-import net.minecraft.world.gen.feature.WorldGenerator;
 import cpw.mods.fml.common.IWorldGenerator;
-import net.minecraft.world.gen.structure.*;
-import net.minecraft.world.biome.*;
-import net.minecraft.world.gen.*;
-import com.gibby.dungeon.*;
-import net.minecraft.init.*;
-import net.minecraftforge.common.*;
-import cpw.mods.fml.common.eventhandler.*;
-import net.minecraft.world.chunk.*;
-import net.minecraft.block.*;
-import net.minecraftforge.event.terraingen.*;
-import net.minecraft.world.gen.feature.*;
-import net.minecraft.util.*;
-import net.minecraft.entity.*;
-import java.util.*;
-import net.minecraft.world.*;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 public class WorldGenCrystalliumVillage extends WorldGenerator implements IWorldGenerator
 {
     public void generate(final Random random, final int chunkX, final int chunkZ, final World world, final IChunkProvider chunkGenerator, final IChunkProvider chunkProvider) {

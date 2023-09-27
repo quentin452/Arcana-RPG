@@ -2,13 +2,13 @@
 
 package com.gibby.dungeon.gen;
 
-import net.minecraft.world.biome.*;
-import com.gibby.dungeon.*;
-import net.minecraft.world.*;
-import java.util.*;
-import net.minecraft.block.*;
-import net.minecraft.init.*;
-import net.minecraft.block.material.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.biome.BiomeGenBase;
+
+import java.util.Random;
 
 public class BiomeCrystalliumPlains extends BiomeGenBase
 {
@@ -24,9 +24,8 @@ public class BiomeCrystalliumPlains extends BiomeGenBase
         this.rootHeight = -0.2f;
         this.heightVariation = 0.3f;
     }
-    
-    public void genCrystalliumBiomeTerrain(final World p_150560_1_, final Random p_150560_2_, final Block[] p_150560_3_, final byte[] p_150560_4_, final int p_150560_5_, final int p_150560_6_, final double p_150560_7_) {
-        final boolean flag = true;
+
+    public void genCrystalliumBiomeTerrain(final Random p_150560_2_, final Block[] p_150560_3_, final byte[] p_150560_4_, final int p_150560_5_, final int p_150560_6_, final double p_150560_7_) {
         Block block = Dungeons.crystalliumGrass;
         byte b0 = (byte)(this.field_150604_aj & 0xFF);
         Block block2 = Dungeons.crystalliumDirt;
@@ -37,7 +36,7 @@ public class BiomeCrystalliumPlains extends BiomeGenBase
         final int k2 = p_150560_3_.length / 256;
         for (int l2 = 255; l2 >= 0; --l2) {
             final int i2 = (j1 * 16 + i1) * k2 + l2;
-            if (l2 <= 0 + p_150560_2_.nextInt(5)) {
+            if (l2 <= p_150560_2_.nextInt(5)) {
                 p_150560_3_[i2] = Blocks.bedrock;
             }
             else {

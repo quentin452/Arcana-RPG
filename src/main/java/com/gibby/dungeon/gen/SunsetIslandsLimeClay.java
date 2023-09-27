@@ -2,11 +2,11 @@
 
 package com.gibby.dungeon.gen;
 
-import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.*;
-import java.util.*;
-import net.minecraft.init.*;
-import net.minecraft.block.*;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class SunsetIslandsLimeClay extends WorldGenerator
 {
@@ -1514,7 +1514,7 @@ public class SunsetIslandsLimeClay extends WorldGenerator
         this.generate2(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate2(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 13, j + 132, k + 51, Blocks.wool, 1, 0);
         world.setBlock(i + 13, j + 132, k + 52, Blocks.wool, 1, 0);
@@ -3019,7 +3019,7 @@ public class SunsetIslandsLimeClay extends WorldGenerator
         this.generate3(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate3(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 17, j + 29, k + 73, Blocks.log);
         world.setBlock(i + 17, j + 29, k + 74, Blocks.log);
@@ -4524,7 +4524,7 @@ public class SunsetIslandsLimeClay extends WorldGenerator
         this.generate4(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate4(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 18, j + 50, k + 92, Blocks.dirt);
         world.setBlock(i + 18, j + 50, k + 93, Blocks.dirt);

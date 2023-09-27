@@ -2,12 +2,13 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.entity.projectile.*;
-import net.minecraft.entity.item.*;
-import net.minecraft.world.*;
-import com.gibby.dungeon.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.World;
 
 public class EntityEnchantEffect extends EntityThrowable
 {
@@ -17,7 +18,7 @@ public class EntityEnchantEffect extends EntityThrowable
     double freezeX;
     double freezeY;
     double freezeZ;
-    
+
     public EntityEnchantEffect(final World par1World) {
         super(par1World);
         this.impacted = false;
@@ -26,7 +27,7 @@ public class EntityEnchantEffect extends EntityThrowable
         this.freezeY = 0.0;
         this.freezeZ = 0.0;
     }
-    
+
     public EntityEnchantEffect(final World par1World, final EntityLivingBase par2EntityLivingBase) {
         super(par1World, par2EntityLivingBase);
         this.impacted = false;
@@ -35,7 +36,7 @@ public class EntityEnchantEffect extends EntityThrowable
         this.freezeY = 0.0;
         this.freezeZ = 0.0;
     }
-    
+
     public EntityEnchantEffect(final World par1World, final double par2, final double par4, final double par6) {
         super(par1World, par2, par4, par6);
         this.impacted = false;
@@ -44,7 +45,7 @@ public class EntityEnchantEffect extends EntityThrowable
         this.freezeY = 0.0;
         this.freezeZ = 0.0;
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         if (this.impacted) {
@@ -72,7 +73,7 @@ public class EntityEnchantEffect extends EntityThrowable
             }
         }
     }
-    
+
     protected void onImpact(final MovingObjectPosition var1) {
         if (this.worldObj != null && var1.entityHit == null) {
             this.impacted = true;

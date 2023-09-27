@@ -2,36 +2,38 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.entity.projectile.*;
-import net.minecraft.world.*;
-import net.minecraft.entity.*;
-import net.minecraft.client.*;
-import net.minecraft.client.particle.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.util.*;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.particle.EntityFireworkSparkFX;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.World;
 
 public class EntityMagirockBall extends EntityThrowable
 {
     public EntityMagirockBall(final World par1World) {
         super(par1World);
     }
-    
+
     public EntityMagirockBall(final World par1World, final EntityLivingBase par2EntityLivingBase) {
         super(par1World, par2EntityLivingBase);
     }
-    
+
     public EntityMagirockBall(final World par1World, final double par2, final double par4, final double par6) {
         super(par1World, par2, par4, par6);
     }
-    
+
     protected float getGravityVelocity() {
         return 0.0f;
     }
-    
+
     protected float func_70182_d() {
         return 0.9f;
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         if (this.worldObj.isRemote) {
@@ -48,7 +50,7 @@ public class EntityMagirockBall extends EntityThrowable
             this.setDead();
         }
     }
-    
+
     protected void onImpact(final MovingObjectPosition var1) {
         if (var1.entityHit != null && var1.entityHit instanceof EntityLivingBase) {
             if (!(this.getThrower() instanceof EntityPlayer) && var1.entityHit instanceof EntityPlayer) {

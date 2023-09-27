@@ -2,7 +2,7 @@
 
 package com.gibby.dungeon.gen;
 
-import net.minecraft.world.biome.*;
+import net.minecraft.world.biome.BiomeGenBase;
 
 public class BiomeSunset extends BiomeGenBase
 {

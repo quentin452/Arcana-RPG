@@ -2,23 +2,27 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.entity.monster.*;
-import net.minecraft.world.*;
-import net.minecraft.entity.ai.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.util.*;
-import java.util.*;
-import com.gibby.dungeon.*;
-import net.minecraft.item.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
+import net.minecraft.world.World;
+
+import java.util.List;
 
 public class EntityAmethystMonster extends EntityMob
 {
     public EntityAmethystMonster(final World par1World) {
         super(par1World);
         this.setSize(2.3f, 2.3f);
-        this.tasks.addTask(4, (EntityAIBase)new EntityAIAttackOnCollide((EntityCreature)this, (Class)EntityLivingBase.class, 1.0, false));
-        this.targetTasks.addTask(3, (EntityAIBase)new EntityAINearestAttackableTarget((EntityCreature)this, (Class)EntityHannibal.class, 0, true));
+        this.tasks.addTask(4, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0, false));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityHannibal.class, 0, true));
         this.experienceValue = 20;
     }
 
@@ -36,14 +40,14 @@ public class EntityAmethystMonster extends EntityMob
 
     public void onUpdate() {
         super.onUpdate();
-        final List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(1.3, 1.3, 1.3));
+        final List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(1.3, 1.3, 1.3));
         if (list2 != null && this.getHealth() > 0.0f) {
             for (int k2 = 0; k2 < list2.size(); ++k2) {
                 if (list2.get(k2) instanceof EntityPlayer && this.ticksExisted % 10 == 0 && !this.worldObj.isRemote) {
                     ((EntityPlayer) list2.get(k2)).addVelocity((((EntityPlayer) list2.get(k2)).posX - this.posX) / 4.0, 0.6, (((EntityPlayer) list2.get(k2)).posZ - this.posZ) / 4.0);
                     ((EntityPlayer) list2.get(k2)).attackEntityFrom(DamageSource.magic, 6.0f);
                     ((EntityPlayer) list2.get(k2)).hurtResistantTime = 0;
-                    ((EntityPlayer) list2.get(k2)).attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), 10.0f);
+                    ((EntityPlayer) list2.get(k2)).attackEntityFrom(DamageSource.causeMobDamage(this), 10.0f);
                 }
             }
         }

@@ -2,33 +2,37 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.entity.projectile.*;
-import net.minecraft.world.*;
-import net.minecraft.util.*;
-import net.minecraft.potion.*;
-import net.minecraft.entity.*;
-import net.minecraft.client.*;
-import net.minecraft.client.particle.*;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.particle.EntityReddustFX;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.World;
 
 public class EntityDarkWave extends EntityThrowable
 {
     int generation;
-    
+
     public EntityDarkWave(final World par1World, final double par2, final double par4, final double par6) {
         super(par1World, par2, par4, par6);
         this.generation = 0;
     }
-    
+
     public EntityDarkWave(final World par1World, final EntityLivingBase par2EntityLivingBase) {
         super(par1World, par2EntityLivingBase);
         this.generation = 0;
     }
-    
+
     public EntityDarkWave(final World par1World) {
         super(par1World);
         this.generation = 0;
     }
-    
+
     protected void onImpact(final MovingObjectPosition var1) {
         if (!this.worldObj.isRemote) {
             if (var1.entityHit != null && var1.entityHit instanceof EntityLivingBase) {
@@ -47,15 +51,15 @@ public class EntityDarkWave extends EntityThrowable
             this.setDead();
         }
     }
-    
+
     protected float getGravityVelocity() {
         return 0.04f;
     }
-    
+
     protected float func_70182_d() {
         return 1.0f;
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         if (this.worldObj.isRemote) {

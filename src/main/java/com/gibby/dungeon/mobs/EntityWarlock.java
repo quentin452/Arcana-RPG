@@ -2,40 +2,43 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.world.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.*;
-import com.gibby.dungeon.*;
-import net.minecraft.item.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.World;
 
 public class EntityWarlock extends EntityHermit
 {
     public EntityWarlock(final World par1World) {
         super(par1World);
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25);
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(40.0);
     }
-    
+
     protected String getLivingSound() {
         return "mob.villager.idle";
     }
-    
+
     protected String getHurtSound() {
         return "mob.villager.hit";
     }
-    
+
     protected String getDeathSound() {
         return "mob.villager.death";
     }
-    
+
     protected float getSoundPitch() {
         return 0.6f;
     }
-    
+
     public void attackEntityWithRangedAttack(final EntityLivingBase par1, final float par2) {
         final int rand = this.worldObj.rand.nextInt(3);
         if (rand == 0) {
@@ -67,7 +70,7 @@ public class EntityWarlock extends EntityHermit
             this.worldObj.spawnEntityInWorld((Entity)ball3);
         }
     }
-    
+
     public boolean attackEntityFrom(final DamageSource par1DamageSource, final float par2) {
         if (this.isEntityInvulnerable() || par1DamageSource == DamageSource.magic) {
             return false;
@@ -84,7 +87,7 @@ public class EntityWarlock extends EntityHermit
         }
         return true;
     }
-    
+
     protected void dropFewItems(final boolean par1, final int par2) {
         if (this.rand.nextInt(2) == 0) {
             this.dropItem(Dungeons.amazonite, 1);
@@ -99,7 +102,7 @@ public class EntityWarlock extends EntityHermit
             this.entityDropItem(new ItemStack(Dungeons.magicCoin), 1.0f);
         }
     }
-    
+
     protected void dropRareDrop(final int par1) {
         this.entityDropItem(new ItemStack(Dungeons.warlockStaff), 1.0f);
     }

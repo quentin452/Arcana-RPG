@@ -2,12 +2,13 @@
 
 package com.gibby.dungeon.blocks;
 
-import net.minecraft.block.*;
-import net.minecraft.world.*;
-import java.util.*;
-import com.gibby.dungeon.*;
-import net.minecraft.client.*;
-import net.minecraft.client.particle.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.block.BlockOre;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.EntityFlameFX;
+import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class BlockAmethystStone extends BlockOre
 {
@@ -15,7 +16,7 @@ public class BlockAmethystStone extends BlockOre
         if (world.isRemote && random.nextInt(20) == 0) {
             final EntityFlameFX particle = new EntityFlameFX(world, x + Dungeons.randGauss(), y + Dungeons.randGauss(), z + Dungeons.randGauss(), Dungeons.randFloat() * 0.1, Dungeons.randFloat() * 0.1, Dungeons.randFloat() * 0.1);
             particle.setRBGColorF(0.1f, 0.0f, 1.0f);
-            Minecraft.getMinecraft().effectRenderer.addEffect((EntityFX)particle);
+            Minecraft.getMinecraft().effectRenderer.addEffect(particle);
         }
     }
 }

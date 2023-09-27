@@ -2,14 +2,11 @@ package com.gibby.dungeon.gen;
 
 
 import com.gibby.dungeon.Dungeons;
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.feature.WorldGenerator;
-import cpw.mods.fml.common.IWorldGenerator;
-import net.minecraft.block.*;
+import net.minecraft.world.World;
 
-import java.util.*;
-import net.minecraft.world.*;
+import java.util.Random;
 public class WorldGenCrystalliumVillagePar2
 {
     public static void setBlock(final World world, final int x, final int y, final int z, final Block block, final int metadata) {

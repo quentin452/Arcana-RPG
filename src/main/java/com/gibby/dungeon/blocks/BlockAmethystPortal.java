@@ -2,15 +2,18 @@
 
 package com.gibby.dungeon.blocks;
 
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.server.*;
-import com.gibby.dungeon.*;
-import com.gibby.dungeon.gen.*;
-import net.minecraft.world.*;
-import java.util.*;
-import cpw.mods.fml.relauncher.*;
-import net.minecraft.block.*;
+import com.gibby.dungeon.Dungeons;
+import com.gibby.dungeon.gen.TeleporterCrystal;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockPortal;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class BlockAmethystPortal extends BlockPortal
 {
@@ -18,7 +21,7 @@ public class BlockAmethystPortal extends BlockPortal
         this.setLightLevel(6.0f);
         this.setHardness(10000.0f);
     }
-    
+
     public void onEntityCollidedWithBlock(final World par1World, final int par2, final int par3, final int par4, final Entity par5Entity) {
         if (par5Entity.ridingEntity == null && par5Entity.riddenByEntity == null && par5Entity instanceof EntityPlayerMP) {
             final EntityPlayerMP player = (EntityPlayerMP)par5Entity;
@@ -28,20 +31,20 @@ public class BlockAmethystPortal extends BlockPortal
             }
             else if (player.dimension != Dungeons.crystalDimensionId) {
                 player.timeUntilPortal = 3;
-                player.mcServer.getConfigurationManager().transferPlayerToDimension(player, Dungeons.crystalDimensionId, (Teleporter)new TeleporterCrystal(mServer.worldServerForDimension(Dungeons.crystalDimensionId)));
+                player.mcServer.getConfigurationManager().transferPlayerToDimension(player, Dungeons.crystalDimensionId, new TeleporterCrystal(mServer.worldServerForDimension(Dungeons.crystalDimensionId)));
             }
             else {
                 player.timeUntilPortal = 3;
-                player.mcServer.getConfigurationManager().transferPlayerToDimension(player, 0, (Teleporter)new TeleporterCrystal(mServer.worldServerForDimension(0)));
+                player.mcServer.getConfigurationManager().transferPlayerToDimension(player, 0, new TeleporterCrystal(mServer.worldServerForDimension(0)));
                 player.fallDistance = -20.0f;
             }
         }
     }
-    
+
     public boolean isOpaqueCube() {
         return true;
     }
-    
+
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(final World p_149734_1_, final int p_149734_2_, final int p_149734_3_, final int p_149734_4_, final Random p_149734_5_) {
         if (p_149734_5_.nextInt(50) == 0) {
@@ -51,9 +54,9 @@ public class BlockAmethystPortal extends BlockPortal
             double d0 = p_149734_2_ + p_149734_5_.nextFloat();
             final double d2 = p_149734_3_ + p_149734_5_.nextFloat();
             double d3 = p_149734_4_ + p_149734_5_.nextFloat();
-            double d4 = 0.0;
-            double d5 = 0.0;
-            double d6 = 0.0;
+            double d4;
+            double d5;
+            double d6;
             final int i1 = p_149734_5_.nextInt(2) * 2 - 1;
             d4 = (p_149734_5_.nextFloat() - 0.5) * 0.5;
             d5 = (p_149734_5_.nextFloat() - 0.5) * 0.5;
@@ -72,7 +75,7 @@ public class BlockAmethystPortal extends BlockPortal
             p_149734_1_.spawnParticle("portal", p_149734_2_ + p_149734_5_.nextGaussian(), p_149734_3_ + p_149734_5_.nextGaussian(), p_149734_4_ + p_149734_5_.nextGaussian(), p_149734_5_.nextGaussian(), p_149734_5_.nextGaussian(), p_149734_5_.nextGaussian());
         }
     }
-    
+
     public void onNeighborBlockChange(final World par1World, final int par2, final int par3, final int par4, final Block par5) {
         byte b0 = 0;
         byte b2 = 1;

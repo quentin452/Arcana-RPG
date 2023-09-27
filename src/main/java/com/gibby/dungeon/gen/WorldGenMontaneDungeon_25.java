@@ -2,14 +2,15 @@
 
 package com.gibby.dungeon.gen;
 
-import net.minecraft.world.gen.feature.*;
-import cpw.mods.fml.common.*;
-import java.util.*;
-import net.minecraft.world.chunk.*;
-import net.minecraft.block.*;
-import net.minecraft.world.*;
-import net.minecraft.init.*;
-import com.gibby.dungeon.*;
+import com.gibby.dungeon.Dungeons;
+import cpw.mods.fml.common.IWorldGenerator;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class WorldGenMontaneDungeon_25 extends WorldGenerator implements IWorldGenerator
 {

@@ -2,64 +2,69 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.entity.monster.*;
-import net.minecraft.world.*;
-import net.minecraft.entity.ai.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.entity.boss.*;
-import net.minecraft.potion.*;
-import net.minecraft.entity.projectile.*;
-import java.util.*;
-import net.minecraft.util.*;
-import com.gibby.dungeon.*;
-import net.minecraft.item.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.boss.BossStatus;
+import net.minecraft.entity.boss.IBossDisplayData;
+import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntitySmallFireball;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
+import net.minecraft.world.World;
+
+import java.util.List;
 
 public class EntitySpecter extends EntityZombie implements IBossDisplayData
 {
     int charge;
-    
+
     public EntitySpecter(final World par1World) {
         super(par1World);
         this.charge = 100;
         this.experienceValue = 150;
         this.isImmuneToFire = true;
         this.getSoundVolume();
-        this.tasks.addTask(4, (EntityAIBase)new EntityAIAttackOnCollide((EntityCreature)this, (Class)EntityLivingBase.class, 1.0, false));
+        this.tasks.addTask(4, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0, false));
         this.canDespawn();
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(120.0);
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.24);
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(30.0);
     }
-    
+
     protected String getLivingSound() {
         return "ambient.cave.cave";
     }
-    
+
     protected String getHurtSound() {
         return "ambient.cave.cave";
     }
-    
+
     protected String getDeathSound() {
         return "ambient.cave.cave";
     }
-    
+
     protected float getSoundVolume() {
         return 2.0f;
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         boolean playerAround = false;
-        final List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(20.0, 10.0, 20.0));
+        final List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(20.0, 10.0, 20.0));
         if (list2 != null) {
             for (int k2 = 0; k2 < list2.size(); ++k2) {
                 if (list2.get(k2) instanceof EntityPlayer) {
-                    BossStatus.setBossStatus((IBossDisplayData)this, true);
+                    BossStatus.setBossStatus(this, true);
                     this.func_145748_c_();
                     playerAround = true;
                 }
@@ -78,8 +83,8 @@ public class EntitySpecter extends EntityZombie implements IBossDisplayData
                 this.addPotionEffect(new PotionEffect(Potion.resistance.id, 100, 100));
                 if (this.charge == 126) {
                     for (int i = 0; i < 20; ++i) {
-                        final EntitySmallFireball ball = new EntitySmallFireball(this.worldObj, (EntityLivingBase)this, 0.0, 0.0, 0.0);
-                        this.worldObj.spawnEntityInWorld((Entity)ball);
+                        final EntitySmallFireball ball = new EntitySmallFireball(this.worldObj, this, 0.0, 0.0, 0.0);
+                        this.worldObj.spawnEntityInWorld(ball);
                     }
                 }
             }
@@ -95,7 +100,7 @@ public class EntitySpecter extends EntityZombie implements IBossDisplayData
             this.updateLeashedState();
         }
     }
-    
+
     public boolean attackEntityAsMob(final Entity par1Entity) {
         par1Entity.attackEntityFrom(DamageSource.magic, 5.0f);
         if (par1Entity instanceof EntityLivingBase) {
@@ -104,14 +109,14 @@ public class EntitySpecter extends EntityZombie implements IBossDisplayData
         }
         return true;
     }
-    
+
     protected void despawnEntity() {
     }
-    
+
     protected boolean canDespawn() {
         return false;
     }
-    
+
     protected void dropFewItems(final boolean par1, final int par2) {
         final int r = this.rand.nextInt(6);
         if (r == 0) {

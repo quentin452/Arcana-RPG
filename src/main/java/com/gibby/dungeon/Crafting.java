@@ -2,9 +2,10 @@
 
 package com.gibby.dungeon;
 
-import net.minecraft.item.*;
-import cpw.mods.fml.common.registry.*;
-import net.minecraft.init.*;
+import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 
 public class Crafting
 {

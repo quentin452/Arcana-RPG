@@ -2,11 +2,12 @@
 
 package com.gibby.dungeon.blocks;
 
-import net.minecraft.block.*;
-import net.minecraft.block.material.*;
-import java.util.*;
-import net.minecraft.item.*;
-import com.gibby.dungeon.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
+
+import java.util.Random;
 
 public class BlockCrystalliumDirt extends Block
 {
@@ -17,7 +18,7 @@ public class BlockCrystalliumDirt extends Block
         this.setHardness(1.0f);
         this.setResistance(1.0f);
     }
-    
+
     public Item getItemDropped(final int p_149650_1_, final Random p_149650_2_, final int p_149650_3_) {
         if (this == Dungeons.crystalliumGrass) {
             return Item.getItemFromBlock(Dungeons.crystalliumDirt);

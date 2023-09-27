@@ -2,14 +2,19 @@
 
 package com.gibby.dungeon;
 
-import net.minecraft.entity.player.*;
-import net.minecraft.entity.ai.*;
-import net.minecraft.potion.*;
-import com.gibby.dungeon.mobs.*;
-import net.minecraft.util.*;
+import com.gibby.dungeon.mobs.EntityIceShieldBall;
 import net.minecraft.entity.*;
-import net.minecraft.world.*;
-import java.util.*;
+import net.minecraft.entity.ai.EntityAIArrowAttack;
+import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.EnumDifficulty;
+import net.minecraft.world.World;
+
+import java.util.List;
 
 public class EntityIceShielder extends EntityFlying implements IRangedAttackMob
 {

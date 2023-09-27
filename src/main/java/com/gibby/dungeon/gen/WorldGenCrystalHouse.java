@@ -2,62 +2,64 @@
 
 package com.gibby.dungeon.gen;
 
-import net.minecraft.world.gen.feature.*;
-import cpw.mods.fml.common.*;
-import java.util.*;
-import net.minecraft.world.*;
-import net.minecraft.world.chunk.*;
-import net.minecraft.block.*;
-import net.minecraft.init.*;
-import com.gibby.dungeon.*;
-import com.gibby.dungeon.mobs.*;
-import net.minecraft.entity.*;
+import com.gibby.dungeon.Dungeons;
+import com.gibby.dungeon.mobs.EntityAnchorTrader;
+import cpw.mods.fml.common.IWorldGenerator;
+import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.IEntityLivingData;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class WorldGenCrystalHouse extends WorldGenerator implements IWorldGenerator
 {
     public void generate(final Random random, final int chunkX, final int chunkZ, final World world, final IChunkProvider chunkGenerator, final IChunkProvider chunkProvider) {
     }
-    
+
     public void setBlock(final World world, final int x, final int y, final int z, final Block block, final int metadata) {
         final Block b1 = world.getBlock(x, y, z);
         world.setBlock(x, y, z, block, metadata, 2);
     }
-    
+
     public boolean generate(final World world, final Random rand, final int i, final int j, final int k) {
         if (world.getBlock(i, j, k) != Blocks.air || world.getBlock(i + 13, j, k + 13) != Blocks.air || world.getBlock(i + 13, j - 1, k + 13) == Blocks.air || world.getBlock(i, j - 1, k) == Blocks.air) {
             return false;
         }
-        this.setBlock(world, i + 0, j + 1, k + 4, Blocks.obsidian, 0);
-        this.setBlock(world, i + 0, j + 1, k + 5, Blocks.obsidian, 0);
-        this.setBlock(world, i + 0, j + 1, k + 6, Blocks.obsidian, 0);
-        this.setBlock(world, i + 0, j + 1, k + 7, Blocks.obsidian, 0);
-        this.setBlock(world, i + 0, j + 1, k + 8, Blocks.obsidian, 0);
-        this.setBlock(world, i + 0, j + 2, k + 4, Blocks.obsidian, 0);
-        this.setBlock(world, i + 0, j + 2, k + 5, Blocks.obsidian, 0);
-        this.setBlock(world, i + 0, j + 2, k + 6, Blocks.obsidian, 0);
-        this.setBlock(world, i + 0, j + 2, k + 7, Blocks.obsidian, 0);
-        this.setBlock(world, i + 0, j + 2, k + 8, Blocks.obsidian, 0);
-        this.setBlock(world, i + 0, j + 3, k + 4, Blocks.obsidian, 0);
-        this.setBlock(world, i + 0, j + 3, k + 5, Blocks.obsidian, 0);
-        this.setBlock(world, i + 0, j + 3, k + 6, Blocks.obsidian, 0);
-        this.setBlock(world, i + 0, j + 3, k + 7, Blocks.obsidian, 0);
-        this.setBlock(world, i + 0, j + 3, k + 8, Blocks.obsidian, 0);
-        this.setBlock(world, i + 0, j + 4, k + 4, Blocks.obsidian, 0);
-        this.setBlock(world, i + 0, j + 4, k + 5, Blocks.obsidian, 0);
-        this.setBlock(world, i + 0, j + 4, k + 6, Blocks.obsidian, 0);
-        this.setBlock(world, i + 0, j + 4, k + 7, Blocks.obsidian, 0);
-        this.setBlock(world, i + 0, j + 4, k + 8, Blocks.obsidian, 0);
-        this.setBlock(world, i + 0, j + 5, k + 4, Blocks.obsidian, 0);
-        this.setBlock(world, i + 0, j + 5, k + 5, Blocks.obsidian, 0);
-        this.setBlock(world, i + 0, j + 5, k + 7, Blocks.obsidian, 0);
-        this.setBlock(world, i + 0, j + 5, k + 8, Blocks.obsidian, 0);
-        this.setBlock(world, i + 0, j + 6, k + 4, Blocks.obsidian, 0);
-        this.setBlock(world, i + 0, j + 6, k + 5, Blocks.obsidian, 0);
-        this.setBlock(world, i + 0, j + 6, k + 7, Blocks.obsidian, 0);
-        this.setBlock(world, i + 0, j + 7, k + 4, Blocks.obsidian, 0);
-        this.setBlock(world, i + 0, j + 7, k + 7, Blocks.obsidian, 0);
-        this.setBlock(world, i + 0, j + 8, k + 4, Blocks.obsidian, 0);
-        this.setBlock(world, i + 0, j + 8, k + 7, Blocks.obsidian, 0);
+        this.setBlock(world, i, j + 1, k + 4, Blocks.obsidian, 0);
+        this.setBlock(world, i, j + 1, k + 5, Blocks.obsidian, 0);
+        this.setBlock(world, i, j + 1, k + 6, Blocks.obsidian, 0);
+        this.setBlock(world, i, j + 1, k + 7, Blocks.obsidian, 0);
+        this.setBlock(world, i, j + 1, k + 8, Blocks.obsidian, 0);
+        this.setBlock(world, i, j + 2, k + 4, Blocks.obsidian, 0);
+        this.setBlock(world, i, j + 2, k + 5, Blocks.obsidian, 0);
+        this.setBlock(world, i, j + 2, k + 6, Blocks.obsidian, 0);
+        this.setBlock(world, i, j + 2, k + 7, Blocks.obsidian, 0);
+        this.setBlock(world, i, j + 2, k + 8, Blocks.obsidian, 0);
+        this.setBlock(world, i, j + 3, k + 4, Blocks.obsidian, 0);
+        this.setBlock(world, i, j + 3, k + 5, Blocks.obsidian, 0);
+        this.setBlock(world, i, j + 3, k + 6, Blocks.obsidian, 0);
+        this.setBlock(world, i, j + 3, k + 7, Blocks.obsidian, 0);
+        this.setBlock(world, i, j + 3, k + 8, Blocks.obsidian, 0);
+        this.setBlock(world, i, j + 4, k + 4, Blocks.obsidian, 0);
+        this.setBlock(world, i, j + 4, k + 5, Blocks.obsidian, 0);
+        this.setBlock(world, i, j + 4, k + 6, Blocks.obsidian, 0);
+        this.setBlock(world, i, j + 4, k + 7, Blocks.obsidian, 0);
+        this.setBlock(world, i, j + 4, k + 8, Blocks.obsidian, 0);
+        this.setBlock(world, i, j + 5, k + 4, Blocks.obsidian, 0);
+        this.setBlock(world, i, j + 5, k + 5, Blocks.obsidian, 0);
+        this.setBlock(world, i, j + 5, k + 7, Blocks.obsidian, 0);
+        this.setBlock(world, i, j + 5, k + 8, Blocks.obsidian, 0);
+        this.setBlock(world, i, j + 6, k + 4, Blocks.obsidian, 0);
+        this.setBlock(world, i, j + 6, k + 5, Blocks.obsidian, 0);
+        this.setBlock(world, i, j + 6, k + 7, Blocks.obsidian, 0);
+        this.setBlock(world, i, j + 7, k + 4, Blocks.obsidian, 0);
+        this.setBlock(world, i, j + 7, k + 7, Blocks.obsidian, 0);
+        this.setBlock(world, i, j + 8, k + 4, Blocks.obsidian, 0);
+        this.setBlock(world, i, j + 8, k + 7, Blocks.obsidian, 0);
         this.setBlock(world, i + 1, j, k + 4, Blocks.obsidian, 0);
         this.setBlock(world, i + 1, j, k + 5, Blocks.obsidian, 0);
         this.setBlock(world, i + 1, j, k + 6, Blocks.obsidian, 0);
@@ -335,10 +337,10 @@ public class WorldGenCrystalHouse extends WorldGenerator implements IWorldGenera
         this.setBlock(world, i + 6, j, k + 5, Dungeons.purpleBrick, 0);
         this.setBlock(world, i + 6, j, k + 6, Blocks.glowstone, 0);
         final EntityAnchorTrader trader = new EntityAnchorTrader(world);
-        trader.setPosition((double)(i + 6), (double)(j + 1), (double)(k + 6));
-        world.spawnEntityInWorld((Entity)trader);
-        trader.onSpawnWithEgg((IEntityLivingData)null);
-        trader.setPosition((double)(i + 6), (double)(j + 1), (double)(k + 6));
+        trader.setPosition((i + 6), (j + 1), (k + 6));
+        world.spawnEntityInWorld(trader);
+        trader.onSpawnWithEgg(null);
+        trader.setPosition((i + 6), (j + 1),(k + 6));
         this.setBlock(world, i + 6, j, k + 7, Dungeons.purpleBrick, 0);
         this.setBlock(world, i + 6, j, k + 8, Dungeons.purpleBrick, 0);
         this.setBlock(world, i + 6, j, k + 9, Blocks.wool, 10);

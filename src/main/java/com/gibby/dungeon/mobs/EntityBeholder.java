@@ -2,17 +2,26 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.entity.monster.*;
-import net.minecraft.entity.boss.*;
-import net.minecraft.world.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.entity.projectile.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.*;
-import com.gibby.dungeon.gen.*;
-import com.gibby.dungeon.*;
-import net.minecraft.item.*;
-import net.minecraft.init.*;
+import com.gibby.dungeon.Dungeons;
+import com.gibby.dungeon.gen.WorldGenWarlordDungeon;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityLivingData;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.boss.BossStatus;
+import net.minecraft.entity.boss.IBossDisplayData;
+import net.minecraft.entity.monster.EntityGhast;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityLargeFireball;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.Vec3;
+import net.minecraft.world.EnumDifficulty;
+import net.minecraft.world.World;
 
 public class EntityBeholder extends EntityGhast implements IBossDisplayData
 {
@@ -22,7 +31,7 @@ public class EntityBeholder extends EntityGhast implements IBossDisplayData
     private int cycCount;
     private boolean spitFire;
     private int hiccupTime;
-    
+
     public EntityBeholder(final World par1World) {
         super(par1World);
         this.cycBomb = false;
@@ -32,21 +41,21 @@ public class EntityBeholder extends EntityGhast implements IBossDisplayData
         this.setSize(9.0f, 9.0f);
         this.experienceValue = 2000;
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.knockbackResistance).setBaseValue(1.0);
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(500.0);
     }
-    
+
     public int getTotalArmorValue() {
         return 24;
     }
-    
+
     protected float getSoundPitch() {
         return 0.9f;
     }
-    
+
     public void onLivingUpdate() {
         super.onLivingUpdate();
         BossStatus.setBossStatus((IBossDisplayData)this, true);
@@ -67,7 +76,7 @@ public class EntityBeholder extends EntityGhast implements IBossDisplayData
             this.setDead();
         }
     }
-    
+
     protected void updateEntityActionState() {
         if (this.rand.nextInt(400) == 0 && this.targetedEntity != null) {
             this.spitFire = true;
@@ -203,11 +212,11 @@ public class EntityBeholder extends EntityGhast implements IBossDisplayData
             }
         }
     }
-    
+
     public boolean attackEntityFrom(final DamageSource par1DamageSource, final float par2) {
         return !this.isEntityInvulnerable() && par1DamageSource != DamageSource.drown && super.attackEntityFrom(par1DamageSource, par2);
     }
-    
+
     private boolean isCourseTraversable(final double par1, final double par3, final double par5, final double par7) {
         final double d4 = (this.waypointX - this.posX) / par7;
         final double d5 = (this.waypointY - this.posY) / par7;
@@ -221,14 +230,14 @@ public class EntityBeholder extends EntityGhast implements IBossDisplayData
         }
         return true;
     }
-    
+
     protected void despawnEntity() {
     }
-    
+
     protected boolean canDespawn() {
         return false;
     }
-    
+
     protected void dropFewItems(final boolean par1, final int par2) {
         final int chestX = (int)this.posX;
         int chestY = (int)this.posY;

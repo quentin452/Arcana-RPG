@@ -2,13 +2,13 @@
 
 package com.gibby.dungeon;
 
-import net.minecraftforge.client.*;
-import net.minecraft.util.*;
-import com.gibby.dungeon.items.*;
-import net.minecraft.item.*;
-import org.lwjgl.opengl.*;
-import net.minecraft.client.*;
-import net.minecraft.entity.*;
+import com.gibby.dungeon.items.ModelSunAxe;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.IItemRenderer;
+import org.lwjgl.opengl.GL11;
 
 public class RenderSunAxe implements IItemRenderer
 {

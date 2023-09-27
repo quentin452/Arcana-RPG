@@ -2,27 +2,34 @@
 
 package com.gibby.dungeon.items;
 
-import net.minecraft.world.*;
-import net.minecraft.entity.player.*;
-import net.minecraftforge.common.*;
-import cpw.mods.fml.common.eventhandler.*;
-import net.minecraftforge.event.entity.player.*;
-import com.gibby.dungeon.*;
-import net.minecraft.entity.*;
-import net.minecraft.item.*;
-import java.util.*;
-import net.minecraft.util.*;
-import cpw.mods.fml.relauncher.*;
+import com.gibby.dungeon.DungeonsExtendedPlayer;
+import cpw.mods.fml.common.eventhandler.Event;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumAction;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.ArrowLooseEvent;
+import net.minecraftforge.event.entity.player.ArrowNockEvent;
+
+import java.util.List;
 
 public class ItemExawdusSmasher extends ItemTripleSword
 {
     float multiplier;
-    
+
     public ItemExawdusSmasher(final Item.ToolMaterial p_i45356_1_, final int MagicDamage, final int VoidDamage) {
         super(p_i45356_1_, MagicDamage, VoidDamage);
         this.multiplier = 1.0f;
     }
-    
+
     public ItemStack onItemRightClick(final ItemStack par1ItemStack, final World par2World, final EntityPlayer par3EntityPlayer) {
         final ArrowNockEvent event = new ArrowNockEvent(par3EntityPlayer, par1ItemStack);
         MinecraftForge.EVENT_BUS.post((Event)event);
@@ -32,7 +39,7 @@ public class ItemExawdusSmasher extends ItemTripleSword
         par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
         return par1ItemStack;
     }
-    
+
     public void onPlayerStoppedUsing(final ItemStack par1ItemStack, final World par2World, final EntityPlayer par3EntityPlayer, final int par4) {
         final int j = this.getMaxItemUseDuration(par1ItemStack) - par4;
         final ArrowLooseEvent event = new ArrowLooseEvent(par3EntityPlayer, par1ItemStack, j);
@@ -50,7 +57,7 @@ public class ItemExawdusSmasher extends ItemTripleSword
             }
         }
     }
-    
+
     @Override
     public boolean hitEntity(final ItemStack par1ItemStack, final EntityLivingBase par2EntityLivingBase, final EntityLivingBase par3EntityLivingBase) {
         if (this.charge < 0) {
@@ -66,15 +73,15 @@ public class ItemExawdusSmasher extends ItemTripleSword
         }
         return this.charge < 0;
     }
-    
+
     public int getMaxItemUseDuration(final ItemStack par1ItemStack) {
         return 1000;
     }
-    
+
     public EnumAction getItemUseAction(final ItemStack par1ItemStack) {
         return EnumAction.bow;
     }
-    
+
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(final ItemStack par1ItemStack, final EntityPlayer par2EntityPlayer, final List par3List, final boolean par4) {

@@ -2,12 +2,15 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.world.*;
-import com.gibby.dungeon.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.init.*;
-import net.minecraft.item.*;
-import net.minecraft.util.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.IChatComponent;
+import net.minecraft.world.World;
 
 public class EntityQuarryMaster extends EntityMoundTrader
 {
@@ -15,18 +18,18 @@ public class EntityQuarryMaster extends EntityMoundTrader
     private double Y;
     private double Z;
     private String[] quests;
-    
+
     public EntityQuarryMaster(final World par1World) {
         this(par1World, 0);
     }
-    
+
     public EntityQuarryMaster(final World par1World, final int par2) {
         super(par1World);
         this.X = 0.0;
         this.quests = new String[] { "Sir, I'll pay you handsomely if you mine and smelt 64 iron ore from the caves below. Be careful!", "I need some troll meat to heal a worker in an accident. 10 cooked troll meat should do the trick.", "Those cave monsters stole my redstone! Could you find the redstone block and crush it back into redstone." };
         this.setCurrentItemOrArmor(2, new ItemStack(Dungeons.metalCoin, 3, 0));
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         if (this.X == 0.0) {
@@ -44,7 +47,7 @@ public class EntityQuarryMaster extends EntityMoundTrader
             this.posZ = this.Z;
         }
     }
-    
+
     public boolean interact(final EntityPlayer par1EntityPlayer) {
         final ItemStack itemstack = par1EntityPlayer.inventory.getCurrentItem();
         final boolean flag = itemstack != null && itemstack.getItem() == Items.spawn_egg;
@@ -106,7 +109,7 @@ public class EntityQuarryMaster extends EntityMoundTrader
         }
         return super.interact(par1EntityPlayer);
     }
-    
+
     public boolean attackEntityFrom(final DamageSource par1DamageSource, final float par2) {
         return false;
     }

@@ -2,18 +2,19 @@
 
 package com.gibby.dungeon.gen;
 
-import net.minecraft.world.gen.feature.*;
-import net.minecraft.block.*;
-import com.gibby.dungeon.*;
-import net.minecraft.world.*;
-import java.util.*;
-import net.minecraft.util.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.block.Block;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class WorldGenCrystalMinable extends WorldGenerator
 {
-    private Block field_150519_a;
-    private int numberOfBlocks;
-    private Block field_150518_c;
+    private final Block field_150519_a;
+    private final int numberOfBlocks;
+    private final Block field_150518_c;
     private int mineableBlockMeta;
 
     public WorldGenCrystalMinable(final Block p_i45459_1_, final int p_i45459_2_) {

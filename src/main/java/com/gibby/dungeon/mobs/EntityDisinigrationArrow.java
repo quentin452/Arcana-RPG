@@ -2,10 +2,13 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.world.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.projectile.*;
-import java.util.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.world.World;
+
+import java.util.List;
 
 public class EntityDisinigrationArrow extends EntityArrow
 {

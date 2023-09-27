@@ -2,11 +2,15 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.client.renderer.entity.*;
-import cpw.mods.fml.relauncher.*;
-import net.minecraft.util.*;
-import net.minecraft.client.model.*;
-import net.minecraft.entity.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelBlaze;
+import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.ResourceLocation;
 
 @SideOnly(Side.CLIENT)
 public class RenderTyphoon extends RenderLiving
@@ -15,7 +19,7 @@ public class RenderTyphoon extends RenderLiving
     private int field_77068_a;
 
     public RenderTyphoon() {
-        super((ModelBase)new ModelBlaze(), 0.5f);
+        super(new ModelBlaze(), 0.5f);
         this.field_77068_a = ((ModelBlaze)this.mainModel).func_78104_a();
     }
 
@@ -23,7 +27,7 @@ public class RenderTyphoon extends RenderLiving
         final int i = ((ModelBlaze)this.mainModel).func_78104_a();
         if (i != this.field_77068_a) {
             this.field_77068_a = i;
-            this.mainModel = (ModelBase)new ModelBlaze();
+            this.mainModel = new ModelBlaze();
         }
         super.doRender((EntityLiving)par1EntityTyphoon, par2, par4, par6, par8, par9);
     }

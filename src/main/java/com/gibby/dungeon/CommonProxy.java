@@ -1,7 +1,9 @@
 package com.gibby.dungeon;
 
-import cpw.mods.fml.common.registry.*;
-import com.gibby.dungeon.blocks.*;
+import com.gibby.dungeon.blocks.TileEntityDungeonSpawner;
+import com.gibby.dungeon.blocks.TileEntityDungeonSpawnerRepeater;
+import com.gibby.dungeon.blocks.TileEntityRedKeyOpen;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class CommonProxy
 {

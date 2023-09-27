@@ -2,8 +2,8 @@
 
 package com.gibby.dungeon.blocks;
 
-import net.minecraft.block.*;
-import com.gibby.dungeon.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.block.BlockOre;
 
 public class BlockLithiumOre extends BlockOre
 {

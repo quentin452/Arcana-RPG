@@ -2,27 +2,32 @@
 
 package com.gibby.dungeon.items;
 
-import net.minecraft.item.*;
-import net.minecraft.world.*;
-import net.minecraft.entity.player.*;
-import com.gibby.dungeon.*;
-import com.gibby.dungeon.mobs.*;
-import net.minecraft.entity.*;
-import java.util.*;
-import net.minecraft.util.*;
-import cpw.mods.fml.relauncher.*;
+import com.gibby.dungeon.Dungeons;
+import com.gibby.dungeon.DungeonsExtendedPlayer;
+import com.gibby.dungeon.mobs.EntityStoneBot;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityLivingData;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.world.World;
+
+import java.util.List;
 
 public class ItemBotAmulet extends ItemForceWand
 {
     public ItemBotAmulet() {
         this.tier = 2;
     }
-    
+
     @Override
     public boolean onEntitySwing(final EntityLivingBase entityLiving, final ItemStack stack) {
         return false;
     }
-    
+
     @Override
     public ItemStack onItemRightClick(final ItemStack par1ItemStack, final World par2World, final EntityPlayer par3) {
         final DungeonsExtendedPlayer par4 = DungeonsExtendedPlayer.get(par3);
@@ -47,7 +52,7 @@ public class ItemBotAmulet extends ItemForceWand
         }
         return par1ItemStack;
     }
-    
+
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(final ItemStack par1ItemStack, final EntityPlayer par2EntityPlayer, final List par3List, final boolean par4) {

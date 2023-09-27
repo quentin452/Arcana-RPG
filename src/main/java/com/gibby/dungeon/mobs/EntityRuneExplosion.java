@@ -2,13 +2,16 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.entity.projectile.*;
-import net.minecraft.world.*;
-import net.minecraft.entity.*;
-import com.gibby.dungeon.*;
-import net.minecraft.potion.*;
-import java.util.*;
-import net.minecraft.util.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.World;
+
+import java.util.List;
 
 public class EntityRuneExplosion extends EntityThrowable
 {
@@ -62,11 +65,11 @@ public class EntityRuneExplosion extends EntityThrowable
                 this.worldObj.spawnParticle("fireworksSpark", this.posX + particlePositionX / 4.0, this.posY, this.posZ + particlePositionZ / 4.0, 0.0, 0.0, 0.0);
             }
             if (this.counter > 40 && this.worldObj != null) {
-                this.worldObj.playSoundAtEntity((Entity)this, "fire.fire", 1.0f, 1.0f);
+                this.worldObj.playSoundAtEntity(this, "fire.fire", 1.0f, 1.0f);
                 for (int i = 0; i < 300; ++i) {
                     this.worldObj.spawnParticle("witchMagic", this.posX + Dungeons.randGauss(), this.posY + Dungeons.randGauss(), this.posZ + Dungeons.randGauss(), 0.0, 0.5, 0.0);
                 }
-                final List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(5.0, 5.0, 5.0));
+                final List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(5.0, 5.0, 5.0));
                 if (list2 != null) {
                     for (int k2 = 0; k2 < list2.size(); ++k2) {
                         if (list2.get(k2) instanceof EntityLivingBase && !(list2.get(k2) instanceof EntityDeathBringer)) {

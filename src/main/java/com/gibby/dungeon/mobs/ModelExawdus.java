@@ -2,9 +2,10 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.client.model.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.*;
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.MathHelper;
 
 public class ModelExawdus extends ModelBase
 {
@@ -16,7 +17,7 @@ public class ModelExawdus extends ModelBase
     ModelRenderer Head;
     ModelRenderer Belly;
     ModelRenderer Back;
-    
+
     public ModelExawdus() {
         this.textureWidth = 128;
         this.textureHeight = 64;
@@ -66,12 +67,12 @@ public class ModelExawdus extends ModelBase
         this.setTextureOffset("Head.Leftheadspike2", 62, 0);
         this.setTextureOffset("Head.Leftheadspike3", 62, 0);
         this.setTextureOffset("Head.Leftheadspike1", 62, 0);
-        (this.Body = new ModelRenderer((ModelBase)this, 0, 0)).addBox(-9.0f, -9.0f, -6.0f, 18, 18, 12);
+        (this.Body = new ModelRenderer(this, 0, 0)).addBox(-9.0f, -9.0f, -6.0f, 18, 18, 12);
         this.Body.setRotationPoint(0.0f, 0.0f, 0.0f);
         this.Body.setTextureSize(128, 64);
         this.Body.mirror = true;
         this.setRotation(this.Body, 0.0f, 0.0f, 0.0f);
-        (this.Leftarm = new ModelRenderer((ModelBase)this, "Leftarm")).setRotationPoint(9.0f, -5.0f, 0.0f);
+        (this.Leftarm = new ModelRenderer(this, "Leftarm")).setRotationPoint(9.0f, -5.0f, 0.0f);
         this.setRotation(this.Leftarm, 0.0f, 0.0f, 0.0f);
         this.Leftarm.mirror = true;
         this.Leftarm.addBox("Leftarm", 0.0f, -6.0f, -4.0f, 4, 20, 8);
@@ -83,7 +84,7 @@ public class ModelExawdus extends ModelBase
         this.Leftarm.addBox("Leftarmoutside", 4.0f, -3.0f, -2.0f, 1, 14, 4);
         this.Leftarm.addBox("Leftshoulderspike3", 0.0f, -18.0f, -1.0f, 1, 4, 1);
         this.Leftarm.addBox("LeftSlicinghand2", 1.0f, 10.0f, -28.0f, 2, 6, 9);
-        (this.Rightleg = new ModelRenderer((ModelBase)this, "Rightleg")).setRotationPoint(-5.0f, 9.0f, 0.0f);
+        (this.Rightleg = new ModelRenderer(this, "Rightleg")).setRotationPoint(-5.0f, 9.0f, 0.0f);
         this.setRotation(this.Rightleg, 0.0f, 0.0f, 0.0f);
         this.Rightleg.mirror = true;
         this.Rightleg.addBox("Rightleg", -2.0f, 0.0f, -2.0f, 4, 11, 4);
@@ -96,7 +97,7 @@ public class ModelExawdus extends ModelBase
         this.Rightleg.addBox("RightFootside6", -3.0f, 7.0f, -2.0f, 1, 2, 1);
         this.Rightleg.addBox("RightFootside7", -3.0f, 9.0f, -2.0f, 1, 1, 4);
         this.Rightleg.addBox("RightFootside8", -3.0f, 10.0f, -3.0f, 1, 1, 6);
-        (this.Leftleg = new ModelRenderer((ModelBase)this, "Leftleg")).setRotationPoint(5.0f, 9.0f, 0.0f);
+        (this.Leftleg = new ModelRenderer(this, "Leftleg")).setRotationPoint(5.0f, 9.0f, 0.0f);
         this.setRotation(this.Leftleg, 0.0f, 0.0f, 0.0f);
         this.Leftleg.mirror = true;
         this.Leftleg.addBox("Leftleg", -2.0f, 0.0f, -2.0f, 4, 11, 4);
@@ -109,7 +110,7 @@ public class ModelExawdus extends ModelBase
         this.Leftleg.addBox("LeftFootside6", -3.0f, 7.0f, -2.0f, 1, 2, 1);
         this.Leftleg.addBox("LeftFootside7", -3.0f, 9.0f, -2.0f, 1, 1, 4);
         this.Leftleg.addBox("LeftFootside8", -3.0f, 10.0f, -3.0f, 1, 1, 6);
-        (this.Rightarm = new ModelRenderer((ModelBase)this, "Rightarm")).setRotationPoint(-9.0f, -5.0f, 0.0f);
+        (this.Rightarm = new ModelRenderer(this, "Rightarm")).setRotationPoint(-9.0f, -5.0f, 0.0f);
         this.setRotation(this.Rightarm, 0.0f, 0.0f, 0.0f);
         this.Rightarm.mirror = true;
         this.Rightarm.addBox("Rightarm", -4.0f, -6.0f, -4.0f, 4, 20, 8);
@@ -121,7 +122,7 @@ public class ModelExawdus extends ModelBase
         this.Rightarm.addBox("Rightarmoutside", -5.0f, -3.0f, -2.0f, 1, 14, 4);
         this.Rightarm.addBox("Rightshoulderspike3", -1.0f, -18.0f, -1.0f, 1, 4, 1);
         this.Rightarm.addBox("RightSlicinghand2", -3.0f, 10.0f, -28.0f, 2, 6, 9);
-        (this.Head = new ModelRenderer((ModelBase)this, "Head")).setRotationPoint(0.0f, -9.0f, 0.0f);
+        (this.Head = new ModelRenderer(this, "Head")).setRotationPoint(0.0f, -9.0f, 0.0f);
         this.setRotation(this.Head, 0.0f, 0.0f, 0.0f);
         this.Head.mirror = true;
         this.Head.addBox("Head1", -5.0f, -10.0f, -5.0f, 10, 10, 10);
@@ -132,18 +133,18 @@ public class ModelExawdus extends ModelBase
         this.Head.addBox("Leftheadspike2", -6.0f, -12.0f, -2.0f, 1, 10, 4);
         this.Head.addBox("Leftheadspike3", -6.0f, -14.0f, -1.0f, 1, 2, 2);
         this.Head.addBox("Leftheadspike1", -6.0f, -16.0f, 0.0f, 1, 2, 1);
-        (this.Belly = new ModelRenderer((ModelBase)this, 41, 31)).addBox(-7.0f, -7.0f, 12.0f, 14, 14, 1);
+        (this.Belly = new ModelRenderer(this, 41, 31)).addBox(-7.0f, -7.0f, 12.0f, 14, 14, 1);
         this.Belly.setRotationPoint(0.0f, 0.0f, -6.0f);
         this.Belly.setTextureSize(128, 64);
         this.Belly.mirror = true;
         this.setRotation(this.Belly, 0.0f, 0.0f, 0.0f);
-        (this.Back = new ModelRenderer((ModelBase)this, 41, 31)).addBox(-7.0f, -7.0f, -1.0f, 14, 14, 1);
+        (this.Back = new ModelRenderer(this, 41, 31)).addBox(-7.0f, -7.0f, -1.0f, 14, 14, 1);
         this.Back.setRotationPoint(0.0f, 0.0f, -6.0f);
         this.Back.setTextureSize(128, 64);
         this.Back.mirror = true;
         this.setRotation(this.Back, 0.0f, 0.0f, 0.0f);
     }
-    
+
     public void render(final Entity entity, final float f, final float f1, final float f2, final float f3, final float f4, final float f5) {
         super.render(entity, f, f1, f2, f3, f4, f5);
         this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
@@ -156,13 +157,13 @@ public class ModelExawdus extends ModelBase
         this.Belly.render(f5);
         this.Back.render(f5);
     }
-    
+
     private void setRotation(final ModelRenderer model, final float x, final float y, final float z) {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-    
+
     public void setRotationAngles(final float f, final float f1, final float f2, final float f3, final float f4, final float f5, final Entity entity) {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
         this.Head.rotateAngleY = f3 / 57.295776f;

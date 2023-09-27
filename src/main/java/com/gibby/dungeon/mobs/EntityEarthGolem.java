@@ -2,16 +2,22 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.entity.monster.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.entity.ai.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.*;
-import com.gibby.dungeon.*;
-import net.minecraft.potion.*;
-import net.minecraft.init.*;
-import net.minecraft.item.*;
-import net.minecraft.world.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.monster.EntityIronGolem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
+import net.minecraft.world.EnumDifficulty;
+import net.minecraft.world.World;
 
 public class EntityEarthGolem extends EntityIronGolem
 {
@@ -20,14 +26,14 @@ public class EntityEarthGolem extends EntityIronGolem
         this.isImmuneToFire = true;
         this.targetTasks.addTask(2, (EntityAIBase)new EntityAINearestAttackableTarget((EntityCreature)this, (Class)EntityPlayer.class, 0, true));
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(20.0);
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.24);
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(22.0);
     }
-    
+
     public boolean attackEntityAsMob(final Entity par1Entity) {
         if (par1Entity instanceof EntityLivingBase) {
             ((EntityLivingBase)par1Entity).attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), 3.0f);
@@ -35,27 +41,27 @@ public class EntityEarthGolem extends EntityIronGolem
         }
         return true;
     }
-    
+
     protected String getLivingSound() {
         return "step.gravel";
     }
-    
+
     protected String getHurtSound() {
         return "step.sand";
     }
-    
+
     protected String getDeathSound() {
         return "step.sand";
     }
-    
+
     protected float getSoundPitch() {
         return 0.9f;
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
     }
-    
+
     protected void dropFewItems(final boolean par1, final int par2) {
         final Item item = Item.getItemFromBlock(Blocks.dirt);
         if (item != null) {
@@ -74,7 +80,7 @@ public class EntityEarthGolem extends EntityIronGolem
             this.entityDropItem(new ItemStack(Dungeons.sodbuster), 1.0f);
         }
     }
-    
+
     public boolean getCanSpawnHere() {
         return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && super.getCanSpawnHere() && this.posY < 55.0;
     }

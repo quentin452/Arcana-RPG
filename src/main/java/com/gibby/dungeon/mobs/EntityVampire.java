@@ -2,14 +2,17 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.entity.monster.*;
-import net.minecraft.world.*;
-import net.minecraft.entity.*;
-import net.minecraft.potion.*;
-import net.minecraft.util.*;
-import com.gibby.dungeon.*;
-import net.minecraft.item.*;
-import net.minecraft.init.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
+import net.minecraft.world.World;
 
 public class EntityVampire extends EntityMob
 {
@@ -18,7 +21,7 @@ public class EntityVampire extends EntityMob
         this.isImmuneToFire = true;
         this.experienceValue = 20;
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(40.0);
@@ -27,27 +30,27 @@ public class EntityVampire extends EntityMob
         this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(5.0);
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(40.0);
     }
-    
+
     public int getTotalArmorValue() {
         return 8;
     }
-    
+
     protected String getLivingSound() {
         return "mob.wither.idle";
     }
-    
+
     protected String getHurtSound() {
         return "mob.blaze.hit";
     }
-    
+
     protected String getDeathSound() {
         return "mob.blaze.death";
     }
-    
+
     protected float getSoundPitch() {
         return 1.0f;
     }
-    
+
     public boolean attackEntityAsMob(final Entity par1Entity) {
         final boolean flag = super.attackEntityAsMob(par1Entity);
         if (flag && par1Entity instanceof EntityLivingBase) {
@@ -57,7 +60,7 @@ public class EntityVampire extends EntityMob
         }
         return flag;
     }
-    
+
     public void onUpdate() {
         this.worldObj.spawnParticle("flame", this.posX, this.posY, this.posZ, this.rand.nextGaussian() / 10.0, this.rand.nextGaussian() / 10.0, this.rand.nextGaussian() / 10.0);
         this.worldObj.spawnParticle("reddust", this.posX, this.posY, this.posZ, this.rand.nextGaussian() / 10.0, this.rand.nextGaussian() / 10.0, this.rand.nextGaussian() / 10.0);
@@ -66,7 +69,7 @@ public class EntityVampire extends EntityMob
         }
         super.onUpdate();
     }
-    
+
     protected void dropFewItems(final boolean par1, final int par2) {
         final int r = this.rand.nextInt(6);
         if (r == 0) {

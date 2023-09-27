@@ -2,15 +2,16 @@
 
 package com.gibby.dungeon.gen;
 
-import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.*;
-import java.util.*;
-import net.minecraft.init.*;
-import net.minecraft.block.*;
-import com.gibby.dungeon.*;
-import com.gibby.dungeon.mobs.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.passive.*;
+import com.gibby.dungeon.Dungeons;
+import com.gibby.dungeon.mobs.EntityAnchorTrader;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.IEntityLivingData;
+import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class WorldGenAnchorVillage extends WorldGenerator
 {
@@ -1520,7 +1521,7 @@ public class WorldGenAnchorVillage extends WorldGenerator
         this.generate2(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate2(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 15, j + 25, k + 37, Blocks.grass);
         world.setBlock(i + 15, j + 25, k + 38, Blocks.dirt);
@@ -3025,7 +3026,7 @@ public class WorldGenAnchorVillage extends WorldGenerator
         this.generate3(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate3(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 20, j + 14, k + 28, Dungeons.amethystCrystalized);
         world.setBlock(i + 20, j + 14, k + 29, Dungeons.amethystCrystalized);
@@ -4530,7 +4531,7 @@ public class WorldGenAnchorVillage extends WorldGenerator
         this.generate4(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate4(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 23, j + 22, k + 25, Dungeons.amethystCrystalized);
         world.setBlock(i + 23, j + 22, k + 26, Dungeons.amethystCrystalized);
@@ -6035,7 +6036,7 @@ public class WorldGenAnchorVillage extends WorldGenerator
         this.generate5(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate5(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 26, j + 14, k + 18, Dungeons.amethystCrystalized);
         world.setBlock(i + 26, j + 14, k + 19, Dungeons.amethystCrystalized);
@@ -7540,7 +7541,7 @@ public class WorldGenAnchorVillage extends WorldGenerator
         this.generate6(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate6(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 28, j + 23, k + 9, Blocks.dirt);
         world.setBlock(i + 28, j + 23, k + 10, Blocks.dirt);
@@ -9045,7 +9046,7 @@ public class WorldGenAnchorVillage extends WorldGenerator
         this.generate7(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate7(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 31, j + 18, k + 16, Dungeons.amethystCrystalized);
         world.setBlock(i + 31, j + 18, k + 17, Dungeons.amethystCrystalized);
@@ -10550,7 +10551,7 @@ public class WorldGenAnchorVillage extends WorldGenerator
         this.generate8(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate8(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 34, j + 19, k + 22, Dungeons.amethystCrystalized);
         world.setBlock(i + 34, j + 19, k + 23, Dungeons.amethystCrystalized);
@@ -12055,7 +12056,7 @@ public class WorldGenAnchorVillage extends WorldGenerator
         this.generate9(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate9(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 38, j + 23, k + 46, Blocks.dirt);
         world.setBlock(i + 38, j + 24, k + 10, Blocks.dirt);
@@ -13560,7 +13561,7 @@ public class WorldGenAnchorVillage extends WorldGenerator
         this.generate10(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate10(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 43, j + 25, k + 33, Blocks.dirt);
         world.setBlock(i + 43, j + 25, k + 34, Blocks.dirt);

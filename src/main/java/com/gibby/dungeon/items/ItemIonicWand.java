@@ -2,15 +2,21 @@
 
 package com.gibby.dungeon.items;
 
-import net.minecraft.item.*;
-import net.minecraft.entity.player.*;
-import com.gibby.dungeon.*;
-import com.gibby.dungeon.mobs.*;
-import net.minecraft.entity.*;
-import net.minecraft.world.*;
-import java.util.*;
-import net.minecraft.util.*;
-import cpw.mods.fml.relauncher.*;
+import com.gibby.dungeon.DungeonsExtendedPlayer;
+import com.gibby.dungeon.mobs.EntityProjectileBall;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.Vec3;
+import net.minecraft.world.World;
+
+import java.util.List;
+import java.util.Random;
 
 public class ItemIonicWand extends ItemForceWand
 {
@@ -32,26 +38,26 @@ public class ItemIonicWand extends ItemForceWand
                 }
                 final Random random = new Random();
                 final Vec3 look = par3.getLookVec();
-                final double posX = par3.posX + look.xCoord * 1.0;
-                final double posY = par3.posY + look.yCoord * 1.0;
-                final double posZ = par3.posZ + look.zCoord * 1.0;
+                final double posX = par3.posX + look.xCoord;
+                final double posY = par3.posY + look.yCoord;
+                final double posZ = par3.posZ + look.zCoord;
                 double X = look.xCoord * 0.1;
                 double Y = look.yCoord * 0.1;
                 double Z = look.zCoord * 0.1;
                 for (int j = 0; j < 100; ++j) {
                     for (int z = 0; z < 10; ++z) {
-                        par3.worldObj.spawnParticle("mobSpellAmbient", posX + X * 1.1, posY + Y * 1.1, posZ + Z * 1.1, random.nextInt(10) / 10 - 0.2, random.nextInt(10) / 10 - 0.2, random.nextInt(10) / 10 - 0.2);
-                        par3.worldObj.spawnParticle("reddust", posX + X * 1.1, posY + Y * 1.1, posZ + Z * 1.1, random.nextInt(10) / 10 - 0.2, random.nextInt(10) / 10 - 0.2, random.nextInt(10) / 10 - 0.2);
+                        par3.worldObj.spawnParticle("mobSpellAmbient", posX + X * 1.1, posY + Y * 1.1, posZ + Z * 1.1, (double) random.nextInt(10) / 10 - 0.2, (double)random.nextInt(10) / 10 - 0.2, (double)random.nextInt(10) / 10 - 0.2);
+                        par3.worldObj.spawnParticle("reddust", posX + X * 1.1, posY + Y * 1.1, posZ + Z * 1.1, (double) random.nextInt(10) / 10 - 0.2, (double)random.nextInt(10) / 10 - 0.2, (double)random.nextInt(10) / 10 - 0.2);
                     }
-                    par3.worldObj.spawnParticle("mobSpellAmbient", posX + (X *= 1.1), posY + (Y *= 1.1), posZ + (Z *= 1.1), random.nextInt(10) / 10 - 0.2, random.nextInt(10) / 10 - 0.2, random.nextInt(10) / 10 - 0.2);
-                    par3.worldObj.spawnParticle("magicCrit", posX + (X *= 1.1), posY + (Y *= 1.1), posZ + (Z *= 1.1), random.nextInt(10) / 10 - 0.2, random.nextInt(10) / 10 - 0.2, random.nextInt(10) / 10 - 0.2);
+                    par3.worldObj.spawnParticle("mobSpellAmbient", posX + (X *= 1.1), posY + (Y *= 1.1), posZ + (Z *= 1.1), (double)random.nextInt(10) / 10 - 0.2, (double)random.nextInt(10) / 10 - 0.2, (double)random.nextInt(10) / 10 - 0.2);
+                    par3.worldObj.spawnParticle("magicCrit", posX + (X *= 1.1), posY + (Y *= 1.1), posZ + (Z *= 1.1), (double)random.nextInt(10) / 10 - 0.2, (double)random.nextInt(10) / 10 - 0.2, (double)random.nextInt(10) / 10 - 0.2);
                 }
-                par3.worldObj.playSoundAtEntity((Entity)par3, "fireworks.twinkle_far", 1.0f, 1.2f);
+                par3.worldObj.playSoundAtEntity(par3, "fireworks.twinkle_far", 1.0f, 1.2f);
                 ball.Color = "blue";
                 ball.setEntityAttributes(10.0f, 100.0f, 0.0f, DamageSource.magic);
-                par3.worldObj.spawnEntityInWorld((Entity)ball);
+                par3.worldObj.spawnEntityInWorld(ball);
                 par4.consumeMagic(3);
-                stack.damageItem(1, (EntityLivingBase)par3);
+                stack.damageItem(1, par3);
             }
         }
         return false;
@@ -74,19 +80,19 @@ public class ItemIonicWand extends ItemForceWand
                 par3.worldObj.spawnParticle("magicCrit", par3.posX, par3.posY - 1.0, par3.posZ, randomX, 0.0, randomZ);
                 par3.worldObj.spawnParticle("magicCrit", par3.posX, par3.posY - 1.0, par3.posZ, randomX, 0.0, randomZ);
             }
-            final List list = par3.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)par3, par3.boundingBox.expand(20.0, 20.0, 20.0));
+            final List list = par3.worldObj.getEntitiesWithinAABBExcludingEntity(par3, par3.boundingBox.expand(20.0, 20.0, 20.0));
             if (list != null) {
                 for (int k2 = 0; k2 < list.size(); ++k2) {
                     if (list.get(k2) instanceof EntityLivingBase) {
                         final double posX = ((EntityLivingBase) list.get(k2)).posX;
                         final double posY = ((EntityLivingBase) list.get(k2)).posY;
                         final double posZ = ((EntityLivingBase) list.get(k2)).posZ;
-                        ((EntityLivingBase) list.get(k2)).worldObj.newExplosion((Entity)par3, posX, posY, posZ, 1.6f, false, false);
+                        ((EntityLivingBase) list.get(k2)).worldObj.newExplosion(par3, posX, posY, posZ, 1.6f, false, false);
                     }
                 }
             }
             par4.consumeMagic(9);
-            par1ItemStack.damageItem(1, (EntityLivingBase)par3);
+            par1ItemStack.damageItem(1, par3);
         }
         return par1ItemStack;
     }

@@ -2,20 +2,16 @@
 
 package com.gibby.dungeon.blocks;
 
-import net.minecraft.block.*;
-import cpw.mods.fml.relauncher.*;
-import net.minecraft.block.material.*;
-import com.gibby.dungeon.*;
-import net.minecraft.world.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.DamageSource;
+import net.minecraft.world.World;
 
 public class BlockFrostSpikes extends Block
 {
-    @SideOnly(Side.CLIENT)
-    private IIcon field_150041_a;
-    @SideOnly(Side.CLIENT)
-    private IIcon field_150040_b;
 
     public BlockFrostSpikes() {
         super(Material.ice);

@@ -2,24 +2,25 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.world.*;
-import net.minecraft.util.*;
-import net.minecraft.entity.*;
-import com.gibby.dungeon.*;
-import net.minecraft.item.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.World;
 
 public class EntityIceMage extends EntityHermit
 {
     public boolean iceWind;
     public int counter;
-    
+
     public EntityIceMage(final World par1World) {
         super(par1World);
         this.iceWind = false;
         this.counter = 0;
         this.experienceValue = 20;
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         if (this.iceWind && this.entityToAttack != null) {
@@ -37,7 +38,7 @@ public class EntityIceMage extends EntityHermit
             }
         }
     }
-    
+
     public void attackEntityWithRangedAttack(final EntityLivingBase par1, final float par2) {
         final int rand = this.worldObj.rand.nextInt(3);
         if (rand == 0 && !this.iceWind) {
@@ -62,12 +63,12 @@ public class EntityIceMage extends EntityHermit
             this.worldObj.spawnEntityInWorld((Entity)ball2);
         }
     }
-    
+
     protected void addRandomArmor() {
         super.addRandomArmor();
         this.setCurrentItemOrArmor(0, new ItemStack(Dungeons.iceRod));
     }
-    
+
     protected void dropFewItems(final boolean par1, final int par2) {
         if (this.rand.nextInt(2) == 0) {
             this.dropItem(Dungeons.iceRod, 1);

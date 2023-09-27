@@ -2,18 +2,24 @@
 
 package com.gibby.dungeon.items;
 
-import net.minecraft.item.*;
-import net.minecraft.world.*;
-import net.minecraft.entity.player.*;
-import com.gibby.dungeon.*;
-import net.minecraft.client.*;
-import net.minecraft.client.particle.*;
-import net.minecraft.entity.*;
-import net.minecraft.potion.*;
-import java.util.*;
-import com.gibby.dungeon.mobs.*;
-import net.minecraft.util.*;
-import cpw.mods.fml.relauncher.*;
+import com.gibby.dungeon.DungeonsExtendedPlayer;
+import com.gibby.dungeon.mobs.EntityVoidrim;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.particle.EntityFireworkSparkFX;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.world.World;
+
+import java.util.List;
 
 public class ItemVoidrimWand extends ItemForceWand
 {

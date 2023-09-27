@@ -2,37 +2,39 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.entity.projectile.*;
-import net.minecraft.world.*;
-import net.minecraft.client.*;
-import net.minecraft.client.particle.*;
-import net.minecraft.util.*;
-import com.gibby.dungeon.*;
-import net.minecraft.entity.*;
-import net.minecraft.init.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.particle.EntityFireworkSparkFX;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.World;
 
 public class EntityCrystalMeteor extends EntityThrowable
 {
     public EntityCrystalMeteor(final World par1World) {
         super(par1World);
     }
-    
+
     public EntityCrystalMeteor(final World par1World, final EntityLivingBase par2EntityLivingBase) {
         super(par1World, par2EntityLivingBase);
     }
-    
+
     public EntityCrystalMeteor(final World par1World, final double par2, final double par4, final double par6) {
         super(par1World, par2, par4, par6);
     }
-    
+
     protected float getGravityVelocity() {
         return 0.03f;
     }
-    
+
     protected float func_70182_d() {
         return 0.9f;
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         if (this.worldObj.isRemote) {
@@ -44,7 +46,7 @@ public class EntityCrystalMeteor extends EntityThrowable
             }
         }
     }
-    
+
     protected void onImpact(final MovingObjectPosition var1) {
         if (this.worldObj.isRemote) {
             for (int i = 0; i < 60; ++i) {

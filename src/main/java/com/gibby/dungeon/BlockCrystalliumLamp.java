@@ -2,16 +2,13 @@
 
 package com.gibby.dungeon;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.*;
-import net.minecraft.block.material.*;
-import java.util.*;
-
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class BlockCrystalliumLamp extends Block
 {    private final boolean field_150171_a;

@@ -2,9 +2,10 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.client.model.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.*;
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.MathHelper;
 
 public class ModelOrcDefender extends ModelBase
 {
@@ -16,7 +17,7 @@ public class ModelOrcDefender extends ModelBase
     ModelRenderer leftArm;
     ModelRenderer Head;
     ModelRenderer rightArm;
-    
+
     public ModelOrcDefender() {
         this.textureWidth = 128;
         this.textureHeight = 64;
@@ -36,32 +37,32 @@ public class ModelOrcDefender extends ModelBase
         this.setTextureOffset("rightArm.Sword4", 0, 44);
         this.setTextureOffset("rightArm.Sword5", 0, 44);
         this.setTextureOffset("rightArm.Sword6", 0, 44);
-        (this.belly = new ModelRenderer((ModelBase)this, 0, 0)).addBox(-4.0f, -4.0f, -1.0f, 8, 8, 1);
+        (this.belly = new ModelRenderer(this, 0, 0)).addBox(-4.0f, -4.0f, -1.0f, 8, 8, 1);
         this.belly.setRotationPoint(0.0f, 2.0f, -4.0f);
         this.belly.setTextureSize(128, 64);
         this.belly.mirror = true;
         this.setRotation(this.belly, 0.0f, 0.0f, 0.0f);
-        (this.belly2 = new ModelRenderer((ModelBase)this, 0, 0)).addBox(-4.0f, -3.0f, 0.0f, 8, 6, 1);
+        (this.belly2 = new ModelRenderer(this, 0, 0)).addBox(-4.0f, -3.0f, 0.0f, 8, 6, 1);
         this.belly2.setRotationPoint(0.0f, 3.0f, -6.0f);
         this.belly2.setTextureSize(128, 64);
         this.belly2.mirror = true;
         this.setRotation(this.belly2, 0.0f, 0.0f, 0.0f);
-        (this.body = new ModelRenderer((ModelBase)this, 32, 40)).addBox(-5.0f, 0.0f, -3.0f, 10, 16, 8);
+        (this.body = new ModelRenderer(this, 32, 40)).addBox(-5.0f, 0.0f, -3.0f, 10, 16, 8);
         this.body.setRotationPoint(0.0f, -8.0f, -1.0f);
         this.body.setTextureSize(128, 64);
         this.body.mirror = true;
         this.setRotation(this.body, 0.0f, 0.0f, 0.0f);
-        (this.rightleg = new ModelRenderer((ModelBase)this, 0, 16)).addBox(-3.0f, 0.0f, -3.0f, 6, 16, 6);
+        (this.rightleg = new ModelRenderer(this, 0, 16)).addBox(-3.0f, 0.0f, -3.0f, 6, 16, 6);
         this.rightleg.setRotationPoint(-3.0f, 8.0f, 0.0f);
         this.rightleg.setTextureSize(128, 64);
         this.rightleg.mirror = true;
         this.setRotation(this.rightleg, 0.0f, 0.0f, 0.0f);
-        (this.leftleg = new ModelRenderer((ModelBase)this, 0, 16)).addBox(-3.0f, 0.0f, -3.0f, 6, 16, 6);
+        (this.leftleg = new ModelRenderer(this, 0, 16)).addBox(-3.0f, 0.0f, -3.0f, 6, 16, 6);
         this.leftleg.setRotationPoint(3.0f, 8.0f, 0.0f);
         this.leftleg.setTextureSize(128, 64);
         this.leftleg.mirror = true;
         this.setRotation(this.leftleg, 0.0f, 0.0f, 0.0f);
-        (this.leftArm = new ModelRenderer((ModelBase)this, "leftArm")).setRotationPoint(6.0f, -5.0f, 0.0f);
+        (this.leftArm = new ModelRenderer(this, "leftArm")).setRotationPoint(6.0f, -5.0f, 0.0f);
         this.setRotation(this.leftArm, 0.0f, 0.0f, 0.0f);
         this.leftArm.mirror = true;
         this.leftArm.addBox("leftArm", -1.0f, -2.0f, -2.0f, 6, 14, 6);
@@ -70,13 +71,13 @@ public class ModelOrcDefender extends ModelBase
         this.leftArm.addBox("Shield2", -6.0f, -2.0f, -10.0f, 16, 22, 2);
         this.leftArm.addBox("Shape1", 0.0f, 0.0f, 0.0f, 1, 1, 1);
         this.leftArm.addBox("Shape2", 0.0f, 0.0f, 0.0f, 1, 1, 1);
-        (this.Head = new ModelRenderer((ModelBase)this, "Head")).setRotationPoint(0.0f, -10.0f, 0.0f);
+        (this.Head = new ModelRenderer(this, "Head")).setRotationPoint(0.0f, -10.0f, 0.0f);
         this.setRotation(this.Head, 0.0f, 0.0f, 0.0f);
         this.Head.mirror = true;
         this.Head.addBox("head", -5.0f, -8.0f, -5.0f, 10, 10, 10);
         this.Head.addBox("Jaw", -6.0f, -1.0f, -6.0f, 12, 4, 11);
         this.Head.addBox("Helmet", -6.0f, -9.0f, -6.0f, 12, 8, 12);
-        (this.rightArm = new ModelRenderer((ModelBase)this, "rightArm")).setRotationPoint(-6.0f, -4.0f, 0.0f);
+        (this.rightArm = new ModelRenderer(this, "rightArm")).setRotationPoint(-6.0f, -4.0f, 0.0f);
         this.setRotation(this.rightArm, 0.0f, 0.0f, 0.0f);
         this.rightArm.mirror = true;
         this.rightArm.addBox("rightarm", -5.0f, -3.0f, -2.0f, 6, 14, 6);
@@ -87,7 +88,7 @@ public class ModelOrcDefender extends ModelBase
         this.rightArm.addBox("Sword5", -3.0f, 7.0f, -31.0f, 1, 3, 14);
         this.rightArm.addBox("Sword6", -3.0f, 6.0f, -35.0f, 1, 1, 14);
     }
-    
+
     public void render(final Entity entity, final float f, final float f1, final float f2, final float f3, final float f4, final float f5) {
         super.render(entity, f, f1, f2, f3, f4, f5);
         this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
@@ -100,13 +101,13 @@ public class ModelOrcDefender extends ModelBase
         this.Head.render(f5);
         this.rightArm.render(f5);
     }
-    
+
     private void setRotation(final ModelRenderer model, final float x, final float y, final float z) {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-    
+
     public void setRotationAngles(final float f, final float f1, final float f2, final float f3, final float f4, final float f5, final Entity entity) {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
         this.Head.rotateAngleY = f3 / 57.295776f;

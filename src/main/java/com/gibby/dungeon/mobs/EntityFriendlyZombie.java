@@ -2,12 +2,13 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.world.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.entity.ai.*;
-import net.minecraft.util.*;
 import net.minecraft.entity.*;
-import net.minecraft.entity.passive.*;
+import net.minecraft.entity.ai.*;
+import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.entity.passive.EntityTameable;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.DamageSource;
+import net.minecraft.world.World;
 
 public class EntityFriendlyZombie extends EntityTameable
 {
@@ -25,39 +26,39 @@ public class EntityFriendlyZombie extends EntityTameable
         this.targetTasks.addTask(3, (EntityAIBase)new EntityAIHurtByTarget((EntityCreature)this, true));
         this.setSize(1.0f, 2.0f);
     }
-    
+
     public boolean isAIEnabled() {
         return true;
     }
-    
+
     protected String getLivingSound() {
         return "mob.zombie.say";
     }
-    
+
     protected String getHurtSound() {
         return "mob.zombie.hurt";
     }
-    
+
     protected String getDeathSound() {
         return "mob.zombie.death";
     }
-    
+
     public EntityAgeable createChild(final EntityAgeable var1) {
         return null;
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(30.0);
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25);
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(24.0);
     }
-    
+
     public boolean attackEntityAsMob(final Entity par1Entity) {
         final int i = 5;
         return par1Entity.attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), (float)i);
     }
-    
+
     public boolean func_142018_a(final EntityLivingBase par1EntityLivingBase, final EntityLivingBase par2EntityLivingBase) {
         return (!(par1EntityLivingBase instanceof EntityPlayer) || !(par2EntityLivingBase instanceof EntityPlayer) || ((EntityPlayer)par2EntityLivingBase).canAttackPlayer((EntityPlayer)par1EntityLivingBase)) && (!(par1EntityLivingBase instanceof EntityHorse) || !((EntityHorse)par1EntityLivingBase).isTame());
     }

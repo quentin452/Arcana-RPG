@@ -2,27 +2,27 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.client.renderer.*;
-import net.minecraftforge.client.*;
-import net.minecraft.client.*;
-import net.minecraft.item.*;
-import org.lwjgl.opengl.*;
-import net.minecraft.entity.*;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ItemRenderer;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.IItemRenderer;
+import org.lwjgl.opengl.GL11;
 
 public class RenderDiamondSword extends ItemRenderer implements IItemRenderer
 {
     public RenderDiamondSword(final Minecraft par1Minecraft) {
         super(par1Minecraft);
     }
-    
+
     public boolean handleRenderType(final ItemStack item, final IItemRenderer.ItemRenderType type) {
         return type == IItemRenderer.ItemRenderType.EQUIPPED || type == IItemRenderer.ItemRenderType.EQUIPPED_FIRST_PERSON;
     }
-    
+
     public boolean shouldUseRenderHelper(final IItemRenderer.ItemRenderType type, final ItemStack item, final IItemRenderer.ItemRendererHelper helper) {
         return true;
     }
-    
+
     public void renderItem(final IItemRenderer.ItemRenderType type, final ItemStack item, final Object... data) {
         switch (type) {
             case EQUIPPED_FIRST_PERSON: {

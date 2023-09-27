@@ -2,27 +2,28 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.client.renderer.entity.*;
-import net.minecraft.util.*;
-import net.minecraft.client.model.*;
-import org.lwjgl.opengl.*;
-import net.minecraft.entity.*;
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 public class RenderVoidLord extends RenderLiving
 {
     private static final ResourceLocation voidTextures;
     private static final ResourceLocation voidArmorTextures;
     ModelBase voidModel;
-    
+
     public RenderVoidLord(final ModelBase par1ModelBase, final float par2) {
         super(par1ModelBase, par2);
         this.voidModel = par1ModelBase;
     }
-    
+
     protected ResourceLocation getEntityTexture(final Entity var1) {
         return RenderVoidLord.voidTextures;
     }
-    
+
     protected int shouldRenderPass(final EntityVoidLord remnant, final int par2, final float par3) {
         if (remnant.isInvisible()) {
             GL11.glDepthMask(false);
@@ -56,11 +57,11 @@ public class RenderVoidLord extends RenderLiving
         }
         return -1;
     }
-    
+
     protected int shouldRenderPass(final EntityLivingBase par1EntityLivingBase, final int par2, final float par3) {
         return this.shouldRenderPass((EntityVoidLord)par1EntityLivingBase, par2, par3);
     }
-    
+
     static {
         voidTextures = new ResourceLocation("gibby_dungeons:textures/mobs/voidlord.png");
         voidArmorTextures = new ResourceLocation("gibby_dungeons:textures/mobs/voidlord.png");

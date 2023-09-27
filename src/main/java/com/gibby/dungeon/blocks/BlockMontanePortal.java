@@ -2,18 +2,20 @@
 
 package com.gibby.dungeon.blocks;
 
-import net.minecraft.block.*;
-import net.minecraft.block.material.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.server.*;
-import com.gibby.dungeon.*;
-import com.gibby.dungeon.gen.*;
-import net.minecraft.world.*;
-import java.util.*;
-import cpw.mods.fml.relauncher.*;
-import net.minecraft.util.*;
-import net.minecraft.item.*;
+import com.gibby.dungeon.Dungeons;
+import com.gibby.dungeon.gen.TeleporterMontane;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class BlockMontanePortal extends Block
 {
@@ -23,11 +25,11 @@ public class BlockMontanePortal extends Block
         this.setHardness(10000.0f);
         this.setResistance(10000.0f);
     }
-    
+
     public boolean isOpaqueCube() {
         return false;
     }
-    
+
     public void onEntityCollidedWithBlock(final World par1World, final int par2, final int par3, final int par4, final Entity par5Entity) {
         if (par5Entity.ridingEntity == null && par5Entity.riddenByEntity == null && par5Entity instanceof EntityPlayerMP) {
             final EntityPlayerMP player = (EntityPlayerMP)par5Entity;
@@ -37,16 +39,16 @@ public class BlockMontanePortal extends Block
             }
             else if (player.dimension != Dungeons.montaneDungeonDimensionId) {
                 player.timeUntilPortal = 3;
-                player.mcServer.getConfigurationManager().transferPlayerToDimension(player, Dungeons.montaneDungeonDimensionId, (Teleporter)new TeleporterMontane(mServer.worldServerForDimension(Dungeons.montaneDungeonDimensionId)));
+                player.mcServer.getConfigurationManager().transferPlayerToDimension(player, Dungeons.montaneDungeonDimensionId, new TeleporterMontane(mServer.worldServerForDimension(Dungeons.montaneDungeonDimensionId)));
             }
             else {
                 player.timeUntilPortal = 3;
-                player.mcServer.getConfigurationManager().transferPlayerToDimension(player, 0, (Teleporter)new TeleporterMontane(mServer.worldServerForDimension(0)));
+                player.mcServer.getConfigurationManager().transferPlayerToDimension(player, 0, new TeleporterMontane(mServer.worldServerForDimension(0)));
                 player.fallDistance = -20.0f;
             }
         }
     }
-    
+
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(final World p_149734_1_, final int p_149734_2_, final int p_149734_3_, final int p_149734_4_, final Random p_149734_5_) {
         if (p_149734_5_.nextInt(50) == 0) {
@@ -56,9 +58,9 @@ public class BlockMontanePortal extends Block
             double d0 = p_149734_2_ + p_149734_5_.nextFloat();
             final double d2 = p_149734_3_ + p_149734_5_.nextFloat();
             double d3 = p_149734_4_ + p_149734_5_.nextFloat();
-            double d4 = 0.0;
-            double d5 = 0.0;
-            double d6 = 0.0;
+            double d4;
+            double d5;
+            double d6;
             final int i1 = p_149734_5_.nextInt(2) * 2 - 1;
             d4 = (p_149734_5_.nextFloat() - 0.5) * 0.5;
             d5 = (p_149734_5_.nextFloat() - 0.5) * 0.5;
@@ -77,7 +79,7 @@ public class BlockMontanePortal extends Block
             p_149734_1_.spawnParticle("instaSpell", p_149734_2_ + p_149734_5_.nextGaussian(), p_149734_3_ + p_149734_5_.nextGaussian(), p_149734_4_ + p_149734_5_.nextGaussian(), p_149734_5_.nextGaussian(), p_149734_5_.nextGaussian(), p_149734_5_.nextGaussian());
         }
     }
-    
+
     public void onNeighborBlockChange(final World par1World, final int par2, final int par3, final int par4, final Block par5) {
         byte b0 = 0;
         byte b2 = 1;
@@ -105,19 +107,19 @@ public class BlockMontanePortal extends Block
             }
         }
     }
-    
+
     public AxisAlignedBB getCollisionBoundingBoxFromPool(final World p_149668_1_, final int p_149668_2_, final int p_149668_3_, final int p_149668_4_) {
         return null;
     }
-    
+
     public int quantityDropped(final Random p_149745_1_) {
         return 0;
     }
-    
+
     public static int func_149999_b(final int p_149999_0_) {
         return p_149999_0_ & 0x3;
     }
-    
+
     @SideOnly(Side.CLIENT)
     public Item getItem(final World p_149694_1_, final int p_149694_2_, final int p_149694_3_, final int p_149694_4_) {
         return Item.getItemById(0);

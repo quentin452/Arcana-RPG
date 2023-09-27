@@ -2,18 +2,20 @@
 
 package com.gibby.dungeon.blocks;
 
-import net.minecraft.block.*;
-import net.minecraft.block.material.*;
-import net.minecraft.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.server.*;
-import com.gibby.dungeon.*;
-import com.gibby.dungeon.gen.*;
-import net.minecraft.world.*;
-import java.util.*;
-import cpw.mods.fml.relauncher.*;
-import net.minecraft.util.*;
-import net.minecraft.item.*;
+import com.gibby.dungeon.Dungeons;
+import com.gibby.dungeon.gen.TeleporterCrystalliumPlains;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class BlockCrystalPlainsPortal extends Block
 {
@@ -38,11 +40,11 @@ public class BlockCrystalPlainsPortal extends Block
             }
             else if (player.dimension != Dungeons.crystalliumPlainsDimensionId) {
                 player.timeUntilPortal = 3;
-                player.mcServer.getConfigurationManager().transferPlayerToDimension(player, Dungeons.crystalliumPlainsDimensionId, (Teleporter)new TeleporterCrystalliumPlains(mServer.worldServerForDimension(Dungeons.crystalliumPlainsDimensionId)));
+                player.mcServer.getConfigurationManager().transferPlayerToDimension(player, Dungeons.crystalliumPlainsDimensionId, new TeleporterCrystalliumPlains(mServer.worldServerForDimension(Dungeons.crystalliumPlainsDimensionId)));
             }
             else {
                 player.timeUntilPortal = 3;
-                player.mcServer.getConfigurationManager().transferPlayerToDimension(player, 0, (Teleporter)new TeleporterCrystalliumPlains(mServer.worldServerForDimension(0)));
+                player.mcServer.getConfigurationManager().transferPlayerToDimension(player, 0, new TeleporterCrystalliumPlains(mServer.worldServerForDimension(0)));
                 player.fallDistance = -20.0f;
             }
         }
@@ -57,9 +59,9 @@ public class BlockCrystalPlainsPortal extends Block
             double d0 = p_149734_2_ + p_149734_5_.nextFloat();
             final double d2 = p_149734_3_ + p_149734_5_.nextFloat();
             double d3 = p_149734_4_ + p_149734_5_.nextFloat();
-            double d4 = 0.0;
-            double d5 = 0.0;
-            double d6 = 0.0;
+            double d4;
+            double d5;
+            double d6;
             final int i1 = p_149734_5_.nextInt(2) * 2 - 1;
             d4 = (p_149734_5_.nextFloat() - 0.5) * 0.5;
             d5 = (p_149734_5_.nextFloat() - 0.5) * 0.5;

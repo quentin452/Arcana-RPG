@@ -2,27 +2,31 @@
 
 package com.gibby.dungeon.items;
 
-import net.minecraft.item.*;
-import net.minecraft.entity.*;
-import net.minecraft.potion.*;
-import net.minecraft.entity.player.*;
-import java.util.*;
-import net.minecraft.util.*;
-import cpw.mods.fml.relauncher.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.EnumChatFormatting;
+
+import java.util.List;
 
 public class ItemFrostySword extends ItemStandardMagicSword
 {
     public ItemFrostySword(final Item.ToolMaterial p_i45356_1_, final int VoidDamage) {
         super(p_i45356_1_, VoidDamage);
     }
-    
+
     @Override
     public boolean hitEntity(final ItemStack par1ItemStack, final EntityLivingBase par2EntityLivingBase, final EntityLivingBase par3EntityLivingBase) {
         par1ItemStack.damageItem(1, par3EntityLivingBase);
         par2EntityLivingBase.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 60, 0));
         return super.hitEntity(par1ItemStack, par2EntityLivingBase, par3EntityLivingBase);
     }
-    
+
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(final ItemStack par1ItemStack, final EntityPlayer par2EntityPlayer, final List par3List, final boolean par4) {

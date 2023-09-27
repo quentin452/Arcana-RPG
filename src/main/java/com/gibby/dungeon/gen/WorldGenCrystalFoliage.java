@@ -2,20 +2,21 @@
 
 package com.gibby.dungeon.gen;
 
-import net.minecraft.block.*;
-import com.gibby.dungeon.*;
-import net.minecraft.world.*;
-import java.util.*;
-import net.minecraft.init.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class WorldGenCrystalFoliage
 {
-    private Block[] foliageBlocks;
-    
+    private final Block[] foliageBlocks;
+
     public WorldGenCrystalFoliage() {
         this.foliageBlocks = new Block[] { Dungeons.crystalWeed, Dungeons.crystalStem, Dungeons.yellowTippedGrass, Dungeons.ghostRose, Dungeons.crystalStem, Dungeons.purpleEye, Dungeons.shimmerFlower, Dungeons.crystalLeaf };
     }
-    
+
     public boolean generate(final World world, final Random rand, final int x, final int y, final int z) {
         if (world.getBlock(x, y, z) != Dungeons.crystalGrass || world.getBlock(x, y + 1, z) != Blocks.air) {
             return false;

@@ -2,16 +2,24 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.entity.monster.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.entity.ai.*;
-import net.minecraft.world.*;
-import net.minecraft.entity.boss.*;
-import java.util.*;
-import net.minecraft.item.*;
-import net.minecraft.util.*;
-import net.minecraft.entity.*;
-import com.gibby.dungeon.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.boss.BossStatus;
+import net.minecraft.entity.boss.IBossDisplayData;
+import net.minecraft.entity.monster.EntityIronGolem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
+import net.minecraft.world.EnumDifficulty;
+import net.minecraft.world.World;
+
+import java.util.List;
 
 public class EntityCrystalBadgerer extends EntityIronGolem implements IBossDisplayData
 {
@@ -22,26 +30,26 @@ public class EntityCrystalBadgerer extends EntityIronGolem implements IBossDispl
         this.setSize(3.2f, 6.7f);
         this.experienceValue = 200;
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(30.0);
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.24);
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(160.0);
     }
-    
+
     protected String getLivingSound() {
         return "gibby_dungeons:crystalSay";
     }
-    
+
     protected String getHurtSound() {
         return "gibby_dungeons:crystalHurt";
     }
-    
+
     protected String getDeathSound() {
         return "gibby_dungeons:crystalDeath";
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         if (!this.worldObj.isRemote && this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL) {
@@ -79,7 +87,7 @@ public class EntityCrystalBadgerer extends EntityIronGolem implements IBossDispl
             }
         }
     }
-    
+
     public int getTotalArmorValue() {
         int i = 0;
         for (final ItemStack itemstack : this.getLastActiveItems()) {
@@ -90,7 +98,7 @@ public class EntityCrystalBadgerer extends EntityIronGolem implements IBossDispl
         }
         return i + 20;
     }
-    
+
     public boolean attackEntityAsMob(final Entity par1Entity) {
         this.worldObj.setEntityState((Entity)this, (byte)4);
         final boolean flag = par1Entity.attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), (float)(30 + this.rand.nextInt(20)));
@@ -100,7 +108,7 @@ public class EntityCrystalBadgerer extends EntityIronGolem implements IBossDispl
         this.playSound("mob.irongolem.throw", 1.0f, 1.0f);
         return flag;
     }
-    
+
     protected void dropFewItems(final boolean par1, final int par2) {
         final int r = this.rand.nextInt(4);
         if (r == 0) {

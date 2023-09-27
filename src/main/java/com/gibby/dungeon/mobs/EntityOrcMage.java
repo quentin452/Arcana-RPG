@@ -2,11 +2,14 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.world.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.*;
-import com.gibby.dungeon.*;
-import net.minecraft.item.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.World;
 
 public class EntityOrcMage extends EntityHermit
 {
@@ -14,34 +17,34 @@ public class EntityOrcMage extends EntityHermit
         super(par1World);
         this.setSize(1.2f, 2.4f);
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25);
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(60.0);
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(35.0);
     }
-    
+
     public int getTotalArmorValue() {
         return 14;
     }
-    
+
     protected String getLivingSound() {
         return "Dungeons.MODID:orcTalk";
     }
-    
+
     protected String getHurtSound() {
         return "gibby_dungeons:orcHit";
     }
-    
+
     protected String getDeathSound() {
         return "gibby_dungeons:orcDeath";
     }
-    
+
     protected float getSoundPitch() {
         return 0.8f;
     }
-    
+
     public void attackEntityWithRangedAttack(final EntityLivingBase par1, final float par2) {
         final int rand = this.worldObj.rand.nextInt(3);
         if (rand == 0) {
@@ -71,7 +74,7 @@ public class EntityOrcMage extends EntityHermit
             this.worldObj.spawnEntityInWorld((Entity)ball3);
         }
     }
-    
+
     public boolean attackEntityFrom(final DamageSource par1DamageSource, final float par2) {
         if (this.isEntityInvulnerable() || par1DamageSource == DamageSource.magic) {
             return false;
@@ -88,7 +91,7 @@ public class EntityOrcMage extends EntityHermit
         }
         return true;
     }
-    
+
     protected void dropFewItems(final boolean par1, final int par2) {
         final int i = Dungeons.randRange(0, 30);
         if (i == 0) {
@@ -116,7 +119,7 @@ public class EntityOrcMage extends EntityHermit
             this.dropItem(Dungeons.blackIronScraps, 1);
         }
     }
-    
+
     protected void dropRareDrop(final int par1) {
         this.entityDropItem(new ItemStack(Dungeons.voidCoin), 1.0f);
     }

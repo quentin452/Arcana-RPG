@@ -2,26 +2,36 @@
 
 package com.gibby.dungeon.gen;
 
-import net.minecraft.world.gen.structure.*;
-import net.minecraft.world.biome.*;
+import com.gibby.dungeon.Dungeons;
+import cpw.mods.fml.common.eventhandler.Event;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockFalling;
+import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.IProgressUpdate;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.ChunkPosition;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldType;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.*;
-import com.gibby.dungeon.*;
-import net.minecraft.init.*;
-import net.minecraftforge.common.*;
-import cpw.mods.fml.common.eventhandler.*;
-import net.minecraft.world.chunk.*;
-import net.minecraft.block.*;
-import net.minecraftforge.event.terraingen.*;
-import net.minecraft.world.gen.feature.*;
-import net.minecraft.util.*;
-import net.minecraft.entity.*;
-import java.util.*;
-import net.minecraft.world.*;
+import net.minecraft.world.gen.feature.WorldGenLakes;
+import net.minecraft.world.gen.structure.MapGenScatteredFeature;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.terraingen.ChunkProviderEvent;
+import net.minecraftforge.event.terraingen.InitMapGenEvent;
+import net.minecraftforge.event.terraingen.PopulateChunkEvent;
+import net.minecraftforge.event.terraingen.TerrainGen;
+
+import java.util.List;
+import java.util.Random;
 
 public class ChunkProviderCrystalliumPlains implements IChunkProvider
 {
 
-    private Random rand;
+    private final Random rand;
     private NoiseGeneratorOctaves noiseGen1;
     private NoiseGeneratorOctaves noiseGen2;
     private NoiseGeneratorOctaves noiseGen3;
@@ -29,9 +39,9 @@ public class ChunkProviderCrystalliumPlains implements IChunkProvider
     public NoiseGeneratorOctaves noiseGen5;
     public NoiseGeneratorOctaves noiseGen6;
     public NoiseGeneratorOctaves mobSpawnerNoise;
-    private World worldObj;
+    private final World worldObj;
     private final boolean mapFeaturesEnabled;
-    private WorldType worldType;
+    private final WorldType worldType;
     private final double[] noiseArray;
     private final float[] parabolicField;
     private double[] stoneNoise;
@@ -49,10 +59,10 @@ public class ChunkProviderCrystalliumPlains implements IChunkProvider
         this.stoneNoise = new double[256];
         this.caveGenerator = new MapGenAmethystCaves();
         this.scatteredFeatureGenerator = new MapGenScatteredFeature();
-        this.ravineGenerator = (MapGenBase)new MapGenRavine();
+        this.ravineGenerator = new MapGenRavine();
         this.field_73219_j = new int[32][32];
         this.caveGenerator = TerrainGen.getModdedMapGen(this.caveGenerator, InitMapGenEvent.EventType.CAVE);
-        this.scatteredFeatureGenerator = (MapGenScatteredFeature)TerrainGen.getModdedMapGen((MapGenBase)this.scatteredFeatureGenerator, InitMapGenEvent.EventType.SCATTERED_FEATURE);
+        this.scatteredFeatureGenerator = (MapGenScatteredFeature)TerrainGen.getModdedMapGen(this.scatteredFeatureGenerator, InitMapGenEvent.EventType.SCATTERED_FEATURE);
         this.ravineGenerator = TerrainGen.getModdedMapGen(this.ravineGenerator, InitMapGenEvent.EventType.RAVINE);
         this.worldObj = world;
         this.mapFeaturesEnabled = mapFeaturesEnabled;
@@ -73,7 +83,7 @@ public class ChunkProviderCrystalliumPlains implements IChunkProvider
                 this.parabolicField[j + 2 + (k + 2) * 5] = f;
             }
         }
-        NoiseGenerator[] noiseGens = { (NoiseGenerator)this.noiseGen1, (NoiseGenerator)this.noiseGen2, (NoiseGenerator)this.noiseGen3, (NoiseGenerator)this.noisePerl, (NoiseGenerator)this.noiseGen5, (NoiseGenerator)this.noiseGen6, (NoiseGenerator)this.mobSpawnerNoise };
+        NoiseGenerator[] noiseGens = { this.noiseGen1, this.noiseGen2, this.noiseGen3, this.noisePerl, this.noiseGen5, this.noiseGen6, this.mobSpawnerNoise };
         noiseGens = TerrainGen.getModdedNoiseGenerators(world, this.rand, noiseGens);
         this.noiseGen1 = (NoiseGeneratorOctaves)noiseGens[0];
         this.noiseGen2 = (NoiseGeneratorOctaves)noiseGens[1];
@@ -86,7 +96,7 @@ public class ChunkProviderCrystalliumPlains implements IChunkProvider
 
     public void func_147424_a(final int par1, final int par2, final Block[] blocks) {
         final byte b0 = 63;
-        this.biomesForGeneration = this.worldObj.getWorldChunkManager().loadBlockGeneratorData((BiomeGenBase[])null, par1 * 16, par2 * 16, 16, 16);
+        this.biomesForGeneration = this.worldObj.getWorldChunkManager().loadBlockGeneratorData(null, par1 * 16, par2 * 16, 16, 16);
         this.func_147423_a(par1 * 4, 0, par2 * 4);
         for (int k = 0; k < 4; ++k) {
             final int l = k * 5;
@@ -113,7 +123,7 @@ public class ChunkProviderCrystalliumPlains implements IChunkProvider
                         final double d13 = (d4 - d2) * d10;
                         final double d14 = (d5 - d3) * d10;
                         for (int i3 = 0; i3 < 4; ++i3) {
-                            int j3 = i3 + k * 4 << 12 | 0 + j1 * 4 << 8 | k3 * 8 + l3;
+                            int j3 = i3 + k * 4 << 12 | j1 * 4 << 8 | k3 * 8 + l3;
                             final short short1 = 256;
                             j3 -= short1;
                             final double d15 = 0.25;
@@ -144,18 +154,18 @@ public class ChunkProviderCrystalliumPlains implements IChunkProvider
     }
 
     public void replaceBlocksForBiome(final int p_147422_1_, final int p_147422_2_, final Block[] p_147422_3_, final byte[] p_147422_4_, final BiomeGenBase[] p_147422_5_) {
-        final ChunkProviderEvent.ReplaceBiomeBlocks event = new ChunkProviderEvent.ReplaceBiomeBlocks((IChunkProvider)this, p_147422_1_, p_147422_2_, p_147422_3_, p_147422_5_);
-        MinecraftForge.EVENT_BUS.post((Event)event);
+        final ChunkProviderEvent.ReplaceBiomeBlocks event = new ChunkProviderEvent.ReplaceBiomeBlocks(this, p_147422_1_, p_147422_2_, p_147422_3_, p_147422_5_);
+        MinecraftForge.EVENT_BUS.post(event);
         if (event.getResult() == Event.Result.DENY) {
             return;
         }
         final double d0 = 0.03125;
-        this.stoneNoise = this.noisePerl.func_151599_a(this.stoneNoise, (double)(p_147422_1_ * 16), (double)(p_147422_2_ * 16), 16, 16, d0 * 2.0, d0 * 2.0, 1.0);
+        this.stoneNoise = this.noisePerl.func_151599_a(this.stoneNoise, p_147422_1_ * 16, p_147422_2_ * 16, 16, 16, d0 * 2.0, d0 * 2.0, 1.0);
         for (int k = 0; k < 16; ++k) {
             for (int l = 0; l < 16; ++l) {
                 final BiomeGenBase biomegenbase = p_147422_5_[l + k * 16];
                 if (biomegenbase instanceof BiomeCrystalliumPlains) {
-                    ((BiomeCrystalliumPlains)biomegenbase).genCrystalliumBiomeTerrain(this.worldObj, this.rand, p_147422_3_, p_147422_4_, p_147422_1_ * 16 + k, p_147422_2_ * 16 + l, this.stoneNoise[l + k * 16]);
+                    ((BiomeCrystalliumPlains)biomegenbase).genCrystalliumBiomeTerrain(this.rand, p_147422_3_, p_147422_4_, p_147422_1_ * 16 + k, p_147422_2_ * 16 + l, this.stoneNoise[l + k * 16]);
                 }
             }
         }
@@ -170,11 +180,11 @@ public class ChunkProviderCrystalliumPlains implements IChunkProvider
         final Block[] ablock = new Block[65536];
         final byte[] abyte = new byte[65536];
         this.func_147424_a(par1, par2, ablock);
-        this.replaceBlocksForBiome(par1, par2, ablock, abyte, this.biomesForGeneration = this.worldObj.getWorldChunkManager().loadBlockGeneratorData((BiomeGenBase[])null, par1 * 16, par2 * 16, 16, 16));
-        this.caveGenerator.func_151539_a((IChunkProvider)this, this.worldObj, par1, par2, ablock);
-        this.ravineGenerator.func_151539_a((IChunkProvider)this, this.worldObj, par1, par2, ablock);
+        this.replaceBlocksForBiome(par1, par2, ablock, abyte, this.biomesForGeneration = this.worldObj.getWorldChunkManager().loadBlockGeneratorData(null, par1 * 16, par2 * 16, 16, 16));
+        this.caveGenerator.func_151539_a(this, this.worldObj, par1, par2, ablock);
+        this.ravineGenerator.func_151539_a(this, this.worldObj, par1, par2, ablock);
         if (this.mapFeaturesEnabled) {
-            this.scatteredFeatureGenerator.func_151539_a((IChunkProvider)this, this.worldObj, par1, par2, ablock);
+            this.scatteredFeatureGenerator.func_151539_a(this, this.worldObj, par1, par2, ablock);
         }
         final Chunk chunk = new Chunk(this.worldObj, ablock, abyte, par1, par2);
         final byte[] abyte2 = chunk.getBiomeArray();
@@ -280,7 +290,7 @@ public class ChunkProviderCrystalliumPlains implements IChunkProvider
         final long j1 = this.rand.nextLong() / 2L * 2L + 1L;
         this.rand.setSeed(par2 * i1 + par3 * j1 ^ this.worldObj.getSeed());
         final boolean flag = false;
-        MinecraftForge.EVENT_BUS.post((Event)new PopulateChunkEvent.Pre(par1IChunkProvider, this.worldObj, this.rand, par2, par3, flag));
+        MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Pre(par1IChunkProvider, this.worldObj, this.rand, par2, par3, flag));
         if (this.mapFeaturesEnabled) {
             this.scatteredFeatureGenerator.generateStructuresInChunk(this.worldObj, this.rand, par2, par3);
         }
@@ -293,7 +303,7 @@ public class ChunkProviderCrystalliumPlains implements IChunkProvider
         int k2;
         int l2;
         int i2;
-        Boolean doGen;
+        boolean doGen;
         for (doGen = TerrainGen.populate(par1IChunkProvider, this.worldObj, this.rand, par2, par3, false, PopulateChunkEvent.Populate.EventType.CUSTOM), i1 = 0L; doGen && i1 < 12L; ++i1) {
             k2 = k + this.rand.nextInt(16);
             l2 = l + this.rand.nextInt(16);
@@ -370,7 +380,7 @@ public class ChunkProviderCrystalliumPlains implements IChunkProvider
             i2 = 60 + this.rand.nextInt(4);
             new WorldGenCrystalliumTubes().generate(this.worldObj, this.rand, k2, i2, l2);
         }
-        MinecraftForge.EVENT_BUS.post((Event)new PopulateChunkEvent.Post(par1IChunkProvider, this.worldObj, this.rand, par2, par3, flag));
+        MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Post(par1IChunkProvider, this.worldObj, this.rand, par2, par3, flag));
         BlockFalling.fallInstantly = false;
     }
 

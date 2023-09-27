@@ -2,27 +2,29 @@
 
 package com.gibby.dungeon.gen;
 
-import net.minecraft.world.gen.feature.*;
-import cpw.mods.fml.common.*;
-import java.util.*;
-import net.minecraft.world.chunk.*;
-import net.minecraft.block.*;
-import net.minecraft.world.*;
-import net.minecraft.init.*;
-import com.gibby.dungeon.*;
+import com.gibby.dungeon.Dungeons;
+import cpw.mods.fml.common.IWorldGenerator;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class WorldGenMontaneDungeon_24 extends WorldGenerator implements IWorldGenerator
 {
     public void generate(final Random random, final int chunkX, final int chunkZ, final World world, final IChunkProvider chunkGenerator, final IChunkProvider chunkProvider) {
     }
-    
+
     public void setBlock(final World world, final int x, final int y, final int z, final Block block, final int metadata) {
         final Block b1 = world.getBlock(x, y, z);
         if (b1.isAir((IBlockAccess)world, x, y, z) || b1.isLeaves((IBlockAccess)world, x, y, z)) {
             world.setBlock(x, y, z, block, metadata, 2);
         }
     }
-    
+
     public boolean generate(final World world, final Random rand, final int i, final int j, final int k) {
         this.setBlock(world, i, j + 28, k + 134, Blocks.stone, 0);
         this.setBlock(world, i, j + 28, k + 135, Blocks.bedrock, 0);
@@ -1527,7 +1529,7 @@ public class WorldGenMontaneDungeon_24 extends WorldGenerator implements IWorldG
         this.generate2(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate2(final World world, final Random rand, final int i, final int j, final int k) {
         this.setBlock(world, i, j + 48, k + 101, Blocks.stone, 0);
         this.setBlock(world, i, j + 48, k + 102, Blocks.cobblestone, 0);
@@ -3032,7 +3034,7 @@ public class WorldGenMontaneDungeon_24 extends WorldGenerator implements IWorldG
         this.generate3(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate3(final World world, final Random rand, final int i, final int j, final int k) {
         this.setBlock(world, i + 1, j + 41, k + 54, Blocks.stone, 0);
         this.setBlock(world, i + 1, j + 41, k + 55, Blocks.stone, 0);
@@ -4537,7 +4539,7 @@ public class WorldGenMontaneDungeon_24 extends WorldGenerator implements IWorldG
         this.generate4(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate4(final World world, final Random rand, final int i, final int j, final int k) {
         this.setBlock(world, i + 2, j + 40, k + 118, Blocks.stone, 0);
         this.setBlock(world, i + 2, j + 40, k + 119, Blocks.stone, 0);
@@ -6042,7 +6044,7 @@ public class WorldGenMontaneDungeon_24 extends WorldGenerator implements IWorldG
         this.generate5(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate5(final World world, final Random rand, final int i, final int j, final int k) {
         this.setBlock(world, i + 3, j + 43, k + 111, Blocks.bedrock, 0);
         this.setBlock(world, i + 3, j + 43, k + 112, Blocks.stone, 0);

@@ -2,11 +2,13 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.entity.projectile.*;
-import net.minecraft.world.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.*;
-import net.minecraft.potion.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.World;
 
 public class EntityProjectileBall extends EntityThrowable
 {
@@ -33,7 +35,7 @@ public class EntityProjectileBall extends EntityThrowable
     int potionID2;
     int potionduration2;
     int potionseverity2;
-    
+
     public EntityProjectileBall(final World par1World, final double par2, final double par4, final double par6) {
         super(par1World, par2, par4, par6);
         this.lightsFire = false;
@@ -56,7 +58,7 @@ public class EntityProjectileBall extends EntityThrowable
         this.potionseverity2 = 0;
         this.setDead();
     }
-    
+
     public EntityProjectileBall(final World par1World, final EntityLivingBase par2EntityLivingBase) {
         super(par1World, par2EntityLivingBase);
         this.lightsFire = false;
@@ -78,7 +80,7 @@ public class EntityProjectileBall extends EntityThrowable
         this.potionduration2 = 0;
         this.potionseverity2 = 0;
     }
-    
+
     public EntityProjectileBall(final World par1World) {
         super(par1World);
         this.lightsFire = false;
@@ -101,7 +103,7 @@ public class EntityProjectileBall extends EntityThrowable
         this.potionseverity2 = 0;
         this.setDead();
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         if (this.particle != null) {
@@ -122,50 +124,50 @@ public class EntityProjectileBall extends EntityThrowable
         }
         this.extinguish();
     }
-    
+
     protected float getGravityVelocity() {
         return this.gravityVelocity;
     }
-    
+
     public void setEntityAttributes(final float damage, final float speed, final float gravityvelocity, final DamageSource damagesource) {
         this.impactDamage = damage;
         this.setThrowableHeading(this.motionX, this.motionY, this.motionZ, speed * 1.5f, 1.0f);
         this.gravityVelocity = gravityvelocity;
         this.damageSource = damagesource;
     }
-    
+
     public void setParticle(final String particleString, final double f, final int particleamount) {
         this.particle = particleString;
         this.amplification = f;
         this.particleAmount = particleamount;
     }
-    
+
     public void explodes(final boolean willExplode, final float explosionSize, final boolean fireDamage, final boolean griefing) {
         this.explodes = willExplode;
         this.size = explosionSize;
         this.fire = fireDamage;
         this.griefs = griefing;
     }
-    
+
     public void addPotionEffect(final boolean willApplyPotion, final int potionId, final int duration, final int severity) {
         this.potion = willApplyPotion;
         this.potionID = potionId;
         this.potionduration = duration;
         this.potionseverity = severity;
     }
-    
+
     public void addPotionEffect2(final boolean willApplyPotion, final int potionId, final int duration, final int severity) {
         this.potion2 = willApplyPotion;
         this.potionID2 = potionId;
         this.potionduration2 = duration;
         this.potionseverity2 = severity;
     }
-    
+
     public void addFireDamage(final int fireLightTime) {
         this.lightsFire = true;
         this.lightFireTime = fireLightTime;
     }
-    
+
     protected void onImpact(final MovingObjectPosition var1) {
         if (var1.entityHit != null) {
             if (var1.entityHit instanceof EntityLivingBase) {

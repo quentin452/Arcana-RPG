@@ -2,16 +2,21 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.world.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.entity.boss.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.*;
-import net.minecraft.potion.*;
-import net.minecraft.client.*;
-import net.minecraft.client.particle.*;
-import java.util.*;
-import com.gibby.dungeon.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.particle.EntityReddustFX;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.boss.BossStatus;
+import net.minecraft.entity.boss.IBossDisplayData;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
+import net.minecraft.world.World;
+
+import java.util.List;
 
 public class EntityUndefeatableStrength extends EntityUndefeatable implements IBossDisplayData
 {

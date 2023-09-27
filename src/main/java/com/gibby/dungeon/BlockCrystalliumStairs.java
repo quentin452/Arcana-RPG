@@ -2,7 +2,8 @@
 
 package com.gibby.dungeon;
 
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockStairs;
 
 public class BlockCrystalliumStairs extends BlockStairs
 {

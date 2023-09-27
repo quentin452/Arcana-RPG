@@ -2,21 +2,29 @@
 
 package com.gibby.dungeon.items;
 
-import cpw.mods.fml.relauncher.*;
-import com.gibby.dungeon.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.world.*;
-import net.minecraftforge.common.*;
-import cpw.mods.fml.common.eventhandler.*;
-import net.minecraft.enchantment.*;
-import net.minecraft.init.*;
-import com.gibby.dungeon.mobs.*;
-import net.minecraft.entity.*;
-import net.minecraft.item.*;
-import net.minecraftforge.event.entity.player.*;
-import net.minecraft.client.renderer.texture.*;
-import java.util.*;
-import net.minecraft.util.*;
+import com.gibby.dungeon.Dungeons;
+import com.gibby.dungeon.mobs.EntityDisinigrationArrow;
+import cpw.mods.fml.common.eventhandler.Event;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.EnumAction;
+import net.minecraft.item.ItemBow;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.ArrowLooseEvent;
+import net.minecraftforge.event.entity.player.ArrowNockEvent;
+
+import java.util.List;
 
 public class ItemDisinigrationBow extends ItemBow
 {

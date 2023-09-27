@@ -2,8 +2,8 @@
 
 package com.gibby.dungeon;
 
-import net.minecraft.item.*;
-import cpw.mods.fml.common.registry.*;
+import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.item.ItemStack;
 
 public class ArmorCrafting
 {

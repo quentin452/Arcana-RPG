@@ -2,10 +2,11 @@
 
 package com.gibby.dungeon.gen;
 
-import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.*;
-import java.util.*;
-import net.minecraft.init.*;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class SunsetIslesWhite extends WorldGenerator
 {
@@ -1513,7 +1514,7 @@ public class SunsetIslesWhite extends WorldGenerator
         this.generate2(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate2(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i, j + 71, k + 24, Blocks.stone);
         world.setBlock(i, j + 71, k + 25, Blocks.stone);
@@ -3018,7 +3019,7 @@ public class SunsetIslesWhite extends WorldGenerator
         this.generate3(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate3(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 1, j + 58, k + 72, Blocks.stone);
         world.setBlock(i + 1, j + 58, k + 73, Blocks.stone);
@@ -4523,7 +4524,7 @@ public class SunsetIslesWhite extends WorldGenerator
         this.generate4(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate4(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 1, j + 100, k + 38, Blocks.stone);
         world.setBlock(i + 1, j + 100, k + 39, Blocks.stone);
@@ -6028,7 +6029,7 @@ public class SunsetIslesWhite extends WorldGenerator
         this.generate5(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate5(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 2, j + 72, k + 29, Blocks.stone);
         world.setBlock(i + 2, j + 72, k + 30, Blocks.stone);
@@ -7533,7 +7534,7 @@ public class SunsetIslesWhite extends WorldGenerator
         this.generate6(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate6(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 3, j + 61, k + 74, Blocks.stone);
         world.setBlock(i + 3, j + 61, k + 75, Blocks.stone);
@@ -9038,7 +9039,7 @@ public class SunsetIslesWhite extends WorldGenerator
         this.generate7(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate7(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 4, j + 53, k + 72, Blocks.stone);
         world.setBlock(i + 4, j + 53, k + 73, Blocks.stone);
@@ -10543,7 +10544,7 @@ public class SunsetIslesWhite extends WorldGenerator
         this.generate8(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate8(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 4, j + 87, k + 29, Blocks.stone);
         world.setBlock(i + 4, j + 87, k + 30, Blocks.stone);
@@ -12048,7 +12049,7 @@ public class SunsetIslesWhite extends WorldGenerator
         this.generate9(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate9(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 5, j + 72, k + 53, Blocks.stone);
         world.setBlock(i + 5, j + 72, k + 54, Blocks.stone);
@@ -13553,7 +13554,7 @@ public class SunsetIslesWhite extends WorldGenerator
         this.generate10(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate10(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 6, j + 67, k + 53, Blocks.stone);
         world.setBlock(i + 6, j + 67, k + 54, Blocks.stone);
@@ -15058,7 +15059,7 @@ public class SunsetIslesWhite extends WorldGenerator
         this.generate11(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate11(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 7, j + 66, k + 65, Blocks.stone);
         world.setBlock(i + 7, j + 66, k + 66, Blocks.stone);
@@ -16563,7 +16564,7 @@ public class SunsetIslesWhite extends WorldGenerator
         this.generate12(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate12(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 8, j + 70, k + 33, Blocks.stone);
         world.setBlock(i + 8, j + 70, k + 34, Blocks.stone);
@@ -18068,7 +18069,7 @@ public class SunsetIslesWhite extends WorldGenerator
         this.generate13(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate13(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 10, j + 53, k + 45, Blocks.stone);
         world.setBlock(i + 10, j + 53, k + 46, Blocks.stone);
@@ -19573,7 +19574,7 @@ public class SunsetIslesWhite extends WorldGenerator
         this.generate14(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate14(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 11, j + 66, k + 56, Blocks.stone);
         world.setBlock(i + 11, j + 66, k + 57, Blocks.stone);
@@ -21078,7 +21079,7 @@ public class SunsetIslesWhite extends WorldGenerator
         this.generate15(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate15(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 13, j + 69, k + 38, Blocks.stone);
         world.setBlock(i + 13, j + 69, k + 39, Blocks.stone);
@@ -22583,7 +22584,7 @@ public class SunsetIslesWhite extends WorldGenerator
         this.generate16(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate16(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 17, j + 54, k + 53, Blocks.stone);
         world.setBlock(i + 17, j + 54, k + 54, Blocks.stone);

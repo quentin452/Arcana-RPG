@@ -2,27 +2,28 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.client.renderer.entity.*;
-import net.minecraft.util.*;
-import net.minecraft.client.model.*;
-import org.lwjgl.opengl.*;
-import net.minecraft.entity.*;
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 public class RenderGhostWither extends RenderLiving
 {
     private static final ResourceLocation witherTextures;
     private static final ResourceLocation witherArmorTextures;
     ModelBase ghostModel;
-    
+
     public RenderGhostWither(final ModelBase par1ModelBase, final float par2) {
         super(par1ModelBase, par2);
         this.ghostModel = par1ModelBase;
     }
-    
+
     protected ResourceLocation getEntityTexture(final Entity var1) {
         return RenderGhostWither.witherTextures;
     }
-    
+
     protected int shouldRenderPass(final EntityGhostWither wither, final int par2, final float par3) {
         GL11.glDepthMask(true);
         if (par2 == 1) {
@@ -52,11 +53,11 @@ public class RenderGhostWither extends RenderLiving
         }
         return -1;
     }
-    
+
     protected int shouldRenderPass(final EntityLivingBase par1EntityLivingBase, final int par2, final float par3) {
         return this.shouldRenderPass((EntityGhostWither)par1EntityLivingBase, par2, par3);
     }
-    
+
     static {
         witherTextures = new ResourceLocation("gibby_dungeons:textures/mobs/ghostwither.png");
         witherArmorTextures = new ResourceLocation("gibby_dungeons:textures/mobs/blackKnightArmor.png");

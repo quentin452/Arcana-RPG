@@ -2,35 +2,32 @@
 
 package com.gibby.dungeon;
 
-import net.minecraftforge.event.entity.*;
-import net.minecraft.entity.player.*;
-import net.minecraftforge.common.*;
-import cpw.mods.fml.common.eventhandler.*;
-import net.minecraft.entity.monster.*;
-import com.gibby.dungeon.mobs.*;
-import net.minecraft.potion.*;
-import net.minecraft.entity.*;
-import net.minecraft.init.*;
-import net.minecraft.block.*;
-import net.minecraft.util.*;
-import net.minecraft.client.*;
-import net.minecraft.client.particle.*;
-import java.util.*;
-import net.minecraftforge.event.entity.living.*;
-import com.gibby.dungeon.items.*;
+import com.gibby.dungeon.items.ItemTripleArmor;
+import com.gibby.dungeon.mobs.EntityCrystalMeteor;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.EntityFlameFX;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.EntityGiantZombie;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
+import net.minecraftforge.common.IExtendedEntityProperties;
+import net.minecraftforge.event.entity.EntityEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
+
+import java.util.List;
 
 public class DungeonEventHandler
 {
     private int totalMagicDefence;
     private int totalVoidDefence;
-    private float boost;
-    private boolean initialMagic;
-
-    public DungeonEventHandler() {
-        this.boost = 0.0f;
-        this.initialMagic = true;
-    }
-
     @SubscribeEvent
     public void onEntityConstructing(final EntityEvent.EntityConstructing event) {
         if (event.entity instanceof EntityPlayer && DungeonsExtendedPlayer.get((EntityPlayer)event.entity) == null) {
@@ -69,31 +66,31 @@ public class DungeonEventHandler
                 if (!player.worldObj.isRemote && player.worldObj.rand.nextInt(10000) == 0) {
                     final EntityCrystalMeteor meteor = new EntityCrystalMeteor(player.worldObj, Dungeons.randGauss() * 10.0 + player.posX, player.posY + 50.0, Dungeons.randGauss() * 10.0 + player.posZ);
                     meteor.setVelocity(Dungeons.randGauss(), -0.3, Dungeons.randGauss());
-                    player.worldObj.spawnEntityInWorld((Entity)meteor);
+                    player.worldObj.spawnEntityInWorld(meteor);
                 }
             }
             else if (player.dimension == 0 && !player.worldObj.isRemote && player.posY <= 50.0 && player.worldObj.rand.nextInt(100000) == 0) {
                 player.addPotionEffect(new PotionEffect(Potion.blindness.id, 100, 0));
-                player.worldObj.playSoundAtEntity((Entity)player, "ambient.cave.cave", 0.8f, 1.0f);
+                player.worldObj.playSoundAtEntity(player, "ambient.cave.cave", 0.8f, 1.0f);
             }
             final DungeonsExtendedPlayer par3 = DungeonsExtendedPlayer.get(player);
             if (player.ticksExisted % 80 == 0) {
                 par3.addMagic(1);
             }
         }
-        if (entity.getActivePotionEffect(Potion.damageBoost) != null && entity instanceof EntityLivingBase && entity.worldObj.rand.nextInt(8) == 0) {
+        if (entity.getActivePotionEffect(Potion.damageBoost) != null && entity.worldObj.rand.nextInt(8) == 0) {
             final double randx = entity.worldObj.rand.nextGaussian() / 2.0 - entity.worldObj.rand.nextGaussian() / 2.0;
             final double randy = entity.worldObj.rand.nextGaussian() / 2.0 - entity.worldObj.rand.nextGaussian() / 4.0;
             final double randz = entity.worldObj.rand.nextGaussian() / 2.0 - entity.worldObj.rand.nextGaussian() / 2.0;
             entity.worldObj.spawnParticle("reddust", entity.posX + randx, entity.posY + randy, entity.posZ + randz, 0.0, 0.0, 0.0);
         }
-        if (entity.getActivePotionEffect(Potion.wither) != null && entity instanceof EntityLivingBase && entity.worldObj.rand.nextInt(8) == 0) {
+        if (entity.getActivePotionEffect(Potion.wither) != null && entity.worldObj.rand.nextInt(8) == 0) {
             final double randx = entity.worldObj.rand.nextGaussian() / 2.0 - entity.worldObj.rand.nextGaussian() / 2.0;
             final double randy = entity.worldObj.rand.nextGaussian() / 2.0 - entity.worldObj.rand.nextGaussian() / 4.0;
             final double randz = entity.worldObj.rand.nextGaussian() / 2.0 - entity.worldObj.rand.nextGaussian() / 2.0;
             entity.worldObj.spawnParticle("mobspell", entity.posX + randx, entity.posY + randy, entity.posZ + randz, 0.0, 0.0, 0.0);
         }
-        if (entity.getActivePotionEffect(Potion.regeneration) != null && entity instanceof EntityLivingBase && entity.worldObj.rand.nextInt(12) == 0) {
+        if (entity.getActivePotionEffect(Potion.regeneration) != null && entity.worldObj.rand.nextInt(12) == 0) {
             final double randx = entity.worldObj.rand.nextGaussian() - entity.worldObj.rand.nextGaussian() / 2.0;
             final double randy = entity.worldObj.rand.nextGaussian() - entity.worldObj.rand.nextGaussian() / 2.0;
             final double randz = entity.worldObj.rand.nextGaussian() - entity.worldObj.rand.nextGaussian() / 2.0;
@@ -139,9 +136,9 @@ public class DungeonEventHandler
                 entity.worldObj.spawnParticle("happyVillager", entity.posX + randx, entity.posY + 1.0, entity.posZ + randz2, 0.0, 0.0, 0.0);
             }
         }
-        if (entity.getActivePotionEffect(Dungeons.shock) != null && entity instanceof EntityLivingBase && entity.worldObj.rand.nextInt(5) == 0) {
+        if (entity.getActivePotionEffect(Dungeons.shock) != null && entity.worldObj.rand.nextInt(5) == 0) {
             entity.attackEntityFrom(DamageSource.causeMobDamage(entity), 0.001f);
-            entity.worldObj.playSoundAtEntity((Entity)entity, "random.classic_hurt", 1.0f, 1.3f);
+            entity.worldObj.playSoundAtEntity(entity, "random.classic_hurt", 1.0f, 1.3f);
             entity.hurtResistantTime = 5;
         }
         if (entity.getActivePotionEffect(Dungeons.growth) != null) {
@@ -178,9 +175,9 @@ public class DungeonEventHandler
                 final double randx = (entity.worldObj.rand.nextGaussian() - 0.5) / 4.0;
                 final double randz2 = (entity.worldObj.rand.nextGaussian() - 0.5) / 4.0;
                 entity.worldObj.spawnParticle("lava", entity.posX + randx, entity.posY + 0.5, entity.posZ + randz2, 0.0, 0.0, 0.0);
-                entity.worldObj.playSoundAtEntity((Entity)entity, "random.fizz", 0.5f, 1.0f);
+                entity.worldObj.playSoundAtEntity(entity, "random.fizz", 0.5f, 1.0f);
                 entity.addPotionEffect(new PotionEffect(Potion.fireResistance.id, 100, 0));
-                final List list = entity.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)entity, entity.boundingBox.expand(10.0, 4.0, 10.0));
+                final List list = entity.worldObj.getEntitiesWithinAABBExcludingEntity(entity, entity.boundingBox.expand(10.0, 4.0, 10.0));
                 if (list != null) {
                     for (int k2 = 0; k2 < list.size(); ++k2) {
                         if (list.get(k2) instanceof EntityLivingBase && !((EntityLivingBase) list.get(k2)).isBurning()) {
@@ -228,7 +225,7 @@ public class DungeonEventHandler
                 }
             }
             if (entity.worldObj.rand.nextInt(1000) == 0) {
-                entity.worldObj.playSoundAtEntity((Entity)entity, "ambient.weather.thunder", 0.5f, 1.0f);
+                entity.worldObj.playSoundAtEntity(entity, "ambient.weather.thunder", 0.5f, 1.0f);
                 entity.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 200, 0));
                 entity.addPotionEffect(new PotionEffect(Potion.regeneration.id, 200, 0));
                 entity.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 200, 0));
@@ -241,18 +238,15 @@ public class DungeonEventHandler
             entity.worldObj.spawnParticle("magicCrit", entity.posX + randx, entity.posY - 1.52, entity.posZ + randz2, 0.0, 0.0, 0.0);
             entity.worldObj.spawnParticle("crit", entity.posX + randx, entity.posY - 1.52, entity.posZ + randz2, 0.0, 0.0, 0.0);
             if (entity.motionY <= 3.0) {
-                final EntityLivingBase entityLivingBase = entity;
-                entityLivingBase.motionY += 0.2;
+                entity.motionY += 0.2;
             }
             if (entity.isSneaking()) {
                 entity.motionY = -0.6;
                 if (Math.abs(entity.motionX) < 0.6) {
-                    final EntityLivingBase entityLivingBase2 = entity;
-                    entityLivingBase2.motionX *= 1.05;
+                    entity.motionX *= 1.05;
                 }
                 if (Math.abs(entity.motionZ) < 0.6) {
-                    final EntityLivingBase entityLivingBase3 = entity;
-                    entityLivingBase3.motionZ *= 1.05;
+                    entity.motionZ *= 1.05;
                 }
                 entity.fallDistance = 0.0f;
             }
@@ -262,13 +256,13 @@ public class DungeonEventHandler
                 final double randx2 = (entity.worldObj.rand.nextGaussian() - 0.5) / 2.0;
                 final double randz3 = (entity.worldObj.rand.nextGaussian() - 0.5) / 2.0;
                 if (entity instanceof EntityPlayer && entity.worldObj.isRemote) {
-                    final double timePassed = (entity.ticksExisted / 2 + j * 40) / 10;
+                    final double timePassed = (double) (entity.ticksExisted / 2 + j * 40) / 10;
                     final double particlePositionX = Math.cos(timePassed) * 2.0;
                     final double particlePositionY = Math.sin(timePassed) * 2.0;
                     final double particlePositionZ = Math.sin(timePassed) * 2.0;
                     final EntityFlameFX particle = new EntityFlameFX(entity.worldObj, entity.posX + particlePositionX, entity.posY - 1.52, entity.posZ + particlePositionZ, 0.0, 0.0, 0.0);
                     particle.setRBGColorF(0.0f, 0.1f, 0.6f);
-                    Minecraft.getMinecraft().effectRenderer.addEffect((EntityFX)particle);
+                    Minecraft.getMinecraft().effectRenderer.addEffect(particle);
                 }
                 else {
                     entity.worldObj.spawnParticle("mobSpellAmbient", entity.posX + randx2, entity.posY + 1.0, entity.posZ + randz3, 0.0, 0.0, 0.0);
@@ -277,7 +271,7 @@ public class DungeonEventHandler
                 }
             }
             if (entity instanceof EntityLivingBase) {
-                final List list2 = entity.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)entity, entity.boundingBox.expand(10.0, 4.0, 10.0));
+                final List list2 = entity.worldObj.getEntitiesWithinAABBExcludingEntity(entity, entity.boundingBox.expand(10.0, 4.0, 10.0));
                 if (list2 != null) {
                     for (int k3 = 0; k3 < list2.size(); ++k3) {
                         if (list2.get(k3) instanceof EntityLivingBase && !((EntityLivingBase) list2.get(k3)).isBurning()) {
@@ -294,20 +288,20 @@ public class DungeonEventHandler
                 final double randx2 = (entity.worldObj.rand.nextGaussian() - 0.5) / 2.0;
                 final double randz3 = (entity.worldObj.rand.nextGaussian() - 0.5) / 2.0;
                 if (entity instanceof EntityPlayer && entity.worldObj.isRemote) {
-                    final double timePassed = (entity.ticksExisted + j * 40) / 10;
+                    final double timePassed = (double) (entity.ticksExisted + j * 40) / 10;
                     final double particlePositionX = Math.cos(timePassed) * 2.0;
                     final double particlePositionY = Math.sin(timePassed) * 2.0;
                     final double particlePositionZ = Math.sin(timePassed) * 2.0;
                     EntityFlameFX particle = new EntityFlameFX(entity.worldObj, entity.posX + particlePositionX, entity.posY + particlePositionY, entity.posZ + particlePositionZ, 0.0, 0.0, 0.0);
                     particle.setRBGColorF(0.1f, 0.0f, 1.0f);
-                    Minecraft.getMinecraft().effectRenderer.addEffect((EntityFX)particle);
+                    Minecraft.getMinecraft().effectRenderer.addEffect(particle);
                     particle = new EntityFlameFX(entity.worldObj, entity.posX + particlePositionX, entity.posY - particlePositionY, entity.posZ + particlePositionZ, 0.0, 0.0, 0.0);
                     particle.setRBGColorF(0.1f, 0.0f, 1.0f);
-                    Minecraft.getMinecraft().effectRenderer.addEffect((EntityFX)particle);
+                    Minecraft.getMinecraft().effectRenderer.addEffect(particle);
                 }
             }
             if (entity instanceof EntityLivingBase) {
-                final List list2 = entity.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)entity, entity.boundingBox.expand(10.0, 4.0, 10.0));
+                final List list2 = entity.worldObj.getEntitiesWithinAABBExcludingEntity(entity, entity.boundingBox.expand(10.0, 4.0, 10.0));
                 if (list2 != null) {
                     for (int k3 = 0; k3 < list2.size(); ++k3) {
                         if (list2.get(k3) instanceof EntityLivingBase && !((EntityLivingBase) list2.get(k3)).isBurning()) {
@@ -318,10 +312,8 @@ public class DungeonEventHandler
             }
         }
         if (entity.getActivePotionEffect(Dungeons.imbalance) != null && entity.ticksExisted % 10 == 0 && entity.onGround) {
-            final EntityLivingBase entityLivingBase4 = entity;
-            entityLivingBase4.motionX += Dungeons.randRange(-1, 1) / 1.9999;
-            final EntityLivingBase entityLivingBase5 = entity;
-            entityLivingBase5.motionZ += Dungeons.randRange(-1, 1) / 1.9999;
+            entity.motionX += Dungeons.randRange(-1, 1) / 1.9999;
+            entity.motionZ += Dungeons.randRange(-1, 1) / 1.9999;
         }
     }
 

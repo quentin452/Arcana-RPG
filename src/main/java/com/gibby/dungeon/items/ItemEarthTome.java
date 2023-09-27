@@ -2,37 +2,40 @@
 
 package com.gibby.dungeon.items;
 
-import net.minecraft.item.*;
-import net.minecraft.world.*;
-import net.minecraft.entity.player.*;
-import com.gibby.dungeon.*;
-import com.gibby.dungeon.mobs.*;
-import net.minecraft.entity.*;
-import cpw.mods.fml.relauncher.*;
-import java.util.*;
-import net.minecraft.util.*;
+import com.gibby.dungeon.DungeonsExtendedPlayer;
+import com.gibby.dungeon.mobs.EntityRupture;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.world.World;
+
+import java.util.List;
 
 public class ItemEarthTome extends ItemForceWand
 {
     private int maxTier;
-    
+
     public ItemEarthTome() {
         this.maxTier = 5;
         this.setMaxStackSize(1);
         this.setMaxDamage(this.maxTier);
         this.setFull3D();
     }
-    
+
     public void onCreated(final ItemStack par1ItemStack, final World par2World, final EntityPlayer par3EntityPlayer) {
         super.onCreated(par1ItemStack, par2World, par3EntityPlayer);
         this.setDamage(par1ItemStack, this.maxTier - 1);
     }
-    
+
     @Override
     public boolean onEntitySwing(final EntityLivingBase entityLiving, final ItemStack stack) {
         return false;
     }
-    
+
     @Override
     public ItemStack onItemRightClick(final ItemStack par1ItemStack, final World par2World, final EntityPlayer par3) {
         final DungeonsExtendedPlayer par4 = DungeonsExtendedPlayer.get(par3);
@@ -60,12 +63,12 @@ public class ItemEarthTome extends ItemForceWand
         }
         return par1ItemStack;
     }
-    
+
     @SideOnly(Side.CLIENT)
     public boolean hasEffect(final ItemStack par1ItemStack, final int par1) {
         return true;
     }
-    
+
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(final ItemStack par1ItemStack, final EntityPlayer par2EntityPlayer, final List par3List, final boolean par4) {

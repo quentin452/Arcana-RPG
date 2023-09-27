@@ -2,11 +2,12 @@
 
 package com.gibby.dungeon.gen;
 
-import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.*;
-import java.util.*;
-import net.minecraft.init.*;
-import com.gibby.dungeon.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class WorldGenGhostWitherTower extends WorldGenerator
 {
@@ -14,7 +15,6 @@ public class WorldGenGhostWitherTower extends WorldGenerator
         if (world.getBlock(i, j + 6, k) == Blocks.air || world.getBlock(i + 40, j + 6, k + 40) == Blocks.air || world.getBlock(i, j + 50, k) != Blocks.air || world.getBlock(i + 40, j + 50, k + 40) != Blocks.air || world.getBlock(i, j + 10, k) != Blocks.air || world.getBlock(i + 40, j + 10, k + 40) != Blocks.air) {
             return false;
         }
-        System.out.println("Wither Ruins Generating at " + i + " " + j + " " + k);
         world.setBlock(i, j, k, Dungeons.purpleBrick);
         world.setBlock(i, j, k + 1, Dungeons.purpleBrick);
         world.setBlock(i, j, k + 2, Dungeons.purpleBrick);
@@ -1518,7 +1518,7 @@ public class WorldGenGhostWitherTower extends WorldGenerator
         this.generate2(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate2(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 10, j + 3, k + 20, Dungeons.purpleBrick);
         world.setBlock(i + 10, j + 3, k + 21, Dungeons.purpleBrick);
@@ -3023,7 +3023,7 @@ public class WorldGenGhostWitherTower extends WorldGenerator
         this.generate3(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate3(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 13, j + 26, k + 18, Dungeons.purpleBrick);
         world.setBlock(i + 13, j + 26, k + 19, Dungeons.purpleBrick);
@@ -4528,7 +4528,7 @@ public class WorldGenGhostWitherTower extends WorldGenerator
         this.generate4(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate4(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 17, j + 11, k + 14, Dungeons.purpleBrick);
         world.setBlock(i + 17, j + 11, k + 15, Dungeons.purpleBrick);
@@ -6033,7 +6033,7 @@ public class WorldGenGhostWitherTower extends WorldGenerator
         this.generate5(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate5(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 21, j + 8, k + 11, Dungeons.purpleBrick);
         world.setBlock(i + 21, j + 8, k + 12, Dungeons.purpleBrick);
@@ -7538,7 +7538,7 @@ public class WorldGenGhostWitherTower extends WorldGenerator
         this.generate6(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate6(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 24, j + 14, k + 16, Dungeons.purpleBrick);
         world.setBlock(i + 24, j + 14, k + 17, Dungeons.purpleBrick);
@@ -9043,7 +9043,7 @@ public class WorldGenGhostWitherTower extends WorldGenerator
         this.generate7(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate7(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 28, j + 3, k + 21, Dungeons.purpleBrick);
         world.setBlock(i + 28, j + 3, k + 22, Dungeons.purpleBrick);

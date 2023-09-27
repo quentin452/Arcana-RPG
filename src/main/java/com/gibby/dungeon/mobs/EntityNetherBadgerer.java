@@ -2,16 +2,24 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.entity.monster.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.entity.ai.*;
-import net.minecraft.world.*;
-import net.minecraft.entity.boss.*;
-import java.util.*;
-import net.minecraft.item.*;
-import net.minecraft.util.*;
-import net.minecraft.entity.*;
-import com.gibby.dungeon.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.boss.BossStatus;
+import net.minecraft.entity.boss.IBossDisplayData;
+import net.minecraft.entity.monster.EntityIronGolem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
+import net.minecraft.world.EnumDifficulty;
+import net.minecraft.world.World;
+
+import java.util.List;
 
 public class EntityNetherBadgerer extends EntityIronGolem implements IBossDisplayData
 {
@@ -22,14 +30,14 @@ public class EntityNetherBadgerer extends EntityIronGolem implements IBossDispla
         this.setSize(2.1f, 4.35f);
         this.experienceValue = 100;
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(30.0);
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.24);
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(90.0);
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         if (!this.worldObj.isRemote && this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL) {
@@ -57,7 +65,7 @@ public class EntityNetherBadgerer extends EntityIronGolem implements IBossDispla
             }
         }
     }
-    
+
     public int getTotalArmorValue() {
         int i = 0;
         for (final ItemStack itemstack : this.getLastActiveItems()) {
@@ -68,7 +76,7 @@ public class EntityNetherBadgerer extends EntityIronGolem implements IBossDispla
         }
         return i + 20;
     }
-    
+
     public boolean attackEntityAsMob(final Entity par1Entity) {
         this.worldObj.setEntityState((Entity)this, (byte)4);
         final boolean flag = par1Entity.attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), (float)(20 + this.rand.nextInt(15)));
@@ -78,7 +86,7 @@ public class EntityNetherBadgerer extends EntityIronGolem implements IBossDispla
         this.playSound("mob.irongolem.throw", 1.0f, 1.0f);
         return flag;
     }
-    
+
     protected void dropFewItems(final boolean par1, final int par2) {
         final int r = this.rand.nextInt(4);
         if (r == 0) {

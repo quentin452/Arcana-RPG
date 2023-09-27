@@ -2,22 +2,32 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.command.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.entity.ai.*;
-import net.minecraft.entity.boss.*;
-import net.minecraft.client.*;
-import net.minecraft.client.particle.*;
-import net.minecraft.entity.effect.*;
-import com.gibby.dungeon.*;
-import net.minecraft.potion.*;
-import net.minecraft.entity.monster.*;
-import net.minecraft.util.*;
-import java.util.*;
-import net.minecraft.block.*;
-import net.minecraft.init.*;
-import net.minecraft.world.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.block.BlockBush;
+import net.minecraft.block.BlockLeaves;
+import net.minecraft.block.BlockLog;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.particle.EntityFlameFX;
+import net.minecraft.command.IEntitySelector;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.*;
+import net.minecraft.entity.boss.BossStatus;
+import net.minecraft.entity.boss.EntityWither;
+import net.minecraft.entity.boss.IBossDisplayData;
+import net.minecraft.entity.effect.EntityLightningBolt;
+import net.minecraft.entity.monster.EntitySkeleton;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.Explosion;
+import net.minecraft.world.World;
+
+import java.util.List;
 
 public class EntityGhostWither extends EntityWither implements IRangedAttackMob, IBossDisplayData
 {

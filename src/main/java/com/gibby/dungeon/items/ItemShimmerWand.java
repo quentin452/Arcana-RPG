@@ -2,22 +2,27 @@
 
 package com.gibby.dungeon.items;
 
-import net.minecraft.item.*;
-import net.minecraft.entity.player.*;
-import com.gibby.dungeon.*;
-import com.gibby.dungeon.mobs.*;
-import net.minecraft.entity.*;
-import net.minecraft.world.*;
-import java.util.*;
-import net.minecraft.util.*;
-import cpw.mods.fml.relauncher.*;
+import com.gibby.dungeon.DungeonsExtendedPlayer;
+import com.gibby.dungeon.mobs.EntityProjectileBall;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.Vec3;
+import net.minecraft.world.World;
+
+import java.util.List;
 
 public class ItemShimmerWand extends ItemForceWand
 {
     public ItemShimmerWand() {
         this.tier = 3;
     }
-    
+
     public boolean onEntitySwing(final EntityLivingBase entityLiving, final ItemStack stack) {
         if (entityLiving instanceof EntityPlayer) {
             final EntityPlayer par3 = (EntityPlayer)entityLiving;
@@ -46,7 +51,7 @@ public class ItemShimmerWand extends ItemForceWand
         }
         return false;
     }
-    
+
     public ItemStack onItemRightClick(final ItemStack par1ItemStack, final World par2World, final EntityPlayer par3) {
         final DungeonsExtendedPlayer par4 = DungeonsExtendedPlayer.get(par3);
         if (par4.magicAmount() >= 8 || par3.capabilities.isCreativeMode) {
@@ -72,7 +77,7 @@ public class ItemShimmerWand extends ItemForceWand
         }
         return par1ItemStack;
     }
-    
+
     @SideOnly(Side.CLIENT)
     public void addInformation(final ItemStack par1ItemStack, final EntityPlayer par2EntityPlayer, final List par3List, final boolean par4) {
         par3List.add(EnumChatFormatting.DARK_PURPLE + "Left Click to shoot 3 magical projectiles(3 magic)");

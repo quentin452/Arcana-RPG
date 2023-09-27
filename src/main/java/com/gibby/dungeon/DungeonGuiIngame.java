@@ -2,20 +2,25 @@
 
 package com.gibby.dungeon;
 
-import net.minecraftforge.client.*;
-import net.minecraft.client.*;
-import net.minecraftforge.event.entity.living.*;
-import net.minecraft.entity.player.*;
-import net.minecraftforge.client.event.*;
-import cpw.mods.fml.common.eventhandler.*;
-import org.lwjgl.opengl.*;
-import net.minecraft.client.renderer.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.*;
-import net.minecraft.entity.ai.attributes.*;
-import net.minecraft.client.gui.*;
-import net.minecraft.client.entity.*;
-import com.gibby.dungeon.items.*;
+import com.gibby.dungeon.items.ItemTripleArmor;
+import cpw.mods.fml.common.eventhandler.EventPriority;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.GuiIngameForge;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import org.lwjgl.opengl.GL11;
 
 public class DungeonGuiIngame extends GuiIngameForge
 {
@@ -26,7 +31,7 @@ public class DungeonGuiIngame extends GuiIngameForge
     ResourceLocation sunspot;
     int magicDamage;
     int voidDamage;
-    
+
     public DungeonGuiIngame(final Minecraft minecraft) {
         super(minecraft);
         this.magic = new ResourceLocation("gibby_dungeons:textures/armor/magic armor.png");
@@ -35,7 +40,7 @@ public class DungeonGuiIngame extends GuiIngameForge
         this.voiddamage = new ResourceLocation("gibby_dungeons:voiddamage.png");
         this.sunspot = new ResourceLocation("gibby_dungeons:sunspot.png");
     }
-    
+
     @SubscribeEvent
     public void onLivingHurtEvent(final LivingHurtEvent event) {
         if (event.entityLiving instanceof EntityPlayer) {
@@ -47,13 +52,13 @@ public class DungeonGuiIngame extends GuiIngameForge
             }
         }
     }
-    
+
     @SubscribeEvent(priority = EventPriority.LOW)
     public void onRenderBossBar(final RenderGameOverlayEvent event) {
         this.renderResistanceBossHealth();
         this.renderStrengthBossHealth();
     }
-    
+
     @SubscribeEvent(priority = EventPriority.LOW)
     public void onRenderHelmet(final RenderGameOverlayEvent event) {
         GL11.glEnable(3042);
@@ -78,7 +83,7 @@ public class DungeonGuiIngame extends GuiIngameForge
             }
         }
     }
-    
+
     @SubscribeEvent(priority = EventPriority.LOW)
     public void onRenderArmorBar(final RenderGameOverlayEvent event) {
         final ScaledResolution scaledresolution = new ScaledResolution(this.mc, this.mc.displayWidth, this.mc.displayHeight);
@@ -88,7 +93,7 @@ public class DungeonGuiIngame extends GuiIngameForge
             this.func_110327_c(k, l);
         }
     }
-    
+
     protected void renderDamage(final int par1, final int par2) {
         GL11.glDisable(2929);
         GL11.glDepthMask(false);
@@ -113,7 +118,7 @@ public class DungeonGuiIngame extends GuiIngameForge
         GL11.glEnable(3008);
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 0.1f);
     }
-    
+
     protected void renderPotionEffect(final int par1, final int par2) {
         final int ticks = this.mc.thePlayer.ticksExisted;
         GL11.glDisable(2929);
@@ -134,7 +139,7 @@ public class DungeonGuiIngame extends GuiIngameForge
         GL11.glEnable(3008);
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 0.1f + 0.1f * (ticks % 50));
     }
-    
+
     protected void func_110327_c(final int par1, final int par2) {
         if (this.mc.thePlayer != null) {
             final DungeonsExtendedPlayer par3 = DungeonsExtendedPlayer.get((EntityPlayer)this.mc.thePlayer);
@@ -243,7 +248,7 @@ public class DungeonGuiIngame extends GuiIngameForge
             this.mc.mcProfiler.endSection();
         }
     }
-    
+
     protected void renderResistanceBossHealth() {
         if (DungeonsBossStatusResistance.bossName != null && DungeonsBossStatusResistance.statusBarTime > 0) {
             this.mc.getTextureManager().bindTexture(this.voidarmor);
@@ -264,7 +269,7 @@ public class DungeonGuiIngame extends GuiIngameForge
             this.mc.getTextureManager().bindTexture(DungeonGuiIngame.icons);
         }
     }
-    
+
     protected void renderStrengthBossHealth() {
         if (DungeonsBossStatus.bossName != null && DungeonsBossStatus.statusBarTime > 0) {
             this.mc.getTextureManager().bindTexture(this.magic);
@@ -285,7 +290,7 @@ public class DungeonGuiIngame extends GuiIngameForge
             this.mc.getTextureManager().bindTexture(DungeonGuiIngame.icons);
         }
     }
-    
+
     public int TotalMagicDefence(final EntityClientPlayerMP player) {
         int bootDefence = 0;
         int leggingDefence = 0;
@@ -309,7 +314,7 @@ public class DungeonGuiIngame extends GuiIngameForge
         }
         return bootDefence + leggingDefence + chestplateDefence + helmetDefence;
     }
-    
+
     public int totalVoidDefence(final EntityClientPlayerMP player) {
         int bootDefence = 0;
         int leggingDefence = 0;

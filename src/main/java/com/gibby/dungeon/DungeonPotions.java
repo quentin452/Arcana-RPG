@@ -2,17 +2,18 @@
 
 package com.gibby.dungeon;
 
-import net.minecraft.potion.*;
-import java.lang.reflect.*;
+import net.minecraft.potion.Potion;
+
+import java.lang.reflect.Field;
 
 public class DungeonPotions
 {
     public static void PotionSetup() {
-        Potion[] potionTypes = null;
+        Potion[] potionTypes;
         for (final Field f : Potion.class.getDeclaredFields()) {
             f.setAccessible(true);
             try {
-                if (f.getName().equals("potionTypes") || f.getName().equals("potionTypes")) {
+                if (f.getName().equals("potionTypes")) {
                     final Field modfield = Field.class.getDeclaredField("modifiers");
                     modfield.setAccessible(true);
                     modfield.setInt(f, f.getModifiers() & 0xFFFFFFEF);
@@ -24,7 +25,6 @@ public class DungeonPotions
             }
             catch (Exception e) {
                 System.err.println("Severe error, please report this to the mod author:");
-                System.err.println(e);
             }
         }
     }

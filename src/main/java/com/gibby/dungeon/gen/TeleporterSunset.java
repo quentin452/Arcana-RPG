@@ -2,12 +2,21 @@
 
 package com.gibby.dungeon.gen;
 
-import net.minecraft.entity.*;
-import com.gibby.dungeon.*;
-import net.minecraft.init.*;
-import net.minecraft.world.*;
-import java.util.*;
-import net.minecraft.util.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.entity.Entity;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.util.Direction;
+import net.minecraft.util.LongHashMap;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.ChunkCoordIntPair;
+import net.minecraft.world.Teleporter;
+import net.minecraft.world.WorldServer;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
 
 public class TeleporterSunset extends Teleporter
 {
@@ -100,10 +109,10 @@ public class TeleporterSunset extends Teleporter
         }
         if (d3 >= 0.0) {
             if (flag) {
-                this.destinationCoordinateCache.add(j2, (Object)new PortalPosition(i, j, k, this.worldServerInstance.getTotalWorldTime()));
+                this.destinationCoordinateCache.add(j2, new PortalPosition(i, j, k, this.worldServerInstance.getTotalWorldTime()));
                 this.destinationCoordinateKeys.add(j2);
             }
-            double d8 = i + 0.5;
+            double d8 = i+0.5;
             final double d9 = j + 0.5;
             double d6 = k + 0.5;
             int j3 = -1;
@@ -209,26 +218,25 @@ public class TeleporterSunset extends Teleporter
             final int x = (int)(i + 84.75);
             final int y = (int)(j - 24.0);
             final int z = (int)(k - 175.5);
-            System.out.println("generating at " + x + " " + y + " " + z);
-            new SunsetIslesWhite().generate((World)this.worldServerInstance, this.random, x, y - 1, z + 2);
-            new SunsetIslandsOrange().generate((World)this.worldServerInstance, this.random, x - 7, y, z);
-            new SunsetIslandsPurple().generate((World)this.worldServerInstance, this.random, x - 13, y, z);
-            new SunsetIslandsCyan().generate((World)this.worldServerInstance, this.random, x - 18, y, z);
-            new SunsetIslandsBlue().generate((World)this.worldServerInstance, this.random, x - 24, y + 1, z);
-            new SunsetIslandsDarkPurple().generate((World)this.worldServerInstance, this.random, x - 32, y - 1, z);
-            new SunsetIslandsYellow().generate((World)this.worldServerInstance, this.random, x - 40, y + 1, z);
-            new SunsetIslandsGreen().generate((World)this.worldServerInstance, this.random, x - 86, y + 2, z);
-            new SunsetIslandsPink().generate((World)this.worldServerInstance, this.random, x - 130, y, z);
-            new SunsetIslandsGray().generate((World)this.worldServerInstance, this.random, x - 152, y, z);
-            new SunsetIslandsBrown().generate((World)this.worldServerInstance, this.random, x - 167, y, z - 50);
-            new SunsetIslandsDarkGreen().generate((World)this.worldServerInstance, this.random, x - 177, y, z - 50);
-            new SunsetIslandsRed().generate((World)this.worldServerInstance, this.random, x - 197, y, z - 50);
-            new SunsetIslandsBlack().generate((World)this.worldServerInstance, this.random, x - 217, y, z - 50);
-            new SunsetIslandsOrangeClay().generate((World)this.worldServerInstance, this.random, x - 227, y, z - 50);
-            new SunsetIslandsMagentaClay().generate((World)this.worldServerInstance, this.random, x - 237, y, z - 50);
-            new SunsetIslandsLightBlueClay().generate((World)this.worldServerInstance, this.random, x - 248, y - 1, z - 50);
-            new SunsetIslandsYellowClay().generate((World)this.worldServerInstance, this.random, x - 260, y - 1, z - 50);
-            new SunsetIslandsLimeClay().generate((World)this.worldServerInstance, this.random, x - 279, y - 1, z - 50);
+            new SunsetIslesWhite().generate(this.worldServerInstance, this.random, x, y - 1, z + 2);
+            new SunsetIslandsOrange().generate(this.worldServerInstance, this.random, x - 7, y, z);
+            new SunsetIslandsPurple().generate(this.worldServerInstance, this.random, x - 13, y, z);
+            new SunsetIslandsCyan().generate(this.worldServerInstance, this.random, x - 18, y, z);
+            new SunsetIslandsBlue().generate(this.worldServerInstance, this.random, x - 24, y + 1, z);
+            new SunsetIslandsDarkPurple().generate(this.worldServerInstance, this.random, x - 32, y - 1, z);
+            new SunsetIslandsYellow().generate(this.worldServerInstance, this.random, x - 40, y + 1, z);
+            new SunsetIslandsGreen().generate(this.worldServerInstance, this.random, x - 86, y + 2, z);
+            new SunsetIslandsPink().generate(this.worldServerInstance, this.random, x - 130, y, z);
+            new SunsetIslandsGray().generate(this.worldServerInstance, this.random, x - 152, y, z);
+            new SunsetIslandsBrown().generate(this.worldServerInstance, this.random, x - 167, y, z - 50);
+            new SunsetIslandsDarkGreen().generate(this.worldServerInstance, this.random, x - 177, y, z - 50);
+            new SunsetIslandsRed().generate(this.worldServerInstance, this.random, x - 197, y, z - 50);
+            new SunsetIslandsBlack().generate(this.worldServerInstance, this.random, x - 217, y, z - 50);
+            new SunsetIslandsOrangeClay().generate(this.worldServerInstance, this.random, x - 227, y, z - 50);
+            new SunsetIslandsMagentaClay().generate(this.worldServerInstance, this.random, x - 237, y, z - 50);
+            new SunsetIslandsLightBlueClay().generate(this.worldServerInstance, this.random, x - 248, y - 1, z - 50);
+            new SunsetIslandsYellowClay().generate(this.worldServerInstance, this.random, x - 260, y - 1, z - 50);
+            new SunsetIslandsLimeClay().generate(this.worldServerInstance, this.random, x - 279, y - 1, z - 50);
         }
         for (int x = 0; x < 7; ++x) {
             for (int z2 = 0; z2 < 7; ++z2) {
@@ -263,7 +271,7 @@ public class TeleporterSunset extends Teleporter
         }
     }
 
-    public class PortalPosition extends ChunkCoordinates
+    public static class PortalPosition extends ChunkCoordinates
     {
         public long lastUpdateTime;
 

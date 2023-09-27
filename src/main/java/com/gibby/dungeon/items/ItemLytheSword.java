@@ -2,14 +2,19 @@
 
 package com.gibby.dungeon.items;
 
-import net.minecraft.item.*;
-import net.minecraft.world.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.potion.*;
-import net.minecraft.entity.*;
-import java.util.*;
-import net.minecraft.util.*;
-import cpw.mods.fml.relauncher.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.world.World;
+
+import java.util.List;
 
 public class ItemLytheSword extends ItemStandardVoidSword
 {
@@ -24,14 +29,14 @@ public class ItemLytheSword extends ItemStandardVoidSword
             final EntityPlayer entity = (EntityPlayer)par3Entity;
             if (entity.getCurrentEquippedItem() == par1ItemStack) {
                 entity.addPotionEffect(new PotionEffect(Potion.invisibility.id, 100, 0));
-                final List list = par2World.getEntitiesWithinAABBExcludingEntity((Entity)entity, entity.boundingBox.expand(15.0, 4.0, 15.0));
+                final List list = par2World.getEntitiesWithinAABBExcludingEntity(entity, entity.boundingBox.expand(15.0, 4.0, 15.0));
                 if (list != null) {
                     for (int k2 = 0; k2 < list.size(); ++k2) {
                         if (list.get(k2) instanceof EntityLivingBase && ((EntityLivingBase) list.get(k2)).onGround) {
                             final double d0 = ((EntityLivingBase) list.get(k2)).posX - entity.posX;
                             final double d2 = ((EntityLivingBase) list.get(k2)).posZ - entity.posZ;
-                            ((EntityLivingBase) list.get(k2)).motionX = -d0 / (25.0f * ((EntityLivingBase) list.get(k2)).getDistanceToEntity((Entity)entity));
-                            ((EntityLivingBase) list.get(k2)).motionZ = -d2 / (25.0f * ((EntityLivingBase) list.get(k2)).getDistanceToEntity((Entity)entity));
+                            ((EntityLivingBase) list.get(k2)).motionX = -d0 / (25.0f * ((EntityLivingBase) list.get(k2)).getDistanceToEntity(entity));
+                            ((EntityLivingBase) list.get(k2)).motionZ = -d2 / (25.0f * ((EntityLivingBase) list.get(k2)).getDistanceToEntity(entity));
                         }
                     }
                 }

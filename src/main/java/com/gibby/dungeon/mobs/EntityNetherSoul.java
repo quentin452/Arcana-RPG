@@ -2,18 +2,26 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.world.*;
-import net.minecraft.entity.monster.*;
-import net.minecraft.entity.ai.*;
-import net.minecraft.entity.passive.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import java.util.*;
-import net.minecraft.entity.projectile.*;
-import net.minecraft.util.*;
-import com.gibby.dungeon.*;
-import net.minecraft.item.*;
-import net.minecraft.init.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.monster.EntityIronGolem;
+import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.projectile.EntityFireball;
+import net.minecraft.entity.projectile.EntityLargeFireball;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.World;
+
+import java.util.List;
 
 public class EntityNetherSoul extends EntityMob
 {

@@ -2,14 +2,14 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.entity.projectile.*;
-import net.minecraft.world.*;
-import net.minecraft.client.*;
-import net.minecraft.client.particle.*;
-import com.gibby.dungeon.*;
-import net.minecraft.init.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.EntityFireworkSparkFX;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.World;
 
 public class EntityCrystalliumPlainsPortal extends EntityThrowable
 {
@@ -19,7 +19,7 @@ public class EntityCrystalliumPlainsPortal extends EntityThrowable
     double freezeX;
     double freezeY;
     double freezeZ;
-    
+
     public EntityCrystalliumPlainsPortal(final World par1World) {
         super(par1World);
         this.stage = 0;
@@ -27,7 +27,7 @@ public class EntityCrystalliumPlainsPortal extends EntityThrowable
         this.freezeY = 0.0;
         this.freezeZ = 0.0;
     }
-    
+
     public EntityCrystalliumPlainsPortal(final World par1World, final EntityLivingBase par2EntityLivingBase) {
         super(par1World, par2EntityLivingBase);
         this.stage = 0;
@@ -35,11 +35,11 @@ public class EntityCrystalliumPlainsPortal extends EntityThrowable
         this.freezeY = 0.0;
         this.freezeZ = 0.0;
     }
-    
+
     protected float getGravityVelocity() {
         return 0.08f;
     }
-    
+
     public EntityCrystalliumPlainsPortal(final World par1World, final double par2, final double par4, final double par6) {
         super(par1World, par2, par4, par6);
         this.stage = 0;
@@ -47,7 +47,7 @@ public class EntityCrystalliumPlainsPortal extends EntityThrowable
         this.freezeY = 0.0;
         this.freezeZ = 0.0;
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         if (this.impacted) {
@@ -59,17 +59,17 @@ public class EntityCrystalliumPlainsPortal extends EntityThrowable
                     particle.setRBGColorF(0.5f, 0.0f, 0.5f);
                     particle.setFadeColour(0);
                     particle.setTwinkle(true);
-                    Minecraft.getMinecraft().effectRenderer.addEffect((EntityFX)particle);
+                    Minecraft.getMinecraft().effectRenderer.addEffect(particle);
                     particle = new EntityFireworkSparkFX(this.worldObj, this.posX + particlePositionX, this.posY + 8.0, this.posZ + particlePositionZ, 0.0, 0.0, 0.0, Minecraft.getMinecraft().effectRenderer);
                     particle.setRBGColorF(0.8f, 0.2f, 0.8f);
                     particle.setFadeColour(0);
                     particle.setTwinkle(true);
-                    Minecraft.getMinecraft().effectRenderer.addEffect((EntityFX)particle);
+                    Minecraft.getMinecraft().effectRenderer.addEffect(particle);
                     particle = new EntityFireworkSparkFX(this.worldObj, this.posX + particlePositionX, this.posY + 10.0, this.posZ + particlePositionZ, 0.0, 0.0, 0.0, Minecraft.getMinecraft().effectRenderer);
                     particle.setRBGColorF(1.0f, 0.5f, 1.0f);
                     particle.setFadeColour(0);
                     particle.setTwinkle(true);
-                    Minecraft.getMinecraft().effectRenderer.addEffect((EntityFX)particle);
+                    Minecraft.getMinecraft().effectRenderer.addEffect(particle);
                 }
             }
             ++this.counter;
@@ -148,7 +148,7 @@ public class EntityCrystalliumPlainsPortal extends EntityThrowable
                             break;
                         }
                     }
-                    this.worldObj.playSoundAtEntity((Entity)this, "step.wood", 1.5f, 1.0f);
+                    this.worldObj.playSoundAtEntity(this, "step.wood", 1.5f, 1.0f);
                 }
                 if (this.stage == 8) {
                     this.setDead();
@@ -156,7 +156,7 @@ public class EntityCrystalliumPlainsPortal extends EntityThrowable
             }
         }
     }
-    
+
     protected void onImpact(final MovingObjectPosition var1) {
         if (this.worldObj != null && var1.entityHit == null) {
             this.impacted = true;

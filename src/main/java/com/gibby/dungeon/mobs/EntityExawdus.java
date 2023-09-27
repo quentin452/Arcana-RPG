@@ -2,14 +2,18 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.entity.monster.*;
-import net.minecraft.world.*;
-import com.gibby.dungeon.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.entity.boss.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.*;
-import java.util.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.boss.BossStatus;
+import net.minecraft.entity.boss.IBossDisplayData;
+import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.DamageSource;
+import net.minecraft.world.World;
+
+import java.util.List;
 
 public class EntityExawdus extends EntityMob implements IBossDisplayData
 {

@@ -2,34 +2,37 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.entity.projectile.*;
-import net.minecraft.world.*;
-import net.minecraft.client.*;
-import net.minecraft.client.particle.*;
-import net.minecraft.util.*;
-import net.minecraft.entity.*;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.particle.EntityReddustFX;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.World;
 
 public class EntityEnergy extends EntityThrowable
 {
     public int tier;
-    
+
     public EntityEnergy(final World par1World) {
         super(par1World);
         this.setDead();
     }
-    
+
     public EntityEnergy(final World par1World, final EntityLivingBase par2EntityLivingBase) {
         super(par1World, par2EntityLivingBase);
     }
-    
+
     public EntityEnergy(final World par1World, final double par2, final double par4, final double par6) {
         super(par1World, par2, par4, par6);
     }
-    
+
     protected float getGravityVelocity() {
         return 0.0f;
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         if (this.worldObj.isRemote) {
@@ -48,7 +51,7 @@ public class EntityEnergy extends EntityThrowable
             this.setDead();
         }
     }
-    
+
     protected void onImpact(final MovingObjectPosition var1) {
         if (var1.entityHit != null && var1.entityHit instanceof EntityLivingBase) {
             ((EntityLivingBase)var1.entityHit).attackEntityFrom(DamageSource.causeThrownDamage((Entity)this, var1.entityHit), 1.0f);

@@ -2,13 +2,14 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.entity.projectile.*;
-import net.minecraft.world.*;
-import net.minecraft.util.*;
-import net.minecraft.entity.*;
-import net.minecraft.init.*;
-import com.gibby.dungeon.*;
-import net.minecraft.block.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.World;
 
 public class EntityIceSpiker extends EntityThrowable
 {
@@ -16,19 +17,19 @@ public class EntityIceSpiker extends EntityThrowable
         super(par1World);
         this.setDead();
     }
-    
+
     public EntityIceSpiker(final World par1World, final EntityLivingBase par2EntityLivingBase) {
         super(par1World, par2EntityLivingBase);
     }
-    
+
     public EntityIceSpiker(final World par1World, final double par2, final double par4, final double par6) {
         super(par1World, par2, par4, par6);
     }
-    
+
     protected float getGravityVelocity() {
         return 0.05f;
     }
-    
+
     protected void onImpact(final MovingObjectPosition var1) {
         if (var1.entityHit == null && !this.worldObj.isRemote) {
             this.worldObj.playSoundAtEntity((Entity)this, "dig.class", 1.0f, 1.3f);

@@ -2,17 +2,18 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.entity.boss.*;
-import net.minecraft.world.*;
-import net.minecraft.client.*;
-import net.minecraft.client.particle.*;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.particle.EntityReddustFX;
+import net.minecraft.entity.boss.EntityWither;
+import net.minecraft.world.World;
 
 public class EntityFakeWither extends EntityWither
 {
     public EntityFakeWither(final World par1World) {
         super(par1World);
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         if (this.getHealth() < this.getMaxHealth() || this.ticksExisted > 200) {

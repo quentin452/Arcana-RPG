@@ -2,12 +2,18 @@
 
 package com.gibby.dungeon.items;
 
-import net.minecraft.item.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.entity.*;
-import java.util.*;
-import net.minecraft.util.*;
-import cpw.mods.fml.relauncher.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumChatFormatting;
+
+import java.util.List;
 
 public class ItemEntityEnrager extends Item
 {
@@ -15,7 +21,7 @@ public class ItemEntityEnrager extends Item
         this.setMaxStackSize(1);
         this.setFull3D();
     }
-    
+
     public boolean onLeftClickEntity(final ItemStack stack, final EntityPlayer player, final Entity entity) {
         final List list = entity.worldObj.getEntitiesWithinAABBExcludingEntity(entity, entity.boundingBox.expand(16.0, 10.0, 16.0));
         if (list != null) {
@@ -28,7 +34,7 @@ public class ItemEntityEnrager extends Item
         }
         return false;
     }
-    
+
     @SideOnly(Side.CLIENT)
     public void addInformation(final ItemStack par1ItemStack, final EntityPlayer par2EntityPlayer, final List par3List, final boolean par4) {
         par3List.add(EnumChatFormatting.DARK_PURPLE + "Makes entities mad at the others");

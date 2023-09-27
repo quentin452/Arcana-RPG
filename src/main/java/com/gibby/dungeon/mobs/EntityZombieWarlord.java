@@ -2,25 +2,30 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.entity.monster.*;
-import net.minecraft.world.*;
-import net.minecraft.entity.ai.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.entity.boss.*;
-import net.minecraft.potion.*;
-import net.minecraft.init.*;
-import net.minecraft.item.*;
-import net.minecraft.entity.projectile.*;
-import com.gibby.dungeon.*;
-import java.util.*;
-import net.minecraft.util.*;
+import com.gibby.dungeon.Dungeons;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.EntityAIAttackOnCollide;
+import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.entity.boss.BossStatus;
+import net.minecraft.entity.boss.IBossDisplayData;
+import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityPotion;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
+import net.minecraft.world.World;
+
+import java.util.List;
 
 public class EntityZombieWarlord extends EntityZombie implements IBossDisplayData
 {
     boolean haspotion;
     int charge;
-    
+
     public EntityZombieWarlord(final World par1World) {
         super(par1World);
         this.haspotion = true;
@@ -30,7 +35,7 @@ public class EntityZombieWarlord extends EntityZombie implements IBossDisplayDat
         this.canDespawn();
         this.experienceValue = 150;
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(20.0);
@@ -38,15 +43,15 @@ public class EntityZombieWarlord extends EntityZombie implements IBossDisplayDat
         this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(3.0);
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(80.0);
     }
-    
+
     protected String getHurtSound() {
         return "random.anvil_land";
     }
-    
+
     protected float getSoundPitch() {
         return 0.8f;
     }
-    
+
     public void onLivingUpdate() {
         super.onLivingUpdate();
         boolean playerAround = false;
@@ -83,14 +88,14 @@ public class EntityZombieWarlord extends EntityZombie implements IBossDisplayDat
             }
         }
     }
-    
+
     protected void despawnEntity() {
     }
-    
+
     protected boolean canDespawn() {
         return false;
     }
-    
+
     public boolean attackEntityFrom(final DamageSource par1DamageSource, final float par2) {
         if (this.isEntityInvulnerable()) {
             return false;
@@ -143,7 +148,7 @@ public class EntityZombieWarlord extends EntityZombie implements IBossDisplayDat
         }
         return true;
     }
-    
+
     protected void addRandomArmor() {
         super.addRandomArmor();
         this.setCurrentItemOrArmor(0, new ItemStack(Dungeons.rubySword));
@@ -152,7 +157,7 @@ public class EntityZombieWarlord extends EntityZombie implements IBossDisplayDat
         this.setCurrentItemOrArmor(3, new ItemStack((Item)Items.iron_chestplate));
         this.setCurrentItemOrArmor(4, new ItemStack((Item)Items.iron_helmet));
     }
-    
+
     protected void dropFewItems(final boolean par1, final int par2) {
         final int r = this.rand.nextInt(3);
         if (r == 0) {

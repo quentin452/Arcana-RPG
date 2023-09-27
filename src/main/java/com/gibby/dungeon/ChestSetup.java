@@ -2,10 +2,10 @@
 
 package com.gibby.dungeon;
 
-import net.minecraftforge.common.*;
-import net.minecraft.util.*;
-import net.minecraft.init.*;
-import net.minecraft.item.*;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.WeightedRandomChestContent;
+import net.minecraftforge.common.ChestGenHooks;
 
 public class ChestSetup
 {

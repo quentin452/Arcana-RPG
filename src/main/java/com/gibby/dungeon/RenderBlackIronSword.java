@@ -2,23 +2,23 @@
 
 package com.gibby.dungeon;
 
-import net.minecraftforge.client.*;
-import net.minecraft.util.*;
-import com.gibby.dungeon.items.*;
-import net.minecraft.item.*;
-import org.lwjgl.opengl.*;
-import net.minecraft.client.*;
-import net.minecraft.entity.*;
+import com.gibby.dungeon.items.ModelBlackIronSword;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.IItemRenderer;
+import org.lwjgl.opengl.GL11;
 
 public class RenderBlackIronSword implements IItemRenderer
 {
     private static final ResourceLocation swordTextures;
     ModelBlackIronSword swordmodel;
-    
+
     public RenderBlackIronSword() {
         this.swordmodel = new ModelBlackIronSword();
     }
-    
+
     public void renderItem(final IItemRenderer.ItemRenderType type, final ItemStack item, final Object... data) {
         switch (type) {
             case EQUIPPED: {
@@ -64,17 +64,17 @@ public class RenderBlackIronSword implements IItemRenderer
                 GL11.glRotatef(-90.0f, 0.0f, 0.0f, 1.0f);
                 GL11.glRotatef(0.0f, 0.0f, 1.0f, 0.0f);
                 GL11.glTranslatef(0.2f, -0.5f, 0.0f);
-                this.swordmodel.render((Entity)null, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0625f);
+                this.swordmodel.render(null, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0625f);
                 GL11.glPopMatrix();
                 break;
             }
         }
     }
-    
+
     public boolean handleRenderType(final ItemStack item, final IItemRenderer.ItemRenderType type) {
         return true;
     }
-    
+
     public boolean shouldUseRenderHelper(final IItemRenderer.ItemRenderType type, final ItemStack item, final IItemRenderer.ItemRendererHelper helper) {
         switch (type) {
             case INVENTORY: {
@@ -85,7 +85,7 @@ public class RenderBlackIronSword implements IItemRenderer
             }
         }
     }
-    
+
     static {
         swordTextures = new ResourceLocation("gibby_dungeons:textures/mobs/orc.png");
     }

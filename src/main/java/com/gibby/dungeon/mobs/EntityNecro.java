@@ -2,13 +2,15 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.world.*;
-import net.minecraft.entity.monster.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.*;
-import net.minecraft.init.*;
-import com.gibby.dungeon.*;
-import net.minecraft.item.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityLivingData;
+import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.World;
 
 public class EntityNecro extends EntityHermit
 {
@@ -16,7 +18,7 @@ public class EntityNecro extends EntityHermit
         super(par1World);
         this.experienceValue = 20;
     }
-    
+
     public void attackEntityWithRangedAttack(final EntityLivingBase par1, final float par2) {
         final int rand = this.worldObj.rand.nextInt(5);
         if (rand == 3) {
@@ -46,7 +48,7 @@ public class EntityNecro extends EntityHermit
             this.worldObj.spawnEntityInWorld((Entity)ball2);
         }
     }
-    
+
     protected void dropFewItems(final boolean par1, final int par2) {
         if (this.rand.nextInt(2) == 0) {
             this.dropItem(Items.bone, 1);

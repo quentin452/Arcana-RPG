@@ -2,10 +2,11 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.client.renderer.entity.*;
-import net.minecraft.util.*;
-import net.minecraft.client.model.*;
-import net.minecraft.entity.*;
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.ResourceLocation;
 
 public class RenderExawdus extends RenderLiving
 {
@@ -14,11 +15,11 @@ public class RenderExawdus extends RenderLiving
     private static final ResourceLocation exawdus2Textures;
     private static final ResourceLocation exawdus3Textures;
     private static final ResourceLocation exawdus4Textures;
-    
+
     public RenderExawdus(final ModelBase par1ModelBase, final float par2) {
         super(par1ModelBase, par2);
     }
-    
+
     protected ResourceLocation getEntityTexture(final Entity var1) {
         if (var1 instanceof EntityLivingBase) {
             if (((EntityLivingBase)var1).getHealth() > 160.0f) {
@@ -39,7 +40,7 @@ public class RenderExawdus extends RenderLiving
         }
         return RenderExawdus.exawdus0Textures;
     }
-    
+
     static {
         exawdus0Textures = new ResourceLocation("gibby_dungeons:textures/mobs/exawdus0.png");
         exawdus1Textures = new ResourceLocation("gibby_dungeons:textures/mobs/exawdus1.png");

@@ -2,12 +2,14 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.entity.projectile.*;
-import net.minecraft.world.*;
-import net.minecraft.entity.*;
-import net.minecraft.block.*;
-import java.util.*;
-import net.minecraft.util.*;
+import net.minecraft.block.Block;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.World;
+
+import java.util.List;
 
 public class EntityRupture extends EntityThrowable
 {
@@ -60,14 +62,14 @@ public class EntityRupture extends EntityThrowable
                 final int X = (int)this.freezeX;
                 final int Y = (int)this.freezeY;
                 final int Z = (int)this.freezeZ;
-                this.worldObj.playSoundAtEntity((Entity)this, "step.ladder", 1.0f, 0.7f);
+                this.worldObj.playSoundAtEntity(this, "step.ladder", 1.0f, 0.7f);
                 final int currentBlock = Block.getIdFromBlock(this.worldObj.getBlock(X, Y - 1, Z));
                 if (currentBlock == 0) {
                     this.setDead();
                 }
                 for (int i = 3; i < this.damage; ++i) {
                     this.worldObj.spawnParticle("blockcrack_" + currentBlock + "_0", this.freezeX, this.freezeY, this.freezeZ, this.rand.nextGaussian(), 1.0, this.rand.nextGaussian());
-                    final List list = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(3.0, 1.0, 3.0));
+                    final List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(3.0, 1.0, 3.0));
                     if (list != null) {
                         for (int k2 = 0; k2 < list.size(); ++k2) {
                             if (list.get(k2) instanceof EntityLivingBase && ((EntityLivingBase) list.get(k2)).onGround) {

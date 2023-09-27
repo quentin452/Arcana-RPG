@@ -2,25 +2,31 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.entity.passive.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.world.*;
-import net.minecraft.village.*;
-import net.minecraft.potion.*;
-import net.minecraft.init.*;
-import net.minecraft.nbt.*;
-import net.minecraft.entity.monster.*;
-import cpw.mods.fml.common.registry.*;
-import com.gibby.dungeon.*;
-import cpw.mods.fml.relauncher.*;
-import net.minecraft.item.*;
-import net.minecraft.util.*;
+import com.gibby.dungeon.Dungeons;
+import cpw.mods.fml.common.registry.VillagerRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.*;
+import net.minecraft.entity.monster.IMob;
+import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.*;
+import net.minecraft.village.MerchantRecipe;
+import net.minecraft.village.MerchantRecipeList;
+import net.minecraft.village.Village;
+import net.minecraft.world.World;
+
 import java.util.*;
 
 public class EntityAnchorTrader extends EntityVillager
 {
-    private String[] villagerGreetings;
+    private final String[] villagerGreetings;
     private int randomTickDivider;
     private boolean isMating;
     private boolean isPlaying;
@@ -89,7 +95,7 @@ public class EntityAnchorTrader extends EntityVillager
                     this.addDefaultEquipmentAndRecipies(1);
                     this.needsInitilization = false;
                     if (this.villageObj != null && this.lastBuyingPlayer != null) {
-                        this.worldObj.setEntityState((Entity)this, (byte)14);
+                        this.worldObj.setEntityState(this, (byte)14);
                         this.villageObj.setReputationForPlayer(this.lastBuyingPlayer, 1);
                     }
                 }
@@ -105,8 +111,8 @@ public class EntityAnchorTrader extends EntityVillager
         if (!flag && this.isEntityAlive() && !this.isTrading() && !this.isChild() && !par1EntityPlayer.isSneaking()) {
             if (!this.worldObj.isRemote) {
                 this.setCustomer(par1EntityPlayer);
-                par1EntityPlayer.addChatMessage((IChatComponent)new ChatComponentText("Merchant: " + this.villagerGreetings[this.rand.nextInt(6)]));
-                par1EntityPlayer.displayGUIMerchant((IMerchant)this, this.getCustomNameTag());
+                par1EntityPlayer.addChatMessage(new ChatComponentText("Merchant: " + this.villagerGreetings[this.rand.nextInt(6)]));
+                par1EntityPlayer.displayGUIMerchant(this, this.getCustomNameTag());
             }
             return true;
         }
@@ -115,7 +121,7 @@ public class EntityAnchorTrader extends EntityVillager
 
     protected void entityInit() {
         super.entityInit();
-        this.dataWatcher.addObject(31, (Object)0);
+        this.dataWatcher.addObject(31, 0);
     }
 
     public void writeEntityToNBT(final NBTTagCompound par1NBTTagCompound) {
@@ -123,7 +129,7 @@ public class EntityAnchorTrader extends EntityVillager
         par1NBTTagCompound.setInteger("Profession", this.getProfession());
         par1NBTTagCompound.setInteger("Riches", this.wealth);
         if (this.buyingList != null) {
-            par1NBTTagCompound.setTag("Offers", (NBTBase)this.buyingList.getRecipiesAsTags());
+            par1NBTTagCompound.setTag("Offers", this.buyingList.getRecipiesAsTags());
         }
     }
 
@@ -154,7 +160,7 @@ public class EntityAnchorTrader extends EntityVillager
     }
 
     public void setProfession(final int par1) {
-        this.dataWatcher.updateObject(16, (Object)par1);
+        this.dataWatcher.updateObject(16, par1);
     }
 
     public int getProfession() {
@@ -279,47 +285,47 @@ public class EntityAnchorTrader extends EntityVillager
         }
         final MerchantRecipeList merchantrecipelist = new MerchantRecipeList();
         VillagerRegistry.manageVillagerTrades(merchantrecipelist, (EntityVillager)this, this.getProfession(), this.rand);
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 12 + this.rand.nextInt(6)), Dungeons.setRare(new ItemStack(Dungeons.netherSkullSword))));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 16 + this.rand.nextInt(6)), new ItemStack(Dungeons.ionicWand, 1)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 13 + this.rand.nextInt(6)), new ItemStack(Dungeons.inflameStaff, 1)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 16 + this.rand.nextInt(6)), new ItemStack(Dungeons.gravityStaff, 1)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 12 + this.rand.nextInt(6)), new ItemStack(Dungeons.windStaff, 1)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 13 + this.rand.nextInt(6)), new ItemStack(Dungeons.chaoticWand, 1)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 16 + this.rand.nextInt(6)), new ItemStack(Dungeons.witherStaff, 1)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 10 + this.rand.nextInt(6)), new ItemStack(Dungeons.netherSteelSword, 1)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 12 + this.rand.nextInt(6)), new ItemStack(Dungeons.lithiumPickaxe, 1)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 12 + this.rand.nextInt(4)), new ItemStack(Dungeons.inflameStaff, 1)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 10 + this.rand.nextInt(4)), new ItemStack(Dungeons.sodbuster, 1)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 10 + this.rand.nextInt(4)), new ItemStack(Dungeons.elementalSword, 1)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 10 + this.rand.nextInt(4)), new ItemStack(Dungeons.amethystLance, 1)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 16 + this.rand.nextInt(6)), new ItemStack(Dungeons.netherDrill, 1)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 15 + this.rand.nextInt(6)), new ItemStack(Dungeons.amethystPickaxe, 1)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 15 + this.rand.nextInt(6)), new ItemStack(Dungeons.shimmerWand, 1)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 14 + this.rand.nextInt(6)), new ItemStack(Dungeons.netherHoe, 1)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 14 + this.rand.nextInt(6)), new ItemStack(Dungeons.netherSteelBoots, 1)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 20 + this.rand.nextInt(6)), new ItemStack(Dungeons.netherSteelChestplate, 1)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 20 + this.rand.nextInt(6)), new ItemStack(Dungeons.crystalliumLeggings, 1)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 10 + this.rand.nextInt(6)), new ItemStack(Dungeons.crystalSword, 1)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 4 + this.rand.nextInt(3)), new ItemStack(Dungeons.magicPotion2, 8)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 8 + this.rand.nextInt(3)), new ItemStack(Items.golden_apple, 1, 1)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 18 + this.rand.nextInt(6)), Dungeons.setRare(new ItemStack(Dungeons.amethystPickaxe))));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 24 + this.rand.nextInt(6)), Dungeons.setRare(new ItemStack(Dungeons.amethystChestplate))));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 25 + this.rand.nextInt(6)), Dungeons.setRare(new ItemStack(Dungeons.heavyAmethystSword))));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 25 + this.rand.nextInt(6)), Dungeons.setLegendary(new ItemStack(Dungeons.crystalSword))));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 20 + this.rand.nextInt(6)), Dungeons.setRare(new ItemStack(Dungeons.netherSteelPickaxe))));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 24 + this.rand.nextInt(6)), Dungeons.setLegendary(new ItemStack(Dungeons.crystalliumBoots))));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.netherSteel, 4), new ItemStack(Dungeons.magicCoin, 6)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.crystallium, 4), new ItemStack(Dungeons.magicCoin, 6)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.corruptedSoul, 2 + this.rand.nextInt(2)), new ItemStack(Dungeons.magicCoin, 2)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.bedrock, 3 + this.rand.nextInt(2)), new ItemStack(Dungeons.magicCoin, 2)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.amethyst, 2 + this.rand.nextInt(2)), new ItemStack(Dungeons.magicCoin, 2)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.lithium, 2 + this.rand.nextInt(2)), new ItemStack(Dungeons.magicCoin, 2)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.shimmerPearl, 5 + this.rand.nextInt(2)), new ItemStack(Dungeons.magicCoin, 2)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.magicGem, 1), new ItemStack(Dungeons.magicCoin, 1)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 12 + this.rand.nextInt(6)), Dungeons.setRare(new ItemStack(Dungeons.netherSkullSword))));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 16 + this.rand.nextInt(6)), new ItemStack(Dungeons.ionicWand, 1)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 13 + this.rand.nextInt(6)), new ItemStack(Dungeons.inflameStaff, 1)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 16 + this.rand.nextInt(6)), new ItemStack(Dungeons.gravityStaff, 1)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 12 + this.rand.nextInt(6)), new ItemStack(Dungeons.windStaff, 1)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 13 + this.rand.nextInt(6)), new ItemStack(Dungeons.chaoticWand, 1)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 16 + this.rand.nextInt(6)), new ItemStack(Dungeons.witherStaff, 1)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 10 + this.rand.nextInt(6)), new ItemStack(Dungeons.netherSteelSword, 1)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 12 + this.rand.nextInt(6)), new ItemStack(Dungeons.lithiumPickaxe, 1)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 12 + this.rand.nextInt(4)), new ItemStack(Dungeons.inflameStaff, 1)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 10 + this.rand.nextInt(4)), new ItemStack(Dungeons.sodbuster, 1)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 10 + this.rand.nextInt(4)), new ItemStack(Dungeons.elementalSword, 1)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 10 + this.rand.nextInt(4)), new ItemStack(Dungeons.amethystLance, 1)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 16 + this.rand.nextInt(6)), new ItemStack(Dungeons.netherDrill, 1)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 15 + this.rand.nextInt(6)), new ItemStack(Dungeons.amethystPickaxe, 1)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 15 + this.rand.nextInt(6)), new ItemStack(Dungeons.shimmerWand, 1)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 14 + this.rand.nextInt(6)), new ItemStack(Dungeons.netherHoe, 1)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 14 + this.rand.nextInt(6)), new ItemStack(Dungeons.netherSteelBoots, 1)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 20 + this.rand.nextInt(6)), new ItemStack(Dungeons.netherSteelChestplate, 1)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 20 + this.rand.nextInt(6)), new ItemStack(Dungeons.crystalliumLeggings, 1)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 10 + this.rand.nextInt(6)), new ItemStack(Dungeons.crystalSword, 1)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 4 + this.rand.nextInt(3)), new ItemStack(Dungeons.magicPotion2, 8)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 8 + this.rand.nextInt(3)), new ItemStack(Items.golden_apple, 1, 1)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 18 + this.rand.nextInt(6)), Dungeons.setRare(new ItemStack(Dungeons.amethystPickaxe))));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 24 + this.rand.nextInt(6)), Dungeons.setRare(new ItemStack(Dungeons.amethystChestplate))));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 25 + this.rand.nextInt(6)), Dungeons.setRare(new ItemStack(Dungeons.heavyAmethystSword))));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 25 + this.rand.nextInt(6)), Dungeons.setLegendary(new ItemStack(Dungeons.crystalSword))));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 20 + this.rand.nextInt(6)), Dungeons.setRare(new ItemStack(Dungeons.netherSteelPickaxe))));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.magicCoin, 24 + this.rand.nextInt(6)), Dungeons.setLegendary(new ItemStack(Dungeons.crystalliumBoots))));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.netherSteel, 4), new ItemStack(Dungeons.magicCoin, 6)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.crystallium, 4), new ItemStack(Dungeons.magicCoin, 6)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.corruptedSoul, 2 + this.rand.nextInt(2)), new ItemStack(Dungeons.magicCoin, 2)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.bedrock, 3 + this.rand.nextInt(2)), new ItemStack(Dungeons.magicCoin, 2)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.amethyst, 2 + this.rand.nextInt(2)), new ItemStack(Dungeons.magicCoin, 2)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.lithium, 2 + this.rand.nextInt(2)), new ItemStack(Dungeons.magicCoin, 2)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.shimmerPearl, 5 + this.rand.nextInt(2)), new ItemStack(Dungeons.magicCoin, 2)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.magicGem, 1), new ItemStack(Dungeons.magicCoin, 1)));
         if (merchantrecipelist.isEmpty()) {
             func_146091_a(merchantrecipelist, Items.gold_ingot, this.rand, 1.0f);
         }
-        Collections.shuffle((List<?>)merchantrecipelist);
+        Collections.shuffle(merchantrecipelist);
         if (this.buyingList == null) {
             this.buyingList = new MerchantRecipeList();
         }
@@ -334,7 +340,7 @@ public class EntityAnchorTrader extends EntityVillager
 
     public static void func_146091_a(final MerchantRecipeList p_146091_0_, final Item p_146091_1_, final Random p_146091_2_, final float p_146091_3_) {
         if (p_146091_2_.nextFloat() < p_146091_3_) {
-            p_146091_0_.add((Object)new MerchantRecipe(func_146088_a(p_146091_1_, p_146091_2_), Items.emerald));
+            p_146091_0_.add(new MerchantRecipe(func_146088_a(p_146091_1_, p_146091_2_), Items.emerald));
         }
     }
 
@@ -360,13 +366,13 @@ public class EntityAnchorTrader extends EntityVillager
                 itemstack = new ItemStack(Items.emerald, i, 0);
                 itemstack2 = new ItemStack(p_146089_1_, 1, 0);
             }
-            p_146089_0_.add((Object)new MerchantRecipe(itemstack, itemstack2));
+            p_146089_0_.add(new MerchantRecipe(itemstack, itemstack2));
         }
     }
 
     private static int func_146090_c(final Item p_146090_0_, final Random p_146090_1_) {
         final Tuple tuple = EntityAnchorTrader.blacksmithSellingList.get(p_146090_0_);
-        return (int)((tuple == null) ? 1 : (((int)tuple.getFirst() >= (int)tuple.getSecond()) ? tuple.getFirst() : ((int)tuple.getFirst() + p_146090_1_.nextInt((int)tuple.getSecond() - (int)tuple.getFirst()))));
+        return (tuple == null) ? 1 : (((int)tuple.getFirst() >= (int)tuple.getSecond()) ? (int) tuple.getFirst() : ((int)tuple.getFirst() + p_146090_1_.nextInt((int)tuple.getSecond() - (int)tuple.getFirst())));
     }
 
     @SideOnly(Side.CLIENT)
@@ -401,38 +407,34 @@ public class EntityAnchorTrader extends EntityVillager
 
     public EntityAnchorTrader createChild(final EntityAgeable par1EntityAgeable) {
         final EntityAnchorTrader entityvillager = new EntityAnchorTrader(this.worldObj);
-        entityvillager.onSpawnWithEgg((IEntityLivingData)null);
+        entityvillager.onSpawnWithEgg(null);
         return entityvillager;
     }
 
-    public boolean allowLeashing() {
-        return false;
-    }
-
     static {
-        villagersSellingList = new HashMap<Item, Tuple>();
+        villagersSellingList = new HashMap<>();
         blacksmithSellingList = new HashMap<>();
-        EntityAnchorTrader.villagersSellingList.put(Dungeons.copper, new Tuple((Object)10, (Object)15));
-        EntityAnchorTrader.villagersSellingList.put(Items.iron_ingot, new Tuple((Object)10, (Object)15));
-        EntityAnchorTrader.villagersSellingList.put(Dungeons.ruby, new Tuple((Object)7, (Object)12));
-        EntityAnchorTrader.villagersSellingList.put(Items.diamond, new Tuple((Object)2, (Object)2));
-        EntityAnchorTrader.villagersSellingList.put(Dungeons.windStaff, new Tuple((Object)6, (Object)10));
-        EntityAnchorTrader.villagersSellingList.put(Dungeons.shimmerPearl, new Tuple((Object)5, (Object)8));
-        EntityAnchorTrader.villagersSellingList.put(Items.ender_pearl, new Tuple((Object)7, (Object)12));
-        EntityAnchorTrader.villagersSellingList.put(Items.porkchop, new Tuple((Object)15, (Object)20));
-        EntityAnchorTrader.villagersSellingList.put(Items.beef, new Tuple((Object)15, (Object)20));
-        EntityAnchorTrader.villagersSellingList.put(Items.chicken, new Tuple((Object)15, (Object)20));
-        EntityAnchorTrader.villagersSellingList.put(Items.melon_seeds, new Tuple((Object)30, (Object)38));
-        EntityAnchorTrader.villagersSellingList.put(Items.pumpkin_seeds, new Tuple((Object)30, (Object)38));
-        EntityAnchorTrader.blacksmithSellingList.put(Items.iron_helmet, new Tuple((Object)4, (Object)6));
-        EntityAnchorTrader.blacksmithSellingList.put(Items.diamond_helmet, new Tuple((Object)7, (Object)8));
-        EntityAnchorTrader.blacksmithSellingList.put(Items.iron_chestplate, new Tuple((Object)10, (Object)14));
-        EntityAnchorTrader.blacksmithSellingList.put(Items.diamond_chestplate, new Tuple((Object)16, (Object)19));
-        EntityAnchorTrader.blacksmithSellingList.put(Items.iron_leggings, new Tuple((Object)8, (Object)10));
-        EntityAnchorTrader.blacksmithSellingList.put(Items.diamond_leggings, new Tuple((Object)11, (Object)14));
-        EntityAnchorTrader.blacksmithSellingList.put(Dungeons.copper, new Tuple((Object)5, (Object)7));
-        EntityAnchorTrader.blacksmithSellingList.put(Dungeons.silver, new Tuple((Object)5, (Object)7));
-        EntityAnchorTrader.blacksmithSellingList.put(Items.blaze_powder, new Tuple((Object)11, (Object)15));
-        EntityAnchorTrader.blacksmithSellingList.put(Items.slime_ball, new Tuple((Object)9, (Object)11));
+        EntityAnchorTrader.villagersSellingList.put(Dungeons.copper, new Tuple(10, 15));
+        EntityAnchorTrader.villagersSellingList.put(Items.iron_ingot, new Tuple(10, 15));
+        EntityAnchorTrader.villagersSellingList.put(Dungeons.ruby, new Tuple(7, 12));
+        EntityAnchorTrader.villagersSellingList.put(Items.diamond, new Tuple(2, 2));
+        EntityAnchorTrader.villagersSellingList.put(Dungeons.windStaff, new Tuple(6, 10));
+        EntityAnchorTrader.villagersSellingList.put(Dungeons.shimmerPearl, new Tuple(5, 8));
+        EntityAnchorTrader.villagersSellingList.put(Items.ender_pearl, new Tuple(7, 12));
+        EntityAnchorTrader.villagersSellingList.put(Items.porkchop, new Tuple(15, 20));
+        EntityAnchorTrader.villagersSellingList.put(Items.beef, new Tuple(15, 20));
+        EntityAnchorTrader.villagersSellingList.put(Items.chicken, new Tuple(15, 20));
+        EntityAnchorTrader.villagersSellingList.put(Items.melon_seeds, new Tuple(30, 38));
+        EntityAnchorTrader.villagersSellingList.put(Items.pumpkin_seeds, new Tuple(30, 38));
+        EntityAnchorTrader.blacksmithSellingList.put(Items.iron_helmet, new Tuple(4, 6));
+        EntityAnchorTrader.blacksmithSellingList.put(Items.diamond_helmet, new Tuple(7, 8));
+        EntityAnchorTrader.blacksmithSellingList.put(Items.iron_chestplate, new Tuple(10, 14));
+        EntityAnchorTrader.blacksmithSellingList.put(Items.diamond_chestplate, new Tuple(16, 19));
+        EntityAnchorTrader.blacksmithSellingList.put(Items.iron_leggings, new Tuple(8, 10));
+        EntityAnchorTrader.blacksmithSellingList.put(Items.diamond_leggings, new Tuple(11, 14));
+        EntityAnchorTrader.blacksmithSellingList.put(Dungeons.copper, new Tuple(5, 7));
+        EntityAnchorTrader.blacksmithSellingList.put(Dungeons.silver, new Tuple(5, 7));
+        EntityAnchorTrader.blacksmithSellingList.put(Items.blaze_powder, new Tuple(11, 15));
+        EntityAnchorTrader.blacksmithSellingList.put(Items.slime_ball, new Tuple(9, 11));
     }
 }

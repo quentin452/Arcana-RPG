@@ -2,12 +2,13 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.entity.monster.*;
-import com.gibby.dungeon.*;
-import net.minecraft.item.*;
-import net.minecraft.world.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
+import net.minecraft.world.EnumDifficulty;
+import net.minecraft.world.World;
 
 public class EntitySapientEliteKnight extends EntityMob
 {
@@ -15,7 +16,7 @@ public class EntitySapientEliteKnight extends EntityMob
         super(par1World);
         this.addRandomArmor();
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(16.0);
@@ -23,7 +24,7 @@ public class EntitySapientEliteKnight extends EntityMob
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(24.0);
         this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(13.0);
     }
-    
+
     protected void addRandomArmor() {
         super.addRandomArmor();
         this.setCurrentItemOrArmor(0, new ItemStack(Dungeons.blackIronSword));
@@ -32,30 +33,30 @@ public class EntitySapientEliteKnight extends EntityMob
         this.setCurrentItemOrArmor(2, new ItemStack(Dungeons.blackIronLeggings));
         this.setCurrentItemOrArmor(1, new ItemStack(Dungeons.blackIronBoots));
     }
-    
+
     protected String getLivingSound() {
         return "mob.villager.idle";
     }
-    
+
     protected String getHurtSound() {
         return "mob.blaze.hit";
     }
-    
+
     protected String getDeathSound() {
         return "mob.villager.death";
     }
-    
+
     protected float getSoundPitch() {
         return 0.6f;
     }
-    
+
     public boolean getCanSpawnHere() {
-        return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes((Entity)this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
+        return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
     }
-    
+
     protected void dropEquipment(final boolean par1, final int par2) {
     }
-    
+
     protected void dropFewItems(final boolean par1, final int par2) {
         final int i = Dungeons.randRange(0, 30);
         if (i == 0) {
@@ -83,7 +84,7 @@ public class EntitySapientEliteKnight extends EntityMob
             this.dropItem(Dungeons.blackIronScraps, 1);
         }
     }
-    
+
     public boolean attackEntityFrom(final DamageSource par1DamageSource, final float par2) {
         return super.attackEntityFrom(par1DamageSource, par2 / 2.0f);
     }

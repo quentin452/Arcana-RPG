@@ -2,13 +2,15 @@
 
 package com.gibby.dungeon.gen;
 
-import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.*;
-import java.util.*;
-import net.minecraft.init.*;
-import net.minecraft.block.*;
-import net.minecraft.entity.*;
-import com.gibby.dungeon.mobs.*;
+import com.gibby.dungeon.mobs.EntityTalkingVillager;
+import com.gibby.dungeon.mobs.EntityTreeVillager;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.IEntityLivingData;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class SunsetIslandsOrangeClay extends WorldGenerator
 {
@@ -1516,7 +1518,7 @@ public class SunsetIslandsOrangeClay extends WorldGenerator
         this.generate2(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate2(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i, j + 78, k + 70, Blocks.log);
         world.setBlock(i, j + 78, k + 71, Blocks.log);
@@ -3026,7 +3028,7 @@ public class SunsetIslandsOrangeClay extends WorldGenerator
         this.generate3(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate3(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 1, j + 47, k + 68, Blocks.log);
         world.setBlock(i + 1, j + 47, k + 69, Blocks.log);
@@ -4531,7 +4533,7 @@ public class SunsetIslandsOrangeClay extends WorldGenerator
         this.generate4(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate4(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 2, j + 35, k + 66, Blocks.stone);
         world.setBlock(i + 2, j + 35, k + 67, Blocks.stone);
@@ -6036,7 +6038,7 @@ public class SunsetIslandsOrangeClay extends WorldGenerator
         this.generate5(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate5(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 2, j + 110, k + 118, Blocks.planks);
         world.setBlock(i + 2, j + 110, k + 119, Blocks.planks);
@@ -7541,7 +7543,7 @@ public class SunsetIslandsOrangeClay extends WorldGenerator
         this.generate6(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate6(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 3, j + 60, k + 67, Blocks.log);
         world.setBlock(i + 3, j + 60, k + 68, Blocks.log);
@@ -9051,7 +9053,7 @@ public class SunsetIslandsOrangeClay extends WorldGenerator
         this.generate7(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate7(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 4, j + 39, k + 63, Blocks.stone);
         world.setBlock(i + 4, j + 39, k + 64, Blocks.stone);
@@ -10556,7 +10558,7 @@ public class SunsetIslandsOrangeClay extends WorldGenerator
         this.generate8(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate8(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 4, j + 110, k + 118, Blocks.wooden_slab);
         world.setBlock(i + 4, j + 110, k + 119, Blocks.wooden_slab);
@@ -12061,7 +12063,7 @@ public class SunsetIslandsOrangeClay extends WorldGenerator
         this.generate9(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate9(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 5, j + 63, k + 62, Blocks.log);
         world.setBlock(i + 5, j + 63, k + 63, Blocks.log);
@@ -13566,7 +13568,7 @@ public class SunsetIslandsOrangeClay extends WorldGenerator
         this.generate10(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate10(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 6, j + 39, k + 78, Blocks.stone);
         world.setBlock(i + 6, j + 39, k + 79, Blocks.stone);
@@ -15071,7 +15073,7 @@ public class SunsetIslandsOrangeClay extends WorldGenerator
         this.generate11(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate11(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 6, j + 106, k + 67, Blocks.log);
         world.setBlock(i + 6, j + 106, k + 68, Blocks.log);
@@ -16576,7 +16578,7 @@ public class SunsetIslandsOrangeClay extends WorldGenerator
         this.generate12(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate12(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 7, j + 65, k + 72, Blocks.log);
         world.setBlock(i + 7, j + 65, k + 73, Blocks.log);
@@ -18081,7 +18083,7 @@ public class SunsetIslandsOrangeClay extends WorldGenerator
         this.generate13(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate13(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 8, j + 39, k + 75, Blocks.stone);
         world.setBlock(i + 8, j + 39, k + 76, Blocks.stone);
@@ -19586,7 +19588,7 @@ public class SunsetIslandsOrangeClay extends WorldGenerator
         this.generate14(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate14(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 8, j + 105, k + 63, Blocks.log);
         world.setBlock(i + 8, j + 105, k + 64, Blocks.log);
@@ -21091,7 +21093,7 @@ public class SunsetIslandsOrangeClay extends WorldGenerator
         this.generate15(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate15(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 9, j + 81, k + 87, Blocks.log);
         world.setBlock(i + 9, j + 81, k + 88, Blocks.log);
@@ -22596,7 +22598,7 @@ public class SunsetIslandsOrangeClay extends WorldGenerator
         this.generate16(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate16(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 10, j + 53, k + 67, Blocks.log);
         world.setBlock(i + 10, j + 53, k + 68, Blocks.log);

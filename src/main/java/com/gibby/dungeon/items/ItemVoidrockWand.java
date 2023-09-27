@@ -2,25 +2,31 @@
 
 package com.gibby.dungeon.items;
 
-import net.minecraft.item.*;
-import net.minecraft.world.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.client.*;
-import net.minecraft.client.particle.*;
-import com.gibby.dungeon.*;
-import net.minecraft.potion.*;
-import net.minecraft.entity.*;
-import com.gibby.dungeon.mobs.*;
-import java.util.*;
-import net.minecraft.util.*;
-import cpw.mods.fml.relauncher.*;
+import com.gibby.dungeon.Dungeons;
+import com.gibby.dungeon.DungeonsExtendedPlayer;
+import com.gibby.dungeon.mobs.EntityVoidrockBall;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.particle.EntityFireworkSparkFX;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.world.World;
+
+import java.util.List;
 
 public class ItemVoidrockWand extends ItemForceWand
 {
     public ItemVoidrockWand() {
         this.tier = 5;
     }
-    
+
     public ItemStack onItemRightClick(final ItemStack par1ItemStack, final World par2World, final EntityPlayer par3) {
         final DungeonsExtendedPlayer par4 = DungeonsExtendedPlayer.get(par3);
         if (par4.magicAmount() >= 25 || par3.capabilities.isCreativeMode) {
@@ -50,7 +56,7 @@ public class ItemVoidrockWand extends ItemForceWand
         }
         return par1ItemStack;
     }
-    
+
     public boolean onEntitySwing(final EntityLivingBase entityLiving, final ItemStack stack) {
         if (entityLiving instanceof EntityPlayer) {
             final EntityPlayer par3 = (EntityPlayer)entityLiving;
@@ -70,7 +76,7 @@ public class ItemVoidrockWand extends ItemForceWand
         }
         return false;
     }
-    
+
     @SideOnly(Side.CLIENT)
     public void addInformation(final ItemStack par1ItemStack, final EntityPlayer par2EntityPlayer, final List par3List, final boolean par4) {
         par3List.add(EnumChatFormatting.DARK_PURPLE + "Left Click to shoot a powerful magirock meteor(3 magic)");

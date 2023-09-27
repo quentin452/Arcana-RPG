@@ -2,11 +2,13 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.entity.projectile.*;
-import net.minecraft.world.*;
-import net.minecraft.entity.*;
-import java.util.*;
-import net.minecraft.util.*;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.Vec3;
+import net.minecraft.world.World;
+
+import java.util.List;
 
 public class EntityAntigravity extends EntityThrowable
 {
@@ -68,17 +70,14 @@ public class EntityAntigravity extends EntityThrowable
                 }
             }
             if (this.counter > this.power * 40.0f) {
-                final int X = (int)this.freezeX;
-                final int Y = (int)this.freezeY;
-                final int Z = (int)this.freezeZ;
                 for (int q = 0; q < 40; ++q) {
-                    final Double randnumX = this.rand.nextGaussian() - this.rand.nextGaussian();
-                    final Double randnumY = this.rand.nextGaussian() - this.rand.nextGaussian();
-                    final Double randnumZ = this.rand.nextGaussian() - this.rand.nextGaussian();
-                    final Vec3 look = Vec3.createVectorHelper((double)randnumX, (double)randnumY, (double)randnumZ);
-                    final double posX = this.posX + look.xCoord * 1.0;
-                    final double posY = this.posY + look.yCoord * 1.0;
-                    final double posZ = this.posZ + look.zCoord * 1.0;
+                    final double randnumX = this.rand.nextGaussian() - this.rand.nextGaussian();
+                    final double randnumY = this.rand.nextGaussian() - this.rand.nextGaussian();
+                    final double randnumZ = this.rand.nextGaussian() - this.rand.nextGaussian();
+                    final Vec3 look = Vec3.createVectorHelper(randnumX, randnumY, randnumZ);
+                    final double posX = this.posX + look.xCoord;
+                    final double posY = this.posY + look.yCoord;
+                    final double posZ = this.posZ + look.zCoord;
                     double Xl = look.xCoord * 0.1;
                     double Yl = look.yCoord * 0.1;
                     double Zl = look.zCoord * 0.1;
@@ -87,7 +86,7 @@ public class EntityAntigravity extends EntityThrowable
                         this.worldObj.spawnParticle("magicCrit", posX + (Xl *= 1.1), posY + (Yl *= 1.1), posZ + (Zl *= 1.1), 0.0, 0.0, 0.0);
                     }
                 }
-                final List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(5.0, 5.0, 5.0));
+                final List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(5.0, 5.0, 5.0));
                 if (list2 != null) {
                     for (int k3 = 0; k3 < list2.size(); ++k3) {
                         if (list2.get(k3) instanceof EntityLivingBase) {

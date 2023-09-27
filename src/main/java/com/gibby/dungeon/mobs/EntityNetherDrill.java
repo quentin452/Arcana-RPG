@@ -2,10 +2,11 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.entity.projectile.*;
-import net.minecraft.world.*;
-import net.minecraft.util.*;
-import net.minecraft.entity.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.World;
 
 public class EntityNetherDrill extends EntityThrowable
 {
@@ -13,19 +14,19 @@ public class EntityNetherDrill extends EntityThrowable
         super(par1World);
         this.setDead();
     }
-    
+
     public EntityNetherDrill(final World par1World, final EntityLivingBase par2EntityLivingBase) {
         super(par1World, par2EntityLivingBase);
     }
-    
+
     protected float getGravityVelocity() {
         return 0.02f;
     }
-    
+
     public EntityNetherDrill(final World par1World, final double par2, final double par4, final double par6) {
         super(par1World, par2, par4, par6);
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         for (int i = 0; i < 30; ++i) {
@@ -38,7 +39,7 @@ public class EntityNetherDrill extends EntityThrowable
             this.setDead();
         }
     }
-    
+
     protected void onImpact(final MovingObjectPosition var1) {
         if (!this.worldObj.isRemote) {
             this.worldObj.newExplosion((Entity)this, this.posX, this.posY, this.posZ, 4.0f, true, true);

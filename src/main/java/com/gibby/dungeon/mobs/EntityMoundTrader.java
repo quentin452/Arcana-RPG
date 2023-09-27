@@ -2,20 +2,27 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.entity.passive.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.world.*;
-import net.minecraft.village.*;
-import net.minecraft.potion.*;
-import net.minecraft.init.*;
-import net.minecraft.nbt.*;
-import net.minecraft.entity.monster.*;
-import cpw.mods.fml.common.registry.*;
-import com.gibby.dungeon.*;
-import cpw.mods.fml.relauncher.*;
-import net.minecraft.item.*;
-import net.minecraft.util.*;
+import com.gibby.dungeon.Dungeons;
+import cpw.mods.fml.common.registry.VillagerRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.*;
+import net.minecraft.entity.monster.IMob;
+import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.*;
+import net.minecraft.village.MerchantRecipe;
+import net.minecraft.village.MerchantRecipeList;
+import net.minecraft.village.Village;
+import net.minecraft.world.World;
+
 import java.util.*;
 
 public class EntityMoundTrader extends EntityVillager

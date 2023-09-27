@@ -2,28 +2,32 @@
 
 package com.gibby.dungeon.items;
 
-import net.minecraft.item.*;
-import net.minecraft.world.*;
-import net.minecraft.entity.player.*;
-import com.gibby.dungeon.*;
-import com.gibby.dungeon.mobs.*;
-import net.minecraft.entity.*;
-import java.util.*;
-import net.minecraft.util.*;
-import cpw.mods.fml.relauncher.*;
+import com.gibby.dungeon.DungeonsExtendedPlayer;
+import com.gibby.dungeon.mobs.EntitySunProjectile;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.world.World;
+
+import java.util.List;
 
 public class ItemSunAxe extends ItemTripleSword
 {
     public ItemSunAxe(final Item.ToolMaterial p_i45356_1_, final int MagicDamage, final int VoidDamage) {
         super(p_i45356_1_, MagicDamage, VoidDamage);
     }
-    
+
     @Override
     public boolean hitEntity(final ItemStack par1ItemStack, final EntityLivingBase par2EntityLivingBase, final EntityLivingBase par3EntityLivingBase) {
         par2EntityLivingBase.addVelocity((par2EntityLivingBase.posX - par3EntityLivingBase.posX) / 2.4, 0.4, (par2EntityLivingBase.posZ - par3EntityLivingBase.posZ) / 2.4);
         return super.hitEntity(par1ItemStack, par2EntityLivingBase, par3EntityLivingBase);
     }
-    
+
     public ItemStack onItemRightClick(final ItemStack par1ItemStack, final World par2World, final EntityPlayer par3EntityPlayer) {
         final DungeonsExtendedPlayer par4 = DungeonsExtendedPlayer.get(par3EntityPlayer);
         if (par4.magicAmount() >= 3 || par3EntityPlayer.capabilities.isCreativeMode) {
@@ -38,7 +42,7 @@ public class ItemSunAxe extends ItemTripleSword
         }
         return par1ItemStack;
     }
-    
+
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(final ItemStack par1ItemStack, final EntityPlayer par2EntityPlayer, final List par3List, final boolean par4) {

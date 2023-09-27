@@ -2,14 +2,15 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.entity.monster.*;
-import net.minecraft.world.*;
-import cpw.mods.fml.relauncher.*;
-import net.minecraft.item.*;
-import com.gibby.dungeon.*;
-import net.minecraft.util.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.entity.*;
+import com.gibby.dungeon.Dungeons;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.item.Item;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.World;
 
 public class EntityTornado extends EntityMob
 {
@@ -32,7 +33,7 @@ public class EntityTornado extends EntityMob
 
     protected void entityInit() {
         super.entityInit();
-        this.dataWatcher.addObject(16, (Object)new Byte((byte)0));
+        this.dataWatcher.addObject(16, (byte) 0);
     }
 
     protected String getLivingSound() {
@@ -79,7 +80,7 @@ public class EntityTornado extends EntityMob
         else {
             b0 &= 0xFFFFFFFE;
         }
-        this.dataWatcher.updateObject(16, (Object)b0);
+        this.dataWatcher.updateObject(16, b0);
     }
 
     protected boolean isValidLightLevel() {
@@ -111,11 +112,11 @@ public class EntityTornado extends EntityMob
                 }
                 if (this.field_70846_g > 1) {
                     final float f1 = MathHelper.sqrt_float(par2) * 0.5f;
-                    this.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1009, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
+                    this.worldObj.playAuxSFXAtEntity(null, 1009, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
                     for (int i = 0; i < 3; ++i) {
-                        final EntityTornadoBall entitysmallfireball = new EntityTornadoBall(this.worldObj, (EntityLivingBase)this);
+                        final EntityTornadoBall entitysmallfireball = new EntityTornadoBall(this.worldObj, this);
                         entitysmallfireball.posY = this.posY + this.height / 2.0f + 0.5;
-                        this.worldObj.spawnEntityInWorld((Entity)entitysmallfireball);
+                        this.worldObj.spawnEntityInWorld(entitysmallfireball);
                     }
                 }
             }

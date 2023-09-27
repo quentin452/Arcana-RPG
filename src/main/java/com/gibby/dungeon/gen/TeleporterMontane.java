@@ -2,12 +2,21 @@
 
 package com.gibby.dungeon.gen;
 
-import net.minecraft.entity.*;
-import com.gibby.dungeon.*;
-import net.minecraft.init.*;
-import net.minecraft.world.*;
-import java.util.*;
-import net.minecraft.util.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.entity.Entity;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.util.Direction;
+import net.minecraft.util.LongHashMap;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.ChunkCoordIntPair;
+import net.minecraft.world.Teleporter;
+import net.minecraft.world.WorldServer;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
 
 public class
 TeleporterMontane extends Teleporter
@@ -104,7 +113,7 @@ TeleporterMontane extends Teleporter
                 this.destinationCoordinateCache.add(j2, new PortalPosition(i, j, k, this.worldServerInstance.getTotalWorldTime()));
                 this.destinationCoordinateKeys.add(j2);
             }
-            double d8 = i + 0.5;
+            double d8 = i+0.5;
             final double d9 = j + 0.5;
             double d6 = k + 0.5;
             int j3 = -1;
@@ -210,7 +219,6 @@ TeleporterMontane extends Teleporter
             final int x = i - 50;
             final int y = j - 21;
             final int z = k - 45;
-            System.out.println("generating at " + x + " " + y + " " + z);
             new WorldGenMontaneDungeon_1().generate(this.worldServerInstance, this.random, x, y, z);
             new WorldGenMontaneDungeon_2().generate(this.worldServerInstance, this.random, x + 73, y, z);
             new WorldGenMontaneDungeon_3().generate(this.worldServerInstance, this.random, x + 113, y, z);
@@ -270,7 +278,7 @@ TeleporterMontane extends Teleporter
         }
     }
 
-    public class PortalPosition extends ChunkCoordinates
+    public static class PortalPosition extends ChunkCoordinates
     {
         public long lastUpdateTime;
 

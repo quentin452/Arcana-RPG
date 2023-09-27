@@ -2,10 +2,13 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.world.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.*;
-import com.gibby.dungeon.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.EnumDifficulty;
+import net.minecraft.world.World;
 
 public class EntityCrystasis extends EntityHermit
 {
@@ -13,7 +16,7 @@ public class EntityCrystasis extends EntityHermit
         super(par1World);
         this.setSize(0.9f, 1.8f);
     }
-    
+
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
@@ -21,35 +24,35 @@ public class EntityCrystasis extends EntityHermit
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.24);
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(40.0);
     }
-    
+
     public int getTotalArmorValue() {
         return 18;
     }
-    
+
     public boolean getCanSpawnHere() {
         return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes((Entity)this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
     }
-    
+
     @Override
     protected String getLivingSound() {
         return "gibby_dungeons:crystasisSay";
     }
-    
+
     @Override
     protected String getHurtSound() {
         return "gibby_dungeons:crystasisHit";
     }
-    
+
     @Override
     protected String getDeathSound() {
         return "gibby_dungeons:crystasisDeath";
     }
-    
+
     @Override
     protected float getSoundPitch() {
         return 0.8f;
     }
-    
+
     @Override
     public void attackEntityWithRangedAttack(final EntityLivingBase par1, final float par2) {
         final int rand = this.worldObj.rand.nextInt(3);
@@ -70,10 +73,10 @@ public class EntityCrystasis extends EntityHermit
             this.worldObj.spawnEntityInWorld((Entity)ball2);
         }
     }
-    
+
     protected void dropEquipment(final boolean par1, final int par2) {
     }
-    
+
     @Override
     protected void dropFewItems(final boolean par1, final int par2) {
         final int r = Dungeons.randRange(0, 5);

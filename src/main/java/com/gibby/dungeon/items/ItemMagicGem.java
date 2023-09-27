@@ -2,12 +2,14 @@
 
 package com.gibby.dungeon.items;
 
-import net.minecraft.item.*;
-import net.minecraft.world.*;
-import net.minecraft.entity.player.*;
-import com.gibby.dungeon.*;
-import net.minecraft.potion.*;
-import net.minecraft.entity.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.world.World;
 
 public class ItemMagicGem extends Item
 {
@@ -17,12 +19,5 @@ public class ItemMagicGem extends Item
         }
         super.onUpdate(par1ItemStack, par2World, par3Entity, par4, par5);
     }
-    
-    public ItemStack onItemRightClick(final ItemStack par1ItemStack, final World par2World, final EntityPlayer par3) {
-        return par1ItemStack;
-    }
-    
-    public boolean onEntitySwing(final EntityLivingBase entityLiving, final ItemStack stack) {
-        return false;
-    }
+
 }

@@ -2,9 +2,9 @@
 
 package com.gibby.dungeon.packetPipelines;
 
-import io.netty.channel.*;
-import io.netty.buffer.*;
-import net.minecraft.entity.player.*;
+import io.netty.buffer.ByteBuf;
+import io.netty.channel.ChannelHandlerContext;
+import net.minecraft.entity.player.EntityPlayer;
 
 public abstract class AbstractPacket
 {

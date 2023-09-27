@@ -2,16 +2,19 @@
 
 package com.gibby.dungeon;
 
-import com.gibby.dungeon.items.*;
-import net.minecraft.item.*;
-import net.minecraft.entity.player.*;
-import com.gibby.dungeon.mobs.*;
-import net.minecraft.entity.*;
-import net.minecraft.world.*;
-import net.minecraft.potion.*;
-import java.util.*;
-import net.minecraft.util.*;
-import cpw.mods.fml.relauncher.*;
+import com.gibby.dungeon.items.ItemForceWand;
+import com.gibby.dungeon.mobs.EntityRuneExplosion;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.world.World;
+
+import java.util.List;
 
 public class ItemDeathBringerWand extends ItemForceWand
 {
@@ -21,7 +24,7 @@ public class ItemDeathBringerWand extends ItemForceWand
         this.setMaxDamage(300);
         this.setFull3D();
     }
-    
+
     @Override
     public boolean onEntitySwing(final EntityLivingBase entityLiving, final ItemStack stack) {
         if (entityLiving instanceof EntityPlayer) {
@@ -33,16 +36,16 @@ public class ItemDeathBringerWand extends ItemForceWand
                 }
                 par4.consumeMagic(2);
                 if (!par3.worldObj.isRemote) {
-                    final EntityRuneExplosion ball = new EntityRuneExplosion(par3.worldObj, (EntityLivingBase)par3);
-                    ball.worldObj.spawnEntityInWorld((Entity)ball);
-                    ball.worldObj.playSoundAtEntity((Entity)ball, "note.harp", 4.0f, 1.0f);
+                    final EntityRuneExplosion ball = new EntityRuneExplosion(par3.worldObj, par3);
+                    ball.worldObj.spawnEntityInWorld(ball);
+                    ball.worldObj.playSoundAtEntity(ball, "note.harp", 4.0f, 1.0f);
                 }
-                stack.damageItem(1, (EntityLivingBase)par3);
+                stack.damageItem(1, par3);
             }
         }
         return false;
     }
-    
+
     @Override
     public ItemStack onItemRightClick(final ItemStack par1ItemStack, final World par2World, final EntityPlayer par3) {
         final DungeonsExtendedPlayer par4 = DungeonsExtendedPlayer.get(par3);
@@ -51,17 +54,17 @@ public class ItemDeathBringerWand extends ItemForceWand
             if (!par3.worldObj.isRemote) {
                 for (int i = 0; i < 10; ++i) {
                     par2World.spawnParticle("enchantmenttable", par3.posX, par3.posY, par3.posZ, ItemDeathBringerWand.itemRand.nextGaussian(), ItemDeathBringerWand.itemRand.nextGaussian(), ItemDeathBringerWand.itemRand.nextGaussian());
-                    par2World.playSoundAtEntity((Entity)par3, "mob.enderdragon.growl", 1.0f, 0.8f);
+                    par2World.playSoundAtEntity(par3, "mob.enderdragon.growl", 1.0f, 0.8f);
                 }
                 par3.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 160, 3));
                 par3.addPotionEffect(new PotionEffect(Potion.blindness.id, 20, 0));
                 par3.addPotionEffect(new PotionEffect(Potion.moveSpeed.id, 160, 1));
             }
-            par1ItemStack.damageItem(1, (EntityLivingBase)par3);
+            par1ItemStack.damageItem(1, par3);
         }
         return par1ItemStack;
     }
-    
+
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(final ItemStack par1ItemStack, final EntityPlayer par2EntityPlayer, final List par3List, final boolean par4) {

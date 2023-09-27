@@ -2,25 +2,25 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.client.renderer.entity.*;
-import net.minecraft.item.*;
-import net.minecraft.init.*;
-import com.gibby.dungeon.*;
-import org.lwjgl.opengl.*;
-import net.minecraft.entity.*;
-import net.minecraft.client.renderer.*;
-import net.minecraft.util.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.entity.RenderSnowball;
+import net.minecraft.entity.Entity;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.util.IIcon;
+import org.lwjgl.opengl.GL11;
 
 public class RenderProjectileBall extends RenderSnowball
 {
     String color;
     Item item;
-    
+
     public RenderProjectileBall(final Item par1Item) {
         super(par1Item);
         this.color = "";
     }
-    
+
     public void doRender(final EntityProjectileBall par1Entity, final double par2, final double par4, final double par6, final float par8, final float par9) {
         this.item = Items.fire_charge;
         this.color = par1Entity.Color;
@@ -64,7 +64,7 @@ public class RenderProjectileBall extends RenderSnowball
             GL11.glPopMatrix();
         }
     }
-    
+
     private void func_77026_a(final Tessellator par1Tessellator, final IIcon par2Icon) {
         final float f = par2Icon.getMinU();
         final float f2 = par2Icon.getMaxU();
@@ -83,7 +83,7 @@ public class RenderProjectileBall extends RenderSnowball
         par1Tessellator.addVertexWithUV((double)(0.0f - f6), (double)(f5 - f7), 0.0, (double)f, (double)f3);
         par1Tessellator.draw();
     }
-    
+
     public void doRender(final Entity par1Entity, final double par2, final double par4, final double par6, final float par8, final float par9) {
         this.doRender((EntityProjectileBall)par1Entity, par2, par4, par6, par8, par9);
     }

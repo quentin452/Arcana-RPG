@@ -2,20 +2,21 @@
 
 package com.gibby.dungeon;
 
-import net.minecraft.block.*;
-import net.minecraft.util.*;
-import cpw.mods.fml.relauncher.*;
-import java.util.*;
-import net.minecraft.world.*;
-import net.minecraft.client.*;
-import net.minecraft.client.particle.*;
-import net.minecraft.init.*;
-import net.minecraft.client.renderer.texture.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.entity.*;
+import com.gibby.dungeon.mobs.EntityEnchantEffect;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.BlockEndPortalFrame;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.EntityReddustFX;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.*;
-import net.minecraft.entity.item.*;
-import com.gibby.dungeon.mobs.*;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class BlockChargedMagiTable extends BlockEndPortalFrame
 {
@@ -34,8 +35,8 @@ public class BlockChargedMagiTable extends BlockEndPortalFrame
     public void randomDisplayTick(final World world, final int x, final int y, final int z, final Random random) {
         if (world.isRemote) {
             for (int i = 0; i < 50; ++i) {
-                final EntityReddustFX particle = new EntityReddustFX(world, x + 0.5 + Dungeons.randGauss() / 20.0, (double)(y + 1), z + 0.5 + Dungeons.randGauss() / 20.0, 0.0f, 0.0f, 1.0f);
-                Minecraft.getMinecraft().effectRenderer.addEffect((EntityFX)particle);
+                final EntityReddustFX particle = new EntityReddustFX(world, x + 0.5 + Dungeons.randGauss() / 20.0, y + 1, z + 0.5 + Dungeons.randGauss() / 20.0, 0.0f, 0.0f, 1.0f);
+                Minecraft.getMinecraft().effectRenderer.addEffect(particle);
             }
         }
     }
@@ -53,7 +54,7 @@ public class BlockChargedMagiTable extends BlockEndPortalFrame
 
     public boolean onBlockActivated(final World world, final int x, final int y, final int z, final EntityPlayer player, final int p_149727_6_, final float p_149727_7_, final float p_149727_8_, final float p_149727_9_) {
         if (player.inventory.getCurrentItem() != null && (player.inventory.getCurrentItem().getItem() instanceof ItemArmor || player.inventory.getCurrentItem().getItem() instanceof ItemSword || player.inventory.getCurrentItem().getItem() instanceof ItemPickaxe) && player.inventory.getCurrentItem().getItemDamage() == 0 && !world.isRemote) {
-            world.playSoundAtEntity((Entity)player, "portal.portal", 1.0f, 1.0f);
+            world.playSoundAtEntity(player, "portal.portal", 1.0f, 1.0f);
             final int r = world.rand.nextInt(10);
             EntityItem item;
             if (r == 0) {
@@ -64,7 +65,7 @@ public class BlockChargedMagiTable extends BlockEndPortalFrame
             }
             final EntityEnchantEffect effect = new EntityEnchantEffect(world, x + 0.5, y + 0.5, z + 0.5);
             effect.item = item;
-            world.spawnEntityInWorld((Entity)effect);
+            world.spawnEntityInWorld(effect);
             final ItemStack getCurrentItem = player.inventory.getCurrentItem();
             --getCurrentItem.stackSize;
             world.setBlock(x, y, z, Dungeons.magitable);

@@ -1,16 +1,17 @@
-
-
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.world.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.entity.boss.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.*;
-import net.minecraft.client.*;
-import net.minecraft.client.particle.*;
-import java.util.*;
-import com.gibby.dungeon.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.EntityReddustFX;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.boss.BossStatus;
+import net.minecraft.entity.boss.IBossDisplayData;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.DamageSource;
+import net.minecraft.world.World;
+
+import java.util.List;
 
 public class EntityUndefeatableRegen extends EntityUndefeatable implements IBossDisplayData
 {
@@ -26,7 +27,7 @@ public class EntityUndefeatableRegen extends EntityUndefeatable implements IBoss
 
     public void onUpdate() {
         super.onUpdate();
-        List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(20.0, 10.0, 20.0));
+        List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(20.0, 10.0, 20.0));
         if (list2 != null) {
             for (int k2 = 0; k2 < list2.size(); ++k2) {
                 if (list2.get(k2) instanceof EntityUndefeatableResistance) {
@@ -34,17 +35,17 @@ public class EntityUndefeatableRegen extends EntityUndefeatable implements IBoss
                 }
             }
         }
-        list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(20.0, 10.0, 20.0));
+        list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(20.0, 10.0, 20.0));
         if (list2 != null) {
             for (int k2 = 0; k2 < list2.size(); ++k2) {
                 if (list2.get(k2) instanceof EntityPlayer && !this.undefeatableResistance) {
-                    BossStatus.setBossStatus((IBossDisplayData)this, true);
+                    BossStatus.setBossStatus(this, true);
                     this.func_145748_c_();
                 }
             }
             this.undefeatableResistance = false;
         }
-        list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(1.3, 1.3, 1.3));
+        list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(1.3, 1.3, 1.3));
         if (list2 != null && this.getHealth() > 0.0f) {
             for (int k2 = 0; k2 < list2.size(); ++k2) {
                 if (list2.get(k2) instanceof EntityPlayer && this.ticksExisted % 10 == 0) {
@@ -54,14 +55,14 @@ public class EntityUndefeatableRegen extends EntityUndefeatable implements IBoss
                 }
             }
         }
-        list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(3.0, 3.0, 3.0));
+        list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(3.0, 3.0, 3.0));
         if (list2 != null && this.getHealth() > 0.0f) {
             for (int k2 = 0; k2 < list2.size(); ++k2) {
                 if (list2.get(k2) instanceof EntityUndefeatable && this.ticksExisted % 20 == 0) {
                     final EntityLivingBase entity = (EntityLivingBase) list2.get(k2);
                     entity.heal(6.0f);
                     final EntityHealEffect ball = new EntityHealEffect(this.worldObj, entity.posX, entity.posY, entity.posZ);
-                    this.worldObj.spawnEntityInWorld((Entity)ball);
+                    this.worldObj.spawnEntityInWorld(ball);
                     double X = entity.posX - this.posX;
                     double Y = entity.posY - this.posY;
                     double Z = entity.posZ - this.posZ;
@@ -72,7 +73,7 @@ public class EntityUndefeatableRegen extends EntityUndefeatable implements IBoss
                             Y += (entity.posY - this.posY) / this.distancedivider;
                             Z += (entity.posZ - this.posZ) / this.distancedivider;
                             particle.setRBGColorF(0.7f, 0.0f, 0.8f);
-                            Minecraft.getMinecraft().effectRenderer.addEffect((EntityFX)particle);
+                            Minecraft.getMinecraft().effectRenderer.addEffect(particle);
                         }
                     }
                 }
@@ -85,10 +86,6 @@ public class EntityUndefeatableRegen extends EntityUndefeatable implements IBoss
 
     protected boolean canDespawn() {
         return false;
-    }
-
-    protected float getSoundPitch() {
-        return 0.8f;
     }
 
     public boolean attackEntityAsMob(final Entity par1Entity) {

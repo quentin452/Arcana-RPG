@@ -1,11 +1,10 @@
-
-
 package com.gibby.dungeon.gen;
 
-import net.minecraft.world.*;
-import java.util.*;
-import com.gibby.dungeon.*;
-import net.minecraft.init.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class WorldGenCrystalBamboo
 {

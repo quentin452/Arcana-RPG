@@ -2,12 +2,12 @@
 
 package com.gibby.dungeon.packetPipelines;
 
-import net.minecraft.nbt.*;
-import net.minecraft.entity.player.*;
-import com.gibby.dungeon.*;
-import io.netty.channel.*;
-import io.netty.buffer.*;
-import cpw.mods.fml.common.network.*;
+import com.gibby.dungeon.DungeonsExtendedPlayer;
+import cpw.mods.fml.common.network.ByteBufUtils;
+import io.netty.buffer.ByteBuf;
+import io.netty.channel.ChannelHandlerContext;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 
 public class SyncPlayerPropsPacket extends AbstractPacket
 {

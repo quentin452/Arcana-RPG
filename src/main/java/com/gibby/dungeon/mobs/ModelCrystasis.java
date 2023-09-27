@@ -2,9 +2,10 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.client.model.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.*;
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.MathHelper;
 
 public class ModelCrystasis extends ModelBase
 {
@@ -17,7 +18,7 @@ public class ModelCrystasis extends ModelBase
     ModelRenderer Leftarm;
     ModelRenderer Rightarm;
     ModelRenderer Head;
-    
+
     public ModelCrystasis() {
         this.textureWidth = 64;
         this.textureHeight = 32;
@@ -42,37 +43,37 @@ public class ModelCrystasis extends ModelBase
         this.setTextureOffset("Head.Crystalspike2", 4, 0);
         this.setTextureOffset("Head.Crystalspike3", 4, 0);
         this.setTextureOffset("Head.Crystalspike4", 4, 0);
-        (this.Body = new ModelRenderer((ModelBase)this, 0, 0)).addBox(-4.0f, -5.0f, -4.0f, 8, 10, 8);
+        (this.Body = new ModelRenderer(this, 0, 0)).addBox(-4.0f, -5.0f, -4.0f, 8, 10, 8);
         this.Body.setRotationPoint(0.0f, 7.0f, 0.0f);
         this.Body.setTextureSize(64, 32);
         this.Body.mirror = true;
         this.setRotation(this.Body, 0.0f, 0.0f, 0.0f);
-        (this.Tail5 = new ModelRenderer((ModelBase)this, 0, 0)).addBox(-1.0f, 0.0f, -1.0f, 2, 1, 2);
+        (this.Tail5 = new ModelRenderer(this, 0, 0)).addBox(-1.0f, 0.0f, -1.0f, 2, 1, 2);
         this.Tail5.setRotationPoint(0.0f, 21.0f, 0.0f);
         this.Tail5.setTextureSize(64, 32);
         this.Tail5.mirror = true;
         this.setRotation(this.Tail5, 0.0f, 0.0f, 0.0f);
-        (this.Tail1 = new ModelRenderer((ModelBase)this, 0, 0)).addBox(-4.0f, 0.0f, -4.0f, 8, 1, 8);
+        (this.Tail1 = new ModelRenderer(this, 0, 0)).addBox(-4.0f, 0.0f, -4.0f, 8, 1, 8);
         this.Tail1.setRotationPoint(0.0f, 13.0f, 0.0f);
         this.Tail1.setTextureSize(64, 32);
         this.Tail1.mirror = true;
         this.setRotation(this.Tail1, 0.0f, 0.0f, 0.0f);
-        (this.Tail2 = new ModelRenderer((ModelBase)this, 0, 0)).addBox(-3.0f, 0.0f, -3.0f, 6, 1, 6);
+        (this.Tail2 = new ModelRenderer(this, 0, 0)).addBox(-3.0f, 0.0f, -3.0f, 6, 1, 6);
         this.Tail2.setRotationPoint(0.0f, 15.0f, 0.0f);
         this.Tail2.setTextureSize(64, 32);
         this.Tail2.mirror = true;
         this.setRotation(this.Tail2, 0.0f, 0.0f, 0.0f);
-        (this.Tail3 = new ModelRenderer((ModelBase)this, 0, 0)).addBox(-2.0f, 0.0f, -2.0f, 4, 1, 4);
+        (this.Tail3 = new ModelRenderer(this, 0, 0)).addBox(-2.0f, 0.0f, -2.0f, 4, 1, 4);
         this.Tail3.setRotationPoint(0.0f, 17.0f, 0.0f);
         this.Tail3.setTextureSize(64, 32);
         this.Tail3.mirror = true;
         this.setRotation(this.Tail3, 0.0f, 0.0f, 0.0f);
-        (this.Tail4 = new ModelRenderer((ModelBase)this, 0, 0)).addBox(-1.0f, 0.0f, -1.0f, 2, 1, 2);
+        (this.Tail4 = new ModelRenderer(this, 0, 0)).addBox(-1.0f, 0.0f, -1.0f, 2, 1, 2);
         this.Tail4.setRotationPoint(0.0f, 19.0f, 0.0f);
         this.Tail4.setTextureSize(64, 32);
         this.Tail4.mirror = true;
         this.setRotation(this.Tail4, 0.0f, 0.0f, 0.0f);
-        (this.Leftarm = new ModelRenderer((ModelBase)this, "Leftarm")).setRotationPoint(-4.0f, 4.0f, 0.0f);
+        (this.Leftarm = new ModelRenderer(this, "Leftarm")).setRotationPoint(-4.0f, 4.0f, 0.0f);
         this.setRotation(this.Leftarm, 0.0f, 0.0f, 0.0f);
         this.Leftarm.mirror = true;
         this.Leftarm.addBox("Leftarm", -3.0f, -3.0f, -2.0f, 2, 9, 4);
@@ -86,7 +87,7 @@ public class ModelCrystasis extends ModelBase
         this.Leftarm.addBox("Wandstud2", -4.0f, 6.0f, -18.0f, 1, 1, 4);
         this.Leftarm.addBox("Wandstud3", -2.0f, 8.0f, -18.0f, 1, 1, 4);
         this.Leftarm.addBox("Wandstud4", 0.0f, 6.0f, -18.0f, 1, 1, 4);
-        (this.Rightarm = new ModelRenderer((ModelBase)this, "Rightarm")).setRotationPoint(4.0f, 4.0f, 0.0f);
+        (this.Rightarm = new ModelRenderer(this, "Rightarm")).setRotationPoint(4.0f, 4.0f, 0.0f);
         this.setRotation(this.Rightarm, 0.0f, 0.0f, 0.0f);
         this.Rightarm.mirror = true;
         this.Rightarm.addBox("Rightarm", 1.0f, -3.0f, -2.0f, 2, 9, 4);
@@ -94,7 +95,7 @@ public class ModelCrystasis extends ModelBase
         this.Rightarm.addBox("Crystals4", 1.0f, -5.0f, 1.0f, 1, 2, 1);
         this.Rightarm.addBox("Finger3", 2.0f, 6.0f, 1.0f, 1, 2, 1);
         this.Rightarm.addBox("Finger4", 2.0f, 6.0f, -2.0f, 1, 2, 1);
-        (this.Head = new ModelRenderer((ModelBase)this, "Head")).setRotationPoint(0.0f, 1.0f, 0.0f);
+        (this.Head = new ModelRenderer(this, "Head")).setRotationPoint(0.0f, 1.0f, 0.0f);
         this.setRotation(this.Head, 0.0f, 0.0f, 0.0f);
         this.Head.mirror = true;
         this.Head.addBox("Head", -3.0f, -6.0f, -3.0f, 6, 6, 6);
@@ -103,7 +104,7 @@ public class ModelCrystasis extends ModelBase
         this.Head.addBox("Crystalspike3", -4.0f, -7.0f, -2.0f, 1, 3, 1);
         this.Head.addBox("Crystalspike4", 3.0f, -7.0f, -2.0f, 1, 3, 1);
     }
-    
+
     public void render(final Entity entity, final float f, final float f1, final float f2, final float f3, final float f4, final float f5) {
         super.render(entity, f, f1, f2, f3, f4, f5);
         this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
@@ -117,13 +118,13 @@ public class ModelCrystasis extends ModelBase
         this.Rightarm.render(f5);
         this.Head.render(f5);
     }
-    
+
     private void setRotation(final ModelRenderer model, final float x, final float y, final float z) {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
     }
-    
+
     public void setRotationAngles(final float f, final float f1, final float f2, final float f3, final float f4, final float f5, final Entity entity) {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
         this.Head.rotateAngleY = f3 / 57.295776f;

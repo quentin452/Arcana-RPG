@@ -2,28 +2,33 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.world.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.*;
-import net.minecraft.init.*;
-import net.minecraft.item.*;
-import com.gibby.dungeon.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityFlying;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.Vec3;
+import net.minecraft.world.EnumDifficulty;
+import net.minecraft.world.World;
 
 public class EntityNetherGhost extends EntityFlying
 {
     private Entity targetedEntity;
-    
+
     public EntityNetherGhost(final World par1World) {
         super(par1World);
     }
-    
+
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(30.0);
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.8);
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(25.0);
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         this.worldObj.spawnParticle("flame", this.posX, this.posY + 2.0, this.posZ, 0.0, 0.0, 0.0);
@@ -54,15 +59,15 @@ public class EntityNetherGhost extends EntityFlying
             }
         }
     }
-    
+
     protected String getHurtSound() {
         return "fire.ignite";
     }
-    
+
     protected String getDeathSound() {
         return "fire.ignite";
     }
-    
+
     protected void dropFewItems(final boolean par1, final int par2) {
         final int r = this.rand.nextInt(4);
         if (r == 1) {

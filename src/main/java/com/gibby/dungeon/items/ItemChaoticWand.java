@@ -2,18 +2,24 @@
 
 package com.gibby.dungeon.items;
 
-import net.minecraft.item.*;
-import net.minecraft.entity.player.*;
-import com.gibby.dungeon.*;
-import net.minecraft.potion.*;
-import net.minecraft.init.*;
-import net.minecraft.block.*;
-import net.minecraft.world.*;
-import com.gibby.dungeon.mobs.*;
-import net.minecraft.entity.*;
-import cpw.mods.fml.relauncher.*;
-import java.util.*;
-import net.minecraft.util.*;
+import com.gibby.dungeon.DungeonsExtendedPlayer;
+import com.gibby.dungeon.mobs.EntityProjectileBall;
+import com.gibby.dungeon.mobs.EntityWitherSkeletonMinion;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IEntityLivingData;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.world.World;
+
+import java.util.List;
 
 public class ItemChaoticWand extends ItemForceWand
 {
@@ -23,7 +29,7 @@ public class ItemChaoticWand extends ItemForceWand
         this.setMaxDamage(500);
         this.setFull3D();
     }
-    
+
     @Override
     public boolean onEntitySwing(final EntityLivingBase entityLiving, final ItemStack stack) {
         if (entityLiving instanceof EntityPlayer) {
@@ -49,7 +55,7 @@ public class ItemChaoticWand extends ItemForceWand
         }
         return false;
     }
-    
+
     @SideOnly(Side.CLIENT)
     @Override
     public ItemStack onItemRightClick(final ItemStack par1ItemStack, final World par2World, final EntityPlayer par3) {
@@ -67,7 +73,7 @@ public class ItemChaoticWand extends ItemForceWand
         }
         return par1ItemStack;
     }
-    
+
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(final ItemStack par1ItemStack, final EntityPlayer par2EntityPlayer, final List par3List, final boolean par4) {

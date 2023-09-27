@@ -2,12 +2,13 @@
 
 package com.gibby.dungeon;
 
-import net.minecraft.block.*;
-import net.minecraft.world.*;
-import java.util.*;
-import net.minecraft.client.*;
-import net.minecraft.client.particle.*;
-import net.minecraft.block.material.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.EntityFireworkSparkFX;
+import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class BlockMidnightPortalSpawner extends Block
 {
@@ -17,11 +18,11 @@ public class BlockMidnightPortalSpawner extends Block
                 final EntityFireworkSparkFX particle = new EntityFireworkSparkFX(world, x + 0.5 + Dungeons.randGauss() / 2.0, y + 0.5 + Dungeons.randGauss(), z + 0.5 + Dungeons.randGauss() / 2.0, 0.0, 0.0, 0.0, Minecraft.getMinecraft().effectRenderer);
                 particle.setRBGColorF(0.0f, 0.0f, 1.0f);
                 particle.setFadeColour(0);
-                Minecraft.getMinecraft().effectRenderer.addEffect((EntityFX)particle);
+                Minecraft.getMinecraft().effectRenderer.addEffect(particle);
             }
         }
     }
-    
+
     protected BlockMidnightPortalSpawner() {
         super(Material.rock);
         this.setHardness(10000.0f);

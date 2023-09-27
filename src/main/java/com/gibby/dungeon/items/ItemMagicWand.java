@@ -2,15 +2,19 @@
 
 package com.gibby.dungeon.items;
 
-import net.minecraft.item.*;
-import net.minecraft.entity.player.*;
-import com.gibby.dungeon.*;
-import com.gibby.dungeon.mobs.*;
-import net.minecraft.entity.*;
-import net.minecraft.world.*;
-import java.util.*;
-import net.minecraft.util.*;
-import cpw.mods.fml.relauncher.*;
+import com.gibby.dungeon.DungeonsExtendedPlayer;
+import com.gibby.dungeon.mobs.EntityProjectileBall;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.world.World;
+
+import java.util.List;
 
 public class ItemMagicWand extends ItemForceWand
 {
@@ -29,19 +33,18 @@ public class ItemMagicWand extends ItemForceWand
                     par3.worldObj.spawnParticle("enchantmenttable", par3.posX, par3.posY, par3.posZ, ItemMagicWand.itemRand.nextGaussian(), ItemMagicWand.itemRand.nextGaussian(), ItemMagicWand.itemRand.nextGaussian());
                 }
                 for (int i = 0; i < 3; ++i) {
-                    final EntityProjectileBall ball = new EntityProjectileBall(par3.worldObj, (EntityLivingBase)par3);
+                    final EntityProjectileBall ball = new EntityProjectileBall(par3.worldObj, par3);
                     ball.setEntityAttributes(5.0f, 1.2f, 0.03f, DamageSource.magic);
                     ball.explodes(true, 1.0f, false, false);
                     ball.setParticle("portal", 0.0, 10);
                     ball.secondParticle = "witchMagic";
                     ball.Color = "darkblue";
                     ball.gravityVelocity = 0.05f;
-                    ball.worldObj.spawnEntityInWorld((Entity)ball);
-                    final EntityProjectileBall entityProjectileBall = ball;
-                    entityProjectileBall.motionY += i / 3.5;
+                    ball.worldObj.spawnEntityInWorld(ball);
+                    ball.motionY += i / 3.5;
                 }
                 par4.consumeMagic(3);
-                stack.damageItem(1, (EntityLivingBase)par3);
+                stack.damageItem(1, par3);
             }
         }
         return false;
@@ -58,8 +61,8 @@ public class ItemMagicWand extends ItemForceWand
                 par3.worldObj.spawnParticle("portal", par3.posX + random, par3.posY + random, par3.posZ + random, ItemMagicWand.itemRand.nextGaussian(), ItemMagicWand.itemRand.nextGaussian(), ItemMagicWand.itemRand.nextGaussian());
                 par3.worldObj.spawnParticle("crit", par3.posX, par3.posY - 1.0, par3.posZ, par2World.rand.nextGaussian(), 0.0, par2World.rand.nextGaussian());
             }
-            par2World.playSoundAtEntity((Entity)par3, "note.hat", 4.0f, 1.0f);
-            final List list = par3.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)par3, par3.boundingBox.expand(10.0, 10.0, 10.0));
+            par2World.playSoundAtEntity(par3, "note.hat", 4.0f, 1.0f);
+            final List list = par3.worldObj.getEntitiesWithinAABBExcludingEntity(par3, par3.boundingBox.expand(10.0, 10.0, 10.0));
             if (list != null) {
                 for (int k2 = 0; k2 < list.size(); ++k2) {
                     if (list.get(k2) instanceof EntityLivingBase) {

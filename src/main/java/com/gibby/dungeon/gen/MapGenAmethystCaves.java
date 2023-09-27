@@ -2,14 +2,15 @@
 
 package com.gibby.dungeon.gen;
 
-import net.minecraft.world.gen.*;
-import net.minecraft.block.*;
-import java.util.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
-import net.minecraft.init.*;
-import net.minecraft.world.biome.*;
-import com.gibby.dungeon.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.gen.MapGenBase;
+
+import java.util.Random;
 
 public class MapGenAmethystCaves extends MapGenBase
 {
@@ -98,9 +99,8 @@ public class MapGenAmethystCaves extends MapGenBase
                         for (int l2 = k2; !flag4 && l2 < j3; ++l2) {
                             for (int i6 = i5 + 1; !flag4 && i6 >= j2 - 1; --i6) {
                                 final int j4 = (k3 * 16 + l2) * 256 + i6;
-                                if (i6 >= 0 && i6 < 256) {
-                                    final Block block = p_151541_5_[j4];
-                                    if (this.isOceanBlock(p_151541_5_, j4, k3, i6, l2, p_151541_3_, p_151541_4_)) {
+                                if (i6 < 256) {
+                                    if (this.isOceanBlock(p_151541_5_, j4)) {
                                         flag4 = true;
                                     }
                                     if (i6 != j2 - 1 && k3 != i4 && k3 != l1 - 1 && l2 != k2 && l2 != j3 - 1) {
@@ -121,8 +121,7 @@ public class MapGenAmethystCaves extends MapGenBase
                                     for (int l3 = i5 - 1; l3 >= j2; --l3) {
                                         final double d14 = (l3 + 0.5 - p_151541_8_) / d7;
                                         if (d14 > -0.7 && d12 * d12 + d14 * d14 + d13 * d13 < 1.0) {
-                                            final Block block2 = p_151541_5_[k4];
-                                            if (this.isTopBlock(p_151541_5_, k4, k3, l3, j4, p_151541_3_, p_151541_4_)) {
+                                            if (this.isTopBlock(p_151541_5_, k4, k3, j4, p_151541_3_, p_151541_4_)) {
                                                 flag5 = true;
                                             }
                                             this.digBlock(p_151541_5_, k4, k3, l3, j4, p_151541_3_, p_151541_4_, flag5);
@@ -168,7 +167,7 @@ public class MapGenAmethystCaves extends MapGenBase
         }
     }
 
-    protected boolean isOceanBlock(final Block[] data, final int index, final int x, final int y, final int z, final int chunkX, final int chunkZ) {
+    protected boolean isOceanBlock(final Block[] data, final int index) {
         return data[index] == Blocks.flowing_water || data[index] == Blocks.water;
     }
 
@@ -176,7 +175,7 @@ public class MapGenAmethystCaves extends MapGenBase
         return biome == BiomeGenBase.mushroomIsland || biome == BiomeGenBase.beach || biome == BiomeGenBase.desert;
     }
 
-    private boolean isTopBlock(final Block[] data, final int index, final int x, final int y, final int z, final int chunkX, final int chunkZ) {
+    private boolean isTopBlock(final Block[] data, final int index, final int x, final int z, final int chunkX, final int chunkZ) {
         final BiomeGenBase biome = this.worldObj.getBiomeGenForCoords(x + chunkX * 16, z + chunkZ * 16);
         if (this.isExceptionBiome(biome)) {
             if (data[index] == Dungeons.crystalliumGrass) {

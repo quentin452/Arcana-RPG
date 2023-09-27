@@ -2,51 +2,61 @@
 
 package com.gibby.dungeon.gen;
 
-import net.minecraft.world.biome.*;
-import cpw.mods.fml.relauncher.*;
-import net.minecraft.world.gen.layer.*;
-import net.minecraft.util.*;
-import net.minecraft.crash.*;
-import java.util.*;
-import net.minecraft.world.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.crash.CrashReport;
+import net.minecraft.crash.CrashReportCategory;
+import net.minecraft.util.ReportedException;
+import net.minecraft.world.ChunkPosition;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldType;
+import net.minecraft.world.biome.BiomeCache;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.WorldChunkManager;
+import net.minecraft.world.gen.layer.GenLayer;
+import net.minecraft.world.gen.layer.IntCache;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+// todo , this isn't used
 public class WorldChunkManagerCrystalliumPlains extends WorldChunkManager
 {
     private GenLayer genBiomes;
     private GenLayer biomeIndexLayer;
-    private BiomeCache biomeCache;
-    private List<BiomeGenBase> biomesToSpawnIn;
-    
+    private final BiomeCache biomeCache;
+    private final List<BiomeGenBase> biomesToSpawnIn;
+
     public WorldChunkManagerCrystalliumPlains() {
-        this.biomeCache = new BiomeCache((WorldChunkManager)this);
-        (this.biomesToSpawnIn = new ArrayList<BiomeGenBase>()).addAll(WorldChunkManagerCrystalliumPlains.allowedBiomes);
+        this.biomeCache = new BiomeCache(this);
+        (this.biomesToSpawnIn = new ArrayList<>()).addAll(WorldChunkManagerCrystalliumPlains.allowedBiomes);
     }
-    
+
     public WorldChunkManagerCrystalliumPlains(final long seed, final WorldType worldType) {
         this();
-        GenLayer[] agenlayer = CrystalliumGenLayer.makeTheWorld(seed, worldType);
+        GenLayer[] agenlayer = CrystalliumGenLayer.makeTheWorld(seed);
         agenlayer = this.getModdedBiomeGenerators(worldType, seed, agenlayer);
         this.genBiomes = agenlayer[0];
         this.biomeIndexLayer = agenlayer[1];
     }
-    
+
     public WorldChunkManagerCrystalliumPlains(final World world) {
         this(world.getSeed(), world.getWorldInfo().getTerrainType());
     }
-    
+
     public List<BiomeGenBase> getBiomesToSpawnIn() {
         return this.biomesToSpawnIn;
     }
-    
+
     public BiomeGenBase getBiomeGenAt(final int x, final int z) {
         return this.biomeCache.getBiomeGenAt(x, z);
     }
-    
+
     @SideOnly(Side.CLIENT)
     public float getTemperatureAtHeight(final float par1, final int par2) {
         return par1;
     }
-    
+
     public BiomeGenBase[] getBiomesForGeneration(BiomeGenBase[] par1ArrayOfBiomeGenBase, final int par2, final int par3, final int par4, final int par5) {
         IntCache.resetIntCache();
         if (par1ArrayOfBiomeGenBase == null || par1ArrayOfBiomeGenBase.length < par4 * par5) {
@@ -62,19 +72,19 @@ public class WorldChunkManagerCrystalliumPlains extends WorldChunkManager
         catch (Throwable throwable) {
             final CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Invalid Biome id");
             final CrashReportCategory crashreportcategory = crashreport.makeCategory("RawBiomeBlock");
-            crashreportcategory.addCrashSection("biomes[] size", (Object)par1ArrayOfBiomeGenBase.length);
-            crashreportcategory.addCrashSection("x", (Object)par2);
-            crashreportcategory.addCrashSection("z", (Object)par3);
-            crashreportcategory.addCrashSection("w", (Object)par4);
-            crashreportcategory.addCrashSection("h", (Object)par5);
+            crashreportcategory.addCrashSection("biomes[] size", par1ArrayOfBiomeGenBase.length);
+            crashreportcategory.addCrashSection("x", par2);
+            crashreportcategory.addCrashSection("z", par3);
+            crashreportcategory.addCrashSection("w", par4);
+            crashreportcategory.addCrashSection("h", par5);
             throw new ReportedException(crashreport);
         }
     }
-    
+
     public BiomeGenBase[] loadBlockGeneratorData(final BiomeGenBase[] oldBiomeList, final int x, final int z, final int width, final int depth) {
         return this.getBiomeGenAt(oldBiomeList, x, z, width, depth, true);
     }
-    
+
     public BiomeGenBase[] getBiomeGenAt(BiomeGenBase[] listToReuse, final int x, final int y, final int width, final int length, final boolean cacheFlag) {
         IntCache.resetIntCache();
         if (listToReuse == null || listToReuse.length < width * length) {
@@ -91,7 +101,7 @@ public class WorldChunkManagerCrystalliumPlains extends WorldChunkManager
         }
         return listToReuse;
     }
-    
+
     public boolean areBiomesViable(final int x, final int y, final int z, final List par4List) {
         IntCache.resetIntCache();
         final int l = x - z >> 2;
@@ -113,15 +123,15 @@ public class WorldChunkManagerCrystalliumPlains extends WorldChunkManager
         catch (Throwable throwable) {
             final CrashReport crashreport = CrashReport.makeCrashReport(throwable, "Invalid Biome id");
             final CrashReportCategory crashreportcategory = crashreport.makeCategory("Layer");
-            crashreportcategory.addCrashSection("Layer", (Object)this.genBiomes.toString());
-            crashreportcategory.addCrashSection("x", (Object)x);
-            crashreportcategory.addCrashSection("z", (Object)y);
-            crashreportcategory.addCrashSection("radius", (Object)z);
-            crashreportcategory.addCrashSection("allowed", (Object)par4List);
+            crashreportcategory.addCrashSection("Layer", this.genBiomes.toString());
+            crashreportcategory.addCrashSection("x", x);
+            crashreportcategory.addCrashSection("z", y);
+            crashreportcategory.addCrashSection("radius", z);
+            crashreportcategory.addCrashSection("allowed", par4List);
             throw new ReportedException(crashreport);
         }
     }
-    
+
     public ChunkPosition findBiomePosition(final int x, final int y, final int z, final List par4List, final Random random) {
         IntCache.resetIntCache();
         final int l = x - z >> 2;
@@ -144,7 +154,7 @@ public class WorldChunkManagerCrystalliumPlains extends WorldChunkManager
         }
         return chunkposition;
     }
-    
+
     public void cleanupCache() {
         this.biomeCache.cleanupCache();
     }

@@ -12,6 +12,10 @@ To see new changes thats maked in the fork you can see https://github.com/quenti
 
 [*Curseforge*](https://legacy.curseforge.com/minecraft/mc-mods/arcana-rpg-continuation)
 
+# Requirement
+
+This mod require [Recurrent Complex TF-E](https://www.curseforge.com/minecraft/mc-mods/recurrent-complex-patched/files/3724793)
+
 # Discord
 
 Add me on discord : iamacatfr

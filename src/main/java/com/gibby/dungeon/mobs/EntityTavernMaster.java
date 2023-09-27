@@ -2,25 +2,34 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.entity.passive.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.world.*;
-import net.minecraft.village.*;
-import net.minecraft.potion.*;
-import net.minecraft.init.*;
-import net.minecraft.nbt.*;
-import net.minecraft.entity.monster.*;
-import cpw.mods.fml.common.registry.*;
-import com.gibby.dungeon.*;
-import cpw.mods.fml.relauncher.*;
-import net.minecraft.item.*;
+import com.gibby.dungeon.Dungeons;
+import cpw.mods.fml.common.registry.VillagerRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.monster.IMob;
+import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.*;
-import net.minecraft.entity.*;
+import net.minecraft.village.MerchantRecipe;
+import net.minecraft.village.MerchantRecipeList;
+import net.minecraft.village.Village;
+import net.minecraft.world.World;
+
 import java.util.*;
 
 public class EntityTavernMaster extends EntityVillager
 {
-    private String[] villagerGreetings;
+    private final String[] villagerGreetings;
     private int randomTickDivider;
     private boolean isMating;
     private boolean isPlaying;
@@ -48,10 +57,6 @@ public class EntityTavernMaster extends EntityVillager
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(20.0);
-    }
-
-    public boolean isAIEnabled() {
-        return true;
     }
 
     protected void updateAITick() {
@@ -90,7 +95,7 @@ public class EntityTavernMaster extends EntityVillager
                     this.addDefaultEquipmentAndRecipies(1);
                     this.needsInitilization = false;
                     if (this.villageObj != null && this.lastBuyingPlayer != null) {
-                        this.worldObj.setEntityState((Entity)this, (byte)14);
+                        this.worldObj.setEntityState(this, (byte)14);
                         this.villageObj.setReputationForPlayer(this.lastBuyingPlayer, 1);
                     }
                 }
@@ -106,8 +111,8 @@ public class EntityTavernMaster extends EntityVillager
         if (!flag && this.isEntityAlive() && !this.isTrading() && !this.isChild() && !par1EntityPlayer.isSneaking()) {
             if (!this.worldObj.isRemote) {
                 this.setCustomer(par1EntityPlayer);
-                par1EntityPlayer.addChatMessage((IChatComponent)new ChatComponentText("Merchant: " + this.villagerGreetings[this.rand.nextInt(6)]));
-                par1EntityPlayer.displayGUIMerchant((IMerchant)this, this.getCustomNameTag());
+                par1EntityPlayer.addChatMessage(new ChatComponentText("Merchant: " + this.villagerGreetings[this.rand.nextInt(6)]));
+                par1EntityPlayer.displayGUIMerchant(this, this.getCustomNameTag());
             }
             return true;
         }
@@ -116,7 +121,7 @@ public class EntityTavernMaster extends EntityVillager
 
     protected void entityInit() {
         super.entityInit();
-        this.dataWatcher.addObject(31, (Object)0);
+        this.dataWatcher.addObject(31, 0);
     }
 
     public void writeEntityToNBT(final NBTTagCompound par1NBTTagCompound) {
@@ -124,7 +129,7 @@ public class EntityTavernMaster extends EntityVillager
         par1NBTTagCompound.setInteger("Profession", this.getProfession());
         par1NBTTagCompound.setInteger("Riches", this.wealth);
         if (this.buyingList != null) {
-            par1NBTTagCompound.setTag("Offers", (NBTBase)this.buyingList.getRecipiesAsTags());
+            par1NBTTagCompound.setTag("Offers", this.buyingList.getRecipiesAsTags());
         }
     }
 
@@ -138,28 +143,12 @@ public class EntityTavernMaster extends EntityVillager
         }
     }
 
-    protected boolean canDespawn() {
-        return false;
-    }
-
     protected String getLivingSound() {
         return this.isTrading() ? "mob.villager.haggle" : "mob.villager.idle";
     }
 
-    protected String getHurtSound() {
-        return "mob.villager.hit";
-    }
-
-    protected String getDeathSound() {
-        return "mob.villager.death";
-    }
-
     public void setProfession(final int par1) {
-        this.dataWatcher.updateObject(16, (Object)par1);
-    }
-
-    public int getProfession() {
-        return this.dataWatcher.getWatchableObjectInt(16);
+        this.dataWatcher.updateObject(16, par1);
     }
 
     public boolean isMating() {
@@ -187,9 +176,9 @@ public class EntityTavernMaster extends EntityVillager
                 if (this.isChild()) {
                     b0 = -3;
                 }
-                this.villageObj.setReputationForPlayer(par1EntityLivingBase.getCommandSenderName(), (int)b0);
+                this.villageObj.setReputationForPlayer(par1EntityLivingBase.getCommandSenderName(), b0);
                 if (this.isEntityAlive()) {
-                    this.worldObj.setEntityState((Entity)this, (byte)13);
+                    this.worldObj.setEntityState(this, (byte)13);
                 }
             }
         }
@@ -206,8 +195,8 @@ public class EntityTavernMaster extends EntityVillager
                     this.villageObj.endMatingSeason();
                 }
             }
-            else if (entity == null) {
-                final EntityPlayer entityplayer = this.worldObj.getClosestPlayerToEntity((Entity)this, 16.0);
+            else {
+                final EntityPlayer entityplayer = this.worldObj.getClosestPlayerToEntity(this, 16.0);
                 if (entityplayer != null) {
                     this.villageObj.endMatingSeason();
                 }
@@ -279,13 +268,13 @@ public class EntityTavernMaster extends EntityVillager
             this.field_82191_bN = 0.0f;
         }
         final MerchantRecipeList merchantrecipelist = new MerchantRecipeList();
-        VillagerRegistry.manageVillagerTrades(merchantrecipelist, (EntityVillager)this, this.getProfession(), this.rand);
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.metalCoin, 5), new ItemStack(Dungeons.cookedTrollMeat, 10)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.metalCoin, 1), new ItemStack(Dungeons.magicPotion, 3)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.metalCoin, 2), new ItemStack(Dungeons.magicPotion2, 2)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.metalCoin, 2), new ItemStack(Dungeons.rootBeer, 3)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.metalCoin, 2), new ItemStack(Dungeons.gingerAle, 3)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.metalCoin, 2), new ItemStack(Dungeons.whiskey, 3)));
+        VillagerRegistry.manageVillagerTrades(merchantrecipelist, this, this.getProfession(), this.rand);
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.metalCoin, 5), new ItemStack(Dungeons.cookedTrollMeat, 10)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.metalCoin, 1), new ItemStack(Dungeons.magicPotion, 3)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.metalCoin, 2), new ItemStack(Dungeons.magicPotion2, 2)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.metalCoin, 2), new ItemStack(Dungeons.rootBeer, 3)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.metalCoin, 2), new ItemStack(Dungeons.gingerAle, 3)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.metalCoin, 2), new ItemStack(Dungeons.whiskey, 3)));
         if (merchantrecipelist.isEmpty()) {
             func_146091_a(merchantrecipelist, Items.gold_ingot, this.rand, 1.0f);
         }
@@ -304,7 +293,7 @@ public class EntityTavernMaster extends EntityVillager
 
     public static void func_146091_a(final MerchantRecipeList p_146091_0_, final Item p_146091_1_, final Random p_146091_2_, final float p_146091_3_) {
         if (p_146091_2_.nextFloat() < p_146091_3_) {
-            p_146091_0_.add((Object)new MerchantRecipe(func_146088_a(p_146091_1_, p_146091_2_), Items.emerald));
+            p_146091_0_.add(new MerchantRecipe(func_146088_a(p_146091_1_, p_146091_2_), Items.emerald));
         }
     }
 
@@ -330,13 +319,13 @@ public class EntityTavernMaster extends EntityVillager
                 itemstack = new ItemStack(Items.emerald, i, 0);
                 itemstack2 = new ItemStack(p_146089_1_, 1, 0);
             }
-            p_146089_0_.add((Object)new MerchantRecipe(itemstack, itemstack2));
+            p_146089_0_.add(new MerchantRecipe(itemstack, itemstack2));
         }
     }
 
     private static int func_146090_c(final Item p_146090_0_, final Random p_146090_1_) {
         final Tuple tuple = (Tuple) EntityTavernMaster.blacksmithSellingList.get(p_146090_0_);
-        return (int)((tuple == null) ? 1 : (((int)tuple.getFirst() >= (int)tuple.getSecond()) ? tuple.getFirst() : ((int)tuple.getFirst() + p_146090_1_.nextInt((int)tuple.getSecond() - (int)tuple.getFirst()))));
+        return (tuple == null) ? 1 : (((int)tuple.getFirst() >= (int)tuple.getSecond()) ? (int) tuple.getFirst() : ((int)tuple.getFirst() + p_146090_1_.nextInt((int)tuple.getSecond() - (int)tuple.getFirst())));
     }
 
     @SideOnly(Side.CLIENT)
@@ -371,7 +360,7 @@ public class EntityTavernMaster extends EntityVillager
 
     public EntityTavernMaster createChild(final EntityAgeable par1EntityAgeable) {
         final EntityTavernMaster entityvillager = new EntityTavernMaster(this.worldObj);
-        entityvillager.onSpawnWithEgg((IEntityLivingData)null);
+        entityvillager.onSpawnWithEgg(null);
         return entityvillager;
     }
 
@@ -382,27 +371,27 @@ public class EntityTavernMaster extends EntityVillager
     static {
         villagersSellingList = new HashMap();
         blacksmithSellingList = new HashMap();
-        EntityTavernMaster.villagersSellingList.put(Dungeons.copper, new Tuple((Object)10, (Object)15));
-        EntityTavernMaster.villagersSellingList.put(Items.iron_ingot, new Tuple((Object)10, (Object)15));
-        EntityTavernMaster.villagersSellingList.put(Dungeons.ruby, new Tuple((Object)7, (Object)12));
-        EntityTavernMaster.villagersSellingList.put(Items.diamond, new Tuple((Object)2, (Object)2));
-        EntityTavernMaster.villagersSellingList.put(Dungeons.windStaff, new Tuple((Object)6, (Object)10));
-        EntityTavernMaster.villagersSellingList.put(Dungeons.shimmerPearl, new Tuple((Object)5, (Object)8));
-        EntityTavernMaster.villagersSellingList.put(Items.ender_pearl, new Tuple((Object)7, (Object)12));
-        EntityTavernMaster.villagersSellingList.put(Items.porkchop, new Tuple((Object)15, (Object)20));
-        EntityTavernMaster.villagersSellingList.put(Items.beef, new Tuple((Object)15, (Object)20));
-        EntityTavernMaster.villagersSellingList.put(Items.chicken, new Tuple((Object)15, (Object)20));
-        EntityTavernMaster.villagersSellingList.put(Items.melon_seeds, new Tuple((Object)30, (Object)38));
-        EntityTavernMaster.villagersSellingList.put(Items.pumpkin_seeds, new Tuple((Object)30, (Object)38));
-        EntityTavernMaster.blacksmithSellingList.put(Items.iron_helmet, new Tuple((Object)4, (Object)6));
-        EntityTavernMaster.blacksmithSellingList.put(Items.diamond_helmet, new Tuple((Object)7, (Object)8));
-        EntityTavernMaster.blacksmithSellingList.put(Items.iron_chestplate, new Tuple((Object)10, (Object)14));
-        EntityTavernMaster.blacksmithSellingList.put(Items.diamond_chestplate, new Tuple((Object)16, (Object)19));
-        EntityTavernMaster.blacksmithSellingList.put(Items.iron_leggings, new Tuple((Object)8, (Object)10));
-        EntityTavernMaster.blacksmithSellingList.put(Items.diamond_leggings, new Tuple((Object)11, (Object)14));
-        EntityTavernMaster.blacksmithSellingList.put(Dungeons.copper, new Tuple((Object)5, (Object)7));
-        EntityTavernMaster.blacksmithSellingList.put(Dungeons.silver, new Tuple((Object)5, (Object)7));
-        EntityTavernMaster.blacksmithSellingList.put(Items.blaze_powder, new Tuple((Object)11, (Object)15));
-        EntityTavernMaster.blacksmithSellingList.put(Items.slime_ball, new Tuple((Object)9, (Object)11));
+        EntityTavernMaster.villagersSellingList.put(Dungeons.copper, new Tuple(10, 15));
+        EntityTavernMaster.villagersSellingList.put(Items.iron_ingot, new Tuple(10, 15));
+        EntityTavernMaster.villagersSellingList.put(Dungeons.ruby, new Tuple(7, 12));
+        EntityTavernMaster.villagersSellingList.put(Items.diamond, new Tuple(2, 2));
+        EntityTavernMaster.villagersSellingList.put(Dungeons.windStaff, new Tuple(6, 10));
+        EntityTavernMaster.villagersSellingList.put(Dungeons.shimmerPearl, new Tuple(5, 8));
+        EntityTavernMaster.villagersSellingList.put(Items.ender_pearl, new Tuple(7, 12));
+        EntityTavernMaster.villagersSellingList.put(Items.porkchop, new Tuple(15, 20));
+        EntityTavernMaster.villagersSellingList.put(Items.beef, new Tuple(15, 20));
+        EntityTavernMaster.villagersSellingList.put(Items.chicken, new Tuple(15, 20));
+        EntityTavernMaster.villagersSellingList.put(Items.melon_seeds, new Tuple(30, 38));
+        EntityTavernMaster.villagersSellingList.put(Items.pumpkin_seeds, new Tuple(30, 38));
+        EntityTavernMaster.blacksmithSellingList.put(Items.iron_helmet, new Tuple(4, 6));
+        EntityTavernMaster.blacksmithSellingList.put(Items.diamond_helmet, new Tuple(7, 8));
+        EntityTavernMaster.blacksmithSellingList.put(Items.iron_chestplate, new Tuple(10, 14));
+        EntityTavernMaster.blacksmithSellingList.put(Items.diamond_chestplate, new Tuple(16, 19));
+        EntityTavernMaster.blacksmithSellingList.put(Items.iron_leggings, new Tuple(8, 10));
+        EntityTavernMaster.blacksmithSellingList.put(Items.diamond_leggings, new Tuple(11, 14));
+        EntityTavernMaster.blacksmithSellingList.put(Dungeons.copper, new Tuple(5, 7));
+        EntityTavernMaster.blacksmithSellingList.put(Dungeons.silver, new Tuple(5, 7));
+        EntityTavernMaster.blacksmithSellingList.put(Items.blaze_powder, new Tuple(11, 15));
+        EntityTavernMaster.blacksmithSellingList.put(Items.slime_ball, new Tuple(9, 11));
     }
 }

@@ -2,22 +2,23 @@
 
 package com.gibby.dungeon.items;
 
-import net.minecraft.entity.player.*;
-import net.minecraft.world.*;
-import com.gibby.dungeon.*;
-import net.minecraft.item.*;
-import cpw.mods.fml.relauncher.*;
+import com.gibby.dungeon.Dungeons;
+import com.gibby.dungeon.DungeonsExtendedPlayer;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumAction;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class ItemMagicPotion extends Item
 {
-    public boolean onItemUse(final ItemStack par1ItemStack, final EntityPlayer par2EntityPlayer, final World par3World, final int par4, final int par5, final int par6, final int par7, final float par8, final float par9, final float par10) {
-        return false;
-    }
-    
+
     public int getMaxItemUseDuration(final ItemStack par1ItemStack) {
         return (par1ItemStack != null && par1ItemStack.getItem() == Dungeons.magicPotion2) ? 32 : 20;
     }
-    
+
     public ItemStack onItemRightClick(final ItemStack par1ItemStack, final World par2World, final EntityPlayer par3EntityPlayer) {
         final DungeonsExtendedPlayer player = DungeonsExtendedPlayer.get(par3EntityPlayer);
         if (player.magicAmount() < player.maxMagic()) {
@@ -25,7 +26,7 @@ public class ItemMagicPotion extends Item
         }
         return par1ItemStack;
     }
-    
+
     public ItemStack onEaten(final ItemStack par1ItemStack, final World par2World, final EntityPlayer par3EntityPlayer) {
         final DungeonsExtendedPlayer player = DungeonsExtendedPlayer.get(par3EntityPlayer);
         if (par1ItemStack != null && par1ItemStack.getItem() == Dungeons.magicPotion2) {
@@ -34,14 +35,15 @@ public class ItemMagicPotion extends Item
         else {
             player.addMagic(8);
         }
+        assert par1ItemStack != null;
         --par1ItemStack.stackSize;
         return par1ItemStack;
     }
-    
+
     public EnumAction getItemUseAction(final ItemStack par1ItemStack) {
         return EnumAction.drink;
     }
-    
+
     @SideOnly(Side.CLIENT)
     public boolean hasEffect(final ItemStack par1ItemStack, final int pass) {
         return par1ItemStack != null && par1ItemStack.getItem() == Dungeons.magicPotion2;

@@ -2,10 +2,11 @@
 
 package com.gibby.dungeon.blocks;
 
-import net.minecraft.block.*;
-import com.gibby.dungeon.*;
-import java.util.*;
-import net.minecraft.item.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.block.BlockOre;
+import net.minecraft.item.Item;
+
+import java.util.Random;
 
 public class BlockMagiRockOre extends BlockOre
 {
@@ -16,11 +17,11 @@ public class BlockMagiRockOre extends BlockOre
         this.setCreativeTab(Dungeons.Blocks);
         this.setLightLevel(0.5f);
     }
-    
+
     public Item getItemDropped(final int p_149650_1_, final Random p_149650_2_, final int p_149650_3_) {
         return Dungeons.magirockCrystal;
     }
-    
+
     public int quantityDropped(final Random rand) {
         return rand.nextInt(3) + 1;
     }

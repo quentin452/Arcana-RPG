@@ -2,11 +2,12 @@
 
 package com.gibby.dungeon.gen;
 
-import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.*;
-import java.util.*;
-import net.minecraft.init.*;
-import com.gibby.dungeon.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class WorldGenAmethystRuins extends WorldGenerator
 {
@@ -14,7 +15,6 @@ public class WorldGenAmethystRuins extends WorldGenerator
         if (world.getBlock(i, j, k) == Blocks.air || world.getBlock(i + 20, j, k + 20) == Blocks.air || world.getBlock(i, j + 4, k) != Blocks.air || world.getBlock(i + 20, j + 4, k + 20) != Blocks.air || world.getBlock(i, j + 15, k) != Blocks.air || world.getBlock(i + 20, j + 15, k + 20) != Blocks.air) {
             return false;
         }
-        System.out.println("Ruins Generating at " + i + " " + j + " " + k);
         world.setBlock(i + 3, j, k + 14, Dungeons.amethystStone);
         world.setBlock(i + 3, j, k + 15, Dungeons.amethystStone);
         world.setBlock(i + 3, j, k + 16, Dungeons.amethystStone);
@@ -1518,7 +1518,7 @@ public class WorldGenAmethystRuins extends WorldGenerator
         this.generate2(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate2(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 7, j + 8, k + 12, Dungeons.amethystStone);
         world.setBlock(i + 7, j + 8, k + 13, Dungeons.amethystStone);
@@ -3023,7 +3023,7 @@ public class WorldGenAmethystRuins extends WorldGenerator
         this.generate3(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate3(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 11, j + 10, k + 6, Dungeons.amethystStone);
         world.setBlock(i + 11, j + 10, k + 7, Dungeons.amethystStone);
@@ -4528,7 +4528,7 @@ public class WorldGenAmethystRuins extends WorldGenerator
         this.generate4(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate4(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 16, j + 8, k + 18, Dungeons.amethystStone);
         world.setBlock(i + 16, j + 8, k + 19, Dungeons.amethystStone);
@@ -6033,7 +6033,7 @@ public class WorldGenAmethystRuins extends WorldGenerator
         this.generate5(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate5(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 21, j + 4, k + 29, Dungeons.amethystStone);
         world.setBlock(i + 21, j + 4, k + 30, Dungeons.amethystStone);
@@ -7538,7 +7538,7 @@ public class WorldGenAmethystRuins extends WorldGenerator
         this.generate6(world, rand, i, j, k);
         return true;
     }
-    
+
     public boolean generate6(final World world, final Random rand, final int i, final int j, final int k) {
         world.setBlock(i + 25, j + 8, k + 24, Dungeons.amethystStone);
         world.setBlock(i + 25, j + 8, k + 25, Dungeons.amethystStone);

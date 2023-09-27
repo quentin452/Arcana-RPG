@@ -2,10 +2,10 @@
 
 package com.gibby.dungeon.packetPipelines;
 
-import io.netty.channel.*;
-import io.netty.buffer.*;
-import net.minecraft.entity.player.*;
-import com.gibby.dungeon.*;
+import com.gibby.dungeon.Dungeons;
+import io.netty.buffer.ByteBuf;
+import io.netty.channel.ChannelHandlerContext;
+import net.minecraft.entity.player.EntityPlayer;
 
 public class OpenGuiPacket extends AbstractPacket
 {
@@ -30,6 +30,6 @@ public class OpenGuiPacket extends AbstractPacket
     }
 
     public void handleServerSide(final EntityPlayer player) {
-        player.openGui((Object)Dungeons.instance, this.id, player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ);
+        player.openGui(Dungeons.instance, this.id, player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ);
     }
 }

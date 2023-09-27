@@ -2,13 +2,13 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.entity.projectile.*;
-import net.minecraft.world.*;
-import net.minecraft.init.*;
-import net.minecraft.block.*;
-import com.gibby.dungeon.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.block.Block;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.World;
 
 public class EntityAmethystPortal extends EntityThrowable
 {
@@ -18,7 +18,7 @@ public class EntityAmethystPortal extends EntityThrowable
     double freezeX;
     double freezeY;
     double freezeZ;
-    
+
     public EntityAmethystPortal(final World par1World) {
         super(par1World);
         this.stage = 0;
@@ -26,7 +26,7 @@ public class EntityAmethystPortal extends EntityThrowable
         this.freezeY = 0.0;
         this.freezeZ = 0.0;
     }
-    
+
     public EntityAmethystPortal(final World par1World, final EntityLivingBase par2EntityLivingBase) {
         super(par1World, par2EntityLivingBase);
         this.stage = 0;
@@ -37,11 +37,11 @@ public class EntityAmethystPortal extends EntityThrowable
         this.motionY += this.rand.nextGaussian() / 10.0;
         this.motionZ += this.rand.nextGaussian() / 10.0;
     }
-    
+
     protected float getGravityVelocity() {
         return 0.06f;
     }
-    
+
     public EntityAmethystPortal(final World par1World, final double par2, final double par4, final double par6) {
         super(par1World, par2, par4, par6);
         this.stage = 0;
@@ -49,7 +49,7 @@ public class EntityAmethystPortal extends EntityThrowable
         this.freezeY = 0.0;
         this.freezeZ = 0.0;
     }
-    
+
     public void onUpdate() {
         super.onUpdate();
         if (this.impacted) {
@@ -184,7 +184,7 @@ public class EntityAmethystPortal extends EntityThrowable
                             break;
                         }
                     }
-                    this.worldObj.playSoundAtEntity((Entity)this, "step.wood", 1.5f, 1.0f);
+                    this.worldObj.playSoundAtEntity(this, "step.wood", 1.5f, 1.0f);
                 }
                 if (this.stage == 13) {
                     this.setDead();
@@ -192,7 +192,7 @@ public class EntityAmethystPortal extends EntityThrowable
             }
         }
     }
-    
+
     protected void onImpact(final MovingObjectPosition var1) {
         if (this.worldObj != null && var1.entityHit == null) {
             this.impacted = true;

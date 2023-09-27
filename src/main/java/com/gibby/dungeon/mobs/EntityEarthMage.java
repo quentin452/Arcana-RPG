@@ -2,12 +2,13 @@
 
 package com.gibby.dungeon.mobs;
 
-import net.minecraft.world.*;
-import net.minecraft.util.*;
-import net.minecraft.entity.*;
-import com.gibby.dungeon.*;
-import net.minecraft.item.*;
-import net.minecraft.init.*;
+import com.gibby.dungeon.Dungeons;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.World;
 
 public class EntityEarthMage extends EntityHermit
 {
@@ -15,7 +16,7 @@ public class EntityEarthMage extends EntityHermit
         super(par1World);
         this.experienceValue = 20;
     }
-    
+
     @Override
     public void attackEntityWithRangedAttack(final EntityLivingBase par1, final float par2) {
         final int rand = this.worldObj.rand.nextInt(3);
@@ -36,13 +37,13 @@ public class EntityEarthMage extends EntityHermit
             this.worldObj.spawnEntityInWorld((Entity)ball2);
         }
     }
-    
+
     @Override
     protected void addRandomArmor() {
         super.addRandomArmor();
         this.setCurrentItemOrArmor(0, new ItemStack(Dungeons.quakeWand));
     }
-    
+
     @Override
     protected void dropFewItems(final boolean par1, final int par2) {
         if (this.rand.nextInt(2) == 0) {

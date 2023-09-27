@@ -2,13 +2,18 @@
 
 package com.gibby.dungeon;
 
-import net.minecraft.enchantment.*;
-import net.minecraft.item.*;
-import net.minecraft.entity.*;
-import net.minecraft.util.*;
-import net.minecraft.potion.*;
-import net.minecraft.entity.player.*;
-import java.util.*;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnumEnchantmentType;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemAxe;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
+
+import java.util.List;
 
 public class EnchantmentDamage2 extends Enchantment
 {
@@ -73,7 +78,7 @@ public class EnchantmentDamage2 extends Enchantment
             else if (this.damageType == 5) {
                 final int i = (int)(p_151368_3_ * 0.4f);
                 final EntityLivingBase entityLivingBase = entitylivingbase1;
-                entityLivingBase.motionY += i + 0.46;
+                entityLivingBase.motionY += i+0.46;
             }
             else if (this.damageType == 6) {
                 final int i = (int)(p_151368_3_ * 2.0f);
