@@ -3,6 +3,9 @@
 package com.gibby.dungeon.mobs.entityinstance;
 
 import com.gibby.dungeon.Dungeons;
+import com.gibby.dungeon.mobs.ClientBossDisplay;
+import com.gibby.dungeon.mobs.IBossDisplay;
+import com.gibby.dungeon.mobs.ServerBossDisplay;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.EntityAIArrowAttack;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -15,23 +18,29 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 
 import java.util.List;
 
 public class EntityMidnightShade extends EntityFlying implements IRangedAttackMob, IBossDisplayData
 {
-    private EntityAIArrowAttack aiArrowAttack;
     protected EntityPlayer targetedEntity;
     public int charge;
 
     public EntityMidnightShade(final World par1World) {
         super(par1World);
-        this.aiArrowAttack = new EntityAIArrowAttack((IRangedAttackMob)this, 1.0, 20, 60, 10.0f);
+        EntityAIArrowAttack aiArrowAttack = new EntityAIArrowAttack(this, 1.0, 20, 60, 10.0f);
         this.experienceValue = 10;
-        this.tasks.addTask(3, (EntityAIBase)this.aiArrowAttack);
-        this.tasks.addTask(6, (EntityAIBase)new EntityAIWatchClosest((EntityLiving)this, (Class)EntityPlayer.class, 8.0f));
+        this.tasks.addTask(3, aiArrowAttack);
+        this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0f));
         this.addPotionEffect(new PotionEffect(Potion.resistance.id, 10000, 1));
+        if(par1World instanceof WorldServer) {
+            bossDisplay = new ServerBossDisplay();
+        } else {
+            bossDisplay = new ClientBossDisplay();
+        }
     }
+    private final IBossDisplay bossDisplay;
 
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
@@ -80,7 +89,7 @@ public class EntityMidnightShade extends EntityFlying implements IRangedAttackMo
         if (list2 != null) {
             for (int k2 = 0; k2 < list2.size(); ++k2) {
                 if (list2.get(k2) instanceof EntityPlayer) {
-                    BossStatus.setBossStatus((IBossDisplayData)this, true);
+                    bossDisplay.setBossStatus(this, true);
                     this.func_145748_c_();
                 }
             }

@@ -3,6 +3,9 @@
 package com.gibby.dungeon.mobs.entityinstance;
 
 import com.gibby.dungeon.Dungeons;
+import com.gibby.dungeon.mobs.ClientBossDisplay;
+import com.gibby.dungeon.mobs.IBossDisplay;
+import com.gibby.dungeon.mobs.ServerBossDisplay;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
@@ -18,6 +21,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 
 import java.util.List;
 
@@ -26,10 +30,16 @@ public class EntityNetherBadgerer extends EntityIronGolem implements IBossDispla
     public EntityNetherBadgerer(final World par1World) {
         super(par1World);
         this.isImmuneToFire = true;
-        this.targetTasks.addTask(2, (EntityAIBase)new EntityAINearestAttackableTarget((EntityCreature)this, (Class)EntityPlayer.class, 0, true));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget((EntityCreature)this, (Class)EntityPlayer.class, 0, true));
         this.setSize(2.1f, 4.35f);
         this.experienceValue = 100;
+        if(par1World instanceof WorldServer) {
+            bossDisplay = new ServerBossDisplay();
+        } else {
+            bossDisplay = new ClientBossDisplay();
+        }
     }
+    private final IBossDisplay bossDisplay;
 
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
@@ -59,7 +69,7 @@ public class EntityNetherBadgerer extends EntityIronGolem implements IBossDispla
         if (list2 != null) {
             for (int k2 = 0; k2 < list2.size(); ++k2) {
                 if (list2.get(k2) instanceof EntityPlayer) {
-                    BossStatus.setBossStatus((IBossDisplayData)this, true);
+                    bossDisplay.setBossStatus(this, true);
                     this.func_145748_c_();
                 }
             }

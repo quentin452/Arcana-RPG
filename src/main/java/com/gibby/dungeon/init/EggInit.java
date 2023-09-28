@@ -91,6 +91,18 @@ public class EggInit {
     public static SpawnEggsHandler EntityExawdusEgg;
     public static SpawnEggsHandler EntityCrystalliumGolemEgg;
 
+    public static SpawnEggsHandler EntityMidnightChickenEgg;
+    public static SpawnEggsHandler EntityMidnightCowEgg;
+    public static SpawnEggsHandler EntityNightMiteEgg;
+    public static SpawnEggsHandler EntityMidnightTraderEgg;
+    public static SpawnEggsHandler EntityCaveWraithEgg;
+    public static SpawnEggsHandler EntityFireflyEgg;
+    public static SpawnEggsHandler EntityMidnightTitanEgg;
+    public static SpawnEggsHandler EntityMidnightMagicianEgg;
+    public static SpawnEggsHandler EntityTreeGolemEgg;
+    public static SpawnEggsHandler EntityPaladinEgg;
+    public static SpawnEggsHandler EntityNothingEgg;
+
     @Mod.EventHandler
     public static void preInit(FMLPreInitializationEvent event) {
         SpawnEggsHandler EntityGoblinEggInit = new SpawnEggsHandler(EntityGoblin.class);
@@ -507,5 +519,59 @@ public class EggInit {
         EntityCrystalliumGolemEggInit.setUnlocalizedName("entity_crystallium_golem_egg");
         EntityCrystalliumGolemEgg = EntityCrystalliumGolemEggInit;
         GameRegistry.registerItem(EntityCrystalliumGolemEgg, "Crystallium Golem Egg");
+
+        SpawnEggsHandler EntityMidnightChickenEggInit = new SpawnEggsHandler(EntityMidnightChicken.class);
+        EntityMidnightChickenEggInit.setUnlocalizedName("entity_midnight_chicken_egg");
+        EntityMidnightChickenEgg = EntityMidnightChickenEggInit;
+        GameRegistry.registerItem(EntityMidnightChickenEgg, "Midnight Chicken Egg");
+
+        SpawnEggsHandler EntityMidnightCowEggInit = new SpawnEggsHandler(EntityMidnightCow.class);
+        EntityMidnightCowEggInit.setUnlocalizedName("entity_midnight_cow_egg");
+        EntityMidnightCowEgg = EntityMidnightCowEggInit;
+        GameRegistry.registerItem(EntityMidnightCowEgg, "Midnight Cow Egg");
+
+        SpawnEggsHandler EntityNightMiteEggInit = new SpawnEggsHandler(EntityNightMite.class);
+        EntityNightMiteEggInit.setUnlocalizedName("entity_night_mite_egg");
+        EntityNightMiteEgg = EntityNightMiteEggInit;
+        GameRegistry.registerItem(EntityNightMiteEgg, "Night Mite Egg");
+
+        SpawnEggsHandler EntityMidnightTraderEggInit = new SpawnEggsHandler(EntityMidnightTrader.class);
+        EntityMidnightTraderEggInit.setUnlocalizedName("entity_midnight_trader_egg");
+        EntityMidnightTraderEgg = EntityMidnightTraderEggInit;
+        GameRegistry.registerItem(EntityMidnightTraderEgg, "Midnight Trader Egg");
+
+        SpawnEggsHandler EntityCaveWraithEggInit = new SpawnEggsHandler(EntityCaveWraith.class);
+        EntityCaveWraithEggInit.setUnlocalizedName("entity_cave_wraith_egg");
+        EntityCaveWraithEgg = EntityCaveWraithEggInit;
+        GameRegistry.registerItem(EntityCaveWraithEgg, "Cave Wraith Egg");
+
+        SpawnEggsHandler EntityFireflyEggInit = new SpawnEggsHandler(EntityFirefly.class);
+        EntityFireflyEggInit.setUnlocalizedName("entity_firefly_egg");
+        EntityFireflyEgg = EntityFireflyEggInit;
+        GameRegistry.registerItem(EntityFireflyEgg, "Firefly Egg");
+
+        SpawnEggsHandler EntityMidnightTitanEggInit = new SpawnEggsHandler(EntityMidnightTitan.class);
+        EntityMidnightTitanEggInit.setUnlocalizedName("entity_midnight_titan_egg");
+        EntityMidnightTitanEgg = EntityMidnightTitanEggInit;
+        GameRegistry.registerItem(EntityMidnightTitanEgg, "Midnight Titan Egg");
+
+        SpawnEggsHandler EntityMidnightMagicianEggInit = new SpawnEggsHandler(EntityMidnightMagician.class);
+        EntityMidnightMagicianEggInit.setUnlocalizedName("entity_midnight_magician_egg");
+        EntityMidnightMagicianEgg = EntityMidnightMagicianEggInit;
+        GameRegistry.registerItem(EntityMidnightMagicianEgg, "Midnight Magician Egg");
+
+        SpawnEggsHandler EntityTreeGolemEggInit = new SpawnEggsHandler(EntityTreeGolem.class);
+        EntityTreeGolemEggInit.setUnlocalizedName("entity_tree_golem_egg");
+        EntityTreeGolemEgg = EntityTreeGolemEggInit;
+        GameRegistry.registerItem(EntityTreeGolemEgg, "Tree Golem Egg");
+
+        SpawnEggsHandler EntityPaladinEggInit = new SpawnEggsHandler(EntityPaladin.class);
+        EntityPaladinEggInit.setUnlocalizedName("entity_paladin_egg");
+        EntityPaladinEgg = EntityPaladinEggInit;
+        GameRegistry.registerItem(EntityPaladinEgg, "Paladin Egg");
+        SpawnEggsHandler EntityNothingEggInit = new SpawnEggsHandler(EntityNothing.class);
+        EntityNothingEggInit.setUnlocalizedName("entity_nothing_egg");
+        EntityNothingEgg = EntityNothingEggInit;
+        GameRegistry.registerItem(EntityNothingEgg, "Nothing Egg");
     }
 }

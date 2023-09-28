@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 
 public class EntityMontaneVillager extends EntityVillager
 {
-    private String[] comments;
+    private final String[] comments;
 
     public EntityMontaneVillager(final World par1World) {
         this(par1World, 0);
@@ -30,7 +30,7 @@ public class EntityMontaneVillager extends EntityVillager
         final boolean flag = itemstack != null && itemstack.getItem() == Items.spawn_egg;
         if (!par1EntityPlayer.worldObj.isRemote && !flag && this.isEntityAlive() && !this.isTrading() && !this.isChild() && !par1EntityPlayer.isSneaking() && this.getEquipmentInSlot(2) != null && this.getEquipmentInSlot(2).stackSize > 0) {
             final int i = par1EntityPlayer.worldObj.rand.nextInt(this.comments.length);
-            par1EntityPlayer.addChatMessage((IChatComponent)new ChatComponentText("Villager: " + this.comments[i]));
+            par1EntityPlayer.addChatMessage(new ChatComponentText("Villager: " + this.comments[i]));
         }
         return true;
     }

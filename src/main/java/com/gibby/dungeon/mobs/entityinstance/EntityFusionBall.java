@@ -3,7 +3,6 @@
 package com.gibby.dungeon.mobs.entityinstance;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.particle.EntityFireworkSparkFX;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -44,7 +43,7 @@ public class EntityFusionBall extends EntityThrowable
             particle.setRBGColorF(0.0f, 0.5f, 0.0f);
             particle.setFadeColour(10000);
             particle.setTwinkle(true);
-            Minecraft.getMinecraft().effectRenderer.addEffect((EntityFX)particle);
+            Minecraft.getMinecraft().effectRenderer.addEffect(particle);
             this.worldObj.spawnParticle("enchantmenttable", this.posX + motionX, this.posY + motionY, this.posZ + motionZ, 0.0, 0.0, 0.0);
             motionX = this.motionX / 10.0;
             motionY = Math.sin(this.ticksExisted);
@@ -53,7 +52,7 @@ public class EntityFusionBall extends EntityThrowable
             particle.setRBGColorF(1.0f, 0.0f, 1.0f);
             particle.setFadeColour(10000);
             particle.setTwinkle(true);
-            Minecraft.getMinecraft().effectRenderer.addEffect((EntityFX)particle);
+            Minecraft.getMinecraft().effectRenderer.addEffect(particle);
             this.worldObj.spawnParticle("enchantmenttable", this.posX + motionX, this.posY + motionY, this.posZ + motionZ, 0.0, 0.0, 0.0);
         }
         if (this.ticksExisted > 100) {
@@ -64,14 +63,14 @@ public class EntityFusionBall extends EntityThrowable
     protected void onImpact(final MovingObjectPosition var1) {
         if (var1.entityHit != null && var1.entityHit instanceof EntityLivingBase) {
             if (!(this.getThrower() instanceof EntityPlayer) && var1.entityHit instanceof EntityPlayer) {
-                ((EntityLivingBase)var1.entityHit).attackEntityFrom(DamageSource.magic, 6.0f);
+                var1.entityHit.attackEntityFrom(DamageSource.magic, 6.0f);
                 var1.entityHit.addVelocity((var1.entityHit.posX - this.posX) / 3.0, 0.5, (var1.entityHit.posZ - this.posZ) / 3.0);
                 this.setDead();
             }
             else {
-                ((EntityLivingBase)var1.entityHit).attackEntityFrom(DamageSource.outOfWorld, 15.0f);
-                ((EntityLivingBase)var1.entityHit).hurtResistantTime = 0;
-                ((EntityLivingBase)var1.entityHit).attackEntityFrom(DamageSource.magic, 20.0f);
+                var1.entityHit.attackEntityFrom(DamageSource.outOfWorld, 15.0f);
+                var1.entityHit.hurtResistantTime = 0;
+                var1.entityHit.attackEntityFrom(DamageSource.magic, 20.0f);
                 var1.entityHit.addVelocity((var1.entityHit.posX - this.posX) / 3.0, 0.5, (var1.entityHit.posZ - this.posZ) / 3.0);
                 this.setDead();
             }

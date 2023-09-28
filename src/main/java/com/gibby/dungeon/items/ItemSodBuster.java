@@ -33,11 +33,11 @@ public class ItemSodBuster extends ItemForceWand
                 for (int i = 0; i < 10; ++i) {
                     par3.worldObj.spawnParticle("enchantmenttable", par3.posX, par3.posY, par3.posZ, ItemSodBuster.itemRand.nextGaussian(), ItemSodBuster.itemRand.nextGaussian(), ItemSodBuster.itemRand.nextGaussian());
                 }
-                final EntitySodbuster ball = new EntitySodbuster(par3.worldObj, (EntityLivingBase)par3);
-                par3.worldObj.spawnEntityInWorld((Entity)ball);
+                final EntitySodbuster ball = new EntitySodbuster(par3.worldObj, par3);
+                par3.worldObj.spawnEntityInWorld(ball);
                 par4.consumeMagic(5);
-                par3.worldObj.playSoundAtEntity((Entity)par3, "note.harp", 4.0f, 1.0f);
-                stack.damageItem(1, (EntityLivingBase)par3);
+                par3.worldObj.playSoundAtEntity(par3, "note.harp", 4.0f, 1.0f);
+                stack.damageItem(1, par3);
             }
         }
         return false;

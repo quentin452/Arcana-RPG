@@ -2,7 +2,6 @@
 
 package com.gibby.dungeon.mobs.entityinstance;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.MovingObjectPosition;
@@ -52,7 +51,7 @@ public class EntityNetherDriller extends EntityThrowable
 
     protected void onImpact(final MovingObjectPosition var1) {
         if (this.worldObj != null && !this.worldObj.isRemote) {
-            this.worldObj.newExplosion((Entity)this, this.posX, this.posY, this.posZ, 4.6f + this.expFactor, true, false);
+            this.worldObj.newExplosion(this, this.posX, this.posY, this.posZ, 4.6f + this.expFactor, true, false);
         }
     }
 }

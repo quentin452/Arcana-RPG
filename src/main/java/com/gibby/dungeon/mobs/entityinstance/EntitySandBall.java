@@ -3,7 +3,6 @@
 package com.gibby.dungeon.mobs.entityinstance;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
@@ -40,8 +39,8 @@ public class EntitySandBall extends EntityThrowable
     }
 
     protected void onImpact(final MovingObjectPosition var1) {
-        if (var1.entityHit != null && var1.entityHit instanceof EntityLivingBase) {
-            var1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage((Entity)this, var1.entityHit), 3.0f);
+        if (var1.entityHit instanceof EntityLivingBase) {
+            var1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, var1.entityHit), 3.0f);
         }
         if (!this.worldObj.isRemote) {
             this.setDead();

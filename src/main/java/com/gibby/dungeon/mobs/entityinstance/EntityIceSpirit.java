@@ -3,6 +3,9 @@
 package com.gibby.dungeon.mobs.entityinstance;
 
 import com.gibby.dungeon.Dungeons;
+import com.gibby.dungeon.mobs.ClientBossDisplay;
+import com.gibby.dungeon.mobs.IBossDisplay;
+import com.gibby.dungeon.mobs.ServerBossDisplay;
 import net.minecraft.entity.EntityFlying;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
@@ -18,6 +21,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 
 import java.util.List;
 
@@ -33,7 +37,13 @@ public class EntityIceSpirit extends EntityFlying implements IRangedAttackMob, I
         this.tasks.addTask(3, aiArrowAttack);
         this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0f));
         this.addPotionEffect(new PotionEffect(Potion.resistance.id, 10000, 1));
+        if(par1World instanceof WorldServer) {
+            bossDisplay = new ServerBossDisplay();
+        } else {
+            bossDisplay = new ClientBossDisplay();
+        }
     }
+    private final IBossDisplay bossDisplay;
 
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
@@ -82,7 +92,7 @@ public class EntityIceSpirit extends EntityFlying implements IRangedAttackMob, I
         if (list2 != null) {
             for (int k2 = 0; k2 < list2.size(); ++k2) {
                 if (list2.get(k2) instanceof EntityPlayer) {
-                    BossStatus.setBossStatus(this, true);
+                    bossDisplay.setBossStatus(this, true);
                     this.func_145748_c_();
                 }
             }

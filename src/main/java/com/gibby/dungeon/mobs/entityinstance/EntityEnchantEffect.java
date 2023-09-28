@@ -3,7 +3,6 @@
 package com.gibby.dungeon.mobs.entityinstance;
 
 import com.gibby.dungeon.Dungeons;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -56,7 +55,6 @@ public class EntityEnchantEffect extends EntityThrowable
             this.worldObj.spawnParticle("instantSpell", this.posX, this.posY, this.posZ, 0.0, 0.5, 0.0);
             for (int i = 0; i < 60; ++i) {
                 final double particlePositionX = Math.cos(i * 6) * 1.6;
-                final double particlePositionY = Math.sin(i * 6) * 1.6;
                 final double particlePositionZ = Math.sin(i * 6) * 1.6;
                 this.worldObj.spawnParticle("enchantmenttable", this.posX + particlePositionX, this.posY, this.posZ + particlePositionZ, 0.0, 0.0, 0.0);
                 this.worldObj.spawnParticle("enchantmenttable", this.posX + particlePositionX / 2.0, this.posY, this.posZ + particlePositionZ / 2.0, 0.0, 0.0, 0.0);
@@ -67,7 +65,7 @@ public class EntityEnchantEffect extends EntityThrowable
                     this.worldObj.spawnParticle("witchMagic", this.posX + Dungeons.randGauss(), this.posY + Dungeons.randGauss(), this.posZ + Dungeons.randGauss(), 0.0, 0.5, 0.0);
                 }
                 if (this.item != null) {
-                    this.worldObj.spawnEntityInWorld((Entity)this.item);
+                    this.worldObj.spawnEntityInWorld(this.item);
                 }
                 this.setDead();
             }

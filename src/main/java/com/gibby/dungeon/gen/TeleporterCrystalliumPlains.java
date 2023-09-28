@@ -209,10 +209,6 @@ public class TeleporterCrystalliumPlains extends Teleporter
         final int i = MathHelper.floor_double(par1Entity.posX);
         final int j = MathHelper.floor_double(par1Entity.posY);
         final int k = MathHelper.floor_double(par1Entity.posZ);
-        final int l = i;
-        final int i2 = j;
-        final int j2 = k;
-        final int k2 = 0;
         final int l2 = this.random.nextInt(4);
         for (int x = 0; x < 7; ++x) {
             for (int z = 0; z < 7; ++z) {

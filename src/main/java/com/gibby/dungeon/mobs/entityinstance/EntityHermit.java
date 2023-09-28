@@ -17,21 +17,20 @@ import net.minecraft.world.World;
 
 public class EntityHermit extends EntityMob implements IRangedAttackMob
 {
-    private EntityAIArrowAttack aiArrowAttack;
-    private EntityAIAttackOnCollide aiAttackOnCollide;
+    private final EntityAIArrowAttack aiArrowAttack;
 
     public EntityHermit(final World par1World) {
         super(par1World);
-        this.aiArrowAttack = new EntityAIArrowAttack((IRangedAttackMob)this, 1.0, 20, 60, 20.0f);
-        this.aiAttackOnCollide = new EntityAIAttackOnCollide((EntityCreature)this, EntityPlayer.class, 1.2, false);
-        this.tasks.addTask(1, (EntityAIBase)new EntityAISwimming((EntityLiving)this));
-        this.tasks.addTask(2, (EntityAIBase)new EntityAIRestrictSun((EntityCreature)this));
-        this.tasks.addTask(3, (EntityAIBase)new EntityAIFleeSun((EntityCreature)this, 1.0));
-        this.tasks.addTask(5, (EntityAIBase)new EntityAIWander((EntityCreature)this, 1.0));
-        this.tasks.addTask(6, (EntityAIBase)new EntityAIWatchClosest((EntityLiving)this, EntityPlayer.class, 8.0f));
-        this.tasks.addTask(6, (EntityAIBase)new EntityAILookIdle((EntityLiving)this));
-        this.targetTasks.addTask(1, (EntityAIBase)new EntityAIHurtByTarget((EntityCreature)this, false));
-        this.targetTasks.addTask(2, (EntityAIBase)new EntityAINearestAttackableTarget((EntityCreature)this, EntityPlayer.class, 0, true));
+        this.aiArrowAttack = new EntityAIArrowAttack(this, 1.0, 20, 60, 20.0f);
+        EntityAIAttackOnCollide aiAttackOnCollide = new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.2, false);
+        this.tasks.addTask(1, new EntityAISwimming(this));
+        this.tasks.addTask(2, new EntityAIRestrictSun(this));
+        this.tasks.addTask(3, new EntityAIFleeSun(this, 1.0));
+        this.tasks.addTask(5, new EntityAIWander(this, 1.0));
+        this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0f));
+        this.tasks.addTask(6, new EntityAILookIdle(this));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
         this.addPotionEffect(new PotionEffect(Dungeons.magicBoost.id, 10000, 0));
         if (par1World != null && !par1World.isRemote) {
             this.setCombatTask();
@@ -48,7 +47,7 @@ public class EntityHermit extends EntityMob implements IRangedAttackMob
 
     protected void entityInit() {
         super.entityInit();
-        this.dataWatcher.addObject(13, (Object)new Byte((byte)0));
+        this.dataWatcher.addObject(13, (byte) 0);
     }
 
     public boolean isAIEnabled() {
@@ -85,7 +84,7 @@ public class EntityHermit extends EntityMob implements IRangedAttackMob
 
     protected void dropFewItems(final boolean par1, final int par2) {
         if (this.rand.nextInt(2) == 0) {
-            this.dropItem((Item)Items.leather_chestplate, 1);
+            this.dropItem(Items.leather_chestplate, 1);
         }
         if (this.rand.nextInt(7) == 0) {
             this.entityDropItem(new ItemStack(Dungeons.magicGem), 1.0f);
@@ -105,40 +104,40 @@ public class EntityHermit extends EntityMob implements IRangedAttackMob
     }
 
     public void setCombatTask() {
-        this.tasks.addTask(4, (EntityAIBase)this.aiArrowAttack);
+        this.tasks.addTask(4, this.aiArrowAttack);
     }
 
     public void attackEntityWithRangedAttack(final EntityLivingBase par1, final float par2) {
         final int rand = this.worldObj.rand.nextInt(3);
         if (rand == 0) {
             for (int i = 0; i < 5; ++i) {
-                final EntitySpit ball = new EntitySpit(this.worldObj, (EntityLivingBase)this);
+                final EntitySpit ball = new EntitySpit(this.worldObj, this);
                 final double d0 = par1.posX - this.posX;
                 final double d2 = par1.posY + par1.getEyeHeight() - 1.100000023841858 - ball.posY;
                 final double d3 = par1.posZ - this.posZ;
                 final float f1 = MathHelper.sqrt_double(d0 * d0 + d3 * d3) * 0.2f;
                 ball.setThrowableHeading(d0, d2 + f1, d3, 1.6f, 12.0f);
                 this.playSound("random.orb", 1.0f, 1.0f / (this.getRNG().nextFloat() * 0.4f + 0.8f));
-                this.worldObj.spawnEntityInWorld((Entity)ball);
+                this.worldObj.spawnEntityInWorld(ball);
             }
         }
         if (rand == 1) {
             for (int i = 0; i < 3; ++i) {
-                final EntityExplosive ball2 = new EntityExplosive(this.worldObj, (EntityLivingBase)this);
+                final EntityExplosive ball2 = new EntityExplosive(this.worldObj, this);
                 final double d0 = par1.posX - this.posX;
                 final double d2 = par1.posY + par1.getEyeHeight() - 1.100000023841858 - ball2.posY;
                 final double d3 = par1.posZ - this.posZ;
                 final float f1 = MathHelper.sqrt_double(d0 * d0 + d3 * d3) * 0.2f;
                 ball2.setThrowableHeading(d0, d2 + f1, d3, 1.6f, 12.0f);
                 this.playSound("random.orb", 1.0f, 1.0f / (this.getRNG().nextFloat() * 0.4f + 0.8f));
-                this.worldObj.spawnEntityInWorld((Entity)ball2);
+                this.worldObj.spawnEntityInWorld(ball2);
             }
         }
         if (rand == 2) {
             final double randD = this.worldObj.rand.nextGaussian() - this.worldObj.rand.nextGaussian();
             this.heal(5.0f);
-            final EntityHealEffect ball3 = new EntityHealEffect(this.worldObj, (EntityLivingBase)this);
-            this.worldObj.spawnEntityInWorld((Entity)ball3);
+            final EntityHealEffect ball3 = new EntityHealEffect(this.worldObj, this);
+            this.worldObj.spawnEntityInWorld(ball3);
         }
     }
 

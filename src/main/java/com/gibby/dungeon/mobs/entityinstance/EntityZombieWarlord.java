@@ -3,6 +3,9 @@
 package com.gibby.dungeon.mobs.entityinstance;
 
 import com.gibby.dungeon.Dungeons;
+import com.gibby.dungeon.mobs.ClientBossDisplay;
+import com.gibby.dungeon.mobs.IBossDisplay;
+import com.gibby.dungeon.mobs.ServerBossDisplay;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -18,6 +21,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 
 import java.util.List;
 
@@ -31,10 +35,16 @@ public class EntityZombieWarlord extends EntityZombie implements IBossDisplayDat
         this.haspotion = true;
         this.charge = 0;
         this.setSize(4.5f, 4.0f);
-        this.tasks.addTask(4, (EntityAIBase)new EntityAIAttackOnCollide((EntityCreature)this, (Class)EntityLivingBase.class, 1.0, false));
+        this.tasks.addTask(4, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0, false));
         this.canDespawn();
         this.experienceValue = 150;
+        if(par1World instanceof WorldServer) {
+            bossDisplay = new ServerBossDisplay();
+        } else {
+            bossDisplay = new ClientBossDisplay();
+        }
     }
+    private final IBossDisplay bossDisplay;
 
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
@@ -55,11 +65,11 @@ public class EntityZombieWarlord extends EntityZombie implements IBossDisplayDat
     public void onLivingUpdate() {
         super.onLivingUpdate();
         boolean playerAround = false;
-        final List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(20.0, 10.0, 20.0));
+        final List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(20.0, 10.0, 20.0));
         if (list2 != null) {
             for (int k2 = 0; k2 < list2.size(); ++k2) {
                 if (list2.get(k2) instanceof EntityPlayer) {
-                    BossStatus.setBossStatus((IBossDisplayData)this, true);
+                    bossDisplay.setBossStatus(this, true);
                     this.func_145748_c_();
                     playerAround = true;
                 }

@@ -33,5 +33,6 @@ public class ToolCrafting
         GameRegistry.addRecipe(new ItemStack(Dungeons.netherSteelPickaxe), "ccc", " s ", " s ", 'c', Dungeons.netherSteel, 's', Items.stick);
         GameRegistry.addRecipe(new ItemStack(Dungeons.netherSteelShovel), "c", "s", "s", 'c', Dungeons.netherSteel, 's', Items.stick);
         GameRegistry.addRecipe(new ItemStack(Dungeons.netherHoe), "nc", "s ", "s ", 'c', Dungeons.netherSteel, 's', Items.stick, 'n', Dungeons.corruptedSoul);
+        GameRegistry.addRecipe(new ItemStack(Dungeons.blindlightHoe), "nc", "s ", "s ", 'c', Dungeons.blindlightIngot, 's', Items.stick, 'n', Dungeons.runeStone);
     }
 }

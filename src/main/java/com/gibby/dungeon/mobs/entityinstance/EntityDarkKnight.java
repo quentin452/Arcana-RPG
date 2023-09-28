@@ -3,6 +3,9 @@
 package com.gibby.dungeon.mobs.entityinstance;
 
 import com.gibby.dungeon.Dungeons;
+import com.gibby.dungeon.mobs.ClientBossDisplay;
+import com.gibby.dungeon.mobs.IBossDisplay;
+import com.gibby.dungeon.mobs.ServerBossDisplay;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -17,6 +20,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 
 import java.util.List;
 
@@ -35,7 +39,13 @@ public class EntityDarkKnight extends EntityMob implements IBossDisplayData
         this.setSize(3.0f, 4.6f);
         this.tasks.addTask(4, (EntityAIBase)new EntityAIAttackOnCollide((EntityCreature)this, (Class)EntityLivingBase.class, 6.0, false));
         this.targetTasks.addTask(3, (EntityAIBase)new EntityAINearestAttackableTarget((EntityCreature)this, (Class)EntityHannibal.class, 0, true));
+        if(par1World instanceof WorldServer) {
+            bossDisplay = new ServerBossDisplay();
+        } else {
+            bossDisplay = new ClientBossDisplay();
+        }
     }
+    private final IBossDisplay bossDisplay;
 
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
@@ -92,7 +102,7 @@ public class EntityDarkKnight extends EntityMob implements IBossDisplayData
         if (list2 != null) {
             for (int k3 = 0; k3 < list2.size(); ++k3) {
                 if (list2.get(k3) instanceof EntityPlayer) {
-                    BossStatus.setBossStatus((IBossDisplayData)this, true);
+                    bossDisplay.setBossStatus(this, true);
                     this.func_145748_c_();
                     playerAround = true;
                 }

@@ -31,6 +31,16 @@
   "crystasisHit": {"category": "master","sounds": [{"name": "crystasisHit","stream": false}]},
   "crystasisDeath": {"category": "master","sounds": [{"name": "crystasisDeath","stream": false}]},
   
-  "midnightSay": {"category": "master","sounds": [{"name": "midnightSay","stream": false}]}
+  "midnightSay": {"category": "master","sounds": [{"name": "midnightSay","stream": false}]},
+
+  "Elemental": {"category": "master","sounds": [{"name": "Elemental","stream": false}]},
+  "wraith": {"category": "master","sounds": [{"name": "wraith","stream": false}]},
+  "VoidReaper": {"category": "master","sounds": [{"name": "VoidReaper","stream": false}]},
+  "VoidCrawlerSay": {"category": "master","sounds": [{"name": "VoidCrawlerSay","stream": false}]},
+  "VoidCrawlerHit": {"category": "master","sounds": [{"name": "VoidCrawlerHit","stream": false}]},
+  "StormKing": {"category": "master","sounds": [{"name": "StormKing","stream": false}]},
+  "midnightTitanDeath": {"category": "master","sounds": [{"name": "midnightTitanDeath","stream": false}]},
+  "midnightTitan": {"category": "master","sounds": [{"name": "midnightTitan","stream": false}]},
+  "midnightMagician": {"category": "master","sounds": [{"name": "midnightMagician","stream": false}]}
  
   }

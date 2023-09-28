@@ -203,16 +203,10 @@ public class TeleporterSunset extends Teleporter
     }
 
     public boolean makePortal(final Entity par1Entity) {
-        final byte b0 = 16;
-        final double d0 = -1.0;
         par1Entity.posY += 40.0;
         final int i = MathHelper.floor_double(par1Entity.posX);
         final int j = MathHelper.floor_double(par1Entity.posY);
         final int k = MathHelper.floor_double(par1Entity.posZ);
-        final int l = i;
-        final int i2 = j;
-        final int j2 = k;
-        final int k2 = 0;
         final int l2 = this.random.nextInt(4);
         if (this.worldServerInstance.provider.dimensionId == Dungeons.sunsetDimensionId) {
             final int x = (int)(i + 84.75);

@@ -37,7 +37,9 @@ public class CombatCrafting
         GameRegistry.addRecipe(new ItemStack(Dungeons.crystalHeavySword), "c", "c", "s", 'c', Dungeons.crystalliumBlock, 's', Items.stick);
         GameRegistry.addRecipe(new ItemStack(Dungeons.bubbleSword), " cc", "ccc", "sc ", 'c', Dungeons.waterRod, 's', Items.stick);
         GameRegistry.addRecipe(new ItemStack(Dungeons.tornadoSword), " cc", "ccc", "sc ", 'c', Dungeons.stormRod, 's', Items.stick);
-        GameRegistry.addRecipe(new ItemStack(Dungeons.elementalSword), " ai", "twa", "st ", 't', Dungeons.stormRod, 's', Items.stick, 'a', Dungeons.sandRod, 'i', Dungeons.iceRod, 'w', Dungeons.waterRod);
+        GameRegistry.addRecipe(new ItemStack(Dungeons.elementalSword), " ai", "twa", "ft ", 't', Dungeons.stormRod, 's', Items.stick, 'a', Dungeons.sandRod, 'i', Dungeons.iceRod, 'w', Dungeons.waterRod);
         GameRegistry.addRecipe(new ItemStack(Dungeons.swordOfCorruption), " c ", "csc", " c ", 'c', Dungeons.corruptedSoul, 's', Dungeons.elementalSword);
+        GameRegistry.addRecipe(new ItemStack(Dungeons.sunAxe), "ccc", "crs", "  s", 'r', Dungeons.runeStone, 'c', Dungeons.blindlightIngot, 's', Dungeons.blackIron);
+        GameRegistry.addRecipe(new ItemStack(Dungeons.shadowAxe), " c ", "brb", "sss", 'r', Dungeons.sunAxe, 'c', Dungeons.runeStone, 'b', Dungeons.blackIron, 's', Dungeons.darkSoul);
     }
 }

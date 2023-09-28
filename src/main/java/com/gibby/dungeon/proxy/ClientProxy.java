@@ -2,14 +2,12 @@
 
 package com.gibby.dungeon.proxy;
 
-import com.gibby.dungeon.*;
+import com.gibby.dungeon.Dungeons;
 import com.gibby.dungeon.mobs.entityinstance.*;
 import com.gibby.dungeon.mobs.model.*;
 import com.gibby.dungeon.mobs.render.*;
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import net.minecraft.client.model.ModelBiped;
-import net.minecraft.client.model.ModelIronGolem;
-import net.minecraft.client.model.ModelZombie;
+import net.minecraft.client.model.*;
 import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraft.init.Items;
 import net.minecraftforge.client.MinecraftForgeClient;
@@ -157,5 +155,29 @@ public class ClientProxy extends CommonProxy
         RenderingRegistry.registerEntityRenderingHandler(EntityFusionBall.class, new RenderSnowball(Dungeons.magirockCharge));
         RenderingRegistry.registerEntityRenderingHandler(EntityCrystalliumPlainsPortal.class, new RenderSnowball(Dungeons.magicalOrb));
         RenderingRegistry.registerEntityRenderingHandler(EntityCrystalMeteor.class, new RenderSnowball(Dungeons.cpurple));
+        RenderingRegistry.registerEntityRenderingHandler(EntityMidnightChicken.class, new RenderMidnightChicken(new ModelChicken(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler(EntityMidnightCow.class, new RenderMidnightCow(new ModelMidnightCow(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler(EntityNightMite.class, new RenderNightMite(new ModelNightmite(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler(EntityMidnightTrader.class, new RenderMidnightTrader(new ModelVillager(0.0f), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler(EntityCaveWraith.class, new RenderCaveWraith(new ModelNightmite(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler(EntityFirefly.class, new RenderFirefly(new ModelFirefly(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler(EntityMidnightTitan.class, new RenderMidnightTitan(new ModelMidnightTitan(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler(EntityMidnightMagician.class, new RenderMidnightMagician(new ModelMidnightMagician(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler(EntityTreeGolem.class,new RenderTreeGolem(new ModelTreeGolem(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler(EntityPaladin.class, new RenderPaladin(new ModelPaladin(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler(EntityPaladinHeal.class, new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler(EntityPoundEffect.class, new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler(EntityPoundEffect2.class,new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler(EntityPowerupEffect.class, new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler(EntityPoundEffect3.class, new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler(EntityMidnightProjectile.class, new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler(EntityMidnightMeteor.class, new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler(EntityMidnightSizzler.class, new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler(EntityMidnightSplitter.class, new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler(EntityRagedSizzler.class, new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler(EntityRagedProjectile.class, new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler(EntityMidnightPortal.class, new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler(EntityRuneEffect.class, new RenderSnowball(Dungeons.invisible));
+        RenderingRegistry.registerEntityRenderingHandler(EntityTitanSpawner.class, new RenderSnowball(Dungeons.invisible));
     }
 }

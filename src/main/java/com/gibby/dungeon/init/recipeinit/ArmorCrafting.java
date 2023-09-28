@@ -49,5 +49,9 @@ public class ArmorCrafting
         GameRegistry.addRecipe(new ItemStack(Dungeons.blackIronChestplate), "c c", "ccc", "ccc", 'c', Dungeons.blackIron);
         GameRegistry.addRecipe(new ItemStack(Dungeons.blackIronLeggings), "ccc", "c c", "c c", 'c', Dungeons.blackIron);
         GameRegistry.addRecipe(new ItemStack(Dungeons.blackIronBoots), "c c", "c c", 'c', Dungeons.blackIron);
+        GameRegistry.addRecipe(new ItemStack(Dungeons.blindLightHelmet), "crc", "c c", 'c', Dungeons.blindlightIngot, 'r', Dungeons.runeStone);
+        GameRegistry.addRecipe(new ItemStack(Dungeons.blindLightChestplate), "c c", "crc", "ccc", 'c', Dungeons.blindlightIngot, 'r', Dungeons.runeStone);
+        GameRegistry.addRecipe(new ItemStack(Dungeons.blindLightLeggings), "crc", "c c", "c c", 'c', Dungeons.blindlightIngot, 'r', Dungeons.runeStone);
+        GameRegistry.addRecipe(new ItemStack(Dungeons.blindLightBoots), "c c", "c c", 'c', Dungeons.blindlightIngot);
     }
 }

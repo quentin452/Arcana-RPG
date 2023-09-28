@@ -3,6 +3,9 @@
 package com.gibby.dungeon.mobs.entityinstance;
 
 import com.gibby.dungeon.Dungeons;
+import com.gibby.dungeon.mobs.ClientBossDisplay;
+import com.gibby.dungeon.mobs.IBossDisplay;
+import com.gibby.dungeon.mobs.ServerBossDisplay;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.EntityAIArrowAttack;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -20,6 +23,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 
 import java.util.List;
 
@@ -53,15 +57,21 @@ public class EntityRemnant extends EntityMob implements IRangedAttackMob, IBossD
         this.dZ = this.rand.nextInt(2) - 1;
         this.rZ = this.Z;
         this.rX = this.X;
-        this.tasks.addTask(1, (EntityAIBase)new EntityAIArrowAttack((IRangedAttackMob)this, 1.25, 20, 10.0f));
-        this.tasks.addTask(3, (EntityAIBase)new EntityAIWatchClosest((EntityLiving)this, (Class)EntityPlayer.class, 8.0f));
+        this.tasks.addTask(1, new EntityAIArrowAttack(this, 1.25, 20, 10.0f));
+        this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0f));
         this.setHealth(this.getMaxHealth());
         this.isImmuneToFire = true;
         this.addPotionEffect(new PotionEffect(Potion.regeneration.id, 20000, 5));
         this.experienceValue = 300;
-        this.targetTasks.addTask(3, (EntityAIBase)new EntityAINearestAttackableTarget((EntityCreature)this, (Class)EntityPlayer.class, 1, true));
-        this.targetTasks.addTask(4, (EntityAIBase)new EntityAINearestAttackableTarget((EntityCreature)this, (Class)EntityLiving.class, 1, true));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 1, true));
+        this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityLiving.class, 1, true));
+        if(par1World instanceof WorldServer) {
+            bossDisplay = new ServerBossDisplay();
+        } else {
+            bossDisplay = new ClientBossDisplay();
+        }
     }
+    private final IBossDisplay bossDisplay;
 
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
@@ -78,7 +88,7 @@ public class EntityRemnant extends EntityMob implements IRangedAttackMob, IBossD
     public void onLivingUpdate() {
         super.onLivingUpdate();
         final int qcounter = 0;
-        BossStatus.setBossStatus((IBossDisplayData)this, true);
+        bossDisplay.setBossStatus(this, true);
         this.func_145748_c_();
         this.worldObj.setWorldTime(14000L);
         this.motionX = 0.0;

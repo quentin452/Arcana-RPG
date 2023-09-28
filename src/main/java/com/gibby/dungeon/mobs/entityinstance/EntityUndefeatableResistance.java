@@ -1,6 +1,9 @@
 package com.gibby.dungeon.mobs.entityinstance;
 
 import com.gibby.dungeon.Dungeons;
+import com.gibby.dungeon.mobs.ClientBossDisplay;
+import com.gibby.dungeon.mobs.IBossDisplay;
+import com.gibby.dungeon.mobs.ServerBossDisplay;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityReddustFX;
 import net.minecraft.entity.Entity;
@@ -13,6 +16,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 
 import java.util.List;
 
@@ -24,7 +28,13 @@ public class EntityUndefeatableResistance extends EntityUndefeatable implements 
     public EntityUndefeatableResistance(final World par1World) {
         super(par1World);
         this.distancedivider = 2.5f;
+        if(par1World instanceof WorldServer) {
+            bossDisplay = new ServerBossDisplay();
+        } else {
+            bossDisplay = new ClientBossDisplay();
+        }
     }
+    private final IBossDisplay bossDisplay;
 
     public void onUpdate() {
         super.onUpdate();
@@ -32,7 +42,7 @@ public class EntityUndefeatableResistance extends EntityUndefeatable implements 
         if (list2 != null) {
             for (int k2 = 0; k2 < list2.size(); ++k2) {
                 if (list2.get(k2) instanceof EntityPlayer) {
-                    BossStatus.setBossStatus(this, true);
+                    bossDisplay.setBossStatus(this, true);
                     this.func_145748_c_();
                 }
             }

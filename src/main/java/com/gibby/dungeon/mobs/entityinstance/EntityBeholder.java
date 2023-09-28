@@ -4,6 +4,9 @@ package com.gibby.dungeon.mobs.entityinstance;
 
 import com.gibby.dungeon.Dungeons;
 import com.gibby.dungeon.gen.WorldGenWarlordDungeon;
+import com.gibby.dungeon.mobs.ClientBossDisplay;
+import com.gibby.dungeon.mobs.IBossDisplay;
+import com.gibby.dungeon.mobs.ServerBossDisplay;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
@@ -22,6 +25,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 
 public class EntityBeholder extends EntityGhast implements IBossDisplayData
 {
@@ -40,6 +44,11 @@ public class EntityBeholder extends EntityGhast implements IBossDisplayData
         this.hiccupTime = 0;
         this.setSize(9.0f, 9.0f);
         this.experienceValue = 2000;
+        if(par1World instanceof WorldServer) {
+            bossDisplay = new ServerBossDisplay();
+        } else {
+            bossDisplay = new ClientBossDisplay();
+        }
     }
 
     protected void applyEntityAttributes() {
@@ -58,7 +67,7 @@ public class EntityBeholder extends EntityGhast implements IBossDisplayData
 
     public void onLivingUpdate() {
         super.onLivingUpdate();
-        BossStatus.setBossStatus((IBossDisplayData)this, true);
+        bossDisplay.setBossStatus(this, true);
         this.func_145748_c_();
         for (int i = 0; i < 20; ++i) {
             final int randX = this.rand.nextInt(10) - this.rand.nextInt(10);
@@ -76,6 +85,7 @@ public class EntityBeholder extends EntityGhast implements IBossDisplayData
             this.setDead();
         }
     }
+    private final IBossDisplay bossDisplay;
 
     protected void updateEntityActionState() {
         if (this.rand.nextInt(400) == 0 && this.targetedEntity != null) {

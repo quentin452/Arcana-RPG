@@ -3,6 +3,9 @@
 package com.gibby.dungeon.mobs.entityinstance;
 
 import com.gibby.dungeon.Dungeons;
+import com.gibby.dungeon.mobs.ClientBossDisplay;
+import com.gibby.dungeon.mobs.IBossDisplay;
+import com.gibby.dungeon.mobs.ServerBossDisplay;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.EntityAIArrowAttack;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -16,25 +19,31 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 
 import java.util.List;
 
 public class EntityVoidLord extends EntityHermit implements IRangedAttackMob, IBossDisplayData
 {
-    private EntityAIArrowAttack aiArrowAttack;
     private boolean smokescreen;
     private int smokescreencounter;
 
     public EntityVoidLord(final World par1World) {
         super(par1World);
-        this.aiArrowAttack = new EntityAIArrowAttack((IRangedAttackMob)this, 1.0, 20, 50, 25.0f);
+        EntityAIArrowAttack aiArrowAttack = new EntityAIArrowAttack(this, 1.0, 20, 50, 25.0f);
         this.smokescreen = false;
         this.smokescreencounter = 0;
         this.experienceValue = 750;
-        this.tasks.addTask(4, (EntityAIBase)this.aiArrowAttack);
-        this.worldObj.playSoundAtEntity((Entity)this, "gibby_dungeons:voidMusic", 0.5f, 1.0f);
+        this.tasks.addTask(4, aiArrowAttack);
+        this.worldObj.playSoundAtEntity(this, "gibby_dungeons:voidMusic", 0.5f, 1.0f);
         this.setSize(1.4f, 3.0f);
+        if(par1World instanceof WorldServer) {
+            bossDisplay = new ServerBossDisplay();
+        } else {
+            bossDisplay = new ClientBossDisplay();
+        }
     }
+    private final IBossDisplay bossDisplay;
 
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
@@ -104,7 +113,7 @@ public class EntityVoidLord extends EntityHermit implements IRangedAttackMob, IB
         if (list2 != null) {
             for (int k3 = 0; k3 < list2.size(); ++k3) {
                 if (list2.get(k3) instanceof EntityPlayer) {
-                    BossStatus.setBossStatus((IBossDisplayData)this, true);
+                    bossDisplay.setBossStatus(this, true);
                     this.func_145748_c_();
                     playerAround = true;
                 }

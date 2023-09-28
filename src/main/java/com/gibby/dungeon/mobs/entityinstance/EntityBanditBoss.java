@@ -3,6 +3,9 @@
 package com.gibby.dungeon.mobs.entityinstance;
 
 import com.gibby.dungeon.Dungeons;
+import com.gibby.dungeon.mobs.ClientBossDisplay;
+import com.gibby.dungeon.mobs.IBossDisplay;
+import com.gibby.dungeon.mobs.ServerBossDisplay;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -14,6 +17,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 
 import java.util.List;
 
@@ -24,6 +28,11 @@ public class EntityBanditBoss extends EntityMob implements IBossDisplayData
         this.experienceValue = 60;
         this.addRandomArmor();
         this.setSize(1.4f, 3.0f);
+        if(par1World instanceof WorldServer) {
+            bossDisplay = new ServerBossDisplay();
+        } else {
+            bossDisplay = new ClientBossDisplay();
+        }
     }
 
     protected String getLivingSound() {
@@ -48,14 +57,16 @@ public class EntityBanditBoss extends EntityMob implements IBossDisplayData
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.8);
         this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(1.0);
     }
-
+    private final IBossDisplay bossDisplay;
     public void onUpdate() {
         super.onUpdate();
         final List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(20.0, 10.0, 20.0));
         if (list2 != null) {
             for (int k2 = 0; k2 < list2.size(); ++k2) {
                 if (list2.get(k2) instanceof EntityPlayer) {
-                    BossStatus.setBossStatus(this, true);
+                    //    bossDisplay.setBossStatus(this, true);
+
+                    bossDisplay.setBossStatus(this, true);
                     this.func_145748_c_();
                 }
             }

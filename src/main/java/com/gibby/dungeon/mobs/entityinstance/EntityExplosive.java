@@ -18,13 +18,12 @@ public class EntityExplosive extends EntityThrowable
         super(par1World, par2EntityLivingBase);
     }
 
-    public EntityExplosive(final World par1World) {
-        super(par1World);
+    public EntityExplosive(World world) {
+        super(world);
     }
-
     protected void onImpact(final MovingObjectPosition var1) {
         if (!this.worldObj.isRemote) {
-            this.worldObj.newExplosion((Entity)this, this.posX, this.posY, this.posZ, 1.7f, false, false);
+            this.worldObj.newExplosion(this, this.posX, this.posY, this.posZ, 1.7f, false, false);
             this.setDead();
         }
     }

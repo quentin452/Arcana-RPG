@@ -1,6 +1,9 @@
 package com.gibby.dungeon.mobs.entityinstance;
 
 import com.gibby.dungeon.Dungeons;
+import com.gibby.dungeon.mobs.ClientBossDisplay;
+import com.gibby.dungeon.mobs.IBossDisplay;
+import com.gibby.dungeon.mobs.ServerBossDisplay;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityReddustFX;
 import net.minecraft.entity.Entity;
@@ -10,6 +13,7 @@ import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 
 import java.util.List;
 
@@ -23,7 +27,13 @@ public class EntityUndefeatableRegen extends EntityUndefeatable implements IBoss
         super(par1World);
         this.distancedivider = 2.5f;
         this.undefeatableResistance = false;
+        if(par1World instanceof WorldServer) {
+            bossDisplay = new ServerBossDisplay();
+        } else {
+            bossDisplay = new ClientBossDisplay();
+        }
     }
+    private final IBossDisplay bossDisplay;
 
     public void onUpdate() {
         super.onUpdate();
@@ -39,7 +49,7 @@ public class EntityUndefeatableRegen extends EntityUndefeatable implements IBoss
         if (list2 != null) {
             for (int k2 = 0; k2 < list2.size(); ++k2) {
                 if (list2.get(k2) instanceof EntityPlayer && !this.undefeatableResistance) {
-                    BossStatus.setBossStatus(this, true);
+                    bossDisplay.setBossStatus(this, true);
                     this.func_145748_c_();
                 }
             }

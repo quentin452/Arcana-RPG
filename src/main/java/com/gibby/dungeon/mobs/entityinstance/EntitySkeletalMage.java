@@ -3,6 +3,9 @@
 package com.gibby.dungeon.mobs.entityinstance;
 
 import com.gibby.dungeon.Dungeons;
+import com.gibby.dungeon.mobs.ClientBossDisplay;
+import com.gibby.dungeon.mobs.IBossDisplay;
+import com.gibby.dungeon.mobs.ServerBossDisplay;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -18,6 +21,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 
 import java.util.List;
 
@@ -31,7 +35,13 @@ public class EntitySkeletalMage extends EntitySkeleton implements IBossDisplayDa
         this.tasks.addTask(4, aiArrowAttack);
         this.addPotionEffect(new PotionEffect(Dungeons.magicBoost.id, 10000, 0));
         this.experienceValue = 100;
+        if(par1World instanceof WorldServer) {
+            bossDisplay = new ServerBossDisplay();
+        } else {
+            bossDisplay = new ClientBossDisplay();
+        }
     }
+    private final IBossDisplay bossDisplay;
 
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
@@ -46,7 +56,7 @@ public class EntitySkeletalMage extends EntitySkeleton implements IBossDisplayDa
         if (list2 != null) {
             for (int k2 = 0; k2 < list2.size(); ++k2) {
                 if (list2.get(k2) instanceof EntityPlayer) {
-                    BossStatus.setBossStatus(this, true);
+                    bossDisplay.setBossStatus(this, true);
                     this.func_145748_c_();
                 }
             }
@@ -65,7 +75,7 @@ public class EntitySkeletalMage extends EntitySkeleton implements IBossDisplayDa
             this.playSound("random.orb", 1.0f, 1.0f / (this.getRNG().nextFloat() * 0.4f + 0.8f));
             this.worldObj.spawnEntityInWorld(ball);
         }
-        if (rand == 1) {
+       if (rand == 1) {
             for (int i = 0; i < 15; ++i) {
                 final EntityExplosive ball2 = new EntityExplosive(this.worldObj, this);
                 final double d4 = par1.posX - this.posX;
@@ -77,6 +87,7 @@ public class EntitySkeletalMage extends EntitySkeleton implements IBossDisplayDa
                 this.worldObj.spawnEntityInWorld(ball2);
             }
         }
+
         if (rand == 2) {
             final double randD = this.worldObj.rand.nextGaussian() - this.worldObj.rand.nextGaussian();
             this.heal(8.0f);

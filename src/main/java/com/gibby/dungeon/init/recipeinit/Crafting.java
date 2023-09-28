@@ -18,12 +18,20 @@ public class Crafting
         GameRegistry.addSmelting(Dungeons.silverOre, new ItemStack(Dungeons.silver), 1.0f);
         GameRegistry.addSmelting(Dungeons.lithiumOre, new ItemStack(Dungeons.lithium), 1.0f);
         GameRegistry.addSmelting(Dungeons.bedrockOre, new ItemStack(Dungeons.bedrock), 1.0f);
+        GameRegistry.addSmelting(Dungeons.amethystOre, new ItemStack(Dungeons.amethyst), 1.0f);
         GameRegistry.addSmelting(Dungeons.amethystOre, new ItemStack(Dungeons.amethystBlock), 1.0f);
         GameRegistry.addSmelting(Dungeons.netherSteelOre, new ItemStack(Dungeons.netherSteelShards), 1.0f);
         GameRegistry.addSmelting(Dungeons.netherSteelShards, new ItemStack(Dungeons.netherSteel), 1.0f);
         GameRegistry.addSmelting(Dungeons.crystalOre, new ItemStack(Dungeons.crystallium), 1.0f);
         GameRegistry.addSmelting(Dungeons.blackIronScraps, new ItemStack(Dungeons.blackIron), 1.0f);
+        GameRegistry.addSmelting(Dungeons.voidrockOre, new ItemStack(Dungeons.voidrockCrystal), 3.0f);
+        GameRegistry.addSmelting(Dungeons.magirockOre, new ItemStack(Dungeons.magirockCrystal), 3.0f);
+        GameRegistry.addSmelting(Dungeons.blindlightOre, new ItemStack(Dungeons.blindlightStone), 2.0f);
+        GameRegistry.addSmelting(Dungeons.runicOre, new ItemStack(Dungeons.runeShard), 1.0f);
+        GameRegistry.addSmelting(Dungeons.midnightStone, new ItemStack(Dungeons.nightCounter), 1.0f);
+        GameRegistry.addSmelting(Dungeons.blackIronOre, new ItemStack(Dungeons.blackIron), 1.0f);
         GameRegistry.addSmelting(Dungeons.rawTrollMeat, new ItemStack(Dungeons.cookedTrollMeat), 1.0f);
+        GameRegistry.addSmelting(Dungeons.midnightBeefRaw, new ItemStack(Dungeons.midnightBeef), 1.0f);
         GameRegistry.addShapelessRecipe(new ItemStack(Dungeons.castIron, 2), Items.iron_ingot, Items.iron_ingot, Items.iron_ingot, Items.coal, Items.coal);
         GameRegistry.addRecipe(new ItemStack(Dungeons.rubyBlock), "ccc", "ccc", "ccc", 'c', Dungeons.ruby);
         GameRegistry.addShapelessRecipe(new ItemStack(Dungeons.ruby, 9, 0), Dungeons.rubyBlock);
@@ -50,5 +58,16 @@ public class Crafting
         GameRegistry.addShapelessRecipe(new ItemStack(Dungeons.dungeonDimensionSpawner, 1, 0), Dungeons.dungeonPiece1, Dungeons.dungeonPiece2, Dungeons.dungeonPiece3, Dungeons.dungeonPiece4, Dungeons.dungeonPiece5);
         GameRegistry.addShapelessRecipe(new ItemStack(Dungeons.magicalOrb, 1, 0), Dungeons.corruptedMagicOrb);
         GameRegistry.addShapelessRecipe(new ItemStack(Dungeons.corruptedMagicOrb, 1, 0), Dungeons.magicalOrb);
+        GameRegistry.addRecipe(new ItemStack(Dungeons.blindlightIngot), "ccc", "ccc", "ccc", 'c', Dungeons.blindlightStone);
+        GameRegistry.addRecipe(new ItemStack(Dungeons.shadowOrb), " c ", "cnc", " c ", 'c', Dungeons.darkSoul, 'n', Dungeons.runeStone);
+        GameRegistry.addRecipe(new ItemStack(Dungeons.greenGlow, 4), "cc", "cc", 'c', Dungeons.incandescentDust);
+        GameRegistry.addRecipe(new ItemStack(Dungeons.blueBrick, 4), "cc", "cc", 'c', Dungeons.midnightStone);
+        GameRegistry.addRecipe(new ItemStack(Dungeons.blueBrick, 4), "cc", "cc", 'c', Dungeons.midnightStone);
+        GameRegistry.addRecipe(new ItemStack(Dungeons.midnightFence, 2), "c", "c", 'c', Dungeons.nightCounter);
+        GameRegistry.addRecipe(new ItemStack(Dungeons.blueGlow, 8), "cc", "cc", 'c', Dungeons.runeShard);
+        GameRegistry.addRecipe(new ItemStack(Dungeons.lightBlueGlow, 8), "ci", "cc", 'c', Dungeons.runeShard, 'i', Dungeons.blindlightStone);
+        GameRegistry.addRecipe(new ItemStack(Dungeons.darkBlueGlow, 8), "ci", "cc", 'c', Dungeons.runeShard, 'i', Dungeons.blackIron);
+        GameRegistry.addRecipe(new ItemStack(Dungeons.nightLight, 8), "mcm", "cmc", "mcm", 'c', Dungeons.runeShard, 'm', Dungeons.midnightStone);
+        GameRegistry.addRecipe(new ItemStack(Dungeons.incandescentCharge), "ccc", "crc", "ccc", 'c', Dungeons.incandescentDust, 'r', Dungeons.runeShard);
     }
 }

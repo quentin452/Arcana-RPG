@@ -49,5 +49,6 @@ public class MagicCrafting
         GameRegistry.addRecipe(new ItemStack(Dungeons.cvoidrim), "mmm", "m m", "mmm", 'm', Dungeons.voidrockChunk);
         GameRegistry.addRecipe(new ItemStack(Dungeons.voidrimWand), "m", "s", 'm', Dungeons.cvoidrim, 's', Items.stick);
         GameRegistry.addRecipe(new ItemStack(Dungeons.fusionWand), "v", "s", 's', Items.stick, 'v', Dungeons.fusionWand);
+        GameRegistry.addRecipe(new ItemStack(Dungeons.regenTome), " m ", "mgm", " s ", 's', Items.book, 'm', Dungeons.ruby, 'g', Dungeons.magicGem);
     }
 }
