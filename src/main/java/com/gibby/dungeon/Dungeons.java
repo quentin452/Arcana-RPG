@@ -18,6 +18,7 @@ import com.gibby.dungeon.util.DungeonPotions;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.EntityRegistry;
@@ -47,11 +48,11 @@ import net.minecraftforge.common.util.EnumHelper;
 import java.io.File;
 import java.util.Random;
 
-@Mod(modid = Dungeons.MODID, version = "1.3",dependencies = "required-after:reccomplex;")
+@Mod(modid = Dungeons.MODID, version = "1.4.2",dependencies = "required-after:reccomplex;")
 public class Dungeons
 {
     public static final String MODID = "gibby_dungeons";
-    public static final String VERSION = "1.3";
+    public static final String VERSION = "1.4.2";
     @SidedProxy(clientSide = "com.gibby.dungeon.proxy.ClientProxy", serverSide = "com.gibby.dungeon.proxy.CommonProxy")
     public static CommonProxy proxy;
     @Mod.Instance(Dungeons.MODID)
@@ -565,7 +566,128 @@ public class Dungeons
         this.ACRYSTALLIUM = EnumHelper.addArmorMaterial("dungeons_acrystallium", 86, new int[] { 5, 8, 7, 4 }, 18);
         this.ABLACKIRON = EnumHelper.addArmorMaterial("dungeons_ablackiron", 72, new int[] { 4, 8, 7, 4 }, 18);
     }
+    @Mod.EventHandler
+    public void init(final FMLInitializationEvent event) {
+        DungeonPotions.PotionSetup();
+       Dungeons.shock = new DungeonPotion(Dungeons.shockId, false, 3484199).setIconIndex(0, 1).setPotionName("potion.shock");
+        Dungeons.magicBoost = new DungeonPotion(Dungeons.magicBoostId, false, 3484199).setIconIndex(5, 1).setPotionName("potion.magicBoost");
+        Dungeons.growth = new DungeonPotion(Dungeons.growthId, false, 3484199).setIconIndex(7, 0).setPotionName("potion.growth");
+        Dungeons.inflame = new DungeonPotion(Dungeons.inflameId, false, 3484199).setIconIndex(7, 1).setPotionName("potion.inflame");
+        Dungeons.storm = new DungeonPotion(Dungeons.stormId, false, 3484199).setIconIndex(0, 0).setPotionName("potion.storm");
+        Dungeons.antigravity = new DungeonPotion(Dungeons.antigravityId, false, 3484199).setIconIndex(2, 1).setPotionName("potion.antigravity");
+        Dungeons.shadowAura = new DungeonPotion(Dungeons.shadowAuraId, false, 3484199).setIconIndex(5, 1).setPotionName("potion.shadowAura");
+        Dungeons.crystalliumBlessing = new DungeonPotion(Dungeons.crystalliumBlessingId, false, 3484199).setIconIndex(7, 1).setPotionName("potion.crystalliumBlessing");
+        Dungeons.imbalance = new DungeonPotion(Dungeons.imbalanceId, false, 3484199).setIconIndex(3, 1).setPotionName("potion.imbalance");
+        Dungeons.sunspot = new DungeonPotion(Dungeons.sunspotId, false, 3484199).setIconIndex(7, 1).setPotionName("potion.sunspot");
+        Dungeons.sunset = new BiomeSunset(Dungeons.sunsetBiomeId).setDisableRain().setTemperatureRainfall(-0.0f, 0.0f);
+        Dungeons.crystal = new BiomeCrystal(Dungeons.crystalBiomeId).setDisableRain().setTemperatureRainfall(-0.0f, 0.0f);
+        Dungeons.montane = new BiomeMontane(Dungeons.montaneBiomeId).setEnableSnow().setTemperatureRainfall(-0.5f, 0.4f);
+        Dungeons.crystalliumPlainsBiome = new BiomeCrystalliumPlains(Dungeons.crystalliumPlainsBiomeId).setTemperatureRainfall(0.2f, 0.0f);
+        Dungeons.midnightBiome = new BiomeMidnight(Dungeons.midnightBiomeId).setTemperatureRainfall(0.2f, 0.0f);
+        Dungeons.magicProtection = new EnchantmentProtection2(Dungeons.magicProtectionId, 5, 0);
+        Dungeons.voidProtection = new EnchantmentProtection2(Dungeons.voidProtectionId, 5, 1);
+        Dungeons.voidBlade = new EnchantmentDamage2(Dungeons.voidBladeId, 5, 1);
+        Dungeons.magicBlade = new EnchantmentDamage2(Dungeons.magicBladeId, 5, 0);
+        Dungeons.rare = new EnchantmentDamage2(Dungeons.rareId, 0, 2);
+        Dungeons.legendary = new EnchantmentDamage2(Dungeons.legendaryId, 0, 3);
+        Dungeons.frostblade = new EnchantmentDamage2(Dungeons.frostbladeId, 5, 4);
+        Dungeons.windblade = new EnchantmentDamage2(Dungeons.windBladeId, 5, 5);
+        Dungeons.quakeblade = new EnchantmentDamage2(Dungeons.quakebladeId, 5, 6);
+        Dungeons.lifesteal = new EnchantmentDamage2(Dungeons.lifestealId, 5, 7);
 
+        EntityRegistry.addSpawn(EntityFireflySpawner.class, 80, 4, 4, EnumCreatureType.ambient, Dungeons.midnightBiome);
+        EntityRegistry.addSpawn(EntityBat.class, 40, 4, 4, EnumCreatureType.ambient, Dungeons.midnightBiome);
+        EntityRegistry.addSpawn(EntityMidnightCow.class, 40, 4, 4, EnumCreatureType.monster, Dungeons.midnightBiome);
+        EntityRegistry.addSpawn(EntityMidnightChicken.class, 50, 4, 4, EnumCreatureType.monster, Dungeons.midnightBiome);
+        EntityRegistry.addSpawn(EntityNightMite.class, 80, 4, 4, EnumCreatureType.monster, Dungeons.midnightBiome);
+        EntityRegistry.addSpawn(EntityCaveWraith.class, 70, 4, 4, EnumCreatureType.monster, Dungeons.midnightBiome);
+        EntityRegistry.addSpawn(EntityNothing.class, 250, 4, 4, EnumCreatureType.monster, Dungeons.midnightBiome);
+        final BiomeGenBase[] spawn = BiomeGenBase.getBiomeGenArray();
+        for (int i = 0; i < spawn.length - 1; ++i) {
+            if (spawn[i] != null && spawn[i] != Dungeons.crystal && spawn[i] != Dungeons.sunset && spawn[i] != Dungeons.crystalliumPlainsBiome) {
+                EntityRegistry.addSpawn(EntityImp.class, 17, 4, 4, EnumCreatureType.monster, spawn[i]);
+                EntityRegistry.addSpawn(EntitySpirit.class, 15, 4, 4, EnumCreatureType.monster, spawn[i]);
+                EntityRegistry.addSpawn(EntitySkeletonWarrior.class, 17, 4, 4, EnumCreatureType.monster, spawn[i]);
+                EntityRegistry.addSpawn(EntityBanditBoss.class, 7, 1, 1, EnumCreatureType.monster, spawn[i]);
+                EntityRegistry.addSpawn(EntityTroll.class, 20, 1, 1, EnumCreatureType.monster, spawn[i]);
+                EntityRegistry.addSpawn(EntitySkeletalMage.class, 5, 1, 1, EnumCreatureType.monster, spawn[i]);
+                EntityRegistry.addSpawn(EntityCyclops.class, 30, 1, 1, EnumCreatureType.monster, spawn[i]);
+                EntityRegistry.addSpawn(EntityVoidFiend.class, 70, 1, 1, EnumCreatureType.monster, spawn[i]);
+                EntityRegistry.addSpawn(EntityEarthGolem.class, 20, 1, 1, EnumCreatureType.monster, spawn[i]);
+                EntityRegistry.addSpawn(EntitySapientMiner.class, 40, 1, 1, EnumCreatureType.monster, spawn[i]);
+                EntityRegistry.addSpawn(EntityWarlock.class, 15, 1, 1, EnumCreatureType.monster, spawn[i]);
+                EntityRegistry.addSpawn(EntityNecro.class, 15, 1, 1, EnumCreatureType.monster, spawn[i]);
+                EntityRegistry.addSpawn(EntityEarthMage.class, 15, 1, 1, EnumCreatureType.monster, spawn[i]);
+                EntityRegistry.addSpawn(EntitySkeletonKnight.class, 30, 1, 1, EnumCreatureType.monster, spawn[i]);
+            }
+        }
+        EntityRegistry.removeSpawn(EntityImp.class, EnumCreatureType.monster, BiomeGenBase.sky);
+        EntityRegistry.removeSpawn(EntitySkeletalMage.class, EnumCreatureType.monster, BiomeGenBase.sky);
+        EntityRegistry.removeSpawn(EntityBanditBoss.class, EnumCreatureType.monster, BiomeGenBase.hell);
+        EntityRegistry.removeSpawn(EntityBanditBoss.class, EnumCreatureType.monster, BiomeGenBase.sky);
+        EntityRegistry.removeSpawn(EntityTroll.class, EnumCreatureType.monster, BiomeGenBase.hell );
+        EntityRegistry.removeSpawn(EntityTroll.class, EnumCreatureType.monster, BiomeGenBase.sky);
+        EntityRegistry.removeSpawn(EntityGiantZombie.class, EnumCreatureType.monster, BiomeGenBase.hell);
+        EntityRegistry.removeSpawn(EntityGiantZombie.class, EnumCreatureType.monster, BiomeGenBase.sky);
+        EntityRegistry.removeSpawn(EntityCyclops.class, EnumCreatureType.monster, BiomeGenBase.hell );
+        EntityRegistry.removeSpawn(EntityCyclops.class, EnumCreatureType.monster, BiomeGenBase.sky);
+        EntityRegistry.removeSpawn(EntityVoidFiend.class, EnumCreatureType.monster, BiomeGenBase.hell );
+        EntityRegistry.removeSpawn(EntityVoidFiend.class, EnumCreatureType.monster, BiomeGenBase.sky);
+        EntityRegistry.removeSpawn(EntityEarthGolem.class, EnumCreatureType.monster, BiomeGenBase.hell );
+        EntityRegistry.removeSpawn(EntityEarthGolem.class, EnumCreatureType.monster, BiomeGenBase.sky);
+        EntityRegistry.removeSpawn(EntitySkeletonWarrior.class, EnumCreatureType.monster, BiomeGenBase.hell );
+        EntityRegistry.removeSpawn(EntitySkeletonWarrior.class, EnumCreatureType.monster, BiomeGenBase.sky);
+        EntityRegistry.removeSpawn(EntitySpirit.class, EnumCreatureType.monster, BiomeGenBase.sky);
+        EntityRegistry.removeSpawn(EntitySapientMiner.class, EnumCreatureType.monster, BiomeGenBase.sky);
+        EntityRegistry.removeSpawn(EntitySapientMiner.class, EnumCreatureType.monster, BiomeGenBase.hell);
+        EntityRegistry.removeSpawn(EntityWarlock.class, EnumCreatureType.monster, BiomeGenBase.sky);
+        EntityRegistry.removeSpawn(EntityWarlock.class, EnumCreatureType.monster, BiomeGenBase.hell );
+        EntityRegistry.removeSpawn(EntitySkeletonKnight.class, EnumCreatureType.monster, BiomeGenBase.sky);
+        EntityRegistry.removeSpawn(EntityNecro.class, EnumCreatureType.monster, BiomeGenBase.sky);
+        EntityRegistry.removeSpawn(EntityNecro.class, EnumCreatureType.monster, BiomeGenBase.hell );
+        EntityRegistry.removeSpawn(EntityEarthMage.class, EnumCreatureType.monster, BiomeGenBase.sky);
+        EntityRegistry.removeSpawn(EntityEarthMage.class, EnumCreatureType.monster, BiomeGenBase.hell );
+        EntityRegistry.addSpawn(EntityTyphoon.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.swampland);
+        EntityRegistry.addSpawn(EntityTyphoon.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.beach);
+        EntityRegistry.addSpawn(EntitySandstorm.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.desert);
+        EntityRegistry.addSpawn(EntitySandstorm.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.desertHills);
+        EntityRegistry.addSpawn(EntityDesertDragger.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.desert);
+        EntityRegistry.addSpawn(EntityDesertDragger.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.desertHills);
+        EntityRegistry.addSpawn(EntityBlizzard.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.iceMountains);
+        EntityRegistry.addSpawn(EntityBlizzard.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.icePlains);
+        EntityRegistry.addSpawn(EntityBlizzard.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.coldTaigaHills);
+        EntityRegistry.addSpawn(EntityBlizzard.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.coldTaiga);
+        EntityRegistry.addSpawn(EntityIceMage.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.iceMountains);
+        EntityRegistry.addSpawn(EntityIceMage.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.icePlains);
+        EntityRegistry.addSpawn(EntityIceMage.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.coldTaigaHills);
+        EntityRegistry.addSpawn(EntityIceMage.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.coldTaiga);
+        EntityRegistry.addSpawn(EntityTornado.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.plains);
+        EntityRegistry.addSpawn(EntityTornado.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.savanna);
+        EntityRegistry.addSpawn(EntityHermit.class, 30, 1, 1, EnumCreatureType.monster, BiomeGenBase.extremeHills);
+        EntityRegistry.addSpawn(EntityHermit.class, 30, 1, 1, EnumCreatureType.monster, BiomeGenBase.extremeHillsEdge);
+        EntityRegistry.addSpawn(EntityHermit.class, 30, 1, 1, EnumCreatureType.monster, BiomeGenBase.extremeHillsPlus);
+        EntityRegistry.addSpawn(EntityBandit.class, 60, 4, 4, EnumCreatureType.monster, BiomeGenBase.forest);
+        EntityRegistry.addSpawn(EntityBandit.class, 60, 4, 4, EnumCreatureType.monster, BiomeGenBase.forestHills);
+        EntityRegistry.addSpawn(EntityBandit.class, 60, 4, 4, EnumCreatureType.monster, BiomeGenBase.birchForest);
+        EntityRegistry.addSpawn(EntityBandit.class, 60, 4, 4, EnumCreatureType.monster, BiomeGenBase.birchForestHills);
+        EntityRegistry.addSpawn(EntityBandit.class, 60, 4, 4, EnumCreatureType.monster, BiomeGenBase.roofedForest);
+        EntityRegistry.addSpawn(EntityNetherPigman.class, 80, 4, 4, EnumCreatureType.monster, BiomeGenBase.hell);
+        EntityRegistry.addSpawn(EntityNetherSoul.class, 35, 4, 4, EnumCreatureType.monster, BiomeGenBase.hell);
+        EntityRegistry.addSpawn(EntityNetherGhost.class, 60, 4, 4, EnumCreatureType.monster, BiomeGenBase.hell);
+        EntityRegistry.addSpawn(EntityVampire.class, 40, 4, 4, EnumCreatureType.monster, BiomeGenBase.hell);
+        EntityRegistry.addSpawn(EntityLavaTroll.class, 20, 4, 4, EnumCreatureType.monster, BiomeGenBase.hell);
+        EntityRegistry.addSpawn(EntityLavaKnight.class, 40, 4, 4, EnumCreatureType.monster, BiomeGenBase.hell);
+        EntityRegistry.addSpawn(EntityNetherBadgerer.class, 5, 4, 4, EnumCreatureType.monster, BiomeGenBase.hell);
+        EntityRegistry.addSpawn(EntityAmethystMonster.class, 240, 4, 4, EnumCreatureType.monster, Dungeons.crystal);
+        EntityRegistry.addSpawn(EntityCrystalBadgerer.class, 1, 4, 4, EnumCreatureType.monster, Dungeons.crystal);
+        EntityRegistry.addSpawn(EntityHannibal.class, 60, 4, 4, EnumCreatureType.monster, Dungeons.crystal);
+        EntityRegistry.addSpawn(EntityCrystalliumGolem.class, 120, 4, 4, EnumCreatureType.monster, Dungeons.crystal);
+        EntityRegistry.addSpawn(EntityCrystasis.class, 120, 4, 4, EnumCreatureType.monster, Dungeons.crystalliumPlainsBiome);
+        EntityRegistry.addSpawn(EntityCrystalTroll.class, 40, 4, 4, EnumCreatureType.monster, Dungeons.crystalliumPlainsBiome);
+        EntityRegistry.addSpawn(EntityShimmerman.class, 20, 4, 4, EnumCreatureType.monster, Dungeons.crystalliumPlainsBiome);
+        EntityRegistry.addSpawn(EntityCrystox.class, 120, 4, 4, EnumCreatureType.monster, Dungeons.crystalliumPlainsBiome);
+        ChestSetup.addChestItems();
+    }
     @Mod.EventHandler
     public void preinit(final FMLPreInitializationEvent event) {
         final Configuration config = new Configuration(new File(event.getModConfigurationDirectory(), "Arcana_RPG.cfg"));
@@ -608,32 +730,6 @@ public class Dungeons
         Dungeons.imbalanceId = config.get("Potion Effect", "Imbalance", 58).getInt();
         Dungeons.sunspotId = config.get("Potion Effect", "Sunspot", 59).getInt();
         config.save();
-        DungeonPotions.PotionSetup();
-        Dungeons.shock = new DungeonPotion(Dungeons.shockId, false, 3484199).setIconIndex(0, 1).setPotionName("potion.shock");
-        Dungeons.magicBoost = new DungeonPotion(Dungeons.magicBoostId, false, 3484199).setIconIndex(5, 1).setPotionName("potion.magicBoost");
-        Dungeons.growth = new DungeonPotion(Dungeons.growthId, false, 3484199).setIconIndex(7, 0).setPotionName("potion.growth");
-        Dungeons.inflame = new DungeonPotion(Dungeons.inflameId, false, 3484199).setIconIndex(7, 1).setPotionName("potion.inflame");
-        Dungeons.storm = new DungeonPotion(Dungeons.stormId, false, 3484199).setIconIndex(0, 0).setPotionName("potion.storm");
-        Dungeons.antigravity = new DungeonPotion(Dungeons.antigravityId, false, 3484199).setIconIndex(2, 1).setPotionName("potion.antigravity");
-        Dungeons.shadowAura = new DungeonPotion(Dungeons.shadowAuraId, false, 3484199).setIconIndex(5, 1).setPotionName("potion.shadowAura");
-        Dungeons.crystalliumBlessing = new DungeonPotion(Dungeons.crystalliumBlessingId, false, 3484199).setIconIndex(7, 1).setPotionName("potion.crystalliumBlessing");
-        Dungeons.imbalance = new DungeonPotion(Dungeons.imbalanceId, false, 3484199).setIconIndex(3, 1).setPotionName("potion.imbalance");
-        Dungeons.sunspot = new DungeonPotion(Dungeons.sunspotId, false, 3484199).setIconIndex(7, 1).setPotionName("potion.sunspot");
-        Dungeons.sunset = new BiomeSunset(Dungeons.sunsetBiomeId).setDisableRain().setTemperatureRainfall(-0.0f, 0.0f);
-        Dungeons.crystal = new BiomeCrystal(Dungeons.crystalBiomeId).setDisableRain().setTemperatureRainfall(-0.0f, 0.0f);
-        Dungeons.montane = new BiomeSunset(Dungeons.montaneBiomeId).setEnableSnow().setTemperatureRainfall(-0.5f, 0.4f);
-        Dungeons.crystalliumPlainsBiome = new BiomeCrystalliumPlains(Dungeons.crystalliumPlainsBiomeId).setTemperatureRainfall(0.2f, 0.0f);
-        Dungeons.midnightBiome = new BiomeMidnight(Dungeons.midnightBiomeId).setTemperatureRainfall(0.2f, 0.0f);
-        Dungeons.magicProtection = new EnchantmentProtection2(Dungeons.magicProtectionId, 5, 0);
-        Dungeons.voidProtection = new EnchantmentProtection2(Dungeons.voidProtectionId, 5, 1);
-        Dungeons.voidBlade = new EnchantmentDamage2(Dungeons.voidBladeId, 5, 1);
-        Dungeons.magicBlade = new EnchantmentDamage2(Dungeons.magicBladeId, 5, 0);
-        Dungeons.rare = new EnchantmentDamage2(Dungeons.rareId, 0, 2);
-        Dungeons.legendary = new EnchantmentDamage2(Dungeons.legendaryId, 0, 3);
-        Dungeons.frostblade = new EnchantmentDamage2(Dungeons.frostbladeId, 5, 4);
-        Dungeons.windblade = new EnchantmentDamage2(Dungeons.windBladeId, 5, 5);
-        Dungeons.quakeblade = new EnchantmentDamage2(Dungeons.quakebladeId, 5, 6);
-        Dungeons.lifesteal = new EnchantmentDamage2(Dungeons.lifestealId, 5, 7);
         Dungeons.packetPipeline.initialise();
         DimensionManager.registerProviderType(Dungeons.crystalDimensionId, WorldProviderCrystal.class, false);
         DimensionManager.registerDimension(Dungeons.crystalDimensionId, Dungeons.crystalDimensionId);
@@ -643,7 +739,7 @@ public class Dungeons
         DimensionManager.registerDimension(Dungeons.montaneDungeonDimensionId, Dungeons.montaneDungeonDimensionId);
         DimensionManager.registerProviderType(Dungeons.crystalliumPlainsDimensionId, WorldProviderCrystalliumPlains.class, false);
         DimensionManager.registerDimension(Dungeons.crystalliumPlainsDimensionId, Dungeons.crystalliumPlainsDimensionId);
-        DimensionManager.registerProviderType(Dungeons.midnightDimensionId, (Class)WorldProviderMidnight.class, false);
+        DimensionManager.registerProviderType(Dungeons.midnightDimensionId, WorldProviderMidnight.class, false);
         DimensionManager.registerDimension(Dungeons.midnightDimensionId, Dungeons.midnightDimensionId);
         Enchantment.addToBookList(Dungeons.magicProtection);
         Enchantment.addToBookList(Dungeons.voidProtection);
@@ -1216,13 +1312,6 @@ public class Dungeons
         EntityRegistry.registerModEntity(EntityCrystalTroll.class, "EntityCrystalTroll", 85, this, 30, 2, true);
         EntityRegistry.registerModEntity(EntityCrystasis.class, "EntityCrystasis", 86, this, 30, 2, true);
         EntityRegistry.registerModEntity(EntityCrystox.class, "EntityCrystox", 87, this, 30, 2, true);
-        EntityRegistry.addSpawn(EntityFireflySpawner.class, 80, 4, 4, EnumCreatureType.ambient, Dungeons.midnightBiome);
-        EntityRegistry.addSpawn( EntityBat.class, 40, 4, 4, EnumCreatureType.ambient, Dungeons.midnightBiome);
-        EntityRegistry.addSpawn(EntityMidnightCow.class, 40, 4, 4, EnumCreatureType.monster, Dungeons.midnightBiome);
-        EntityRegistry.addSpawn(EntityMidnightChicken.class, 50, 4, 4, EnumCreatureType.monster, Dungeons.midnightBiome);
-        EntityRegistry.addSpawn(EntityNightMite.class, 80, 4, 4, EnumCreatureType.monster, Dungeons.midnightBiome);
-        EntityRegistry.addSpawn(EntityCaveWraith.class, 70, 4, 4, EnumCreatureType.monster, Dungeons.midnightBiome);
-        EntityRegistry.addSpawn(EntityNothing.class, 250, 4, 4, EnumCreatureType.monster, Dungeons.midnightBiome);
         EntityRegistry.registerModEntity(EntityExawdus.class, "EntityExawdus", 88, this, 30, 2, true);
         EntityRegistry.registerModEntity(EntityCrystalliumGolem.class, "EntityCrystalliumGolem", 89, this, 30, 2, true);
         EntityRegistry.registerModEntity(EntityMoundTrader.class, "EntityMoundTrader", 49, this, 60, 2, true);
@@ -1259,91 +1348,6 @@ public class Dungeons
         ToolCrafting.Recipes();
         ArmorCrafting.Recipes();
         MagicCrafting.Recipes();
-        final BiomeGenBase[] spawn = BiomeGenBase.getBiomeGenArray();
-        for (int i = 0; i < spawn.length - 1; ++i) {
-            if (spawn[i] != null && spawn[i] != Dungeons.crystal && spawn[i] != Dungeons.sunset && spawn[i] != Dungeons.crystalliumPlainsBiome) {
-                EntityRegistry.addSpawn(EntityImp.class, 17, 4, 4, EnumCreatureType.monster, spawn[i]);
-                EntityRegistry.addSpawn(EntitySpirit.class, 15, 4, 4, EnumCreatureType.monster, spawn[i]);
-                EntityRegistry.addSpawn(EntitySkeletonWarrior.class, 17, 4, 4, EnumCreatureType.monster, spawn[i]);
-                EntityRegistry.addSpawn(EntityBanditBoss.class, 7, 1, 1, EnumCreatureType.monster, spawn[i]);
-                EntityRegistry.addSpawn(EntityTroll.class, 20, 1, 1, EnumCreatureType.monster, spawn[i]);
-                EntityRegistry.addSpawn(EntitySkeletalMage.class, 5, 1, 1, EnumCreatureType.monster, spawn[i]);
-                EntityRegistry.addSpawn(EntityCyclops.class, 30, 1, 1, EnumCreatureType.monster, spawn[i]);
-                EntityRegistry.addSpawn(EntityVoidFiend.class, 70, 1, 1, EnumCreatureType.monster, spawn[i]);
-                EntityRegistry.addSpawn(EntityEarthGolem.class, 20, 1, 1, EnumCreatureType.monster, spawn[i]);
-                EntityRegistry.addSpawn(EntitySapientMiner.class, 40, 1, 1, EnumCreatureType.monster, spawn[i]);
-                EntityRegistry.addSpawn(EntityWarlock.class, 15, 1, 1, EnumCreatureType.monster, spawn[i]);
-                EntityRegistry.addSpawn(EntityNecro.class, 15, 1, 1, EnumCreatureType.monster, spawn[i]);
-                EntityRegistry.addSpawn(EntityEarthMage.class, 15, 1, 1, EnumCreatureType.monster, spawn[i]);
-                EntityRegistry.addSpawn(EntitySkeletonKnight.class, 30, 1, 1, EnumCreatureType.monster, spawn[i]);
-            }
-        }
-        EntityRegistry.removeSpawn(EntityImp.class, EnumCreatureType.monster, BiomeGenBase.sky);
-        EntityRegistry.removeSpawn(EntitySkeletalMage.class, EnumCreatureType.monster, BiomeGenBase.sky);
-        EntityRegistry.removeSpawn(EntityBanditBoss.class, EnumCreatureType.monster, BiomeGenBase.hell);
-        EntityRegistry.removeSpawn(EntityBanditBoss.class, EnumCreatureType.monster, BiomeGenBase.sky);
-        EntityRegistry.removeSpawn(EntityTroll.class, EnumCreatureType.monster, BiomeGenBase.hell );
-        EntityRegistry.removeSpawn(EntityTroll.class, EnumCreatureType.monster, BiomeGenBase.sky);
-        EntityRegistry.removeSpawn(EntityGiantZombie.class, EnumCreatureType.monster, BiomeGenBase.hell);
-        EntityRegistry.removeSpawn(EntityGiantZombie.class, EnumCreatureType.monster, BiomeGenBase.sky);
-        EntityRegistry.removeSpawn(EntityCyclops.class, EnumCreatureType.monster, BiomeGenBase.hell );
-        EntityRegistry.removeSpawn(EntityCyclops.class, EnumCreatureType.monster, BiomeGenBase.sky);
-        EntityRegistry.removeSpawn(EntityVoidFiend.class, EnumCreatureType.monster, BiomeGenBase.hell );
-        EntityRegistry.removeSpawn(EntityVoidFiend.class, EnumCreatureType.monster, BiomeGenBase.sky);
-        EntityRegistry.removeSpawn(EntityEarthGolem.class, EnumCreatureType.monster, BiomeGenBase.hell );
-        EntityRegistry.removeSpawn(EntityEarthGolem.class, EnumCreatureType.monster, BiomeGenBase.sky);
-        EntityRegistry.removeSpawn(EntitySkeletonWarrior.class, EnumCreatureType.monster, BiomeGenBase.hell );
-        EntityRegistry.removeSpawn(EntitySkeletonWarrior.class, EnumCreatureType.monster, BiomeGenBase.sky);
-        EntityRegistry.removeSpawn(EntitySpirit.class, EnumCreatureType.monster, BiomeGenBase.sky);
-        EntityRegistry.removeSpawn(EntitySapientMiner.class, EnumCreatureType.monster, BiomeGenBase.sky);
-        EntityRegistry.removeSpawn(EntitySapientMiner.class, EnumCreatureType.monster, BiomeGenBase.hell);
-        EntityRegistry.removeSpawn(EntityWarlock.class, EnumCreatureType.monster, BiomeGenBase.sky);
-        EntityRegistry.removeSpawn(EntityWarlock.class, EnumCreatureType.monster, BiomeGenBase.hell );
-        EntityRegistry.removeSpawn(EntitySkeletonKnight.class, EnumCreatureType.monster, BiomeGenBase.sky);
-        EntityRegistry.removeSpawn(EntityNecro.class, EnumCreatureType.monster, BiomeGenBase.sky);
-        EntityRegistry.removeSpawn(EntityNecro.class, EnumCreatureType.monster, BiomeGenBase.hell );
-        EntityRegistry.removeSpawn(EntityEarthMage.class, EnumCreatureType.monster, BiomeGenBase.sky);
-        EntityRegistry.removeSpawn(EntityEarthMage.class, EnumCreatureType.monster, BiomeGenBase.hell );
-        EntityRegistry.addSpawn(EntityTyphoon.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.swampland);
-        EntityRegistry.addSpawn(EntityTyphoon.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.beach);
-        EntityRegistry.addSpawn(EntitySandstorm.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.desert);
-        EntityRegistry.addSpawn(EntitySandstorm.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.desertHills);
-        EntityRegistry.addSpawn(EntityDesertDragger.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.desert);
-        EntityRegistry.addSpawn(EntityDesertDragger.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.desertHills);
-        EntityRegistry.addSpawn(EntityBlizzard.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.iceMountains);
-        EntityRegistry.addSpawn(EntityBlizzard.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.icePlains);
-        EntityRegistry.addSpawn(EntityBlizzard.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.coldTaigaHills);
-        EntityRegistry.addSpawn(EntityBlizzard.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.coldTaiga);
-        EntityRegistry.addSpawn(EntityIceMage.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.iceMountains);
-        EntityRegistry.addSpawn(EntityIceMage.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.icePlains);
-        EntityRegistry.addSpawn(EntityIceMage.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.coldTaigaHills);
-        EntityRegistry.addSpawn(EntityIceMage.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.coldTaiga);
-        EntityRegistry.addSpawn(EntityTornado.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.plains);
-        EntityRegistry.addSpawn(EntityTornado.class, 20, 1, 1, EnumCreatureType.monster, BiomeGenBase.savanna);
-        EntityRegistry.addSpawn(EntityHermit.class, 30, 1, 1, EnumCreatureType.monster, BiomeGenBase.extremeHills);
-        EntityRegistry.addSpawn(EntityHermit.class, 30, 1, 1, EnumCreatureType.monster, BiomeGenBase.extremeHillsEdge);
-        EntityRegistry.addSpawn(EntityHermit.class, 30, 1, 1, EnumCreatureType.monster, BiomeGenBase.extremeHillsPlus);
-        EntityRegistry.addSpawn(EntityBandit.class, 60, 4, 4, EnumCreatureType.monster, BiomeGenBase.forest);
-        EntityRegistry.addSpawn(EntityBandit.class, 60, 4, 4, EnumCreatureType.monster, BiomeGenBase.forestHills);
-        EntityRegistry.addSpawn(EntityBandit.class, 60, 4, 4, EnumCreatureType.monster, BiomeGenBase.birchForest);
-        EntityRegistry.addSpawn(EntityBandit.class, 60, 4, 4, EnumCreatureType.monster, BiomeGenBase.birchForestHills);
-        EntityRegistry.addSpawn(EntityBandit.class, 60, 4, 4, EnumCreatureType.monster, BiomeGenBase.roofedForest);
-        EntityRegistry.addSpawn(EntityNetherPigman.class, 80, 4, 4, EnumCreatureType.monster, BiomeGenBase.hell);
-        EntityRegistry.addSpawn(EntityNetherSoul.class, 35, 4, 4, EnumCreatureType.monster, BiomeGenBase.hell);
-        EntityRegistry.addSpawn(EntityNetherGhost.class, 60, 4, 4, EnumCreatureType.monster, BiomeGenBase.hell);
-        EntityRegistry.addSpawn(EntityVampire.class, 40, 4, 4, EnumCreatureType.monster, BiomeGenBase.hell);
-        EntityRegistry.addSpawn(EntityLavaTroll.class, 20, 4, 4, EnumCreatureType.monster, BiomeGenBase.hell);
-        EntityRegistry.addSpawn(EntityLavaKnight.class, 40, 4, 4, EnumCreatureType.monster, BiomeGenBase.hell);
-        EntityRegistry.addSpawn(EntityNetherBadgerer.class, 5, 4, 4, EnumCreatureType.monster, BiomeGenBase.hell);
-        EntityRegistry.addSpawn(EntityAmethystMonster.class, 240, 4, 4, EnumCreatureType.monster, Dungeons.crystal);
-        EntityRegistry.addSpawn(EntityCrystalBadgerer.class, 1, 4, 4, EnumCreatureType.monster, Dungeons.crystal);
-        EntityRegistry.addSpawn(EntityHannibal.class, 60, 4, 4, EnumCreatureType.monster, Dungeons.crystal);
-        EntityRegistry.addSpawn(EntityCrystalliumGolem.class, 120, 4, 4, EnumCreatureType.monster, Dungeons.crystal);
-        EntityRegistry.addSpawn(EntityCrystasis.class, 120, 4, 4, EnumCreatureType.monster, Dungeons.crystalliumPlainsBiome);
-        EntityRegistry.addSpawn(EntityCrystalTroll.class, 40, 4, 4, EnumCreatureType.monster, Dungeons.crystalliumPlainsBiome);
-        EntityRegistry.addSpawn(EntityShimmerman.class, 20, 4, 4, EnumCreatureType.monster, Dungeons.crystalliumPlainsBiome);
-        EntityRegistry.addSpawn(EntityCrystox.class, 120, 4, 4, EnumCreatureType.monster, Dungeons.crystalliumPlainsBiome);
-        ChestSetup.addChestItems();
         EggInit.preInit(event);
         Dungeons.proxy.registerRenderInformation();
         Dungeons.proxy.registerItemRenderers();
@@ -1383,6 +1387,7 @@ public class Dungeons
         } while (EntityList.getStringFromID(Dungeons.startEntityid) != null);
         return Dungeons.startEntityid;
     }
+
     public static ItemStack setRare(final ItemStack stack) {
         final Random rand = new Random();
         int bookRand = 0;

@@ -4,14 +4,14 @@ package com.gibby.dungeon.gen;
 
 import net.minecraft.world.biome.BiomeGenBase;
 
-public class BiomeSunset extends BiomeGenBase
+public class BiomeMontane extends BiomeGenBase
 {
-    public BiomeSunset(final int par1) {
+    public BiomeMontane(final int par1) {
         super(par1);
         this.spawnableMonsterList.clear();
         this.spawnableCreatureList.clear();
         this.spawnableWaterCreatureList.clear();
         this.spawnableCaveCreatureList.clear();
-        this.setBiomeName("Sunset Biome");
+        this.setBiomeName("Montane Biome");
     }
 }
