@@ -703,11 +703,11 @@ public class Dungeons
         Dungeons.montaneBiomeId = config.get("Biome", "Montane_Biome_Id", 252).getInt();
         Dungeons.crystalliumPlainsBiomeId = config.get("Biome", "Crystallim_Plains_Biome_Id", 253).getInt();
         Dungeons.midnightBiomeId = config.get("Biome", "Midnight_Biome_Id", 254).getInt();
-        Dungeons.sunsetDimensionId = config.get("Dimension", "Sunset_Dimension_Id", -15).getInt();
-        Dungeons.crystalDimensionId = config.get("Dimension", "Crystal_Dimension_Id", -20).getInt();
-        Dungeons.montaneDungeonDimensionId = config.get("Dimension", "Montane_Dungeon_Dimension_Id", -21).getInt();
-        Dungeons.crystalliumPlainsDimensionId = config.get("Dimension", "Crystallium_Plains_Dimension_Id", -22).getInt();
-        Dungeons.midnightDimensionId = config.get("Dimension", "Midnight_Dimension_Id", -23).getInt();
+        Dungeons.sunsetDimensionId = config.get("Dimension", "Sunset_Dimension_Id(YOU SHOULDN'T CHANGE BIOMES IDS BECAUSE DUNGEON GENERATION WILL NOT WORK)", -15).getInt();
+        Dungeons.crystalDimensionId = config.get("Dimension", "Crystal_Dimension_Id(YOU SHOULDN'T CHANGE BIOMES IDS BECAUSE DUNGEON GENERATION WILL NOT WORK)", -20).getInt();
+        Dungeons.montaneDungeonDimensionId = config.get("Dimension", "Montane_Dungeon_Dimension_Id(YOU SHOULDN'T CHANGE BIOMES IDS BECAUSE DUNGEON GENERATION WILL NOT WORK)", -21).getInt();
+        Dungeons.crystalliumPlainsDimensionId = config.get("Dimension", "Crystallium_Plains_Dimension_Id(YOU SHOULDN'T CHANGE BIOMES IDS BECAUSE DUNGEON GENERATION WILL NOT WORK)", -22).getInt();
+        Dungeons.midnightDimensionId = config.get("Dimension", "Midnight_Dimension_Id(YOU SHOULDN'T CHANGE BIOMES IDS BECAUSE DUNGEON GENERATION WILL NOT WORK)", -23).getInt();
         Dungeons.MAGIC_WATCHER = config.get("Data Watcher", "MagicWatcherId", 20).getInt();
         Dungeons.magicProtectionId = config.get("Enchantment", "Magic_Protection", 70).getInt();
         Dungeons.voidProtectionId = config.get("Enchantment", "Void_Protection", 71).getInt();
