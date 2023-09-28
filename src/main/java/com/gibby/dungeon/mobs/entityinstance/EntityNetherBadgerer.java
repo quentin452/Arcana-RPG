@@ -7,12 +7,8 @@ import com.gibby.dungeon.mobs.ClientBossDisplay;
 import com.gibby.dungeon.mobs.IBossDisplay;
 import com.gibby.dungeon.mobs.ServerBossDisplay;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.boss.BossStatus;
 import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,7 +26,7 @@ public class EntityNetherBadgerer extends EntityIronGolem implements IBossDispla
     public EntityNetherBadgerer(final World par1World) {
         super(par1World);
         this.isImmuneToFire = true;
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget((EntityCreature)this, (Class)EntityPlayer.class, 0, true));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
         this.setSize(2.1f, 4.35f);
         this.experienceValue = 100;
         if(par1World instanceof WorldServer) {
@@ -54,7 +50,7 @@ public class EntityNetherBadgerer extends EntityIronGolem implements IBossDispla
             this.setDead();
         }
         if (this.rand.nextInt(5) == 0) {
-            this.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1009, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
+            this.worldObj.playAuxSFXAtEntity(null, 1009, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
         }
         final int randX = this.rand.nextInt(10) - this.rand.nextInt(10);
         final int randY = this.rand.nextInt(10) - this.rand.nextInt(10);
@@ -65,7 +61,7 @@ public class EntityNetherBadgerer extends EntityIronGolem implements IBossDispla
             final double rand2Z = this.rand.nextGaussian() - this.rand.nextGaussian();
             this.worldObj.spawnParticle("lava", this.posX + rand2X, this.posY + randY, this.posZ + rand2Z, this.rand.nextGaussian() / 10.0, this.rand.nextGaussian() / 10.0, this.rand.nextGaussian() / 10.0);
         }
-        final List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(20.0, 10.0, 20.0));
+        final List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(20.0, 10.0, 20.0));
         if (list2 != null) {
             for (int k2 = 0; k2 < list2.size(); ++k2) {
                 if (list2.get(k2) instanceof EntityPlayer) {
@@ -88,8 +84,8 @@ public class EntityNetherBadgerer extends EntityIronGolem implements IBossDispla
     }
 
     public boolean attackEntityAsMob(final Entity par1Entity) {
-        this.worldObj.setEntityState((Entity)this, (byte)4);
-        final boolean flag = par1Entity.attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), (float)(20 + this.rand.nextInt(15)));
+        this.worldObj.setEntityState(this, (byte)4);
+        final boolean flag = par1Entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float)(20 + this.rand.nextInt(15)));
         if (flag) {
             par1Entity.motionY += 0.3500000059604645;
         }

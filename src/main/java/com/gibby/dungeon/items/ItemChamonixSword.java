@@ -1,5 +1,6 @@
 package com.gibby.dungeon.items;
 
+import com.gibby.dungeon.DungeonLogger;
 import com.gibby.dungeon.Dungeons;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -13,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
@@ -21,9 +23,12 @@ import java.util.List;
 
 public class ItemChamonixSword extends ItemStandardMagicSword
 {
+    private static final ResourceLocation TEXTURE = new ResourceLocation(Dungeons.MODID, "chamonix");
     public ItemChamonixSword(final Item.ToolMaterial p_i45356_1_, final int magic) {
         super(p_i45356_1_, magic);
         this.setCreativeTab(Dungeons.Weapons);
+        this.setUnlocalizedName("chamonix");
+        this.setTextureName(Dungeons.MODID +":chamonix");
     }
 
     public void onUsingTick(final ItemStack stack, final EntityPlayer player, final int count) {
@@ -75,9 +80,8 @@ public class ItemChamonixSword extends ItemStandardMagicSword
         par3List.add(EnumChatFormatting.GOLD + "Right click to charge a healing move");
         par3List.add(EnumChatFormatting.GRAY + "Has " + (this.getMaxDamage() - this.getDamage(par1ItemStack)) + " uses left");
     }
-    @SideOnly(Side.CLIENT)
     @Override
     public void registerIcons(IIconRegister register) {
-        this.itemIcon = register.registerIcon(Dungeons.MODID + ":chamonix");
+        this.itemIcon = register.registerIcon(TEXTURE.toString());
     }
 }

@@ -947,7 +947,7 @@ public class Dungeons
         GameRegistry.registerItem(Dungeons.midnightBeefRaw = new ItemFood(3, 1.0f, false).setCreativeTab(Dungeons.Materials).setUnlocalizedName("midnightBeefRaw").setTextureName(Dungeons.MODID + ":" + "midnightbeefraw"), "dungeons_midnightBeefRaw");
         GameRegistry.registerItem(Dungeons.midnightCoin = new ItemMidnightCoin().setCreativeTab(Dungeons.Materials).setUnlocalizedName("midnightCoin").setTextureName(Dungeons.MODID + ":" + "midnightcoin"), "dungeons_midnightCoin");
         GameRegistry.registerItem(Dungeons.incandescentDust = new Item().setCreativeTab(Dungeons.Materials).setUnlocalizedName("incandescentDust").setTextureName(Dungeons.MODID + ":" + "incandescentdust"), "dungeons_incandescentDust");
-        GameRegistry.registerItem(Dungeons.chamonix = new ItemChamonixSword(Item.ToolMaterial.EMERALD, 2).setUnlocalizedName("chamonix"), "dungeons_chamonix");
+        GameRegistry.registerItem(Dungeons.chamonix = new ItemChamonixSword(Item.ToolMaterial.EMERALD, 2), "dungeons_chamonix");
         GameRegistry.registerItem(Dungeons.incandescentCharge = new ItemIncandescentCharge().setCreativeTab(Dungeons.Materials).setUnlocalizedName("incandescentCharge").setTextureName(Dungeons.MODID + ":" + "incandescentCharge"), "dungeons_incandescentCharge");
         GameRegistry.registerItem(Dungeons.darkSoul = new ItemDarkSoul().setCreativeTab(Dungeons.Materials).setUnlocalizedName("darkSoul").setTextureName(Dungeons.MODID + ":" + "darksoul"), "dungeons_darkSoul");
         GameRegistry.registerItem(Dungeons.blindlightStone = new Item().setCreativeTab(Dungeons.Materials).setUnlocalizedName("blindlightStone").setTextureName(Dungeons.MODID + ":" + "blindlightshard"), "dungeons_blindlightStone");
@@ -1060,7 +1060,7 @@ public class Dungeons
         GameRegistry.registerBlock(Dungeons.fireflyLog = new BlockFireflyWood().setBlockName("fireflyLog").setBlockTextureName(Dungeons.MODID + ":" + "fireflyLog").setCreativeTab(Dungeons.Blocks), "dungeons_fireflyLog");
         GameRegistry.registerBlock(Dungeons.blindlightOre = new BlockBlindlightOre().setBlockName("blindlightOre").setBlockTextureName(Dungeons.MODID + ":" + "blindlightore").setCreativeTab(Dungeons.Blocks).setLightLevel(1.0f).setLightOpacity(200).setHardness(20.0f), "dungeons_blindlightOre");
         GameRegistry.registerBlock(Dungeons.runicOre = new BlockRunicOre().setBlockName("runicOre").setBlockTextureName(Dungeons.MODID + ":" + "runicore").setCreativeTab(Dungeons.Blocks).setLightLevel(0.6f).setLightOpacity(200).setHardness(20.0f), "dungeons_runicOre");
-        GameRegistry.registerBlock(Dungeons.fireflyStone = new BlockFireflyStone().setBlockName("fireflyStone").setCreativeTab(Dungeons.Blocks).setLightLevel(0.7f), "dungeons_fireflyStone");
+        GameRegistry.registerBlock(Dungeons.fireflyStone = new BlockFireflyStone().setBlockName("fireflyStone").setBlockTextureName(Dungeons.MODID + ":" + "fireflystone").setCreativeTab(Dungeons.Blocks).setLightLevel(0.7f), "dungeons_fireflyStone");
         GameRegistry.registerBlock(Dungeons.shadowRune2 = new BlockOre().setBlockName("shadowRune2").setBlockTextureName(Dungeons.MODID + ":" + "shadowrune2").setCreativeTab(Dungeons.Blocks).setLightLevel(0.2f).setLightOpacity(200).setHardness(3000.0f).setResistance(3000.0f), "dungeons_shadowRune2");
         GameRegistry.registerBlock(Dungeons.shadowRune3 = new BlockOre().setBlockName("shadowRune3").setBlockTextureName(Dungeons.MODID + ":" + "shadowrune3").setCreativeTab(Dungeons.Blocks).setLightLevel(0.2f).setLightOpacity(200).setHardness(3000.0f).setResistance(3000.0f), "dungeons_shadowRune3");
         GameRegistry.registerBlock(Dungeons.blackIronOre = new BlockNetherSteelOre().setBlockName("blackIronOre").setBlockTextureName(Dungeons.MODID + ":" + "blackironore").setCreativeTab(Dungeons.Blocks), "dungeons_blackIronOre");
@@ -1343,11 +1343,11 @@ public class Dungeons
         EntityRegistry.addSpawn(EntityCrystalTroll.class, 40, 4, 4, EnumCreatureType.monster, Dungeons.crystalliumPlainsBiome);
         EntityRegistry.addSpawn(EntityShimmerman.class, 20, 4, 4, EnumCreatureType.monster, Dungeons.crystalliumPlainsBiome);
         EntityRegistry.addSpawn(EntityCrystox.class, 120, 4, 4, EnumCreatureType.monster, Dungeons.crystalliumPlainsBiome);
+        ChestSetup.addChestItems();
+        EggInit.preInit(event);
         Dungeons.proxy.registerRenderInformation();
         Dungeons.proxy.registerItemRenderers();
         Dungeons.proxy.registerTileEntities();
-        ChestSetup.addChestItems();
-        EggInit.preInit(event);
     }
 
     @Mod.EventHandler

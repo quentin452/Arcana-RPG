@@ -406,14 +406,14 @@ public class ChunkProviderMidnight implements IChunkProvider
             k2 = k + this.rand.nextInt(16);
             l2 = l + this.rand.nextInt(16);
             i2 = this.rand.nextInt(5) + 63;
-            new WorldGenUpwardSpike(Dungeons.darkBlueGlow, this.rand.nextInt(5) + 3).generate(this.worldObj, this.rand, k2, i2, l2);
+            new WorldGenUpwardSpike(this.rand.nextInt(5) + 3).generate(this.worldObj, this.rand, k2, i2, l2);
         }
         doGen = TerrainGen.populate(par1IChunkProvider, this.worldObj, this.rand, par2, par3, false, PopulateChunkEvent.Populate.EventType.CUSTOM);
         if (this.rand.nextInt(8) == 0) {
             k2 = k + this.rand.nextInt(16);
             l2 = l + this.rand.nextInt(16);
             i2 = this.rand.nextInt(10) + 70;
-            new WorldGenUpwardSpike(Dungeons.lightBlueGlow, this.rand.nextInt(5) + 3).generate(this.worldObj, this.rand, k2, i2, l2);
+            new WorldGenUpwardSpike(this.rand.nextInt(5) + 3).generate(this.worldObj, this.rand, k2, i2, l2);
         }
         MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Post(par1IChunkProvider, this.worldObj, this.rand, par2, par3, flag));
         BlockFalling.fallInstantly = false;

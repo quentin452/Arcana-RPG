@@ -2,7 +2,6 @@
 
 package com.gibby.dungeon.mobs.entityinstance;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.MovingObjectPosition;
@@ -29,11 +28,11 @@ public class EntityGreenBall extends EntityThrowable
 
     protected void onImpact(final MovingObjectPosition var1) {
         if (!this.worldObj.isRemote) {
-            this.worldObj.newExplosion((Entity)this, this.posX, this.posY, this.posZ, 1.3f, false, false);
+            this.worldObj.newExplosion(this, this.posX, this.posY, this.posZ, 1.3f, false, false);
             if (this.generation <= 3) {
                 final double randD = this.worldObj.rand.nextGaussian() - this.worldObj.rand.nextGaussian();
                 final EntityGreenBall ball = new EntityGreenBall(this.worldObj, this.posX, this.posY + 1.0, this.posZ);
-                this.worldObj.spawnEntityInWorld((Entity)ball);
+                this.worldObj.spawnEntityInWorld(ball);
                 ball.motionX = this.motionX;
                 ball.motionY = 0.5;
                 ball.motionZ = this.motionZ;

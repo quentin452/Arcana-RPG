@@ -13,11 +13,9 @@ import java.util.Random;
 public class WorldGenUpwardSpike extends WorldGenerator
 {
     private int structureSize;
-    private Block block;
 
-    public WorldGenUpwardSpike(final Block block, final int size) {
+    public WorldGenUpwardSpike(final int size) {
         this.structureSize = size;
-        this.block = block;
     }
 
     public boolean generate(final World world, final Random rand, final int x, final int y, final int z) {

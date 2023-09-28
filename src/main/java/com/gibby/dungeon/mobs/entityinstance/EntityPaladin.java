@@ -79,12 +79,7 @@ public class EntityPaladin extends EntityMob implements IBossDisplayData
                 }
             }
         }
-        if (this.attackTimer < 1) {
-            this.isInvincible = true;
-        }
-        else {
-            this.isInvincible = false;
-        }
+        this.isInvincible = this.attackTimer < 1;
     }
 
     @SideOnly(Side.CLIENT)

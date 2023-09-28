@@ -378,7 +378,7 @@ public class ChunkProviderCrystal implements IChunkProvider
             k2 = k + this.rand.nextInt(16);
             l2 = l + this.rand.nextInt(16);
             i2 = this.rand.nextInt(50) + 60;
-            new WorldGenUpwardSpike(Dungeons.amethystCracks, this.rand.nextInt(12) + 3).generate(this.worldObj, this.rand, k2, i2, l2);
+            new WorldGenUpwardSpike(this.rand.nextInt(12) + 3).generate(this.worldObj, this.rand, k2, i2, l2);
         }
         MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Post(par1IChunkProvider, this.worldObj, this.rand, par2, par3, flag));
         BlockFalling.fallInstantly = false;

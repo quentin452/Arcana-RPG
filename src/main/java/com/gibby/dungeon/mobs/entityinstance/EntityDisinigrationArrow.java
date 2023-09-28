@@ -32,11 +32,11 @@ public class EntityDisinigrationArrow extends EntityArrow
         super.onUpdate();
         this.worldObj.spawnParticle("fireworksSpark", this.posX, this.posY, this.posZ, 0.0, 0.1, 0.0);
         this.worldObj.spawnParticle("portal", this.posX, this.posY + 0.1, this.posZ, 0.0, 0.1, 0.0);
-        final List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(2.0, 2.0, 2.0));
+        final List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(2.0, 2.0, 2.0));
         if (list2 != null) {
             for (int k2 = 0; k2 < list2.size(); ++k2) {
                 if ((!(list2.get(k2) instanceof EntityLivingBase) && list2.get(k2) instanceof EntityThrowable) || (list2.get(k2) instanceof EntityArrow && !(list2.get(k2) instanceof EntityDisinigrationArrow))) {
-                    ((Entity) list2.get(k2)).worldObj.newExplosion((Entity)this, ((Entity) list2.get(k2)).posX, ((Entity) list2.get(k2)).posY, ((Entity) list2.get(k2)).posZ, 1.0f, false, false);
+                    ((Entity) list2.get(k2)).worldObj.newExplosion(this, ((Entity) list2.get(k2)).posX, ((Entity) list2.get(k2)).posY, ((Entity) list2.get(k2)).posZ, 1.0f, false, false);
                     ((Entity) list2.get(k2)).setDead();
                 }
             }

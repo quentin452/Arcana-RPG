@@ -2,13 +2,10 @@ package com.gibby.dungeon.blocks;
 
 import com.gibby.dungeon.Dungeons;
 import com.gibby.dungeon.mobs.entityinstance.*;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
@@ -563,7 +560,7 @@ public class TileEntityShadow extends TileEntity
         final NBTTagCompound properties = new NBTTagCompound();
         properties.setInteger("MobId", this.mobId);
         properties.setInteger("Amount", this.mobCount);
-        compound.setTag("tileEntityShadow", (NBTBase)properties);
+        compound.setTag("tileEntityShadow", properties);
     }
 
     public void readFromNBT(final NBTTagCompound compound) {

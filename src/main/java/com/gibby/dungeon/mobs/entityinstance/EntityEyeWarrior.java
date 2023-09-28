@@ -50,7 +50,7 @@ public class EntityEyeWarrior extends EntityMob
 
     public boolean attackEntityAsMob(final Entity par1Entity) {
         if (par1Entity instanceof EntityLivingBase) {
-            ((EntityLivingBase)par1Entity).hurtResistantTime = 0;
+            par1Entity.hurtResistantTime = 0;
             ((EntityLivingBase)par1Entity).addPotionEffect(new PotionEffect(Potion.confusion.id, 140, 0));
             ((EntityLivingBase)par1Entity).addPotionEffect(new PotionEffect(Dungeons.imbalance.id, 240, 0));
         }

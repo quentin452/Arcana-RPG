@@ -9,12 +9,9 @@ import com.gibby.dungeon.mobs.IBossDisplay;
 import com.gibby.dungeon.mobs.ServerBossDisplay;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.boss.BossStatus;
 import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.monster.EntityGhast;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityLargeFireball;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -93,21 +90,21 @@ public class EntityBeholder extends EntityGhast implements IBossDisplayData
             this.hiccupTime = 0;
         }
         if (this.spitFire && this.ticksExisted % 15 == 0) {
-            this.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1007, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
-            if (this.targetedEntity != null && this.targetedEntity.getDistanceSqToEntity((Entity)this) < 10000.0) {
+            this.worldObj.playAuxSFXAtEntity(null, 1007, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
+            if (this.targetedEntity != null && this.targetedEntity.getDistanceSqToEntity(this) < 10000.0) {
                 final double randY = -this.rand.nextFloat() / 15.0f;
                 final double d5 = this.targetedEntity.posX - this.posX;
                 final double d6 = this.targetedEntity.boundingBox.minY - (this.posY + this.height / 2.0f);
                 final double d7 = this.targetedEntity.posZ - this.posZ;
-                this.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1008, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
-                final EntityLargeFireball entitylargefireball = new EntityLargeFireball(this.worldObj, (EntityLivingBase)this, d5, d6 + randY, d7);
+                this.worldObj.playAuxSFXAtEntity(null, 1008, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
+                final EntityLargeFireball entitylargefireball = new EntityLargeFireball(this.worldObj, this, d5, d6 + randY, d7);
                 entitylargefireball.field_92057_e = 4;
                 final double d8 = 4.0;
                 final Vec3 vec3 = this.getLook(1.0f);
                 entitylargefireball.posX = this.posX + vec3.xCoord * d8;
                 entitylargefireball.posY = this.posY + this.height / 2.0f + 0.5;
                 entitylargefireball.posZ = this.posZ + vec3.zCoord * d8;
-                this.worldObj.spawnEntityInWorld((Entity)entitylargefireball);
+                this.worldObj.spawnEntityInWorld(entitylargefireball);
             }
             ++this.hiccupTime;
             if (this.hiccupTime > 7) {
@@ -123,11 +120,11 @@ public class EntityBeholder extends EntityGhast implements IBossDisplayData
             if (this.ticksExisted % 60 == 0) {
                 final EntityFireclops entitycyclops = new EntityFireclops(this.worldObj);
                 entitycyclops.setPosition(this.posX, this.posY, this.posZ);
-                this.worldObj.spawnEntityInWorld((Entity)entitycyclops);
+                this.worldObj.spawnEntityInWorld(entitycyclops);
                 if (this.targetedEntity != null && this.targetedEntity instanceof EntityLivingBase) {
                     entitycyclops.setAttackTarget((EntityLivingBase)this.targetedEntity);
                 }
-                entitycyclops.onSpawnWithEgg((IEntityLivingData)null);
+                entitycyclops.onSpawnWithEgg(null);
                 entitycyclops.setPosition(this.posX, this.posY, this.posZ);
                 entitycyclops.fallDistance = -20.0f;
                 ++this.cycCount;
@@ -171,13 +168,13 @@ public class EntityBeholder extends EntityGhast implements IBossDisplayData
             this.targetedEntity = null;
         }
         if (this.targetedEntity == null || this.aggroCooldown-- <= 0) {
-            this.targetedEntity = (Entity)this.worldObj.getClosestVulnerablePlayerToEntity((Entity)this, 300.0);
+            this.targetedEntity = this.worldObj.getClosestVulnerablePlayerToEntity(this, 300.0);
             if (this.targetedEntity != null) {
                 this.aggroCooldown = 20;
             }
         }
         final double d13 = 100.0;
-        if (this.targetedEntity != null && this.targetedEntity.getDistanceSqToEntity((Entity)this) < d13 * d13) {
+        if (this.targetedEntity != null && this.targetedEntity.getDistanceSqToEntity(this) < d13 * d13) {
             final double d14 = this.targetedEntity.posX - this.posX;
             final double d15 = this.targetedEntity.boundingBox.minY + this.targetedEntity.height / 2.0f - (this.posY + this.height / 2.0f);
             final double d16 = this.targetedEntity.posZ - this.posZ;
@@ -186,18 +183,18 @@ public class EntityBeholder extends EntityGhast implements IBossDisplayData
             this.renderYawOffset = n;
             if (this.canEntityBeSeen(this.targetedEntity)) {
                 if (this.attackCounter == 10) {
-                    this.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1007, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
+                    this.worldObj.playAuxSFXAtEntity(null, 1007, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
                 }
                 ++this.attackCounter;
                 if (this.attackCounter == 20) {
-                    this.worldObj.playAuxSFXAtEntity((EntityPlayer)null, 1008, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
-                    final EntityNetherDriller driller = new EntityNetherDriller(this.worldObj, (EntityLivingBase)this);
+                    this.worldObj.playAuxSFXAtEntity(null, 1008, (int)this.posX, (int)this.posY, (int)this.posZ, 0);
+                    final EntityNetherDriller driller = new EntityNetherDriller(this.worldObj, this);
                     final double d17 = 4.0;
                     final Vec3 vec4 = this.getLook(1.0f);
                     driller.posX = this.posX + vec4.xCoord * d17;
                     driller.posY = this.posY + 0.5;
                     driller.posZ = this.posZ + vec4.zCoord * d17;
-                    this.worldObj.spawnEntityInWorld((Entity)driller);
+                    this.worldObj.spawnEntityInWorld(driller);
                     driller.setThrowableHeading(d14, d15, d16, 10.0f, 10.0f);
                     this.attackCounter = -40;
                 }
@@ -218,7 +215,7 @@ public class EntityBeholder extends EntityGhast implements IBossDisplayData
             final byte b1 = this.dataWatcher.getWatchableObjectByte(16);
             final byte b2 = (byte)((this.attackCounter > 10) ? 1 : 0);
             if (b1 != b2) {
-                this.dataWatcher.updateObject(16, (Object)b2);
+                this.dataWatcher.updateObject(16, b2);
             }
         }
     }
@@ -234,7 +231,7 @@ public class EntityBeholder extends EntityGhast implements IBossDisplayData
         final AxisAlignedBB axisalignedbb = this.boundingBox.copy();
         for (int i = 1; i < par7; ++i) {
             axisalignedbb.offset(d4, d5, d6);
-            if (!this.worldObj.getCollidingBoundingBoxes((Entity)this, axisalignedbb).isEmpty()) {
+            if (!this.worldObj.getCollidingBoundingBoxes(this, axisalignedbb).isEmpty()) {
                 return false;
             }
         }

@@ -9,7 +9,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.IChatComponent;
 import net.minecraft.world.World;
 
 public class EntityQuarryMaster extends EntityMoundTrader
@@ -17,7 +16,7 @@ public class EntityQuarryMaster extends EntityMoundTrader
     private double X;
     private double Y;
     private double Z;
-    private String[] quests;
+    private final String[] quests;
 
     public EntityQuarryMaster(final World par1World) {
         this(par1World, 0);
@@ -54,7 +53,7 @@ public class EntityQuarryMaster extends EntityMoundTrader
         if (!flag && this.isEntityAlive() && !this.isTrading() && !this.isChild() && !par1EntityPlayer.isSneaking() && this.getEquipmentInSlot(2) != null && this.getEquipmentInSlot(2).stackSize > 0) {
             if (!this.worldObj.isRemote && this.getEquipmentInSlot(1) == null) {
                 final int questNum = this.rand.nextInt(3);
-                par1EntityPlayer.addChatMessage((IChatComponent)new ChatComponentText("Quarry Master: " + this.quests[questNum]));
+                par1EntityPlayer.addChatMessage(new ChatComponentText("Quarry Master: " + this.quests[questNum]));
                 if (questNum == 0) {
                     this.setCurrentItemOrArmor(1, new ItemStack(Items.iron_ingot));
                 }
@@ -72,40 +71,40 @@ public class EntityQuarryMaster extends EntityMoundTrader
                     for (int i = 0; i < 64; ++i) {
                         par1EntityPlayer.inventory.consumeInventoryItem(Items.iron_ingot);
                     }
-                    this.setCurrentItemOrArmor(1, (ItemStack)null);
+                    this.setCurrentItemOrArmor(1, null);
                     final ItemStack getEquipmentInSlot = this.getEquipmentInSlot(2);
                     --getEquipmentInSlot.stackSize;
-                    par1EntityPlayer.addChatMessage((IChatComponent)new ChatComponentText("Quarry Master: Here's your reward."));
+                    par1EntityPlayer.addChatMessage(new ChatComponentText("Quarry Master: Here's your reward."));
                     par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Dungeons.metalCoin, 16, 0));
                 }
                 else if (questItem == Dungeons.cookedTrollMeat && par1EntityPlayer.inventory.hasItemStack(new ItemStack(Dungeons.cookedTrollMeat, 10, 0))) {
                     for (int i = 0; i < 10; ++i) {
                         par1EntityPlayer.inventory.consumeInventoryItem(Dungeons.cookedTrollMeat);
                     }
-                    this.setCurrentItemOrArmor(1, (ItemStack)null);
+                    this.setCurrentItemOrArmor(1, null);
                     final ItemStack getEquipmentInSlot2 = this.getEquipmentInSlot(2);
                     --getEquipmentInSlot2.stackSize;
-                    par1EntityPlayer.addChatMessage((IChatComponent)new ChatComponentText("Quarry Master: You're a hero."));
+                    par1EntityPlayer.addChatMessage(new ChatComponentText("Quarry Master: You're a hero."));
                     par1EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Dungeons.amethystBoots, 1, 0));
                 }
                 else if (questItem == Items.redstone && par1EntityPlayer.inventory.hasItemStack(new ItemStack(Items.redstone, 9, 0))) {
                     for (int i = 0; i < 9; ++i) {
                         par1EntityPlayer.inventory.consumeInventoryItem(Items.redstone);
                     }
-                    this.setCurrentItemOrArmor(1, (ItemStack)null);
+                    this.setCurrentItemOrArmor(1, null);
                     final ItemStack getEquipmentInSlot3 = this.getEquipmentInSlot(2);
                     --getEquipmentInSlot3.stackSize;
-                    par1EntityPlayer.addChatMessage((IChatComponent)new ChatComponentText("Quarry Master: Thank you."));
+                    par1EntityPlayer.addChatMessage(new ChatComponentText("Quarry Master: Thank you."));
                     par1EntityPlayer.inventory.addItemStackToInventory(Dungeons.setRare(new ItemStack(Dungeons.heavyBedrockSword)));
                 }
                 else {
-                    par1EntityPlayer.addChatMessage((IChatComponent)new ChatComponentText("Quarry Master: Did you get the items?"));
+                    par1EntityPlayer.addChatMessage(new ChatComponentText("Quarry Master: Did you get the items?"));
                 }
             }
             return true;
         }
         if (!this.worldObj.isRemote) {
-            par1EntityPlayer.addChatMessage((IChatComponent)new ChatComponentText("Quarry Master: Thank you for your services, I have no more tasks for you."));
+            par1EntityPlayer.addChatMessage(new ChatComponentText("Quarry Master: Thank you for your services, I have no more tasks for you."));
         }
         return super.interact(par1EntityPlayer);
     }

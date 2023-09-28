@@ -2,7 +2,6 @@
 
 package com.gibby.dungeon.mobs.entityinstance;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
@@ -37,7 +36,7 @@ public class EntityRedBall extends EntityThrowable
                 if (this.generation <= 3) {
                     final double randD = this.worldObj.rand.nextGaussian() - this.worldObj.rand.nextGaussian();
                     final EntityRedBall ball = new EntityRedBall(this.worldObj, this.posX, this.posY + 1.0, this.posZ);
-                    this.worldObj.spawnEntityInWorld((Entity)ball);
+                    this.worldObj.spawnEntityInWorld(ball);
                     ball.setThrowableHeading(randD * 1.3, 10.0, randD * 1.3, 0.3f, 12.0f);
                     ball.generation = this.generation + 1;
                 }

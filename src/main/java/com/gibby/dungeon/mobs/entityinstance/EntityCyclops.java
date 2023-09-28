@@ -52,8 +52,8 @@ public class EntityCyclops extends EntityMob
     public boolean attackEntityAsMob(final Entity par1Entity) {
         if (par1Entity instanceof EntityLivingBase) {
             for (int i = 0; i < 30; ++i) {
-                ((EntityLivingBase)par1Entity).hurtResistantTime = 0;
-                ((EntityLivingBase)par1Entity).attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), 0.01f);
+                par1Entity.hurtResistantTime = 0;
+                par1Entity.attackEntityFrom(DamageSource.causeMobDamage(this), 0.01f);
             }
         }
         return super.attackEntityAsMob(par1Entity);

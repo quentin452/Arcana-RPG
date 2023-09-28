@@ -14,16 +14,16 @@ public class EntityFriendlyZombie extends EntityTameable
 {
     public EntityFriendlyZombie(final World par1World) {
         super(par1World);
-        this.tasks.addTask(1, (EntityAIBase)new EntityAISwimming((EntityLiving)this));
-        this.tasks.addTask(2, (EntityAIBase)this.aiSit);
-        this.tasks.addTask(3, (EntityAIBase)new EntityAILeapAtTarget((EntityLiving)this, 0.4f));
-        this.tasks.addTask(4, (EntityAIBase)new EntityAIAttackOnCollide((EntityCreature)this, 1.0, true));
-        this.tasks.addTask(5, (EntityAIBase)new EntityAIFollowOwner((EntityTameable)this, 1.0, 10.0f, 2.0f));
-        this.tasks.addTask(9, (EntityAIBase)new EntityAIWatchClosest((EntityLiving)this, (Class)EntityPlayer.class, 8.0f));
-        this.tasks.addTask(9, (EntityAIBase)new EntityAILookIdle((EntityLiving)this));
-        this.targetTasks.addTask(1, (EntityAIBase)new EntityAIOwnerHurtByTarget((EntityTameable)this));
-        this.targetTasks.addTask(2, (EntityAIBase)new EntityAIOwnerHurtTarget((EntityTameable)this));
-        this.targetTasks.addTask(3, (EntityAIBase)new EntityAIHurtByTarget((EntityCreature)this, true));
+        this.tasks.addTask(1, new EntityAISwimming(this));
+        this.tasks.addTask(2, this.aiSit);
+        this.tasks.addTask(3, new EntityAILeapAtTarget(this, 0.4f));
+        this.tasks.addTask(4, new EntityAIAttackOnCollide(this, 1.0, true));
+        this.tasks.addTask(5, new EntityAIFollowOwner(this, 1.0, 10.0f, 2.0f));
+        this.tasks.addTask(9, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0f));
+        this.tasks.addTask(9, new EntityAILookIdle(this));
+        this.targetTasks.addTask(1, new EntityAIOwnerHurtByTarget(this));
+        this.targetTasks.addTask(2, new EntityAIOwnerHurtTarget(this));
+        this.targetTasks.addTask(3, new EntityAIHurtByTarget(this, true));
         this.setSize(1.0f, 2.0f);
     }
 
@@ -56,7 +56,7 @@ public class EntityFriendlyZombie extends EntityTameable
 
     public boolean attackEntityAsMob(final Entity par1Entity) {
         final int i = 5;
-        return par1Entity.attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), (float)i);
+        return par1Entity.attackEntityFrom(DamageSource.causeMobDamage(this), (float)i);
     }
 
     public boolean func_142018_a(final EntityLivingBase par1EntityLivingBase, final EntityLivingBase par2EntityLivingBase) {

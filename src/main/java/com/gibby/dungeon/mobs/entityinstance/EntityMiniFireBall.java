@@ -2,7 +2,6 @@
 
 package com.gibby.dungeon.mobs.entityinstance;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
@@ -45,7 +44,7 @@ public class EntityMiniFireBall extends EntityThrowable
     protected void onImpact(final MovingObjectPosition var1) {
         if (var1.entityHit != null) {
             if (var1.entityHit instanceof EntityLivingBase) {
-                var1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage((Entity)this, var1.entityHit), 5.0f);
+                var1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, var1.entityHit), 5.0f);
                 var1.entityHit.setFire(5);
             }
             if (this.worldObj != null) {

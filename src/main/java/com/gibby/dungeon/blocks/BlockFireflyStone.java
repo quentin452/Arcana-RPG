@@ -15,7 +15,6 @@ public class BlockFireflyStone extends Block
         super(Material.rock);
         this.setCreativeTab(Dungeons.Blocks);
         this.setHardness(0.3f);
-        this.setBlockTextureName(Dungeons.MODID + ":" + "fireflystone");
     }
 
     public void onBlockDestroyedByPlayer(final World world, final int x, final int y, final int z, final int meta) {

@@ -5,9 +5,13 @@ import com.gibby.dungeon.blocks.TileEntityDungeonSpawnerRepeater;
 import com.gibby.dungeon.blocks.TileEntityRedKeyOpen;
 import com.gibby.dungeon.blocks.TileEntityShadow;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.nbt.NBTTagCompound;
+
+import java.util.HashMap;
 
 public class CommonProxy
 {
+    private static HashMap<String, NBTTagCompound> extendedEntityData;
     public void registerItemRenderers() {
     }
 
@@ -19,5 +23,12 @@ public class CommonProxy
     }
 
     public void registerRenderInformation() {
+    }
+    public static NBTTagCompound getEntityData(final String name) {
+        return CommonProxy.extendedEntityData.remove(name);
+    }
+
+    static {
+        CommonProxy.extendedEntityData = new HashMap<>();
     }
 }

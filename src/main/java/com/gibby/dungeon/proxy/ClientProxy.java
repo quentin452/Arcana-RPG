@@ -10,6 +10,7 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.client.model.*;
 import net.minecraft.client.renderer.entity.RenderSnowball;
 import net.minecraft.init.Items;
+import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
 
 public class ClientProxy extends CommonProxy
@@ -20,6 +21,9 @@ public class ClientProxy extends CommonProxy
         MinecraftForgeClient.registerItemRenderer(Dungeons.orcWarWand, new RenderOrcWarWand());
         MinecraftForgeClient.registerItemRenderer(Dungeons.sunAxe, new RenderSunAxe());
         MinecraftForgeClient.registerItemRenderer(Dungeons.exawdusSmasher, new RenderExawdusSmasher());
+        MinecraftForgeClient.registerItemRenderer(Dungeons.shadowAxe, new RenderShadowAxe());
+        MinecraftForgeClient.registerItemRenderer(Dungeons.chamonix,new RenderChamonix());
+
     }
 
     @Override

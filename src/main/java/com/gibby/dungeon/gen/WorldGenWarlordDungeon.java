@@ -1,9 +1,6 @@
 package com.gibby.dungeon.gen;
 
-import com.gibby.dungeon.Dungeons;
-import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.World;

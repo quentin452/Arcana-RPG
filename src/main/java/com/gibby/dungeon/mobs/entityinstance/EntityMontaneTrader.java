@@ -6,14 +6,16 @@ import com.gibby.dungeon.Dungeons;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.entity.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -27,7 +29,7 @@ import java.util.*;
 
 public class EntityMontaneTrader extends EntityVillager
 {
-    private String[] villagerGreetings;
+    private final String[] villagerGreetings;
     private int randomTickDivider;
     private boolean isMating;
     private boolean isPlaying;
@@ -55,10 +57,6 @@ public class EntityMontaneTrader extends EntityVillager
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(20.0);
-    }
-
-    public boolean isAIEnabled() {
-        return true;
     }
 
     protected void updateAITick() {
@@ -98,7 +96,7 @@ public class EntityMontaneTrader extends EntityVillager
                     this.addDefaultEquipmentAndRecipies(1);
                     this.needsInitilization = false;
                     if (this.villageObj != null && this.lastBuyingPlayer != null) {
-                        this.worldObj.setEntityState((Entity)this, (byte)14);
+                        this.worldObj.setEntityState(this, (byte)14);
                         this.villageObj.setReputationForPlayer(this.lastBuyingPlayer, 1);
                     }
                 }
@@ -114,8 +112,8 @@ public class EntityMontaneTrader extends EntityVillager
         if (!flag && this.isEntityAlive() && !this.isTrading() && !this.isChild() && !par1EntityPlayer.isSneaking()) {
             if (!this.worldObj.isRemote) {
                 this.setCustomer(par1EntityPlayer);
-                par1EntityPlayer.addChatMessage((IChatComponent)new ChatComponentText("Merchant: " + this.villagerGreetings[this.rand.nextInt(6)]));
-                par1EntityPlayer.displayGUIMerchant((IMerchant)this, this.getCustomNameTag());
+                par1EntityPlayer.addChatMessage(new ChatComponentText("Merchant: " + this.villagerGreetings[this.rand.nextInt(6)]));
+                par1EntityPlayer.displayGUIMerchant(this, this.getCustomNameTag());
             }
             return true;
         }
@@ -132,7 +130,7 @@ public class EntityMontaneTrader extends EntityVillager
         par1NBTTagCompound.setInteger("Profession", this.getProfession());
         par1NBTTagCompound.setInteger("Riches", this.wealth);
         if (this.buyingList != null) {
-            par1NBTTagCompound.setTag("Offers", (NBTBase)this.buyingList.getRecipiesAsTags());
+            par1NBTTagCompound.setTag("Offers", this.buyingList.getRecipiesAsTags());
         }
     }
 
@@ -146,28 +144,12 @@ public class EntityMontaneTrader extends EntityVillager
         }
     }
 
-    protected boolean canDespawn() {
-        return false;
-    }
-
     protected String getLivingSound() {
         return this.isTrading() ? "mob.villager.haggle" : "mob.villager.idle";
     }
 
-    protected String getHurtSound() {
-        return "mob.villager.hit";
-    }
-
-    protected String getDeathSound() {
-        return "mob.villager.death";
-    }
-
     public void setProfession(final int par1) {
-        this.dataWatcher.updateObject(16, (Object)par1);
-    }
-
-    public int getProfession() {
-        return this.dataWatcher.getWatchableObjectInt(16);
+        this.dataWatcher.updateObject(16, par1);
     }
 
     public boolean isMating() {
@@ -195,9 +177,9 @@ public class EntityMontaneTrader extends EntityVillager
                 if (this.isChild()) {
                     b0 = -3;
                 }
-                this.villageObj.setReputationForPlayer(par1EntityLivingBase.getCommandSenderName(), (int)b0);
+                this.villageObj.setReputationForPlayer(par1EntityLivingBase.getCommandSenderName(), b0);
                 if (this.isEntityAlive()) {
-                    this.worldObj.setEntityState((Entity)this, (byte)13);
+                    this.worldObj.setEntityState(this, (byte)13);
                 }
             }
         }
@@ -214,8 +196,8 @@ public class EntityMontaneTrader extends EntityVillager
                     this.villageObj.endMatingSeason();
                 }
             }
-            else if (entity == null) {
-                final EntityPlayer entityplayer = this.worldObj.getClosestPlayerToEntity((Entity)this, 16.0);
+            else {
+                final EntityPlayer entityplayer = this.worldObj.getClosestPlayerToEntity(this, 16.0);
                 if (entityplayer != null) {
                     this.villageObj.endMatingSeason();
                 }
@@ -255,18 +237,6 @@ public class EntityMontaneTrader extends EntityVillager
         }
     }
 
-    public void func_110297_a_(final ItemStack par1ItemStack) {
-        if (!this.worldObj.isRemote && this.livingSoundTime > -this.getTalkInterval() + 20) {
-            this.livingSoundTime = -this.getTalkInterval();
-            if (par1ItemStack != null) {
-                this.playSound("mob.villager.yes", this.getSoundVolume(), this.getSoundPitch());
-            }
-            else {
-                this.playSound("mob.villager.no", this.getSoundVolume(), this.getSoundPitch());
-            }
-        }
-    }
-
     public MerchantRecipeList getRecipes(final EntityPlayer par1EntityPlayer) {
         if (this.buyingList == null) {
             this.addDefaultEquipmentAndRecipies(5);
@@ -287,23 +257,23 @@ public class EntityMontaneTrader extends EntityVillager
             this.field_82191_bN = 0.0f;
         }
         final MerchantRecipeList merchantrecipelist = new MerchantRecipeList();
-        VillagerRegistry.manageVillagerTrades(merchantrecipelist, (EntityVillager)this, this.getProfession(), this.rand);
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.voidCoin, 2), new ItemStack(Dungeons.magicPotion, 6)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.voidCoin, 2), new ItemStack(Dungeons.magicPotion2, 2)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Items.bread, 4 + this.rand.nextInt(2)), new ItemStack(Dungeons.arcaneGem, 1)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Items.bread, 4), new ItemStack(Dungeons.blackIronScraps, 1)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Items.cooked_chicken, 18 + this.rand.nextInt(4)), new ItemStack(Dungeons.orcWarWand, 1)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Items.apple, 10 + this.rand.nextInt(4)), new ItemStack(Dungeons.blackIronBoots, 1)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.voidCoin, 2), new ItemStack(Dungeons.netherSteelShards, 1)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Items.baked_potato, 8 + this.rand.nextInt(4)), new ItemStack(Dungeons.frostySword, 1)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Items.golden_apple, 16 + this.rand.nextInt(4)), new ItemStack(Dungeons.icefireWand, 1)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Items.cooked_fished, 18 + this.rand.nextInt(2)), new ItemStack(Dungeons.torturedChainSword, 1)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.cookedTrollMeat, 16 + this.rand.nextInt(6)), new ItemStack(Dungeons.disinigrationBow, 1)));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.voidCoin, 17 + this.rand.nextInt(6)), Dungeons.setRare(new ItemStack(Dungeons.blackIronChestplate))));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.voidCoin, 14 + this.rand.nextInt(6)), Dungeons.setRare(new ItemStack(Dungeons.blackIronBoots, 1))));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.voidCoin, 15 + this.rand.nextInt(6)), Dungeons.setRare(new ItemStack(Dungeons.blackIronLeggings))));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.voidCoin, 30 + this.rand.nextInt(7)), Dungeons.setLegendary(new ItemStack(Dungeons.heavyNetherSteelSword))));
-        merchantrecipelist.add((Object)new MerchantRecipe(new ItemStack(Dungeons.voidCoin, 26 + this.rand.nextInt(7)), Dungeons.setLegendary(new ItemStack(Dungeons.blackIronHelmet))));
+        VillagerRegistry.manageVillagerTrades(merchantrecipelist, this, this.getProfession(), this.rand);
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.voidCoin, 2), new ItemStack(Dungeons.magicPotion, 6)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.voidCoin, 2), new ItemStack(Dungeons.magicPotion2, 2)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Items.bread, 4 + this.rand.nextInt(2)), new ItemStack(Dungeons.arcaneGem, 1)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Items.bread, 4), new ItemStack(Dungeons.blackIronScraps, 1)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Items.cooked_chicken, 18 + this.rand.nextInt(4)), new ItemStack(Dungeons.orcWarWand, 1)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Items.apple, 10 + this.rand.nextInt(4)), new ItemStack(Dungeons.blackIronBoots, 1)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.voidCoin, 2), new ItemStack(Dungeons.netherSteelShards, 1)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Items.baked_potato, 8 + this.rand.nextInt(4)), new ItemStack(Dungeons.frostySword, 1)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Items.golden_apple, 16 + this.rand.nextInt(4)), new ItemStack(Dungeons.icefireWand, 1)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Items.cooked_fished, 18 + this.rand.nextInt(2)), new ItemStack(Dungeons.torturedChainSword, 1)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.cookedTrollMeat, 16 + this.rand.nextInt(6)), new ItemStack(Dungeons.disinigrationBow, 1)));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.voidCoin, 17 + this.rand.nextInt(6)), Dungeons.setRare(new ItemStack(Dungeons.blackIronChestplate))));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.voidCoin, 14 + this.rand.nextInt(6)), Dungeons.setRare(new ItemStack(Dungeons.blackIronBoots, 1))));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.voidCoin, 15 + this.rand.nextInt(6)), Dungeons.setRare(new ItemStack(Dungeons.blackIronLeggings))));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.voidCoin, 30 + this.rand.nextInt(7)), Dungeons.setLegendary(new ItemStack(Dungeons.heavyNetherSteelSword))));
+        merchantrecipelist.add(new MerchantRecipe(new ItemStack(Dungeons.voidCoin, 26 + this.rand.nextInt(7)), Dungeons.setLegendary(new ItemStack(Dungeons.blackIronHelmet))));
         if (merchantrecipelist.isEmpty()) {
             func_146091_a(merchantrecipelist, Items.gold_ingot, this.rand, 1.0f);
         }
@@ -322,7 +292,7 @@ public class EntityMontaneTrader extends EntityVillager
 
     public static void func_146091_a(final MerchantRecipeList p_146091_0_, final Item p_146091_1_, final Random p_146091_2_, final float p_146091_3_) {
         if (p_146091_2_.nextFloat() < p_146091_3_) {
-            p_146091_0_.add((Object)new MerchantRecipe(func_146088_a(p_146091_1_, p_146091_2_), Items.emerald));
+            p_146091_0_.add(new MerchantRecipe(func_146088_a(p_146091_1_, p_146091_2_), Items.emerald));
         }
     }
 
@@ -348,13 +318,13 @@ public class EntityMontaneTrader extends EntityVillager
                 itemstack = new ItemStack(Items.emerald, i, 0);
                 itemstack2 = new ItemStack(p_146089_1_, 1, 0);
             }
-            p_146089_0_.add((Object)new MerchantRecipe(itemstack, itemstack2));
+            p_146089_0_.add(new MerchantRecipe(itemstack, itemstack2));
         }
     }
 
     private static int func_146090_c(final Item p_146090_0_, final Random p_146090_1_) {
         final Tuple tuple = (Tuple) EntityMontaneTrader.blacksmithSellingList.get(p_146090_0_);
-        return (int)((tuple == null) ? 1 : (((int)tuple.getFirst() >= (int)tuple.getSecond()) ? tuple.getFirst() : ((int)tuple.getFirst() + p_146090_1_.nextInt((int)tuple.getSecond() - (int)tuple.getFirst()))));
+        return (tuple == null) ? 1 : (((int)tuple.getFirst() >= (int)tuple.getSecond()) ? (int) tuple.getFirst() : ((int)tuple.getFirst() + p_146090_1_.nextInt((int)tuple.getSecond() - (int)tuple.getFirst())));
     }
 
     @SideOnly(Side.CLIENT)
@@ -389,38 +359,34 @@ public class EntityMontaneTrader extends EntityVillager
 
     public EntityMontaneTrader createChild(final EntityAgeable par1EntityAgeable) {
         final EntityMontaneTrader entityvillager = new EntityMontaneTrader(this.worldObj);
-        entityvillager.onSpawnWithEgg((IEntityLivingData)null);
+        entityvillager.onSpawnWithEgg(null);
         return entityvillager;
-    }
-
-    public boolean allowLeashing() {
-        return false;
     }
 
     static {
         villagersSellingList = new HashMap();
         blacksmithSellingList = new HashMap();
-        EntityMontaneTrader.villagersSellingList.put(Dungeons.copper, new Tuple((Object)10, (Object)15));
-        EntityMontaneTrader.villagersSellingList.put(Items.iron_ingot, new Tuple((Object)10, (Object)15));
-        EntityMontaneTrader.villagersSellingList.put(Dungeons.ruby, new Tuple((Object)7, (Object)12));
-        EntityMontaneTrader.villagersSellingList.put(Items.diamond, new Tuple((Object)2, (Object)2));
-        EntityMontaneTrader.villagersSellingList.put(Dungeons.windStaff, new Tuple((Object)6, (Object)10));
-        EntityMontaneTrader.villagersSellingList.put(Dungeons.shimmerPearl, new Tuple((Object)5, (Object)8));
-        EntityMontaneTrader.villagersSellingList.put(Items.ender_pearl, new Tuple((Object)7, (Object)12));
-        EntityMontaneTrader.villagersSellingList.put(Items.porkchop, new Tuple((Object)15, (Object)20));
-        EntityMontaneTrader.villagersSellingList.put(Items.beef, new Tuple((Object)15, (Object)20));
-        EntityMontaneTrader.villagersSellingList.put(Items.chicken, new Tuple((Object)15, (Object)20));
-        EntityMontaneTrader.villagersSellingList.put(Items.melon_seeds, new Tuple((Object)30, (Object)38));
-        EntityMontaneTrader.villagersSellingList.put(Items.pumpkin_seeds, new Tuple((Object)30, (Object)38));
-        EntityMontaneTrader.blacksmithSellingList.put(Items.iron_helmet, new Tuple((Object)4, (Object)6));
-        EntityMontaneTrader.blacksmithSellingList.put(Items.diamond_helmet, new Tuple((Object)7, (Object)8));
-        EntityMontaneTrader.blacksmithSellingList.put(Items.iron_chestplate, new Tuple((Object)10, (Object)14));
-        EntityMontaneTrader.blacksmithSellingList.put(Items.diamond_chestplate, new Tuple((Object)16, (Object)19));
-        EntityMontaneTrader.blacksmithSellingList.put(Items.iron_leggings, new Tuple((Object)8, (Object)10));
-        EntityMontaneTrader.blacksmithSellingList.put(Items.diamond_leggings, new Tuple((Object)11, (Object)14));
-        EntityMontaneTrader.blacksmithSellingList.put(Dungeons.copper, new Tuple((Object)5, (Object)7));
-        EntityMontaneTrader.blacksmithSellingList.put(Dungeons.silver, new Tuple((Object)5, (Object)7));
-        EntityMontaneTrader.blacksmithSellingList.put(Items.blaze_powder, new Tuple((Object)11, (Object)15));
-        EntityMontaneTrader.blacksmithSellingList.put(Items.slime_ball, new Tuple((Object)9, (Object)11));
+        EntityMontaneTrader.villagersSellingList.put(Dungeons.copper, new Tuple(10, 15));
+        EntityMontaneTrader.villagersSellingList.put(Items.iron_ingot, new Tuple(10, 15));
+        EntityMontaneTrader.villagersSellingList.put(Dungeons.ruby, new Tuple(7, 12));
+        EntityMontaneTrader.villagersSellingList.put(Items.diamond, new Tuple(2, 2));
+        EntityMontaneTrader.villagersSellingList.put(Dungeons.windStaff, new Tuple(6, 10));
+        EntityMontaneTrader.villagersSellingList.put(Dungeons.shimmerPearl, new Tuple(5, 8));
+        EntityMontaneTrader.villagersSellingList.put(Items.ender_pearl, new Tuple(7, 12));
+        EntityMontaneTrader.villagersSellingList.put(Items.porkchop, new Tuple(15, 20));
+        EntityMontaneTrader.villagersSellingList.put(Items.beef, new Tuple(15, 20));
+        EntityMontaneTrader.villagersSellingList.put(Items.chicken, new Tuple(15, 20));
+        EntityMontaneTrader.villagersSellingList.put(Items.melon_seeds, new Tuple(30, 38));
+        EntityMontaneTrader.villagersSellingList.put(Items.pumpkin_seeds, new Tuple(30, 38));
+        EntityMontaneTrader.blacksmithSellingList.put(Items.iron_helmet, new Tuple(4, 6));
+        EntityMontaneTrader.blacksmithSellingList.put(Items.diamond_helmet, new Tuple(7, 8));
+        EntityMontaneTrader.blacksmithSellingList.put(Items.iron_chestplate, new Tuple(10, 14));
+        EntityMontaneTrader.blacksmithSellingList.put(Items.diamond_chestplate, new Tuple(16, 19));
+        EntityMontaneTrader.blacksmithSellingList.put(Items.iron_leggings, new Tuple(8, 10));
+        EntityMontaneTrader.blacksmithSellingList.put(Items.diamond_leggings, new Tuple(11, 14));
+        EntityMontaneTrader.blacksmithSellingList.put(Dungeons.copper, new Tuple(5, 7));
+        EntityMontaneTrader.blacksmithSellingList.put(Dungeons.silver, new Tuple(5, 7));
+        EntityMontaneTrader.blacksmithSellingList.put(Items.blaze_powder, new Tuple(11, 15));
+        EntityMontaneTrader.blacksmithSellingList.put(Items.slime_ball, new Tuple(9, 11));
     }
 }

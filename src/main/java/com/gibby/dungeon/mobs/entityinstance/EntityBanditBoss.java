@@ -9,7 +9,6 @@ import com.gibby.dungeon.mobs.ServerBossDisplay;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.boss.BossStatus;
 import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -64,8 +63,6 @@ public class EntityBanditBoss extends EntityMob implements IBossDisplayData
         if (list2 != null) {
             for (int k2 = 0; k2 < list2.size(); ++k2) {
                 if (list2.get(k2) instanceof EntityPlayer) {
-                    //    bossDisplay.setBossStatus(this, true);
-
                     bossDisplay.setBossStatus(this, true);
                     this.func_145748_c_();
                 }

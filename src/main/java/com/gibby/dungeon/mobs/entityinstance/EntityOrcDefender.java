@@ -4,7 +4,6 @@ package com.gibby.dungeon.mobs.entityinstance;
 
 import com.gibby.dungeon.Dungeons;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -51,13 +50,13 @@ public class EntityOrcDefender extends EntityMob
 
     public void onUpdate() {
         super.onUpdate();
-        final List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(1.4, 1.4, 1.4));
+        final List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(1.4, 1.4, 1.4));
         if (list2 != null && this.getHealth() > 0.0f) {
             for (int k2 = 0; k2 < list2.size(); ++k2) {
                 if (list2.get(k2) instanceof EntityPlayer && this.ticksExisted % 10 == 0) {
                     ((EntityPlayer) list2.get(k2)).attackEntityFrom(DamageSource.outOfWorld, 3.0f);
                     ((EntityPlayer) list2.get(k2)).hurtResistantTime = 0;
-                    ((EntityPlayer) list2.get(k2)).attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), 11.0f);
+                    ((EntityPlayer) list2.get(k2)).attackEntityFrom(DamageSource.causeMobDamage(this), 11.0f);
                 }
             }
         }

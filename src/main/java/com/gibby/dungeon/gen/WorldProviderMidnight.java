@@ -2,7 +2,6 @@ package com.gibby.dungeon.gen;
 
 import com.gibby.dungeon.Dungeons;
 import net.minecraft.world.WorldProvider;
-import net.minecraft.world.biome.WorldChunkManager;
 import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -10,9 +9,6 @@ import net.minecraftforge.common.DimensionManager;
 
 public class WorldProviderMidnight extends WorldProvider
 {
-    public boolean isSurfaceWorld() {
-        return true;
-    }
 
     public boolean canRespawnHere() {
         return false;
@@ -25,11 +21,11 @@ public class WorldProviderMidnight extends WorldProvider
     public void registerWorldChunkManager() {
         this.isHellWorld = false;
         this.dimensionId = Dungeons.midnightDimensionId;
-        this.worldChunkMgr = (WorldChunkManager)new WorldChunkManagerHell(Dungeons.midnightBiome, (float)this.dimensionId);
+        this.worldChunkMgr = new WorldChunkManagerHell(Dungeons.midnightBiome, (float)this.dimensionId);
     }
 
     public IChunkProvider createChunkGenerator() {
-        return (IChunkProvider)new ChunkProviderMidnight(this.worldObj, this.worldObj.getSeed(), true);
+        return new ChunkProviderMidnight(this.worldObj, this.worldObj.getSeed(), true);
     }
 
     public static WorldProvider getProviderForDimension(final int id) {
