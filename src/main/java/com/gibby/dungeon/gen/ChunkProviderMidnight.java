@@ -388,20 +388,6 @@ public class ChunkProviderMidnight implements IChunkProvider
             new WorldGenJadeTrees().generate(this.worldObj, this.rand, k2, i2, l2);
         }
         doGen = TerrainGen.populate(par1IChunkProvider, this.worldObj, this.rand, par2, par3, false, PopulateChunkEvent.Populate.EventType.CUSTOM);
-        if (this.rand.nextInt(32) == 0) {
-            k2 = k + this.rand.nextInt(16);
-            l2 = l + this.rand.nextInt(16);
-            i2 = this.rand.nextInt(4) + 61;
-            new WorldGenRuneAltar().generate(this.worldObj, this.rand, k2, i2, l2);
-        }
-        doGen = TerrainGen.populate(par1IChunkProvider, this.worldObj, this.rand, par2, par3, false, PopulateChunkEvent.Populate.EventType.CUSTOM);
-        if (this.rand.nextInt(200) == 0) {
-            k2 = k + this.rand.nextInt(16);
-            l2 = l + this.rand.nextInt(16);
-            i2 = 63;
-            new WorldGenMidnightVillage().generate(this.worldObj, this.rand, k2, i2, l2);
-        }
-        doGen = TerrainGen.populate(par1IChunkProvider, this.worldObj, this.rand, par2, par3, false, PopulateChunkEvent.Populate.EventType.CUSTOM);
         if (this.rand.nextInt(8) == 0) {
             k2 = k + this.rand.nextInt(16);
             l2 = l + this.rand.nextInt(16);

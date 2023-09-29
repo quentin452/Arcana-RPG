@@ -50,6 +50,8 @@ public class FileInjector {
         boolean enableARCANA_RPG_WorldGenCrystalliumTemple = modConfig.isARCANA_RPG_WorldGenCrystalliumTempleEnabled();
         boolean enableARCANA_RPG_WorldGenCrystalliumShrine = modConfig.isARCANA_RPG_WorldGenCrystalliumShrineEnabled();
         boolean enableARCANA_RPG_WorldGenCrystalliumCoocoon = modConfig.isARCANA_RPG_WorldGenCrystalliumCoocoonEnabled();
+        boolean enableARCANA_RPG_WorldGenMidnightVillage = modConfig.isARCANA_RPG_WorldGenMidnightVillageEnabled();
+        boolean enableARCANA_RPG_WorldGenRuneAltar = modConfig.isARCANA_RPG_WorldGenRuneAltarEnabled();
 
         // Path to the destination directory within the Minecraft instance folder
         String destinationDirectoryPath = new File(minecraftDir, "structures/active").getAbsolutePath();
@@ -87,7 +89,9 @@ public class FileInjector {
             "ARCANA_RPG_WorldGenCaveMushrooms3V1.0.rcst",
             "ARCANA_RPG_WorldGenCrystalliumTempleV1.0.rcst",
             "ARCANA_RPG_WorldGenCrystalliumShrineV1.0.rcst",
-            "ARCANA_RPG_WorldGenCrystalliumCoocoonV1.0.rcst"
+            "ARCANA_RPG_WorldGenCrystalliumCoocoonV1.0.rcst",
+            "ARCANA_RPG_WorldGenMidnightVillageV1.0.rcst",
+            "ARCANA_RPG_WorldGenRuneAltarV1.0.rcst"
 
         };
 
@@ -148,6 +152,8 @@ public class FileInjector {
                 else if (i == 29) isEnabled = enableARCANA_RPG_WorldGenCrystalliumTemple;
                 else if (i == 30) isEnabled = enableARCANA_RPG_WorldGenCrystalliumShrine;
                 else if (i == 31) isEnabled = enableARCANA_RPG_WorldGenCrystalliumCoocoon;
+                else if (i == 32) isEnabled = enableARCANA_RPG_WorldGenMidnightVillage;
+                else if (i == 33) isEnabled = enableARCANA_RPG_WorldGenRuneAltar;
 
 
                 if (isEnabled) {

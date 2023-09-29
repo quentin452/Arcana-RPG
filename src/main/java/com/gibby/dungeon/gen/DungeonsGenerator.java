@@ -55,7 +55,7 @@ public class DungeonsGenerator implements IWorldGenerator
         for (int i = 0; i < 1; ++i) {
             generateOre(random, chunkX, chunkZ, world, Dungeons.amethystOre, 4, 40);
         }
-  //      generateStructure(random, chunkX, chunkZ, world, new WorldGenCrystalliumCoocoon(), 100, 60);
+   //     generateStructure(random, chunkX, chunkZ, world, new WorldGenRuneAltar(), 100, 60);
     }
 
     private void generateOre(Random random, int chunkX, int chunkZ, World world, Block oreBlock, int veinSize, int maxHeight) {

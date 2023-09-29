@@ -201,4 +201,10 @@ public class ModConfig {
     public boolean isARCANA_RPG_WorldGenCrystalliumCoocoonEnabled() {
         return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenCrystalliumCoocoonV1.0.rcst", true).getBoolean();
     }
+    public boolean isARCANA_RPG_WorldGenMidnightVillageEnabled() {
+        return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenMidnightVillageV1.0.rcst", true).getBoolean();
+    }
+    public boolean isARCANA_RPG_WorldGenRuneAltarEnabled() {
+        return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenRuneAltarV1.0.rcst", true).getBoolean();
+    }
 }
