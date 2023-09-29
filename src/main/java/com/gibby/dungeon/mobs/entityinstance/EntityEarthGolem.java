@@ -4,27 +4,24 @@ package com.gibby.dungeon.mobs.entityinstance;
 
 import com.gibby.dungeon.Dungeons;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.monster.EntityIronGolem;
+import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 
-public class EntityEarthGolem extends EntityIronGolem
+public class EntityEarthGolem extends EntityMob
 {
     public EntityEarthGolem(final World par1World) {
         super(par1World);
         this.isImmuneToFire = true;
-        this.targetTasks.addTask(2, (EntityAIBase)new EntityAINearestAttackableTarget((EntityCreature)this, (Class)EntityPlayer.class, 0, true));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
     }
 
     protected void applyEntityAttributes() {
@@ -36,7 +33,7 @@ public class EntityEarthGolem extends EntityIronGolem
 
     public boolean attackEntityAsMob(final Entity par1Entity) {
         if (par1Entity instanceof EntityLivingBase) {
-            ((EntityLivingBase)par1Entity).attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), 3.0f);
+            par1Entity.attackEntityFrom(DamageSource.causeMobDamage(this), 3.0f);
             ((EntityLivingBase)par1Entity).addPotionEffect(new PotionEffect(Dungeons.shock.id, 50, 0));
         }
         return true;
@@ -82,6 +79,6 @@ public class EntityEarthGolem extends EntityIronGolem
     }
 
     public boolean getCanSpawnHere() {
-        return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && super.getCanSpawnHere() && this.posY < 55.0;
+        return super.getCanSpawnHere() && this.posY < 55.0;
     }
 }

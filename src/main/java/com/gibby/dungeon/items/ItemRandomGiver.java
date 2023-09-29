@@ -165,7 +165,7 @@ public class ItemRandomGiver extends Item {
     new ItemEntry(Dungeons.regenTome, 1, 1)
     };
 
-    public static 1temEntry[] DungeonChest = {
+    public static ItemEntry[] DungeonChest = {
         new ItemEntry(Items.saddle, 1, 1),
         new ItemEntry(Items.iron_ingot, 1, 4),
         new ItemEntry(Items.bread, 1, 1),
