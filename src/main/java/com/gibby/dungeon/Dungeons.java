@@ -15,12 +15,14 @@ import com.gibby.dungeon.proxy.packetPipelines.PacketPipeline;
 import com.gibby.dungeon.util.DungeonEventHandler;
 import com.gibby.dungeon.util.DungeonPotion;
 import com.gibby.dungeon.util.DungeonPotions;
+import com.gibby.dungeon.util.FileInjector;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -41,12 +43,21 @@ import net.minecraft.potion.Potion;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.ForgeModContainer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.EnumHelper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.Random;
+import java.util.stream.Stream;
 
 @Mod(modid = Dungeons.MODID, version = "1.4.2",dependencies = "required-after:reccomplex;")
 public class Dungeons
@@ -700,8 +711,10 @@ public class Dungeons
         EntityRegistry.addSpawn(EntityCrystox.class, 120, 4, 4, EnumCreatureType.monster, Dungeons.crystalliumPlainsBiome);
         ChestSetup.addChestItems();
     }
+
     @Mod.EventHandler
     public void preinit(final FMLPreInitializationEvent event) {
+        FileInjector.preinit(event);
         final Configuration config = new Configuration(new File(event.getModConfigurationDirectory(), "Arcana_RPG.cfg"));
         config.load();
         config.addCustomCategoryComment("Misc", "The Entity Id's Disabled will wipe vanilla minecraft spawners for Arcana RPG.");
