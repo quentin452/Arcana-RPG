@@ -44,11 +44,10 @@ import net.minecraftforge.common.util.EnumHelper;
 import java.io.File;
 import java.util.Random;
 
-@Mod(modid = Dungeons.MODID, version = "1.4.2",dependencies = "required-after:reccomplex;")
+@Mod(modid = Dungeons.MODID, version = "1.4.3",dependencies = "required-after:reccomplex;")
 public class Dungeons
 {
     public static final String MODID = "gibby_dungeons";
-    public static final String VERSION = "1.4.2";
     @SidedProxy(clientSide = "com.gibby.dungeon.proxy.ClientProxy", serverSide = "com.gibby.dungeon.proxy.CommonProxy")
     public static CommonProxy proxy;
     @Mod.Instance(Dungeons.MODID)
