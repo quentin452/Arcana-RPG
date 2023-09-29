@@ -63,6 +63,25 @@ public class FileInjector {
         };
 
         try {
+            // Get all the files in the destination directory
+            File destinationDirectory = new File(destinationDirectoryPath);
+            File[] filesInDestination = destinationDirectory.listFiles();
+
+            // Delete the files that are not in the list of allowed files.
+            if (filesInDestination != null) {
+                for (File file : filesInDestination) {
+                    if (file.isFile()) {
+                        String fileName = file.getName();
+                        if (!isValidFileName(fileName, sourceFiles)) {
+                            if (file.delete()) {
+                                System.out.println("File deleted: " + fileName + " (not in the allowed list)");
+                            } else {
+                                System.err.println("Failed to delete file: " + fileName);
+                            }
+                        }
+                    }
+                }
+            }
             for (int i = 0; i < sourceFiles.length; i++) {
                 String sourceFileName = sourceFiles[i];
                 boolean isEnabled = false;
@@ -115,5 +134,13 @@ public class FileInjector {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    private static boolean isValidFileName(String fileName, String[] allowedFiles) {
+        for (String allowedFile : allowedFiles) {
+            if (fileName.equals(allowedFile)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
