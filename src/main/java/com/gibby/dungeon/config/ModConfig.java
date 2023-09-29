@@ -159,4 +159,46 @@ public class ModConfig {
     public boolean isARCANA_RPG_WorldGenWarlordDungeonEnabled() {
         return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenWarlordDungeonV1.1.rcst", true).getBoolean();
     }
+    public boolean isARCANA_RPG_WorldGenAmethystRuinsEnabled() {
+        return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenAmethystRuinsV1.0.rcst", true).getBoolean();
+    }
+    public boolean isARCANA_RPG_WorldGenGhostWitherTowerEnabled() {
+        return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenGhostWitherTowerV1.0.rcst", true).getBoolean();
+    }
+    public boolean isARCANA_RPG_WorldGenCrystalHouseEnabled() {
+        return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenCrystalHouseV1.0.rcst", true).getBoolean();
+    }
+    public boolean isARCANA_RPG_WorldGenCrystalliumVillageEnabled() {
+        return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenCrystalliumVillageV1.0.rcst", true).getBoolean();
+    }
+    public boolean isARCANA_RPG_WorldGenCrystalBamboo1Enabled() {
+        return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenCrystalBamboo1V1.0.rcst", true).getBoolean();
+    }
+    public boolean isARCANA_RPG_WorldGenCrystalBamboo2Enabled() {
+        return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenCrystalBamboo2V1.0.rcst", true).getBoolean();
+    }
+    public boolean isARCANA_RPG_WorldGenCrystalBamboo3Enabled() {
+        return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenCrystalBamboo3V1.0.rcst", true).getBoolean();
+    }
+    public boolean isARCANA_RPG_WorldGenCrystalBamboo4Enabled() {
+        return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenCrystalBamboo4V1.0.rcst", true).getBoolean();
+    }
+    public boolean isARCANA_RPG_WorldGenCaveMushrooms1Enabled() {
+        return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenCaveMushrooms1V1.0.rcst", true).getBoolean();
+    }
+    public boolean isARCANA_RPG_WorldGenCaveMushrooms2Enabled() {
+        return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenCaveMushrooms2V1.0.rcst", true).getBoolean();
+    }
+    public boolean isARCANA_RPG_WorldGenCaveMushrooms3Enabled() {
+        return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenCaveMushrooms3V1.0.rcst", true).getBoolean();
+    }
+    public boolean isARCANA_RPG_WorldGenCrystalliumTempleEnabled() {
+        return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenCrystalliumTempleV1.0.rcst", true).getBoolean();
+    }
+    public boolean isARCANA_RPG_WorldGenCrystalliumShrineEnabled() {
+        return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenCrystalliumShrineV1.0.rcst", true).getBoolean();
+    }
+    public boolean isARCANA_RPG_WorldGenCrystalliumCoocoonEnabled() {
+        return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenCrystalliumCoocoonV1.0.rcst", true).getBoolean();
+    }
 }

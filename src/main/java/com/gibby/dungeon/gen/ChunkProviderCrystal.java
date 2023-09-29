@@ -303,18 +303,6 @@ public class ChunkProviderCrystal implements IChunkProvider
         int l2;
         int i2;
         boolean doGen;
-        for (doGen = TerrainGen.populate(par1IChunkProvider, this.worldObj, this.rand, par2, par3, false, PopulateChunkEvent.Populate.EventType.CUSTOM), i1 = 0L; doGen && i1 < 20L; ++i1) {
-            k2 = k + this.rand.nextInt(16);
-            l2 = l + this.rand.nextInt(16);
-            i2 = this.rand.nextInt(60) + 60;
-            new WorldGenCrystalFoliage().generate(this.worldObj, this.rand, k2, i2, l2);
-        }
-        for (doGen = TerrainGen.populate(par1IChunkProvider, this.worldObj, this.rand, par2, par3, false, PopulateChunkEvent.Populate.EventType.CUSTOM), i1 = 0L; doGen && i1 < 12L; ++i1) {
-            k2 = k + this.rand.nextInt(16);
-            l2 = l + this.rand.nextInt(16);
-            i2 = this.rand.nextInt(60);
-            new WorldGenCaveMushrooms().generate(this.worldObj, this.rand, k2, i2, l2);
-        }
         for (doGen = TerrainGen.populate(par1IChunkProvider, this.worldObj, this.rand, par2, par3, false, PopulateChunkEvent.Populate.EventType.CUSTOM), i1 = 0L; doGen && i1 < 5L; ++i1) {
             k2 = k + this.rand.nextInt(16);
             l2 = l + this.rand.nextInt(16);
@@ -325,7 +313,7 @@ public class ChunkProviderCrystal implements IChunkProvider
             k2 = k + this.rand.nextInt(16);
             l2 = l + this.rand.nextInt(16);
             i2 = this.rand.nextInt(60) + 60;
-            new WorldGenCrystalBamboo().generate(this.worldObj, this.rand, k2, i2, l2);
+            new WorldGenCrystalFoliage().generate(this.worldObj, this.rand, k2, i2, l2);
         }
         for (doGen = TerrainGen.populate(par1IChunkProvider, this.worldObj, this.rand, par2, par3, false, PopulateChunkEvent.Populate.EventType.CUSTOM), i1 = 0L; doGen && i1 < 100L; ++i1) {
             k2 = k + this.rand.nextInt(16);
@@ -344,34 +332,6 @@ public class ChunkProviderCrystal implements IChunkProvider
             l2 = l + this.rand.nextInt(16);
             i2 = this.rand.nextInt(60);
             new WorldGenCrystalMinable(Dungeons.crystalOre, 8).generate(this.worldObj, this.rand, k2, i2, l2);
-        }
-        doGen = TerrainGen.populate(par1IChunkProvider, this.worldObj, this.rand, par2, par3, false, PopulateChunkEvent.Populate.EventType.CUSTOM);
-        if (this.rand.nextInt(80) == 0) {
-            k2 = k + this.rand.nextInt(16);
-            l2 = l + this.rand.nextInt(16);
-            i2 = this.rand.nextInt(5) + 60;
-            new WorldGenAmethystRuins().generate(this.worldObj, this.rand, k2, i2, l2);
-        }
-        doGen = TerrainGen.populate(par1IChunkProvider, this.worldObj, this.rand, par2, par3, false, PopulateChunkEvent.Populate.EventType.CUSTOM);
-        if (this.rand.nextInt(60) == 0) {
-            k2 = k + this.rand.nextInt(16);
-            l2 = l + this.rand.nextInt(16);
-            i2 = this.rand.nextInt(5) + 60;
-            new WorldGenGhostWitherTower().generate(this.worldObj, this.rand, k2, i2, l2);
-        }
-        doGen = TerrainGen.populate(par1IChunkProvider, this.worldObj, this.rand, par2, par3, false, PopulateChunkEvent.Populate.EventType.CUSTOM);
-        if (this.rand.nextInt(1000) == 0) {
-            k2 = k + this.rand.nextInt(16);
-            l2 = l + this.rand.nextInt(16);
-            i2 = this.rand.nextInt(20) + 120;
-            new WorldGenCrystalliumVillage().generate(this.worldObj, this.rand, k2, i2, l2);
-        }
-        doGen = TerrainGen.populate(par1IChunkProvider, this.worldObj, this.rand, par2, par3, false, PopulateChunkEvent.Populate.EventType.CUSTOM);
-        if (this.rand.nextInt(60) == 0) {
-            k2 = k + this.rand.nextInt(16);
-            l2 = l + this.rand.nextInt(16);
-            i2 = this.rand.nextInt(5) + 60;
-            new WorldGenCrystalHouse().generate(this.worldObj, this.rand, k2, i2, l2);
         }
         doGen = TerrainGen.populate(par1IChunkProvider, this.worldObj, this.rand, par2, par3, false, PopulateChunkEvent.Populate.EventType.CUSTOM);
         if (this.rand.nextInt(2) == 0) {

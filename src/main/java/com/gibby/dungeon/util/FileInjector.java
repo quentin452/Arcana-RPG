@@ -36,6 +36,20 @@ public class FileInjector {
         boolean enableARCANA_RPG_WorldGenVampireCastle = modConfig.isARCANA_RPG_WorldGenVampireCastleEnabled();
         boolean enableARCANA_RPG_WorldGenVoidDungeon = modConfig.isARCANA_RPG_WorldGenVoidDungeonEnabled();
         boolean enableARCANA_RPG_WorldGenWarlordDungeon = modConfig.isARCANA_RPG_WorldGenWarlordDungeonEnabled();
+        boolean enableARCANA_RPG_WorldGenAmethystRuins = modConfig.isARCANA_RPG_WorldGenAmethystRuinsEnabled();
+        boolean enableARCANA_RPG_WorldGenGhostWitherTower = modConfig.isARCANA_RPG_WorldGenGhostWitherTowerEnabled();
+        boolean enableARCANA_RPG_WorldGenCrystalHouse = modConfig.isARCANA_RPG_WorldGenCrystalHouseEnabled();
+        boolean enableARCANA_RPG_WorldGenCrystalliumVillage = modConfig.isARCANA_RPG_WorldGenCrystalliumVillageEnabled();
+        boolean enableARCANA_RPG_WorldGenCrystalBamboo4 = modConfig.isARCANA_RPG_WorldGenCrystalBamboo4Enabled();
+        boolean enableARCANA_RPG_WorldGenCrystalBamboo3 = modConfig.isARCANA_RPG_WorldGenCrystalBamboo3Enabled();
+        boolean enableARCANA_RPG_WorldGenCrystalBamboo2 = modConfig.isARCANA_RPG_WorldGenCrystalBamboo2Enabled();
+        boolean enableARCANA_RPG_WorldGenCrystalBamboo1 = modConfig.isARCANA_RPG_WorldGenCrystalBamboo1Enabled();
+        boolean enableARCANA_RPG_WorldGenCaveMushrooms1 = modConfig.isARCANA_RPG_WorldGenCaveMushrooms1Enabled();
+        boolean enableARCANA_RPG_WorldGenCaveMushrooms2 = modConfig.isARCANA_RPG_WorldGenCaveMushrooms2Enabled();
+        boolean enableARCANA_RPG_WorldGenCaveMushrooms3 = modConfig.isARCANA_RPG_WorldGenCaveMushrooms3Enabled();
+        boolean enableARCANA_RPG_WorldGenCrystalliumTemple = modConfig.isARCANA_RPG_WorldGenCrystalliumTempleEnabled();
+        boolean enableARCANA_RPG_WorldGenCrystalliumShrine = modConfig.isARCANA_RPG_WorldGenCrystalliumShrineEnabled();
+        boolean enableARCANA_RPG_WorldGenCrystalliumCoocoon = modConfig.isARCANA_RPG_WorldGenCrystalliumCoocoonEnabled();
 
         // Path to the destination directory within the Minecraft instance folder
         String destinationDirectoryPath = new File(minecraftDir, "structures/active").getAbsolutePath();
@@ -59,7 +73,22 @@ public class FileInjector {
             "ARCANA_RPG_WorldGenTavernV1.0.rcst",
             "ARCANA_RPG_WorldGenVampireCastleV1.1.rcst",
             "ARCANA_RPG_WorldGenVoidDungeonV1.0.rcst",
-            "ARCANA_RPG_WorldGenWarlordDungeonV1.1.rcst"
+            "ARCANA_RPG_WorldGenWarlordDungeonV1.1.rcst",
+            "ARCANA_RPG_WorldGenAmethystRuinsV1.0.rcst",
+            "ARCANA_RPG_WorldGenGhostWitherTowerV1.0.rcst",
+            "ARCANA_RPG_WorldGenCrystalHouseV1.0.rcst",
+            "ARCANA_RPG_WorldGenCrystalliumVillageV1.0.rcst",
+            "ARCANA_RPG_WorldGenCrystalBamboo4V1.0.rcst",
+            "ARCANA_RPG_WorldGenCrystalBamboo3V1.0.rcst",
+            "ARCANA_RPG_WorldGenCrystalBamboo2V1.0.rcst",
+            "ARCANA_RPG_WorldGenCrystalBamboo1V1.0.rcst",
+            "ARCANA_RPG_WorldGenCaveMushrooms1V1.0.rcst",
+            "ARCANA_RPG_WorldGenCaveMushrooms2V1.0.rcst",
+            "ARCANA_RPG_WorldGenCaveMushrooms3V1.0.rcst",
+            "ARCANA_RPG_WorldGenCrystalliumTempleV1.0.rcst",
+            "ARCANA_RPG_WorldGenCrystalliumShrineV1.0.rcst",
+            "ARCANA_RPG_WorldGenCrystalliumCoocoonV1.0.rcst"
+
         };
 
         try {
@@ -105,6 +134,21 @@ public class FileInjector {
                 else if (i == 15) isEnabled = enableARCANA_RPG_WorldGenVampireCastle;
                 else if (i == 16) isEnabled = enableARCANA_RPG_WorldGenVoidDungeon;
                 else if (i == 17) isEnabled = enableARCANA_RPG_WorldGenWarlordDungeon;
+                else if (i == 18) isEnabled = enableARCANA_RPG_WorldGenAmethystRuins;
+                else if (i == 19) isEnabled = enableARCANA_RPG_WorldGenGhostWitherTower;
+                else if (i == 20) isEnabled = enableARCANA_RPG_WorldGenCrystalHouse;
+                else if (i == 21) isEnabled = enableARCANA_RPG_WorldGenCrystalliumVillage;
+                else if (i == 22) isEnabled = enableARCANA_RPG_WorldGenCrystalBamboo4;
+                else if (i == 23) isEnabled = enableARCANA_RPG_WorldGenCrystalBamboo3;
+                else if (i == 24) isEnabled = enableARCANA_RPG_WorldGenCrystalBamboo2;
+                else if (i == 25) isEnabled = enableARCANA_RPG_WorldGenCrystalBamboo1;
+                else if (i == 26) isEnabled = enableARCANA_RPG_WorldGenCaveMushrooms1;
+                else if (i == 27) isEnabled = enableARCANA_RPG_WorldGenCaveMushrooms2;
+                else if (i == 28) isEnabled = enableARCANA_RPG_WorldGenCaveMushrooms3;
+                else if (i == 29) isEnabled = enableARCANA_RPG_WorldGenCrystalliumTemple;
+                else if (i == 30) isEnabled = enableARCANA_RPG_WorldGenCrystalliumShrine;
+                else if (i == 31) isEnabled = enableARCANA_RPG_WorldGenCrystalliumCoocoon;
+
 
                 if (isEnabled) {
                     // Get an InputStream from the resource within the JAR

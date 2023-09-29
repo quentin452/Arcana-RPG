@@ -35,7 +35,7 @@ public class DungeonsGenerator implements IWorldGenerator
             new WorldGenNetherMinable(oreBlock, veinSize).generate(world, random, coordX, coordY, coordZ);
         }
     }
-
+        Random rand = new Random();
     private void generateSurface(Random random, int chunkX, int chunkZ, World world) {
         for (int i = 0; i < 18; ++i) {
             generateOre(random, chunkX, chunkZ, world, Dungeons.copperore, 8, 60);
@@ -55,6 +55,7 @@ public class DungeonsGenerator implements IWorldGenerator
         for (int i = 0; i < 1; ++i) {
             generateOre(random, chunkX, chunkZ, world, Dungeons.amethystOre, 4, 40);
         }
+  //      generateStructure(random, chunkX, chunkZ, world, new WorldGenCrystalliumCoocoon(), 100, 60);
     }
 
     private void generateOre(Random random, int chunkX, int chunkZ, World world, Block oreBlock, int veinSize, int maxHeight) {
@@ -62,5 +63,13 @@ public class DungeonsGenerator implements IWorldGenerator
         int coordZ = chunkZ + random.nextInt(16);
         int coordY = random.nextInt(maxHeight);
         new WorldGenMinable(oreBlock, veinSize).generate(world, random, coordX, coordY, coordZ);
+    }
+    private void generateStructure(Random random, int chunkX, int chunkZ, World world, WorldGenerator generator, int chance, int minHeight) {
+        if (random.nextInt(chance) == 0) {
+            int coordX = chunkX + random.nextInt(16);
+            int coordZ = chunkZ + random.nextInt(16);
+            int coordY = random.nextInt(10) + minHeight;
+            generator.generate(world, random, coordX, coordY, coordZ);
+        }
     }
 }

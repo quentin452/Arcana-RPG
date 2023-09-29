@@ -310,12 +310,6 @@ public class ChunkProviderCrystalliumPlains implements IChunkProvider
             i2 = this.rand.nextInt(20) + 60;
             new WorldGenCrystalliumPlainsFoliage().generate(this.worldObj, this.rand, k2, i2, l2);
         }
-        for (doGen = TerrainGen.populate(par1IChunkProvider, this.worldObj, this.rand, par2, par3, false, PopulateChunkEvent.Populate.EventType.CUSTOM), i1 = 0L; doGen && i1 < 12L; ++i1) {
-            k2 = k + this.rand.nextInt(16);
-            l2 = l + this.rand.nextInt(16);
-            i2 = this.rand.nextInt(60);
-            new WorldGenCaveMushrooms().generate(this.worldObj, this.rand, k2, i2, l2);
-        }
         for (doGen = TerrainGen.populate(par1IChunkProvider, this.worldObj, this.rand, par2, par3, false, PopulateChunkEvent.Populate.EventType.CUSTOM), i1 = 0L; doGen && i1 < 5L; ++i1) {
             k2 = k + this.rand.nextInt(16);
             l2 = l + this.rand.nextInt(16);
@@ -345,34 +339,6 @@ public class ChunkProviderCrystalliumPlains implements IChunkProvider
         l2 = l + this.rand.nextInt(16);
         i2 = this.rand.nextInt(20) + 60;
         new WorldGenCrystalTrees().generate(this.worldObj, this.rand, k2, i2, l2);
-        doGen = TerrainGen.populate(par1IChunkProvider, this.worldObj, this.rand, par2, par3, false, PopulateChunkEvent.Populate.EventType.CUSTOM);
-        if (this.rand.nextInt(3) == 0) {
-            k2 = k + this.rand.nextInt(16);
-            l2 = l + this.rand.nextInt(16);
-            i2 = this.rand.nextInt(10) + 60;
-            new WorldGenCrystalliumShrine().generate(this.worldObj, this.rand, k2, i2, l2);
-        }
-        doGen = TerrainGen.populate(par1IChunkProvider, this.worldObj, this.rand, par2, par3, false, PopulateChunkEvent.Populate.EventType.CUSTOM);
-        if (this.rand.nextInt(3) == 0) {
-            k2 = k + this.rand.nextInt(16);
-            l2 = l + this.rand.nextInt(16);
-            i2 = this.rand.nextInt(10) + 60;
-            new WorldGenCrystalliumTemple().generate(this.worldObj, this.rand, k2, i2, l2);
-        }
-        doGen = TerrainGen.populate(par1IChunkProvider, this.worldObj, this.rand, par2, par3, false, PopulateChunkEvent.Populate.EventType.CUSTOM);
-        if (this.rand.nextInt(1000) == 0) {
-            k2 = k + this.rand.nextInt(16);
-            l2 = l + this.rand.nextInt(16);
-            i2 = this.rand.nextInt(20) + 100;
-            new WorldGenCrystalliumVillage().generate(this.worldObj, this.rand, k2, i2, l2);
-        }
-        doGen = TerrainGen.populate(par1IChunkProvider, this.worldObj, this.rand, par2, par3, false, PopulateChunkEvent.Populate.EventType.CUSTOM);
-        if (this.rand.nextInt(5) == 0) {
-            k2 = k + this.rand.nextInt(16);
-            l2 = l + this.rand.nextInt(16);
-            i2 = this.rand.nextInt(10) + 60;
-            new WorldGenCrystalliumCoocoon().generate(this.worldObj, this.rand, k2, i2, l2);
-        }
         doGen = TerrainGen.populate(par1IChunkProvider, this.worldObj, this.rand, par2, par3, false, PopulateChunkEvent.Populate.EventType.CUSTOM);
         if (this.rand.nextInt(5) == 0) {
             k2 = k + this.rand.nextInt(16);

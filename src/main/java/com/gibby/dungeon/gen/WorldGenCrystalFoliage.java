@@ -1,5 +1,3 @@
-
-
 package com.gibby.dungeon.gen;
 
 import com.gibby.dungeon.Dungeons;
@@ -9,8 +7,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class WorldGenCrystalFoliage
-{
+public class WorldGenCrystalFoliage {
     private final Block[] foliageBlocks;
 
     public WorldGenCrystalFoliage() {
@@ -34,3 +31,4 @@ public class WorldGenCrystalFoliage
         return true;
     }
 }
+
