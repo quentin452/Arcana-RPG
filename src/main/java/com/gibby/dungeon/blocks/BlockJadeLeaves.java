@@ -17,12 +17,12 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.Random;
 
-public class BlockMidnightLeaves extends BlockLeaves
+public class BlockJadeLeaves extends BlockLeaves
 {
-    public BlockMidnightLeaves() {
+    public BlockJadeLeaves() {
         super();
         this.setHarvestLevel("shears", 0);
-        this.setStepSound(BlockMidnightLeaves.soundTypeGrass);
+        this.setStepSound(BlockJadeLeaves.soundTypeGrass);
         this.setHardness(1.0f);
         this.setResistance(1.0f);
     }
@@ -43,7 +43,7 @@ public class BlockMidnightLeaves extends BlockLeaves
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(final IIconRegister iconRegister) {
         this.blockIcon = iconRegister.registerIcon(
-            Dungeons.MODID + ":midnightLeaves");
+            Dungeons.MODID + ":jadeLeaves");
     }
 
     @Override
@@ -55,7 +55,7 @@ public class BlockMidnightLeaves extends BlockLeaves
         int leafCount = 0;
         for (EnumFacing facing : EnumFacing.values()) {
             Block adjacentBlock = world.getBlock(x + facing.getFrontOffsetX(), y + facing.getFrontOffsetY(), z + facing.getFrontOffsetZ());
-            if (adjacentBlock == leafBlock && adjacentBlock instanceof BlockMidnightLeaves) {
+            if (adjacentBlock == leafBlock && adjacentBlock instanceof BlockJadeLeaves) {
                 leafCount++;
                 if (leafCount >= 2) {
                     return true;
@@ -69,7 +69,7 @@ public class BlockMidnightLeaves extends BlockLeaves
     public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {
         Block block = world.getBlock(x, y, z);
         Block adjacentBlock = world.getBlock(x + ForgeDirection.VALID_DIRECTIONS[side].offsetX, y + ForgeDirection.VALID_DIRECTIONS[side].offsetY, z + ForgeDirection.VALID_DIRECTIONS[side].offsetZ);
-        if (block == adjacentBlock && block instanceof BlockMidnightLeaves) {
+        if (block == adjacentBlock && block instanceof BlockJadeLeaves) {
             if (areAtLeastTwoAdjacentBlocksLeaves(world, x, y, z, block)) {
                 return false;
             }
@@ -80,7 +80,7 @@ public class BlockMidnightLeaves extends BlockLeaves
     }
     @Override
     public int getRenderType() {
-     return super.getRenderType();
+        return super.getRenderType();
     }
 
     Random rand = new Random();
