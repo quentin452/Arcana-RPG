@@ -6,6 +6,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -83,38 +84,36 @@ public class BlockMidnightLeaves extends BlockLeaves
      return super.getRenderType();
     }
 
-    Random rand = new Random();
-    @Override
-    public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
-        if(rand.nextInt(30) == 0) {
-            dropBlockAsItem(world, x, y, z, new ItemStack(Items.stick));
-        }
-        super.breakBlock(world, x, y, z, block, meta);
-    }
-
-    @Override
-    public void updateTick(World world, int x, int y, int z, Random random) {
-        if(!world.isRemote && random.nextInt(5) == 0) {
-            int light = world.getBlock(x, y, z).getLightValue(world, x, y, z);
-            if(light >= 9) {
-                return;
+    public void updateTick(final World par1World, final int par2, final int par3, final int par4,
+                           final Random par5Random) {
+        int var7 = 30;
+        int totaldist;
+        if (!par1World.isRemote && par1World
+            .checkChunksExist(par2 - var7, par3 - var7, par4 - var7, par2 + var7, par3 + var7, par4 + var7)) {
+            for (int var8 = -var7; var8 <= var7; ++var8) {
+                for (int var9 = -var7; var9 <= 0; ++var9) {
+                    for (int var10 = -var7; var10 <= var7; ++var10) {
+                        totaldist = Math.abs(var8) + Math.abs(var9) + Math.abs(var10);
+                        if (totaldist <= 5) {
+                            Block bid = par1World.getBlock(par2 + var8, par3 + var9, par4 + var10);
+                            if (bid != null && canSustainLeaves(par1World, par2 + var8, par3 + var9, par4 + var10)) {
+                                bid = par1World.getBlock(par2, par3 - 1, par4);
+                                return;
+                            }
+                        }
+                    }
+                }
             }
-            int metadata = world.getBlockMetadata(x, y, z);
-            if(metadata  > 0) {
-                world.setBlockMetadataWithNotify(x, y, z, metadata -1, 2);
-            } else {
-                removeLeaves(world, x, y, z);
-            }
+            this.removeLeaves(par1World, par2, par3, par4);
         }
-        super.updateTick(world, x, y, z, random);
     }
 
-    protected void removeLeaves(World world, int x, int y, int z) {
-        world.setBlockToAir(x, y, z);
+    private void removeLeaves(final World par1World, final int par2, final int par3, final int par4) {
+        par1World.setBlock(par2, par3, par4, Blocks.air, 0, 2);
     }
-
-    @Override
-    public boolean canSustainLeaves(IBlockAccess world, int x, int y, int z) {
-        return true;
+    public boolean canSustainLeaves(IBlockAccess world, int x, int y, int z)
+    {
+        Block block = world.getBlock(x, y, z);
+        return block == Dungeons.midnightLog;
     }
 }

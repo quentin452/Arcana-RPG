@@ -8,6 +8,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 
 import java.util.Random;
 
@@ -23,7 +24,10 @@ public class BlockJadeWood extends Block
         this.setHardness(4.0f);
         this.setResistance(4.0f);
     }
-
+    @Override
+    public boolean isWood(IBlockAccess world, int x, int y, int z) {
+        return true;
+    }
     public Item getItemDropped(final int p_149650_1_, final Random p_149650_2_, final int p_149650_3_) {
         return Item.getItemFromBlock(Dungeons.jadeLog);
     }
