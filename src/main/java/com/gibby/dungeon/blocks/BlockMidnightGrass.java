@@ -13,6 +13,7 @@ import java.util.Random;
 
 public class BlockMidnightGrass extends Block
 {
+
     @SideOnly(Side.CLIENT)
     public IIcon[] icons;
 

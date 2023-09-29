@@ -45,7 +45,7 @@ import net.minecraftforge.common.util.EnumHelper;
 import java.io.File;
 import java.util.Random;
 
-@Mod(modid = Dungeons.MODID, version = "1.4.3",dependencies = "required-after:reccomplex;")
+@Mod(modid = Dungeons.MODID, version = "1.4.4",dependencies = "required-after:reccomplex;")
 public class Dungeons
 {
     public static final String MODID = "gibby_dungeons";
@@ -386,6 +386,16 @@ public class Dungeons
     public static Block midnightBramble;
     public static Block altarBricks;
     public static Block midnightCracks;
+    public static Block blockUnbreableStone;
+    public static Block blockUnbreableLadder;
+    public static Block blockUnbreableOakPlanks;
+    public static Block blockUnbreableGlowstone;
+    public static Block blockUnbreableGrass;
+    public static Block blockUnbreableCobbleStone;
+    public static Block blockUnbreableStonebrick;
+    public static Block blockUnbreableStone_slab;
+    public static Block blockUnbreableStone_brick_stairs;
+    public static Block blockUnbreableMycelium;
     public static Item cyellow;
     public static Item cgreen;
     public static Item cblue;
@@ -1153,6 +1163,16 @@ public class Dungeons
         GameRegistry.registerBlock(Dungeons.midnightBramble = new BlockMidnightSpikes().setBlockName("midnightBramble").setBlockTextureName(Dungeons.MODID + ":" + "midnightbramble").setCreativeTab(Dungeons.Blocks), "dungeons_midnightBramble");
         GameRegistry.registerBlock(Dungeons.altarBricks = new BlockOre().setBlockName("altarBricks").setBlockTextureName(Dungeons.MODID + ":" + "templebricks").setCreativeTab(Dungeons.Blocks), "dungeons_altarBricks");
         GameRegistry.registerBlock(Dungeons.midnightCracks = new BlockOre().setBlockName("midnightCracks").setBlockTextureName(Dungeons.MODID + ":" + "midnightcracks").setCreativeTab(Dungeons.Blocks).setLightLevel(0.5f).setLightOpacity(200).setHardness(20.0f), "dungeons_midnightCracks");
+        GameRegistry.registerBlock(Dungeons.blockUnbreableStone = new BlockUnbreakableStone().setBlockName("blockUnbreableStone").setBlockTextureName(Dungeons.MODID + ":" + "blockUnbreableStone").setCreativeTab(Dungeons.Blocks), "blockUnbreableStone");
+        GameRegistry.registerBlock(Dungeons.blockUnbreableLadder = new BlockUnbreakableLadder().setBlockName("blockUnbreableLadder").setBlockTextureName(Dungeons.MODID + ":" + "blockUnbreableLadder").setCreativeTab(Dungeons.Blocks), "blockUnbreableLadder");
+        GameRegistry.registerBlock(Dungeons.blockUnbreableOakPlanks = new BlockUnbreakableStone().setBlockName("blockUnbreableOakPlanks").setBlockTextureName(Dungeons.MODID + ":" + "blockUnbreableOakPlanks").setCreativeTab(Dungeons.Blocks), "blockUnbreableOakPlanks");
+        GameRegistry.registerBlock(Dungeons.blockUnbreableGlowstone = new BlockUnbreakableGlowstone().setBlockName("blockUnbreableGlowstone").setBlockTextureName(Dungeons.MODID + ":" + "blockUnbreableGlowstone").setCreativeTab(Dungeons.Blocks), "blockUnbreableGlowstone");
+        GameRegistry.registerBlock(Dungeons.blockUnbreableGrass = new BlockUnbreakableGrass().setBlockName("blockUnbreableGrass").setBlockTextureName(Dungeons.MODID + ":" + "blockUnbreableGrass").setCreativeTab(Dungeons.Blocks), "blockUnbreableGrass");
+        GameRegistry.registerBlock(Dungeons.blockUnbreableCobbleStone = new BlockUnbreakableCobbleStone().setBlockName("blockUnbreableCobbleStone").setBlockTextureName(Dungeons.MODID + ":" + "blockUnbreableCobbleStone").setCreativeTab(Dungeons.Blocks), "blockUnbreableCobbleStone");
+        GameRegistry.registerBlock(Dungeons.blockUnbreableStonebrick = new BlockUnbreakableStoneBrick().setBlockName("blockUnbreableStonebrick").setBlockTextureName(Dungeons.MODID + ":" + "blockUnbreableStonebrick").setCreativeTab(Dungeons.Blocks), "blockUnbreableStonebrick");
+        GameRegistry.registerBlock(Dungeons.blockUnbreableStone_slab = new BlockUnbreakableStoneSlab(true,Material.rock).setBlockName("blockUnbreableStone_slab").setCreativeTab(Dungeons.Blocks), "blockUnbreableStone_slab");
+        GameRegistry.registerBlock(Dungeons.blockUnbreableStone_brick_stairs = new BlockUnbreakableStoneStairs(Dungeons.blockUnbreableStonebrick,1).setBlockName("blockUnbreableStone_brick_stairs").setCreativeTab(Dungeons.Blocks), "blockUnbreableStone_stairs");
+        GameRegistry.registerBlock(Dungeons.blockUnbreableMycelium = new BlockUnbreakableMycelium().setBlockName("blockUnbreableMycelium").setCreativeTab(Dungeons.Blocks), "blockUnbreableMycelium");
         EntityRegistry.registerModEntity(EntityDarkExplosion.EntityRuneAltar.class, "EntityRuneAltar", 172, this, 60, 10, true);
         EntityRegistry.registerModEntity(EntityPoundEffect.class, "EntityPoundEffect", 173,this, 60, 1, true);
         EntityRegistry.registerModEntity(EntityPoundEffect2.class, "EntityPoundEffect2", 174,this, 60, 1, true);
