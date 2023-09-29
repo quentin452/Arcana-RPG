@@ -141,7 +141,7 @@ public class DungeonEventHandler
         }
         if (entity.getActivePotionEffect(Dungeons.shock) != null && entity.worldObj.rand.nextInt(5) == 0) {
             entity.attackEntityFrom(DamageSource.causeMobDamage(entity), 0.001f);
-            entity.worldObj.playSoundAtEntity(entity, "random.classic_hurt", 1.0f, 1.3f);
+            entity.worldObj.playSoundAtEntity(entity, "game.player.hurt", 1.0f, 1.3f);
             entity.hurtResistantTime = 5;
         }
         if (entity.getActivePotionEffect(Dungeons.growth) != null) {
