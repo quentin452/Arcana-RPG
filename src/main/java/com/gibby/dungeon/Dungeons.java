@@ -412,6 +412,18 @@ public class Dungeons
     public static Item shadowAxe;
     public static Item runeSpeedStaff;
     public static Item midnightChickenRaw;
+    public static Item randomItemGiverVampire;
+    public static Item randomItemGiverVoidDungeon;
+
+    public static Item randomItemGiverNetherStructure;
+
+    public static Item randomItemGiverMontaneDungeon;
+
+    public static Item randomItemGiverMontagneRiche;
+
+    public static Item randomItemGiverBeholder;
+    public static Item randomItemGiverdungeonChest;
+
     public static BiomeGenBase sunset;
     public static BiomeGenBase crystal;
     public static BiomeGenBase montane;
@@ -1057,6 +1069,13 @@ public class Dungeons
         GameRegistry.registerItem(Dungeons.shadowAxe = new ItemShadowAxe(this.SHADOW, 7, 10).setUnlocalizedName("shadowAxe").setTextureName(Dungeons.MODID + ":" + "nightaxe"), "dungeons_shadowAxe");
         GameRegistry.registerItem(Dungeons.titanicTome = new ItemTitanicTome().setCreativeTab(Dungeons.Magic).setUnlocalizedName("titanicTome").setTextureName(Dungeons.MODID + ":" + "titanictome"), "dungeons_titanicTome");
         GameRegistry.registerItem(Dungeons.midnightChickenRaw = new ItemFood(3, 1.0f, false).setCreativeTab(Dungeons.Materials).setUnlocalizedName("midnightChickenRaw").setTextureName(Dungeons.MODID + ":" + "midnightchickenraw"), "dungeons_midnightChickenRaw");
+        GameRegistry.registerItem(Dungeons.randomItemGiverVampire = new ItemRandomGiver(ItemRandomGiver.Vampire).setCreativeTab(Dungeons.Magic).setUnlocalizedName("randomItemGiverVampire").setTextureName(Dungeons.MODID + ":" + "randomItemGiverVampire"), "dungeons_randomItemGiverVampire");
+        GameRegistry.registerItem(Dungeons.randomItemGiverVoidDungeon = new ItemRandomGiver(ItemRandomGiver.VoidDungeon).setCreativeTab(Dungeons.Magic).setUnlocalizedName("randomItemGiverVoidDungeon").setTextureName(Dungeons.MODID + ":" + "randomItemGiverVoidDungeon"), "dungeons_randomItemGiverVoidDungeon");
+        GameRegistry.registerItem(Dungeons.randomItemGiverNetherStructure = new ItemRandomGiver(ItemRandomGiver.NetherStructure).setCreativeTab(Dungeons.Magic).setUnlocalizedName("randomItemGiverNetherStructure").setTextureName(Dungeons.MODID + ":" + "randomItemGiverNetherStructure"), "dungeons_randomItemGiverNetherStructure");
+        GameRegistry.registerItem(Dungeons.randomItemGiverMontaneDungeon = new ItemRandomGiver(ItemRandomGiver.MontaneDungeon).setCreativeTab(Dungeons.Magic).setUnlocalizedName("randomItemGiverMontaneDungeon").setTextureName(Dungeons.MODID + ":" + "randomItemGiverMontaneDungeon"), "dungeons_randomItemGiverMontaneDungeon");
+        GameRegistry.registerItem(Dungeons.randomItemGiverMontagneRiche = new ItemRandomGiver(ItemRandomGiver.MontagneRiche).setCreativeTab(Dungeons.Magic).setUnlocalizedName("randomItemGiverMontagneRiche").setTextureName(Dungeons.MODID + ":" + "randomItemGiverMontagneRiche"), "dungeons_randomItemGiverMontagneRiche");
+        GameRegistry.registerItem(Dungeons.randomItemGiverBeholder = new ItemRandomGiver(ItemRandomGiver.Beholder).setCreativeTab(Dungeons.Magic).setUnlocalizedName("randomItemGiverBeholder").setTextureName(Dungeons.MODID + ":" + "randomItemGiverBeholder"), "dungeons_randomItemGiverBeholder");
+        GameRegistry.registerItem(Dungeons.randomItemGiverdungeonChest = new ItemRandomGiver(ItemRandomGiver.DungeonChest).setCreativeTab(Dungeons.Magic).setUnlocalizedName("randomItemGiverdungeonChest").setTextureName(Dungeons.MODID + ":" + "randomItemGiverdungeonChest"), "dungeons_randomItemGiverdungeonChest");
         GameRegistry.registerBlock(Dungeons.midnightMossStone = new BlockOre().setBlockName("midnightMossStone").setBlockTextureName("gibby_dungeons" + ":" + "midnightmossstone").setCreativeTab(Dungeons.Blocks).setLightLevel(1.0f).setLightOpacity(200), "dungeons_midnightMossStone");
         GameRegistry.registerBlock(Dungeons.midnightBush = new BlockMidnightFoliage().setBlockName("midnightBush").setBlockTextureName(Dungeons.MODID + ":" + "midnightBush").setCreativeTab(Dungeons.Blocks), "dungeons_midnightBush");
         GameRegistry.registerBlock(Dungeons.midnightShortgrass = new BlockMidnightFoliage().setBlockName("midnightShortgrass").setBlockTextureName(Dungeons.MODID + ":" + "midnightShortgrass").setCreativeTab(Dungeons.Blocks), "dungeons_midnightShortgrass");

@@ -13943,7 +13943,6 @@ public class WorldGenMontaneDungeon_4 extends WorldGenerator implements IWorldGe
         this.setBlock(world, i + 16, j + 58, k + 34, Blocks.wooden_pressure_plate, 0);
         world.setBlockMetadataWithNotify(i + 17, j + 57, k + 36, 2, 2);
         world.setBlockMetadataWithNotify(i + 17, j + 58, k + 36, 8, 2);
-        this.setBlock(world, i + 27, j + 57, k + 27, Blocks.wooden_door, 0);
         world.setBlockMetadataWithNotify(i + 27, j + 58, k + 27, 8, 2);
         return true;
     }
