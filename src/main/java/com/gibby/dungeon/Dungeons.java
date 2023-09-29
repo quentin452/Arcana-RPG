@@ -3,8 +3,8 @@
 package com.gibby.dungeon;
 
 import com.gibby.dungeon.blocks.*;
+import com.gibby.dungeon.config.ModConfig;
 import com.gibby.dungeon.gen.*;
-import com.gibby.dungeon.gui.DungeonGuiIngame;
 import com.gibby.dungeon.init.ChestSetup;
 import com.gibby.dungeon.init.EggInit;
 import com.gibby.dungeon.init.recipeinit.*;
@@ -12,17 +12,14 @@ import com.gibby.dungeon.items.*;
 import com.gibby.dungeon.mobs.entityinstance.*;
 import com.gibby.dungeon.proxy.CommonProxy;
 import com.gibby.dungeon.proxy.packetPipelines.PacketPipeline;
-import com.gibby.dungeon.util.DungeonEventHandler;
 import com.gibby.dungeon.util.DungeonPotion;
 import com.gibby.dungeon.util.DungeonPotions;
 import com.gibby.dungeon.util.FileInjector;
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -30,7 +27,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EntityList;
@@ -43,21 +39,10 @@ import net.minecraft.potion.Potion;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.DimensionManager;
-import net.minecraftforge.common.ForgeModContainer;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.EnumHelper;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 import java.util.Random;
-import java.util.stream.Stream;
 
 @Mod(modid = Dungeons.MODID, version = "1.4.2",dependencies = "required-after:reccomplex;")
 public class Dungeons
@@ -592,7 +577,7 @@ public class Dungeons
     @Mod.EventHandler
     public void init(final FMLInitializationEvent event) {
         DungeonPotions.PotionSetup();
-       Dungeons.shock = new DungeonPotion(Dungeons.shockId, false, 3484199).setIconIndex(0, 1).setPotionName("potion.shock");
+        Dungeons.shock = new DungeonPotion(Dungeons.shockId, false, 3484199).setIconIndex(0, 1).setPotionName("potion.shock");
         Dungeons.magicBoost = new DungeonPotion(Dungeons.magicBoostId, false, 3484199).setIconIndex(5, 1).setPotionName("potion.magicBoost");
         Dungeons.growth = new DungeonPotion(Dungeons.growthId, false, 3484199).setIconIndex(7, 0).setPotionName("potion.growth");
         Dungeons.inflame = new DungeonPotion(Dungeons.inflameId, false, 3484199).setIconIndex(7, 1).setPotionName("potion.inflame");
@@ -714,47 +699,10 @@ public class Dungeons
 
     @Mod.EventHandler
     public void preinit(final FMLPreInitializationEvent event) {
-        FileInjector.preinit(event);
-        final Configuration config = new Configuration(new File(event.getModConfigurationDirectory(), "Arcana_RPG.cfg"));
-        config.load();
-        config.addCustomCategoryComment("Misc", "The Entity Id's Disabled will wipe vanilla minecraft spawners for Arcana RPG.");
-        config.addCustomCategoryComment("Misc", "If disabled, custom spawners will not be wiped.");
-        config.addCustomCategoryComment("Misc", "If you have entitylist conflicts, disable Entity Ids(set to 0)");
-        this.entitylistEnabled = config.get("Misc", "Entity Ids Enabled(1) or Disabled(0)", 1).getInt();
-        Dungeons.magicBarXpoz = config.get("Gui(bar)", "Magic_Bar_X_pos", 200).getInt();
-        Dungeons.magicBarYpoz = config.get("Gui(bar)", "Magic_Bar_Y_poz", 10).getInt();
-        Dungeons.sunsetBiomeId = config.get("Biome", "Sunset_Biome_Id", 250).getInt();
-        Dungeons.crystalBiomeId = config.get("Biome", "Crystal_Biome_Id", 251).getInt();
-        Dungeons.montaneBiomeId = config.get("Biome", "Montane_Biome_Id", 252).getInt();
-        Dungeons.crystalliumPlainsBiomeId = config.get("Biome", "Crystallim_Plains_Biome_Id", 253).getInt();
-        Dungeons.midnightBiomeId = config.get("Biome", "Midnight_Biome_Id", 254).getInt();
-        Dungeons.sunsetDimensionId = config.get("Dimension", "Sunset_Dimension_Id(YOU SHOULDN'T CHANGE BIOMES IDS BECAUSE DUNGEON GENERATION WILL NOT WORK)", -15).getInt();
-        Dungeons.crystalDimensionId = config.get("Dimension", "Crystal_Dimension_Id(YOU SHOULDN'T CHANGE BIOMES IDS BECAUSE DUNGEON GENERATION WILL NOT WORK)", -20).getInt();
-        Dungeons.montaneDungeonDimensionId = config.get("Dimension", "Montane_Dungeon_Dimension_Id(YOU SHOULDN'T CHANGE BIOMES IDS BECAUSE DUNGEON GENERATION WILL NOT WORK)", -21).getInt();
-        Dungeons.crystalliumPlainsDimensionId = config.get("Dimension", "Crystallium_Plains_Dimension_Id(YOU SHOULDN'T CHANGE BIOMES IDS BECAUSE DUNGEON GENERATION WILL NOT WORK)", -22).getInt();
-        Dungeons.midnightDimensionId = config.get("Dimension", "Midnight_Dimension_Id(YOU SHOULDN'T CHANGE BIOMES IDS BECAUSE DUNGEON GENERATION WILL NOT WORK)", -23).getInt();
-        Dungeons.MAGIC_WATCHER = config.get("Data Watcher", "MagicWatcherId", 20).getInt();
-        Dungeons.magicProtectionId = config.get("Enchantment", "Magic_Protection", 70).getInt();
-        Dungeons.voidProtectionId = config.get("Enchantment", "Void_Protection", 71).getInt();
-        Dungeons.voidBladeId = config.get("Enchantment", "Void_Blade", 72).getInt();
-        Dungeons.magicBladeId = config.get("Enchantment", "Magic_Blade", 73).getInt();
-        Dungeons.rareId = config.get("Enchantment", "rare", 74).getInt();
-        Dungeons.legendaryId = config.get("Enchantment", "Legendary", 75).getInt();
-        Dungeons.frostbladeId = config.get("Enchantment", "Frost_Blade", 76).getInt();
-        Dungeons.windBladeId = config.get("Enchantment", "Wind_Blade", 77).getInt();
-        Dungeons.quakebladeId = config.get("Enchantment", "Quake_Blade", 78).getInt();
-        Dungeons.lifestealId = config.get("Enchantment", "Vampiric_Blade", 79).getInt();
-        Dungeons.shockId = config.get("Potion Effect", "Shock", 50).getInt();
-        Dungeons.magicBoostId = config.get("Potion Effect", "Magic_Boost", 51).getInt();
-        Dungeons.growthId = config.get("Potion Effect", "Regrowth", 52).getInt();
-        Dungeons.inflameId = config.get("Potion Effect", "Inflame", 53).getInt();
-        Dungeons.stormId = config.get("Potion Effect", "Storm", 54).getInt();
-        Dungeons.antigravityId = config.get("Potion Effect", "Antigravity", 55).getInt();
-        Dungeons.shadowAuraId = config.get("Potion Effect", "Shadow_Aura", 56).getInt();
-        Dungeons.crystalliumBlessingId = config.get("Potion Effect", "Crystallium_Blessing", 57).getInt();
-        Dungeons.imbalanceId = config.get("Potion Effect", "Imbalance", 58).getInt();
-        Dungeons.sunspotId = config.get("Potion Effect", "Sunspot", 59).getInt();
-        config.save();
+        File configFile = new File(event.getModConfigurationDirectory(), "Arcana_RPG.cfg");
+        ModConfig modConfig = new ModConfig(configFile, event);
+        FileInjector.setModConfig(modConfig);
+        modConfig.initializeConfig(event);
         Dungeons.packetPipeline.initialise();
         DimensionManager.registerProviderType(Dungeons.crystalDimensionId, WorldProviderCrystal.class, false);
         DimensionManager.registerDimension(Dungeons.crystalDimensionId, Dungeons.crystalDimensionId);
@@ -1388,29 +1336,7 @@ public class Dungeons
 
     @Mod.EventHandler
     public void postInit(final FMLPostInitializationEvent event) {
-        Dungeons.packetPipeline.postInitialise();
-        if (this.entitylistEnabled == 1) {
-            EntityList.addMapping(EntityGoblin.class, "EntityGoblin", this.setMobId());
-            EntityList.addMapping(EntitySkeletonWarrior.class, "EntitySkeletonWarrior", this.setMobId());
-            EntityList.addMapping(EntityEarthGolem.class, "EntityEarthGolem", this.setMobId());
-            EntityList.addMapping(EntityStoneGolem.class, "EntityStoneGolem", this.setMobId());
-            EntityList.addMapping(EntityBandit.class, "EntityBandit", this.setMobId());
-            EntityList.addMapping(EntityBlackKnight.class, "EntityBlackKnight", this.setMobId());
-            EntityList.addMapping(EntityNecro.class, "EntityNecro", this.setMobId());
-            EntityList.addMapping(EntityTroll.class, "EntityTroll", this.setMobId());
-            EntityList.addMapping(EntityVoidFiend.class, "EntityVoidFiend", this.setMobId());
-            EntityList.addMapping(EntitySpirit.class, "EntitySpirit", this.setMobId());
-            EntityList.addMapping(EntitySkeletonKnight.class, "EntitySkeletonKnight", this.setMobId());
-            EntityList.addMapping(EntitySapientWarrior.class, "EntitySapientWarrior", this.setMobId());
-            EntityList.addMapping(EntityNetherSoul.class, "EntityNetherSoul", this.setMobId());
-            EntityList.addMapping(EntityAmethystMonster.class, "EntityAmethystMonster", this.setMobId());
-            EntityList.addMapping(EntityVampire.class, "EntityVampire", this.setMobId());
-            EntityList.addMapping(EntityLavaKnight.class, "EntityLavaKnight", this.setMobId());
-        }
-        if(FMLCommonHandler.instance().getSide()==Side.CLIENT) {
-        MinecraftForge.EVENT_BUS.register(new DungeonGuiIngame(Minecraft.getMinecraft()));
-        }
-        MinecraftForge.EVENT_BUS.register(new DungeonEventHandler());
+    ModConfig.postInitializeConfig();
     }
 
     public static int getUniqueEntityId() {
@@ -1606,15 +1532,6 @@ public class Dungeons
             spawner.setMobCount(mobCount);
             spawner.setCooldown(cooldown);
         }
-    }
-
-    int setMobId() {
-        int id;
-        for (id = 130; EntityList.getClassFromID(id) != null; ++id) {}
-        if (id > 255) {
-            System.out.println("[ERROR] There are no more global entity id's for Arcana RPG");
-        }
-        return id;
     }
 
     static {
