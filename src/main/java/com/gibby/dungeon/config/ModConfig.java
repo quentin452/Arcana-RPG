@@ -19,6 +19,8 @@ public class ModConfig {
     private static int entitylistEnabled;
     private Configuration config;
 
+    public static boolean loggingdisabler = true;
+
     public ModConfig(File configFile, FMLPreInitializationEvent event) {
         config = new Configuration(configFile);
     }
@@ -64,6 +66,7 @@ public class ModConfig {
         Dungeons.crystalliumBlessingId = config.get("Potion Effect", "Crystallium_Blessing", 57).getInt();
         Dungeons.imbalanceId = config.get("Potion Effect", "Imbalance", 58).getInt();
         Dungeons.sunspotId = config.get("Potion Effect", "Sunspot", 59).getInt();
+        loggingdisabler = config.get("Other", "Disable Some Loggings from the mod", 60).getBoolean();
         config.save();
     }
     public static void postInitializeConfig() {

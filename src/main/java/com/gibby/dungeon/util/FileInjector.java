@@ -160,12 +160,10 @@ public class FileInjector {
                     // Get an InputStream from the resource within the JAR
                     InputStream inputStream = FileInjector.class.getClassLoader().getResourceAsStream("assets/gibby_dungeons/structures/active/" + sourceFileName);
 
-                    if (inputStream != null) {
+                    if (inputStream != null && !ModConfig.loggingdisabler) {
                         // Copy the file from the InputStream to the destination directory
                         java.nio.file.Files.copy(inputStream, new File(destinationDirectoryPath, sourceFileName).toPath(), StandardCopyOption.REPLACE_EXISTING);
                         System.out.println("Copy successful: " + sourceFileName);
-                    } else {
-                        System.err.println("Source file not found in JAR resources: " + sourceFileName);
                     }
                 } else {
                     // If the config is disabled, check if the file exists and delete it if it does
