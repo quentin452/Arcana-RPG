@@ -543,6 +543,8 @@ entity.gibby_dungeons.EntityMidnightChicken.name=Midnight Chicken
 entity.gibby_dungeons.EntityMidnightCow.name=Midnight Cow
 entity.gibby_dungeons.EntityNightMite.name=Swampwraith
 entity.gibby_dungeons.EntityCaveWraith.name=Cavewraith
+entity.gibby_dungeons.EntityPaladin.name=Paladin
+
 item.entity_imp_egg.name=Imp Egg
 item.entity_skeleton_warrior_egg.name=Skeleton Warrior Egg
 item.entity_zombie_warlord_egg.name=Zombie Warlord Egg

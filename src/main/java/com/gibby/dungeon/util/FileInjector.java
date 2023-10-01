@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.StandardCopyOption;
+import java.util.Arrays;
 
 public class FileInjector {
     private static ModConfig modConfig;
@@ -52,6 +53,7 @@ public class FileInjector {
         boolean enableARCANA_RPG_WorldGenCrystalliumCoocoon = modConfig.isARCANA_RPG_WorldGenCrystalliumCoocoonEnabled();
         boolean enableARCANA_RPG_WorldGenMidnightVillage = modConfig.isARCANA_RPG_WorldGenMidnightVillageEnabled();
         boolean enableARCANA_RPG_WorldGenRuneAltar = modConfig.isARCANA_RPG_WorldGenRuneAltarEnabled();
+        boolean enableARCANA_RPG_SunsetSpawnStructure = modConfig.isARCANA_RPG_SunsetSpawnStructureEnabled();
 
         // Path to the destination directory within the Minecraft instance folder
         String destinationDirectoryPath = new File(minecraftDir, "structures/active").getAbsolutePath();
@@ -91,7 +93,8 @@ public class FileInjector {
             "ARCANA_RPG_WorldGenCrystalliumShrineV1.1.rcst",
             "ARCANA_RPG_WorldGenCrystalliumCoocoonV1.1.rcst",
             "ARCANA_RPG_WorldGenMidnightVillageV1.0.rcst",
-            "ARCANA_RPG_WorldGenRuneAltarV1.1.rcst"
+            "ARCANA_RPG_WorldGenRuneAltarV1.1.rcst",
+            "ARCANA_RPG_SunsetSpawnStructureV1.0.rcst"
 
         };
 
@@ -103,7 +106,7 @@ public class FileInjector {
             // Delete the files that are not in the list of allowed files.
             if (filesInDestination != null) {
                 for (File file : filesInDestination) {
-                    if (file.isFile()) {
+                    if(file.isFile() && file.getName().startsWith("ARCANA_RPG_"))  {
                         String fileName = file.getName();
                         if (!isValidFileName(fileName, sourceFiles)) {
                             if (file.delete()) {
@@ -154,6 +157,7 @@ public class FileInjector {
                 else if (i == 31) isEnabled = enableARCANA_RPG_WorldGenCrystalliumCoocoon;
                 else if (i == 32) isEnabled = enableARCANA_RPG_WorldGenMidnightVillage;
                 else if (i == 33) isEnabled = enableARCANA_RPG_WorldGenRuneAltar;
+                else if (i == 34) isEnabled = enableARCANA_RPG_SunsetSpawnStructure;
 
 
                 if (isEnabled) {
@@ -184,11 +188,17 @@ public class FileInjector {
         }
     }
     private static boolean isValidFileName(String fileName, String[] allowedFiles) {
+
+        if(fileName.startsWith("ARCANA_RPG_") && !Arrays.asList(allowedFiles).contains(fileName)) {
+            return false;
+        }
+
         for (String allowedFile : allowedFiles) {
             if (fileName.equals(allowedFile)) {
                 return true;
             }
         }
+
         return false;
     }
 }

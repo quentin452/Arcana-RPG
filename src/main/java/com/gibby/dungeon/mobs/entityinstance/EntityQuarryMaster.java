@@ -36,15 +36,6 @@ public class EntityQuarryMaster extends EntityMoundTrader
             this.Y = this.posY;
             this.Z = this.posZ;
         }
-        if (this.X != this.posX) {
-            this.posX = this.X;
-        }
-        if (this.Y != this.posY) {
-            this.posY = this.Y;
-        }
-        if (this.Z != this.posZ) {
-            this.posZ = this.Z;
-        }
     }
 
     public boolean interact(final EntityPlayer par1EntityPlayer) {

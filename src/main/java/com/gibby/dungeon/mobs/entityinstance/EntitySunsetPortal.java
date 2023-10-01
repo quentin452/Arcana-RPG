@@ -94,8 +94,8 @@ public class EntitySunsetPortal extends EntityThrowable
                         case 0: {
                             for (int x = -4; x < 5; ++x) {
                                 for (int z = -4; z < 5; ++z) {
-                                    this.worldObj.setBlock(X + x, Y, Z + z, Dungeons.blockUnbreableStonebrick);
-                                    this.worldObj.setBlock(X + x, Y - 1, Z + z, Dungeons.blockUnbreableStonebrick);
+                                    this.worldObj.setBlock(X + x, Y, Z + z, Blocks.stonebrick);
+                                    this.worldObj.setBlock(X + x, Y - 1, Z + z, Blocks.stonebrick);
                                 }
                             }
                             ++this.stage;
@@ -104,7 +104,7 @@ public class EntitySunsetPortal extends EntityThrowable
                         case 1: {
                             for (int x = -3; x < 4; ++x) {
                                 for (int z = -3; z < 4; ++z) {
-                                    this.worldObj.setBlock(X + x, Y + 1, Z + z, Dungeons.blockUnbreableStonebrick);
+                                    this.worldObj.setBlock(X + x, Y + 1, Z + z, Blocks.stonebrick);
                                 }
                             }
                             ++this.stage;
@@ -113,7 +113,7 @@ public class EntitySunsetPortal extends EntityThrowable
                         case 2: {
                             for (int x = -2; x < 3; ++x) {
                                 for (int z = -2; z < 3; ++z) {
-                                    this.worldObj.setBlock(X + x, Y + 2, Z + z, Dungeons.blockUnbreableStonebrick);
+                                    this.worldObj.setBlock(X + x, Y + 2, Z + z, Blocks.stonebrick);
                                 }
                             }
                             ++this.stage;
@@ -129,14 +129,14 @@ public class EntitySunsetPortal extends EntityThrowable
                             break;
                         }
                         case 4: {
-                            this.worldObj.setBlock(X, Y + 2, Z, Dungeons.blockUnbreableStonebrick);
-                            this.worldObj.setBlock(X, Y + 3, Z, Dungeons.blockUnbreableStonebrick);
+                            this.worldObj.setBlock(X, Y + 2, Z, Blocks.stonebrick);
+                            this.worldObj.setBlock(X, Y + 3, Z, Blocks.stonebrick);
                             ++this.stage;
                             break;
                         }
                         case 5: {
-                            this.worldObj.setBlock(X, Y + 4, Z, Dungeons.blockUnbreableStonebrick);
-                            this.worldObj.setBlock(X, Y + 5, Z, Dungeons.blockUnbreableStonebrick);
+                            this.worldObj.setBlock(X, Y + 4, Z, Blocks.stonebrick);
+                            this.worldObj.setBlock(X, Y + 5, Z, Blocks.stonebrick);
                             ++this.stage;
                             break;
                         }

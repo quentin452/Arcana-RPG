@@ -28,7 +28,8 @@ public class RenderPaladin extends RenderLiving
         if (knight.isInvincible) {
             GL11.glDepthMask(!knight.isInvisible());
             if (par2 == 1) {
-                final float f1 = knight.ticksExisted + par3;
+             final float f1 = knight.ticksExisted + par3;
+                GL11.glDepthMask(false);
                 this.bindTexture(RenderPaladin.paladin_armor_textures);
                 GL11.glMatrixMode(5890);
                 GL11.glLoadIdentity();
@@ -45,6 +46,7 @@ public class RenderPaladin extends RenderLiving
                 return 1;
             }
             if (par2 == 2) {
+                GL11.glDepthMask(true);
                 GL11.glMatrixMode(5890);
                 GL11.glLoadIdentity();
                 GL11.glMatrixMode(5888);
