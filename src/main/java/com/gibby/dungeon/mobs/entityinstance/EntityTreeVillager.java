@@ -17,7 +17,6 @@ public class EntityTreeVillager extends EntityMoundTrader
     private double Y;
     private double Z;
     private final String[] quests;
-
     public EntityTreeVillager(final World par1World) {
         this(par1World, 0);
     }
@@ -30,20 +29,6 @@ public class EntityTreeVillager extends EntityMoundTrader
 
     public void onUpdate() {
         super.onUpdate();
-        if (this.X == 0.0) {
-            this.X = this.posX;
-            this.Y = this.posY;
-            this.Z = this.posZ;
-        }
-        if (this.X != this.posX) {
-            this.posX = this.X;
-        }
-        if (this.Y != this.posY) {
-            this.posY = this.Y;
-        }
-        if (this.Z != this.posZ) {
-            this.posZ = this.Z;
-        }
     }
 
     public boolean interact(final EntityPlayer par1EntityPlayer) {
