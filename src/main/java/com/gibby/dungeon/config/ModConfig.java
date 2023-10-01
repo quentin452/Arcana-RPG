@@ -210,4 +210,7 @@ public class ModConfig {
     public boolean isARCANA_RPG_WorldGenRuneAltarEnabled() {
         return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenRuneAltarV1.0.rcst", true).getBoolean();
     }
+    public boolean isARCANA_RPG_SunsetSpawnStructureEnabled() {
+        return config.get("Dungeon generation", "Enable ARCANA_RPG_SunsetSpawnStructureV1.0.rcst", true).getBoolean();
+    }
 }

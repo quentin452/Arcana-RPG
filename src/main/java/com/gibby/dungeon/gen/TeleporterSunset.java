@@ -4,11 +4,9 @@ package com.gibby.dungeon.gen;
 
 import com.gibby.dungeon.Dungeons;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.ChunkCoordinates;
-import net.minecraft.util.Direction;
-import net.minecraft.util.LongHashMap;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.*;
 import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
@@ -38,6 +36,14 @@ public class TeleporterSunset extends Teleporter
             if (!this.placeInExistingPortal(par1Entity, par2, par4, par6, par8)) {
                 this.makePortal(par1Entity);
                 this.placeInExistingPortal(par1Entity, par2, par4, par6, par8);
+                if(par1Entity instanceof EntityPlayer) {
+
+                    IChatComponent chatComponent = new ChatComponentText("You need to find the Sunset Village");
+
+                    EntityPlayer player = (EntityPlayer) par1Entity;
+                    player.addChatMessage(chatComponent);
+
+                }
             }
         }
         else {
@@ -209,44 +215,39 @@ public class TeleporterSunset extends Teleporter
         final int k = MathHelper.floor_double(par1Entity.posZ);
         final int l2 = this.random.nextInt(4);
         if (this.worldServerInstance.provider.dimensionId == Dungeons.sunsetDimensionId) {
-            final int x = (int)(i + 84.75);
-            final int y = (int)(j - 24.0);
-            final int z = (int)(k - 175.5);
-            new SunsetIslesWhite().generate(this.worldServerInstance, this.random, x, y - 1, z + 2);
-            new SunsetIslandsOrange().generate(this.worldServerInstance, this.random, x - 7, y, z);
-            new SunsetIslandsPurple().generate(this.worldServerInstance, this.random, x - 13, y, z);
-            new SunsetIslandsCyan().generate(this.worldServerInstance, this.random, x - 18, y, z);
-            new SunsetIslandsBlue().generate(this.worldServerInstance, this.random, x - 24, y + 1, z);
-            new SunsetIslandsDarkPurple().generate(this.worldServerInstance, this.random, x - 32, y - 1, z);
-            new SunsetIslandsYellow().generate(this.worldServerInstance, this.random, x - 40, y + 1, z);
-            new SunsetIslandsGreen().generate(this.worldServerInstance, this.random, x - 86, y + 2, z);
-            new SunsetIslandsPink().generate(this.worldServerInstance, this.random, x - 130, y, z);
-            new SunsetIslandsGray().generate(this.worldServerInstance, this.random, x - 152, y, z);
-            new SunsetIslandsBrown().generate(this.worldServerInstance, this.random, x - 167, y, z - 50);
-            new SunsetIslandsDarkGreen().generate(this.worldServerInstance, this.random, x - 177, y, z - 50);
-            new SunsetIslandsRed().generate(this.worldServerInstance, this.random, x - 197, y, z - 50);
-            new SunsetIslandsBlack().generate(this.worldServerInstance, this.random, x - 217, y, z - 50);
-            new SunsetIslandsOrangeClay().generate(this.worldServerInstance, this.random, x - 227, y, z - 50);
-            new SunsetIslandsMagentaClay().generate(this.worldServerInstance, this.random, x - 237, y, z - 50);
-            new SunsetIslandsLightBlueClay().generate(this.worldServerInstance, this.random, x - 248, y - 1, z - 50);
-            new SunsetIslandsYellowClay().generate(this.worldServerInstance, this.random, x - 260, y - 1, z - 50);
-            new SunsetIslandsLimeClay().generate(this.worldServerInstance, this.random, x - 279, y - 1, z - 50);
         }
-        for (int x = 0; x < 7; ++x) {
-            for (int z2 = 0; z2 < 7; ++z2) {
-                this.worldServerInstance.setBlock(i + x - 30, j + 15, k + z2 - 20, Blocks.stonebrick);
+        int y = MathHelper.floor_double(par1Entity.posY) - 1;
+
+        // Replace Air blocks by Stonebricks blocks
+        for (int blockY = y + 8 ; blockY >= 0; blockY--) {
+            for (int x = 0; x < 7; ++x) {
+                for (int z2 = 0; z2 < 7; ++z2) {
+                    if (this.worldServerInstance.getBlock(i + x - 30, blockY, k + z2 - 20).isAir(worldServerInstance, i, j, k)) {
+                        this.worldServerInstance.setBlock(i + x - 30, blockY, k + z2 - 20, Blocks.stonebrick);
+                    }
+                }
             }
         }
-        for (int x = 1; x < 6; ++x) {
-            for (int z2 = 1; z2 < 6; ++z2) {
-                this.worldServerInstance.setBlock(i + x - 30, j + 16, k + z2 - 20, Blocks.stonebrick);
+
+        // Make a Portal
+        for (int portalY = y - 6; portalY <= y - 5; portalY++) {
+            for (int x = 0; x < 7; ++x) {
+                for (int z2 = 0; z2 < 7; ++z2) {
+                    this.worldServerInstance.setBlock(i + x - 30, portalY + 15, k + z2 - 20, Blocks.stonebrick);
+                }
+            }
+            for (int x = 1; x < 6; ++x) {
+                for (int z2 = 1; z2 < 6; ++z2) {
+                    this.worldServerInstance.setBlock(i + x - 30, portalY + 16, k + z2 - 20, Blocks.stonebrick);
+                }
+            }
+            for (int x = 2; x < 5; ++x) {
+                for (int z2 = 2; z2 < 5; ++z2) {
+                    this.worldServerInstance.setBlock(i + x - 30, portalY + 16, k + z2 - 20, Dungeons.portalSunset);
+                }
             }
         }
-        for (int x = 2; x < 5; ++x) {
-            for (int z2 = 2; z2 < 5; ++z2) {
-                this.worldServerInstance.setBlock(i + x - 30, j + 16, k + z2 - 20, Dungeons.portalSunset);
-            }
-        }
+
         return true;
     }
 

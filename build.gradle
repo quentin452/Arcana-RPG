@@ -24,7 +24,7 @@ apply plugin: 'forge'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-version = "1.7.10-1.4.5"
+version = "1.7.10-1.4.6"
 group= "com.gibby.dungeon"
 archivesBaseName = "Arcana-Rpg-Continuation"
 
@@ -34,7 +34,7 @@ minecraft {
 }
 
 dependencies {
-    implementation files('lib/RecurrentComplex-1.7.10-0.9.7.1.2-dev.jar')
+    implementation files('lib/RecurrentComplex-0.9.7.1.5-dev.jar')
 }
 
 processResources {

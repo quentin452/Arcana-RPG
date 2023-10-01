@@ -19,8 +19,8 @@ public class ItemSunsetOrb extends Item
 {
     public ItemStack onItemRightClick(final ItemStack par1ItemStack, final World par2World, final EntityPlayer par3) {
         if (!par2World.isRemote && par3.dimension == 0) {
-            final EntitySunsetPortal portal = new EntitySunsetPortal(par2World, (EntityLivingBase)par3);
-            par2World.spawnEntityInWorld((Entity)portal);
+            final EntitySunsetPortal portal = new EntitySunsetPortal(par2World, par3);
+            par2World.spawnEntityInWorld(portal);
             --par1ItemStack.stackSize;
         }
         return par1ItemStack;
