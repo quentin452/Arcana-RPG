@@ -32,18 +32,15 @@ public class TeleporterSunset extends Teleporter
     }
 
     public void placeInPortal(final Entity par1Entity, final double par2, final double par4, final double par6, final float par8) {
+        if (this.worldServerInstance.provider.dimensionId == Dungeons.sunsetDimensionId) {
+                    IChatComponent chatComponent = new ChatComponentText("You need to find the Sunset Village");
+                    EntityPlayer player = (EntityPlayer) par1Entity;
+                    player.addChatMessage(chatComponent);
+        }
         if (this.worldServerInstance.provider.dimensionId == Dungeons.sunsetDimensionId || this.worldServerInstance.provider.dimensionId == 0) {
             if (!this.placeInExistingPortal(par1Entity, par2, par4, par6, par8)) {
                 this.makePortal(par1Entity);
                 this.placeInExistingPortal(par1Entity, par2, par4, par6, par8);
-                if(par1Entity instanceof EntityPlayer) {
-
-                    IChatComponent chatComponent = new ChatComponentText("You need to find the Sunset Village");
-
-                    EntityPlayer player = (EntityPlayer) par1Entity;
-                    player.addChatMessage(chatComponent);
-
-                }
             }
         }
         else {
@@ -51,19 +48,18 @@ public class TeleporterSunset extends Teleporter
             final int j = MathHelper.floor_double(par1Entity.posY) - 1;
             final int k = MathHelper.floor_double(par1Entity.posZ);
             final byte b0 = 1;
-            final byte b2 = 0;
             for (int l = -2; l <= 2; ++l) {
                 for (int i2 = -2; i2 <= 2; ++i2) {
                     for (int j2 = -1; j2 < 3; ++j2) {
-                        final int k2 = i + i2 * b0 + l * b2;
+                        final int k2 = i + i2 * b0;
                         final int l2 = j + j2;
-                        final int i3 = k + i2 * b2 - l * b0;
+                        final int i3 = k - l * b0;
                         final boolean flag = j2 < 0;
                         this.worldServerInstance.setBlock(k2, l2, i3, flag ? Blocks.stonebrick : Blocks.air);
                     }
                 }
             }
-            par1Entity.setLocationAndAngles((double)i, (double)j, (double)k, par1Entity.rotationYaw, 0.0f);
+            par1Entity.setLocationAndAngles(i, j, k, par1Entity.rotationYaw, 0.0f);
             final double motionX = 0.0;
             par1Entity.motionZ = motionX;
             par1Entity.motionY = motionX;
@@ -257,10 +253,10 @@ public class TeleporterSunset extends Teleporter
             final long j = par1 - 600L;
             while (iterator.hasNext()) {
                 final Long olong = (Long) iterator.next();
-                final PortalPosition portalposition = (PortalPosition)this.destinationCoordinateCache.getValueByKey((long)olong);
+                final PortalPosition portalposition = (PortalPosition)this.destinationCoordinateCache.getValueByKey(olong);
                 if (portalposition == null || portalposition.lastUpdateTime < j) {
                     iterator.remove();
-                    this.destinationCoordinateCache.remove((long)olong);
+                    this.destinationCoordinateCache.remove(olong);
                 }
             }
         }
