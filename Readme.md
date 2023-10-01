@@ -14,7 +14,8 @@ To see new changes thats maked in the fork you can see https://github.com/quenti
 
 # Requirement
 
-This mod require [Recurrent Complex TF-E](https://www.curseforge.com/minecraft/mc-mods/recurrent-complex-patched/files/3724793) Since 1.4.0
+This mod require [Recurrent Complex TF-E](https://www.curseforge.com/minecraft/mc-mods/recurrent-complex-patched/files/3724793) Since 1.4.0 and doesn't require it since 1.4.7
+This mod require [Recurrent Complex Arcana Rpg Continuation Edition](https://legacy.curseforge.com/minecraft/mc-mods/recurrent-complex-arcana-rpg-continuation-edition/download/4777285) Since 1.4.7
 
 # Discord
 
