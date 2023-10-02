@@ -161,7 +161,7 @@ public class TeleporterSunset extends Teleporter
                 else if (flag2 && !flag3) {
                     f1 = 0.0f;
                 }
-                else if (flag2 && flag3) {
+                else if (flag2) {
                     f2 = 0.0f;
                 }
                 d8 += k4 * f1 + f2 * i4;
@@ -205,15 +205,13 @@ public class TeleporterSunset extends Teleporter
     }
 
     public boolean makePortal(final Entity par1Entity) {
-        par1Entity.posY += 40.0;
+        par1Entity.posY = 165.0;
         final int i = MathHelper.floor_double(par1Entity.posX);
         final int j = MathHelper.floor_double(par1Entity.posY);
         final int k = MathHelper.floor_double(par1Entity.posZ);
         final int l2 = this.random.nextInt(4);
-        if (this.worldServerInstance.provider.dimensionId == Dungeons.sunsetDimensionId) {
-        }
         int y = MathHelper.floor_double(par1Entity.posY) - 1;
-
+        if (this.worldServerInstance.provider.dimensionId == 0) {
         // Replace Air blocks by Stonebricks blocks
         for (int blockY = y + 8 ; blockY >= 0; blockY--) {
             for (int x = 0; x < 7; ++x) {
@@ -242,8 +240,27 @@ public class TeleporterSunset extends Teleporter
                     this.worldServerInstance.setBlock(i + x - 30, portalY + 16, k + z2 - 20, Dungeons.portalSunset);
                 }
             }
+        }}
+        else{
+            // Make a Portal
+            for (int portalY = y - 6; portalY <= y - 5; portalY++) {
+                for (int x = 0; x < 7; ++x) {
+                    for (int z2 = 0; z2 < 7; ++z2) {
+                        this.worldServerInstance.setBlock(i + x - 30, portalY + 15, k + z2 - 20, Blocks.stonebrick);
+                    }
+                }
+                for (int x = 1; x < 6; ++x) {
+                    for (int z2 = 1; z2 < 6; ++z2) {
+                        this.worldServerInstance.setBlock(i + x - 30, portalY + 16, k + z2 - 20, Blocks.stonebrick);
+                    }
+                }
+                for (int x = 2; x < 5; ++x) {
+                    for (int z2 = 2; z2 < 5; ++z2) {
+                        this.worldServerInstance.setBlock(i + x - 30, portalY + 16, k + z2 - 20, Dungeons.portalSunset);
+                    }
+                }
         }
-
+        }
         return true;
     }
 

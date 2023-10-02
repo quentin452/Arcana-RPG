@@ -49,13 +49,12 @@ TeleporterMontane extends Teleporter
             final int j = MathHelper.floor_double(par1Entity.posY) - 1;
             final int k = MathHelper.floor_double(par1Entity.posZ);
             final byte b0 = 1;
-            final byte b2 = 0;
             for (int l = -2; l <= 2; ++l) {
                 for (int i2 = -2; i2 <= 2; ++i2) {
                     for (int j2 = -1; j2 < 3; ++j2) {
-                        final int k2 = i + i2 * b0 + l * b2;
+                        final int k2 = i + i2 * b0;
                         final int l2 = j + j2;
-                        final int i3 = k + i2 * b2 - l * b0;
+                        final int i3 = k - l * b0;
                         final boolean flag = j2 < 0;
                         this.worldServerInstance.setBlock(k2, l2, i3, flag ? Dungeons.stoneDoor : Blocks.air);
                     }
@@ -163,7 +162,7 @@ TeleporterMontane extends Teleporter
                 else if (flag2 && !flag3) {
                     f1 = 0.0f;
                 }
-                else if (flag2 && flag3) {
+                else if (flag2) {
                     f2 = 0.0f;
                 }
                 d8 += k4 * f1 + f2 * i4;
@@ -207,22 +206,23 @@ TeleporterMontane extends Teleporter
     }
 
     public boolean makePortal(final Entity par1Entity) {
-        final byte b0 = 16;
-        final double d0 = -1.0;
-        par1Entity.posY = 55.0;
+        par1Entity.posY = 165.0;
         final int i = MathHelper.floor_double(par1Entity.posX);
         final int j = MathHelper.floor_double(par1Entity.posY);
         final int k = MathHelper.floor_double(par1Entity.posZ);
-        final int l = i;
-        final int i2 = j;
-        final int j2 = k;
-        final int k2 = 0;
         final int l2 = this.random.nextInt(4);
-        if (this.worldServerInstance.provider.dimensionId == Dungeons.montaneDungeonDimensionId) {
-            final int x = i - 50;
-            final int y = j - 21;
-            final int z = k - 45;
-        }
+        int y = MathHelper.floor_double(par1Entity.posY) - 1;
+        if (this.worldServerInstance.provider.dimensionId == 0) {
+            // Replace Air blocks by Stonebricks blocks
+            for (int blockY = y + 15 ; blockY >= 0; blockY--) {
+                for (int x = 0; x < 7; ++x) {
+                    for (int z2 = 0; z2 < 7; ++z2) {
+                        if (this.worldServerInstance.getBlock(i + x - 30, blockY, k + z2 - 20).isAir(worldServerInstance, i, j, k)) {
+                            this.worldServerInstance.setBlock(i + x - 30, blockY, k + z2 - 20, Blocks.stonebrick);
+                        }
+                    }
+                }
+            }
         for (int x = 0; x < 7; ++x) {
             for (int z2 = 0; z2 < 7; ++z2) {
                 this.worldServerInstance.setBlock(i + x - 30, j + 15, k + z2 - 20, Dungeons.stoneDoor);
@@ -237,7 +237,24 @@ TeleporterMontane extends Teleporter
             for (int z2 = 2; z2 < 5; ++z2) {
                 this.worldServerInstance.setBlock(i + x - 30, j + 16, k + z2 - 20, Dungeons.portalMontane);
             }
-        }
+        }}
+        else{
+            for (int x = 0; x < 7; ++x) {
+                for (int z2 = 0; z2 < 7; ++z2) {
+                    this.worldServerInstance.setBlock(i + x - 30, j + 15, k + z2 - 20, Dungeons.stoneDoor);
+                }
+            }
+            for (int x = 1; x < 6; ++x) {
+                for (int z2 = 1; z2 < 6; ++z2) {
+                    this.worldServerInstance.setBlock(i + x - 30, j + 16, k + z2 - 20, Dungeons.stoneDoor);
+                }
+            }
+            for (int x = 2; x < 5; ++x) {
+                for (int z2 = 2; z2 < 5; ++z2) {
+                    this.worldServerInstance.setBlock(i + x - 30, j + 16, k + z2 - 20, Dungeons.portalMontane);
+                }
+            }
+            }
         return true;
     }
 
@@ -247,7 +264,7 @@ TeleporterMontane extends Teleporter
             final long j = par1 - 600L;
             while (iterator.hasNext()) {
                 final Long olong = (Long) iterator.next();
-                final PortalPosition portalposition = (PortalPosition)this.destinationCoordinateCache.getValueByKey((long)olong);
+                final PortalPosition portalposition = (PortalPosition)this.destinationCoordinateCache.getValueByKey(olong);
                 if (portalposition == null || portalposition.lastUpdateTime < j) {
                     iterator.remove();
                     this.destinationCoordinateCache.remove(olong);
