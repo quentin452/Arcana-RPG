@@ -54,6 +54,7 @@ public class FileInjector {
         boolean enableARCANA_RPG_WorldGenMidnightVillage = modConfig.isARCANA_RPG_WorldGenMidnightVillageEnabled();
         boolean enableARCANA_RPG_WorldGenRuneAltar = modConfig.isARCANA_RPG_WorldGenRuneAltarEnabled();
         boolean enableARCANA_RPG_SunsetSpawnStructure = modConfig.isARCANA_RPG_SunsetSpawnStructureEnabled();
+        boolean enableARCANA_RPG_MontaneSpawnStructure = modConfig.isARCANA_RPG_MontaneSpawnStructureEnabled();
 
         // Path to the destination directory within the Minecraft instance folder
         String destinationDirectoryPath = new File(minecraftDir, "structures/active").getAbsolutePath();
@@ -94,7 +95,8 @@ public class FileInjector {
             "ARCANA_RPG_WorldGenCrystalliumCoocoonV1.1.rcst",
             "ARCANA_RPG_WorldGenMidnightVillageV1.0.rcst",
             "ARCANA_RPG_WorldGenRuneAltarV1.1.rcst",
-            "ARCANA_RPG_SunsetSpawnStructureV1.0.rcst"
+            "ARCANA_RPG_SunsetSpawnStructureV1.0.rcst",
+            "ARCANA_RPG_MontaneSpawnStructureV1.0.rcst"
 
         };
 
@@ -158,6 +160,7 @@ public class FileInjector {
                 else if (i == 32) isEnabled = enableARCANA_RPG_WorldGenMidnightVillage;
                 else if (i == 33) isEnabled = enableARCANA_RPG_WorldGenRuneAltar;
                 else if (i == 34) isEnabled = enableARCANA_RPG_SunsetSpawnStructure;
+                else if (i == 35) isEnabled = enableARCANA_RPG_MontaneSpawnStructure;
 
 
                 if (isEnabled) {
