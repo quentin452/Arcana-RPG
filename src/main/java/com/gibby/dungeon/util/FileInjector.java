@@ -73,7 +73,7 @@ public class FileInjector {
             "ARCANA_RPG_WorldGenNetherTowerV1.2.rcst",
             "ARCANA_RPG_WorldGenObeliskV1.2.rcst",
             "ARCANA_RPG_WorldGenStoneGolemDungeonV1.2.2.rcst",
-            "ARCANA_RPG_WorldGenTallNetherRuinsV1.2.rcst",
+            "ARCANA_RPG_WorldGenTallNetherRuinsV1.2.1.rcst",
             "ARCANA_RPG_WorldGenTavernV1.1.rcst",
             "ARCANA_RPG_WorldGenVampireCastleV1.2.rcst",
             "ARCANA_RPG_WorldGenVoidDungeonV1.1.rcst",
@@ -164,22 +164,30 @@ public class FileInjector {
                     // Get an InputStream from the resource within the JAR
                     InputStream inputStream = FileInjector.class.getClassLoader().getResourceAsStream("assets/gibby_dungeons/structures/active/" + sourceFileName);
 
-                    if (inputStream != null && !ModConfig.loggingdisabler) {
+                    if (inputStream != null) {
                         // Copy the file from the InputStream to the destination directory
                         java.nio.file.Files.copy(inputStream, new File(destinationDirectoryPath, sourceFileName).toPath(), StandardCopyOption.REPLACE_EXISTING);
+                       if (!ModConfig.loggingdisabler){
                         System.out.println("Copy successful: " + sourceFileName);
+                    }
                     }
                 } else {
                     // If the config is disabled, check if the file exists and delete it if it does
                     File existingFile = new File(destinationDirectoryPath, sourceFileName);
                     if (existingFile.exists() && existingFile.isFile()) {
                         if (existingFile.delete()) {
+                            if (!ModConfig.loggingdisabler){
                             System.out.println("File deleted: " + sourceFileName + " (disabled in config)");
+                            }
                         } else {
+                            if (!ModConfig.loggingdisabler){
                             System.err.println("Failed to delete file: " + sourceFileName);
+                            }
                         }
                     } else {
+                        if (!ModConfig.loggingdisabler){
                         System.out.println("Skipped copying: " + sourceFileName + " (disabled in config)");
+                        }
                     }
                 }
             }

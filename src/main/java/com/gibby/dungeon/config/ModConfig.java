@@ -148,7 +148,7 @@ public class ModConfig {
         return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenStoneGolemDungeonV1.2.1.rcst", true).getBoolean();
     }
     public boolean isARCANA_RPG_WorldGenTallNetherRuinsEnabled() {
-        return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenTallNetherRuinsV1.1.rcst", true).getBoolean();
+        return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenTallNetherRuinsV1.2.1.rcst", true).getBoolean();
     }
     public boolean isARCANA_RPG_WorldGenTavernEnabled() {
         return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenTavernV1.0.rcst", true).getBoolean();
