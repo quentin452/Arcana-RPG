@@ -45,7 +45,7 @@ import net.minecraftforge.common.util.EnumHelper;
 import java.io.File;
 import java.util.Random;
 
-@Mod(modid = Dungeons.MODID, version = "1.4.7.4",dependencies = "required-after:reccomplex;")
+@Mod(modid = Dungeons.MODID, version = "1.4.7.5",dependencies = "required-after:reccomplex;")
 public class Dungeons
 {
     public static final String MODID = "gibby_dungeons";
@@ -586,17 +586,6 @@ public class Dungeons
     }
     @Mod.EventHandler
     public void init(final FMLInitializationEvent event) {
-        DungeonPotions.PotionSetup();
-        Dungeons.shock = new DungeonPotion(Dungeons.shockId, false, 3484199).setIconIndex(0, 1).setPotionName("potion.shock");
-        Dungeons.magicBoost = new DungeonPotion(Dungeons.magicBoostId, false, 3484199).setIconIndex(5, 1).setPotionName("potion.magicBoost");
-        Dungeons.growth = new DungeonPotion(Dungeons.growthId, false, 3484199).setIconIndex(7, 0).setPotionName("potion.growth");
-        Dungeons.inflame = new DungeonPotion(Dungeons.inflameId, false, 3484199).setIconIndex(7, 1).setPotionName("potion.inflame");
-        Dungeons.storm = new DungeonPotion(Dungeons.stormId, false, 3484199).setIconIndex(0, 0).setPotionName("potion.storm");
-        Dungeons.antigravity = new DungeonPotion(Dungeons.antigravityId, false, 3484199).setIconIndex(2, 1).setPotionName("potion.antigravity");
-        Dungeons.shadowAura = new DungeonPotion(Dungeons.shadowAuraId, false, 3484199).setIconIndex(5, 1).setPotionName("potion.shadowAura");
-        Dungeons.crystalliumBlessing = new DungeonPotion(Dungeons.crystalliumBlessingId, false, 3484199).setIconIndex(7, 1).setPotionName("potion.crystalliumBlessing");
-        Dungeons.imbalance = new DungeonPotion(Dungeons.imbalanceId, false, 3484199).setIconIndex(3, 1).setPotionName("potion.imbalance");
-        Dungeons.sunspot = new DungeonPotion(Dungeons.sunspotId, false, 3484199).setIconIndex(7, 1).setPotionName("potion.sunspot");
         Dungeons.sunset = new BiomeSunset(Dungeons.sunsetBiomeId).setDisableRain().setTemperatureRainfall(-0.0f, 0.0f);
         Dungeons.crystal = new BiomeCrystal(Dungeons.crystalBiomeId).setDisableRain().setTemperatureRainfall(-0.0f, 0.0f);
         Dungeons.montane = new BiomeMontane(Dungeons.montaneBiomeId).setEnableSnow().setTemperatureRainfall(-0.5f, 0.4f);
