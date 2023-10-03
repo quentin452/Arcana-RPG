@@ -19,6 +19,30 @@ public class FileInjector {
         // Get the current Minecraft instance directory
         File minecraftDir = event.getModConfigurationDirectory().getParentFile();
 
+        // Path to the destination directory within the Minecraft instance folder
+        String structuresDirectoryPath = new File(minecraftDir, "structures").getAbsolutePath();
+        String activeDirectoryPath = new File(structuresDirectoryPath, "active").getAbsolutePath();
+
+        // Create the "structures" directory if it doesn't exist
+        File structuresDirectory = new File(structuresDirectoryPath);
+        if (!structuresDirectory.exists()) {
+            if (structuresDirectory.mkdirs()) {
+                System.out.println("Created 'structures' directory");
+            } else {
+                System.err.println("Failed to create 'structures' directory");
+            }
+        }
+
+        // Create the "active" directory if it doesn't exist
+        File activeDirectory = new File(activeDirectoryPath);
+        if (!activeDirectory.exists()) {
+            if (activeDirectory.mkdirs()) {
+                System.out.println("Created 'active' directory");
+            } else {
+                System.err.println("Failed to create 'active' directory");
+            }
+        }
+
         boolean enableARCANA_RPG_archruins = modConfig.isARCANA_RPG_archruinsEnabled();
         boolean enableARCANA_RPG_LargeCastle3 = modConfig.isARCANA_RPG_LargeCastle3Enabled();
         boolean enableARCANA_RPG_SmallCastle = modConfig.isARCANA_RPG_SmallCastleEnabled();
@@ -77,7 +101,7 @@ public class FileInjector {
             "ARCANA_RPG_WorldGenTallNetherRuinsV1.2.1.rcst",
             "ARCANA_RPG_WorldGenTavernV1.1.rcst",
             "ARCANA_RPG_WorldGenVampireCastleV1.2.rcst",
-            "ARCANA_RPG_WorldGenVoidDungeonV1.1.rcst",
+            "ARCANA_RPG_WorldGenVoidDungeonV1.11.rcst",
             "ARCANA_RPG_WorldGenWarlordDungeonV1.2.rcst",
             "ARCANA_RPG_WorldGenAmethystRuinsV1.1.rcst",
             "ARCANA_RPG_WorldGenGhostWitherTowerV1.1.rcst",
@@ -165,7 +189,7 @@ public class FileInjector {
 
                 if (isEnabled) {
                     // Get an InputStream from the resource within the JAR
-                    InputStream inputStream = FileInjector.class.getClassLoader().getResourceAsStream("assets/gibby_dungeons/structures/active/" + sourceFileName);
+                    InputStream inputStream = FileInjector.class.getClassLoader().getResourceAsStream("assets/gibby_dungeons/structres/active/" + sourceFileName);
 
                     if (inputStream != null) {
                         // Copy the file from the InputStream to the destination directory
@@ -212,4 +236,5 @@ public class FileInjector {
 
         return false;
     }
+
 }

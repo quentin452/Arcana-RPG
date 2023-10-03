@@ -157,7 +157,7 @@ public class ModConfig {
         return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenVampireCastleV1.1.rcst", true).getBoolean();
     }
     public boolean isARCANA_RPG_WorldGenVoidDungeonEnabled() {
-        return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenVoidDungeonV1.0.rcst", true).getBoolean();
+        return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenVoidDungeonV1.11.rcst", true).getBoolean();
     }
     public boolean isARCANA_RPG_WorldGenWarlordDungeonEnabled() {
         return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenWarlordDungeonV1.1.rcst", true).getBoolean();
