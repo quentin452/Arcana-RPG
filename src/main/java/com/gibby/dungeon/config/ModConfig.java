@@ -56,16 +56,16 @@ public class ModConfig {
         Dungeons.windBladeId = config.get("Enchantment", "Wind_Blade", 77).getInt();
         Dungeons.quakebladeId = config.get("Enchantment", "Quake_Blade", 78).getInt();
         Dungeons.lifestealId = config.get("Enchantment", "Vampiric_Blade", 79).getInt();
-        Dungeons.shockId = config.get("Potion Effect", "Shock", 50).getInt();
-        Dungeons.magicBoostId = config.get("Potion Effect", "Magic_Boost", 51).getInt();
-        Dungeons.growthId = config.get("Potion Effect", "Regrowth", 52).getInt();
-        Dungeons.inflameId = config.get("Potion Effect", "Inflame", 53).getInt();
-        Dungeons.stormId = config.get("Potion Effect", "Storm", 54).getInt();
-        Dungeons.antigravityId = config.get("Potion Effect", "Antigravity", 55).getInt();
-        Dungeons.shadowAuraId = config.get("Potion Effect", "Shadow_Aura", 56).getInt();
-        Dungeons.crystalliumBlessingId = config.get("Potion Effect", "Crystallium_Blessing", 57).getInt();
-        Dungeons.imbalanceId = config.get("Potion Effect", "Imbalance", 58).getInt();
-        Dungeons.sunspotId = config.get("Potion Effect", "Sunspot", 59).getInt();
+        Dungeons.shockId = config.get("Potion Effect", "Shock", 20).getInt();
+        Dungeons.magicBoostId = config.get("Potion Effect", "Magic_Boost", 21).getInt();
+        Dungeons.growthId = config.get("Potion Effect", "Regrowth", 22).getInt();
+        Dungeons.inflameId = config.get("Potion Effect", "Inflame", 23).getInt();
+        Dungeons.stormId = config.get("Potion Effect", "Storm", 24).getInt();
+        Dungeons.antigravityId = config.get("Potion Effect", "Antigravity", 25).getInt();
+        Dungeons.shadowAuraId = config.get("Potion Effect", "Shadow_Aura", 26).getInt();
+        Dungeons.crystalliumBlessingId = config.get("Potion Effect", "Crystallium_Blessing", 27).getInt();
+        Dungeons.imbalanceId = config.get("Potion Effect", "Imbalance", 28).getInt();
+        Dungeons.sunspotId = config.get("Potion Effect", "Sunspot", 29).getInt();
         loggingdisabler = config.get("Other", "Disable Some Loggings from the mod", 60).getBoolean();
         config.save();
     }
