@@ -112,7 +112,7 @@ public class ModConfig {
         return config.get("Dungeon generation", "Enable ARCANA_RPG_archruinsV1.2", true).getBoolean();
     }
     public boolean isARCANA_RPG_LargeCastle3Enabled() {
-        return config.get("Dungeon generation", "Enable ARCANA_RPG_LargeCastle3V1.1.rcst", true).getBoolean();
+        return config.get("Dungeon generation", "Enable ARCANA_RPG_LargeCastle3V1.2.1.rcst", true).getBoolean();
     }
     public boolean isARCANA_RPG_SmallCastleEnabled() {
         return config.get("Dungeon generation", "Enable ARCANA_RPG_SmallCastleV1.2.1.rcst", true).getBoolean();
@@ -157,7 +157,7 @@ public class ModConfig {
         return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenVampireCastleV1.1.rcst", true).getBoolean();
     }
     public boolean isARCANA_RPG_WorldGenVoidDungeonEnabled() {
-        return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenVoidDungeonV1.11.rcst", true).getBoolean();
+        return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenVoidDungeonV1.2.rcst", true).getBoolean();
     }
     public boolean isARCANA_RPG_WorldGenWarlordDungeonEnabled() {
         return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenWarlordDungeonV1.1.rcst", true).getBoolean();
@@ -202,7 +202,7 @@ public class ModConfig {
         return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenCrystalliumShrineV1.0.rcst", true).getBoolean();
     }
     public boolean isARCANA_RPG_WorldGenCrystalliumCoocoonEnabled() {
-        return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenCrystalliumCoocoonV1.0.rcst", true).getBoolean();
+        return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenCrystalliumCoocoonV1.2.rcst", true).getBoolean();
     }
     public boolean isARCANA_RPG_WorldGenMidnightVillageEnabled() {
         return config.get("Dungeon generation", "Enable ARCANA_RPG_WorldGenMidnightVillageV1.0.rcst", true).getBoolean();

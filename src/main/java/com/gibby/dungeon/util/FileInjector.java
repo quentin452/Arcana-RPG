@@ -86,7 +86,7 @@ public class FileInjector {
         // List of source file names
         String[] sourceFiles = {
             "ARCANA_RPG_archruinsV1.3.rcst",
-            "ARCANA_RPG_LargeCastle3V1.2.rcst",
+            "ARCANA_RPG_LargeCastle3V1.2.1.rcst",
             "ARCANA_RPG_SmallCastleV1.2.2.rcst",
             "ARCANA_RPG_squareruinsV1.2.rcst",
             "ARCANA_RPG_WorldGenBleachedDungeonV1.2.rcst",
@@ -101,7 +101,7 @@ public class FileInjector {
             "ARCANA_RPG_WorldGenTallNetherRuinsV1.2.1.rcst",
             "ARCANA_RPG_WorldGenTavernV1.1.rcst",
             "ARCANA_RPG_WorldGenVampireCastleV1.2.rcst",
-            "ARCANA_RPG_WorldGenVoidDungeonV1.11.rcst",
+            "ARCANA_RPG_WorldGenVoidDungeonV1.2.rcst",
             "ARCANA_RPG_WorldGenWarlordDungeonV1.2.rcst",
             "ARCANA_RPG_WorldGenAmethystRuinsV1.1.rcst",
             "ARCANA_RPG_WorldGenGhostWitherTowerV1.1.rcst",
@@ -116,7 +116,7 @@ public class FileInjector {
             "ARCANA_RPG_WorldGenCaveMushrooms3V1.0.rcst",
             "ARCANA_RPG_WorldGenCrystalliumTempleV1.1.rcst",
             "ARCANA_RPG_WorldGenCrystalliumShrineV1.1.rcst",
-            "ARCANA_RPG_WorldGenCrystalliumCoocoonV1.1.rcst",
+            "ARCANA_RPG_WorldGenCrystalliumCoocoonV1.2.rcst",
             "ARCANA_RPG_WorldGenMidnightVillageV1.0.rcst",
             "ARCANA_RPG_WorldGenRuneAltarV1.1.rcst",
             "ARCANA_RPG_SunsetSpawnStructureV1.0.rcst",
