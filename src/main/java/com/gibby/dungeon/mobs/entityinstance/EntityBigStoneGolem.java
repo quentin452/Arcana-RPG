@@ -73,7 +73,7 @@ public class EntityBigStoneGolem extends EntityIronGolem implements IBossDisplay
             this.setDead();
         }
         boolean playerAround = false;
-        List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(20.0, 10.0, 20.0));
+        List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(20.0, 10.0, 20.0));
         if (list2 != null) {
             for (int k2 = 0; k2 < list2.size(); ++k2) {
                 if (list2.get(k2) instanceof EntityPlayer) {
@@ -88,11 +88,11 @@ public class EntityBigStoneGolem extends EntityIronGolem implements IBossDisplay
             }
         }
         if (this.pound && this.onGround) {
-            list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(10.0, 2.0, 10.0));
+            list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(10.0, 2.0, 10.0));
             if (list2 != null) {
                 for (int k2 = 0; k2 < list2.size(); ++k2) {
                     if (list2.get(k2) instanceof EntityLivingBase && ((EntityLivingBase) list2.get(k2)).onGround) {
-                        ((EntityLivingBase) list2.get(k2)).attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), 4.0f);
+                        ((EntityLivingBase) list2.get(k2)).attackEntityFrom(DamageSource.causeMobDamage(this), 4.0f);
                         final EntityLivingBase entityLivingBase = (EntityLivingBase) list2.get(k2);
                         entityLivingBase.motionY += 0.8;
                     }
@@ -106,11 +106,10 @@ public class EntityBigStoneGolem extends EntityIronGolem implements IBossDisplay
             this.pound = false;
         }
         if (!this.pound && this.rand.nextInt(80) == 0 && !this.worldObj.isRemote) {
-            final List list3 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(5.0, 9.0, 5.0));
+            final List list3 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(5.0, 9.0, 5.0));
             if (list3 != null) {
                 for (int k3 = 0; k3 < list3.size(); ++k3) {
                     if (list3.get(k3) instanceof EntityLivingBase) {
-                        System.out.println("Found entity");
                         this.motionY += 0.8;
                         this.fallDistance = -6.0f;
                         this.pound = true;
@@ -120,12 +119,12 @@ public class EntityBigStoneGolem extends EntityIronGolem implements IBossDisplay
         }
         super.onUpdate();
         if (this.quakeattack) {
-            final List list3 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(15.0, 6.0, 15.0));
+            final List list3 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(15.0, 6.0, 15.0));
             if (list3 != null) {
                 for (int k3 = 0; k3 < list3.size(); ++k3) {
                     if (list3.get(k3) instanceof EntityLivingBase) {
                         ((EntityLivingBase) list3.get(k3)).hurtResistantTime = 0;
-                        ((EntityLivingBase) list3.get(k3)).attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), 0.01f);
+                        ((EntityLivingBase) list3.get(k3)).attackEntityFrom(DamageSource.causeMobDamage(this), 0.01f);
                     }
                 }
             }

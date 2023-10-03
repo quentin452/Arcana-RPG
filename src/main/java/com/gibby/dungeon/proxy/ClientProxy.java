@@ -39,7 +39,7 @@ public class ClientProxy extends CommonProxy
         RenderingRegistry.registerEntityRenderingHandler(EntityTroll.class, new RenderTroll(new ModelTroll(), 0.5f));
         RenderingRegistry.registerEntityRenderingHandler(EntityShimmerman.class, new RenderShimmerman(new ModelShimmerman(), 0.5f));
         RenderingRegistry.registerEntityRenderingHandler(EntityCyclops.class, new RenderCyclops(new ModelBiped(), 0.5f));
-        RenderingRegistry.registerEntityRenderingHandler(EntityStoneGolem.class, new RenderStoneGolem(new ModelIronGolem(), 0.5f));
+        RenderingRegistry.registerEntityRenderingHandler(EntityStoneGolem.class, new RenderStoneGolem(new ModelEarthGolem(), 0.5f));
         RenderingRegistry.registerEntityRenderingHandler(EntityTyphoon.class, new RenderTyphoon());
         RenderingRegistry.registerEntityRenderingHandler(EntitySandstorm.class, new RenderSandstorm());
         RenderingRegistry.registerEntityRenderingHandler(EntityVoidFiend.class, new RenderVoidFiend());

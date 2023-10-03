@@ -110,7 +110,7 @@ public class EggInit {
         EntityGoblinEgg = EntityGoblinEggInit;
         GameRegistry.registerItem(EntityGoblinEgg, "Goblin Egg");
 
-        SpawnEggsHandler EntityImpEggInit = new SpawnEggsHandler(EntityGoblin.class);
+        SpawnEggsHandler EntityImpEggInit = new SpawnEggsHandler(EntityImp.class);
         EntityImpEggInit.setUnlocalizedName("entity_imp_egg");
         EntityImpEgg = EntityImpEggInit;
         GameRegistry.registerItem(EntityImpEgg, "Imp Egg");
@@ -128,14 +128,14 @@ public class EggInit {
         SpawnEggsHandler EntityEarthGolemEggInit = new SpawnEggsHandler(EntityEarthGolem.class);
         EntityEarthGolemEggInit.setUnlocalizedName("entity_earth_golem_egg");
         EntityEarthGolemEgg =EntityEarthGolemEggInit;
-        GameRegistry.registerItem(EntityEarthGolemEgg, "Earth Golem Egg");
+        GameRegistry.registerItem(EntityEarthGolemEgg, "Terra Cotta Egg");
 
         SpawnEggsHandler EntityStoneGolemEggInit = new SpawnEggsHandler(EntityStoneGolem.class);
         EntityStoneGolemEggInit.setUnlocalizedName("entity_stone_golem_egg");
         EntityStoneGolemEgg =EntityStoneGolemEggInit;
         GameRegistry.registerItem(EntityStoneGolemEgg, "Stone Golem Egg");
 
-        SpawnEggsHandler EntityBigStoneGolemEggInit = new SpawnEggsHandler(EntityStoneGolem.class);
+        SpawnEggsHandler EntityBigStoneGolemEggInit = new SpawnEggsHandler(EntityBigStoneGolem.class);
         EntityBigStoneGolemEggInit.setUnlocalizedName("entity_big_stone_golem_egg");
         EntityBigStoneGolemEgg =EntityBigStoneGolemEggInit;
         GameRegistry.registerItem(EntityBigStoneGolemEgg, "Big Stone Golem Egg");
@@ -563,7 +563,7 @@ public class EggInit {
         SpawnEggsHandler EntityTreeGolemEggInit = new SpawnEggsHandler(EntityTreeGolem.class);
         EntityTreeGolemEggInit.setUnlocalizedName("entity_tree_golem_egg");
         EntityTreeGolemEgg = EntityTreeGolemEggInit;
-        GameRegistry.registerItem(EntityTreeGolemEgg, "Tree Golem Egg");
+        GameRegistry.registerItem(EntityTreeGolemEgg, "Dark Ent Egg");
 
         SpawnEggsHandler EntityPaladinEggInit = new SpawnEggsHandler(EntityPaladin.class);
         EntityPaladinEggInit.setUnlocalizedName("entity_paladin_egg");
