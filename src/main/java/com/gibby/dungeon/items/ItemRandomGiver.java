@@ -244,8 +244,13 @@ public class ItemRandomGiver extends Item {
             int randomIndex = rand.nextInt(lootList.length);
             ItemEntry randomEntry = lootList[randomIndex];
             ItemStack loot = randomEntry.getLootEntry();
-            if (!player.inventory.addItemStackToInventory(loot)) {
-                world.spawnEntityInWorld(new EntityItem(world, player.posX, player.posY, player.posZ, loot));
+
+            if (loot != null && world != null) {
+                // Check if the world is not null before spawning the entity
+                if (!world.isRemote) {
+                    EntityItem entityItem = new EntityItem(world, player.posX, player.posY, player.posZ, loot);
+                    world.spawnEntityInWorld(entityItem);
+                }
             }
         }
     }
