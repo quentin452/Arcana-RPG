@@ -325,19 +325,19 @@ public class DungeonEventHandler
         if (event.entityLiving instanceof EntityPlayer) {
             if (event.source == DamageSource.magic || event.source == DamageSource.causeIndirectMagicDamage(event.source.getEntity(), event.entity)) {
                 this.MagicArmor((EntityPlayer)event.entityLiving);
-                System.out.println(event.ammount);
+            //    System.out.println(event.ammount);
                 final double f = 1.0 + this.totalMagicDefence * 8 * 0.01;
                 event.ammount /= (float)f;
-                System.out.println(f);
-                System.out.println(event.ammount);
+            //    System.out.println(f);
+             //   System.out.println(event.ammount);
             }
             if (event.source == DamageSource.outOfWorld) {
                 this.voidArmor((EntityPlayer)event.entityLiving);
-                System.out.println(event.ammount);
+             //   System.out.println(event.ammount);
                 final double f = 1.0 + this.totalVoidDefence * 8 * 0.01;
                 event.ammount /= (float)f;
-                System.out.println(f);
-                System.out.println(event.ammount);
+            //    System.out.println(f);
+            //    System.out.println(event.ammount);
             }
         }
     }

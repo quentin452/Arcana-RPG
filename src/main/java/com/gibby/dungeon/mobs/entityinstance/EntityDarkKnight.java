@@ -6,11 +6,12 @@ import com.gibby.dungeon.Dungeons;
 import com.gibby.dungeon.mobs.ClientBossDisplay;
 import com.gibby.dungeon.mobs.IBossDisplay;
 import com.gibby.dungeon.mobs.ServerBossDisplay;
-import net.minecraft.entity.*;
+import ibxm.Player;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.boss.BossStatus;
 import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -37,8 +38,8 @@ public class EntityDarkKnight extends EntityMob implements IBossDisplayData
         this.attackTimer = 0;
         this.experienceValue = 750;
         this.setSize(3.0f, 4.6f);
-        this.tasks.addTask(4, (EntityAIBase)new EntityAIAttackOnCollide((EntityCreature)this, (Class)EntityLivingBase.class, 6.0, false));
-        this.targetTasks.addTask(3, (EntityAIBase)new EntityAINearestAttackableTarget((EntityCreature)this, (Class)EntityHannibal.class, 0, true));
+        this.tasks.addTask(4, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 6.0, false));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityHannibal.class, 0, true));
         if(par1World instanceof WorldServer) {
             bossDisplay = new ServerBossDisplay();
         } else {
@@ -71,24 +72,23 @@ public class EntityDarkKnight extends EntityMob implements IBossDisplayData
     protected float getSoundPitch() {
         return 0.6f;
     }
-
     public void onLivingUpdate() {
         super.onLivingUpdate();
         ++this.attackTimer;
         if (this.getHealth() < 150.0f) {
-            final List list = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(20.0, 5.0, 20.0));
+            final List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(20.0, 5.0, 20.0));
             if (list != null) {
                 for (int k2 = 0; k2 < list.size(); ++k2) {
                     if (list.get(k2) instanceof EntityLivingBase && ((EntityLivingBase) list.get(k2)).onGround) {
                         final double d0 = ((EntityLivingBase) list.get(k2)).posX - this.posX;
                         final double d2 = ((EntityLivingBase) list.get(k2)).posZ - this.posZ;
-                        ((EntityLivingBase) list.get(k2)).motionX = -d0 / (11.0f * ((EntityLivingBase) list.get(k2)).getDistanceToEntity((Entity)this));
-                        ((EntityLivingBase) list.get(k2)).motionZ = -d2 / (11.0f * ((EntityLivingBase) list.get(k2)).getDistanceToEntity((Entity)this));
+                        ((EntityLivingBase) list.get(k2)).motionX = -d0 / (11.0f * ((EntityLivingBase) list.get(k2)).getDistanceToEntity(this));
+                        ((EntityLivingBase) list.get(k2)).motionZ = -d2 / (11.0f * ((EntityLivingBase) list.get(k2)).getDistanceToEntity(this));
                     }
                 }
             }
         }
-        List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(1.2, 1.2, 1.2));
+        List list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(1.2, 1.2, 1.2));
         if (list2 != null) {
             for (int k2 = 0; k2 < list2.size(); ++k2) {
                 if (list2.get(k2) instanceof EntityLivingBase && this.attackTimer >= 30) {
@@ -98,7 +98,7 @@ public class EntityDarkKnight extends EntityMob implements IBossDisplayData
             }
         }
         boolean playerAround = false;
-        list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(20.0, 10.0, 20.0));
+        list2 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(20.0, 10.0, 20.0));
         if (list2 != null) {
             for (int k3 = 0; k3 < list2.size(); ++k3) {
                 if (list2.get(k3) instanceof EntityPlayer) {
@@ -113,12 +113,12 @@ public class EntityDarkKnight extends EntityMob implements IBossDisplayData
             }
         }
         if (this.quakeattack) {
-            final List list3 = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, this.boundingBox.expand(10.0, 3.0, 10.0));
+            final List list3 = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(10.0, 3.0, 10.0));
             if (list3 != null) {
                 for (int k4 = 0; k4 < list3.size(); ++k4) {
                     if (list3.get(k4) instanceof EntityLivingBase) {
                         ((EntityLivingBase) list3.get(k4)).hurtResistantTime = 0;
-                        ((EntityLivingBase) list3.get(k4)).attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), 0.01f);
+                        ((EntityLivingBase) list3.get(k4)).attackEntityFrom(DamageSource.causeMobDamage(this), 0.01f);
                     }
                 }
             }
@@ -143,11 +143,14 @@ public class EntityDarkKnight extends EntityMob implements IBossDisplayData
     }
 
     public boolean attackEntityAsMob(final Entity par1Entity) {
+        if (this.worldObj.isRemote || (par1Entity instanceof EntityPlayer && ((EntityPlayer) par1Entity).capabilities.isCreativeMode)) {
+            return false;
+        }
         if (par1Entity instanceof EntityLivingBase) {
-            ((EntityLivingBase)par1Entity).attackEntityFrom(DamageSource.outOfWorld, 8.0f);
+            par1Entity.attackEntityFrom(DamageSource.outOfWorld, 8.0f);
             for (int i = 0; i < 30; ++i) {
-                ((EntityLivingBase)par1Entity).hurtResistantTime = 0;
-                ((EntityLivingBase)par1Entity).attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)this), 0.01f);
+                par1Entity.hurtResistantTime = 0;
+                par1Entity.attackEntityFrom(DamageSource.causeMobDamage(this), 0.01f);
             }
             ((EntityLivingBase)par1Entity).addPotionEffect(new PotionEffect(Potion.blindness.id, 100, 0));
             ((EntityLivingBase)par1Entity).addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 100, 0));
@@ -194,21 +197,21 @@ public class EntityDarkKnight extends EntityMob implements IBossDisplayData
                 if (this.rand.nextInt(6) == 0 && !this.worldObj.isRemote) {
                     final EntityBlackKnight entityzombie = new EntityBlackKnight(this.worldObj);
                     entityzombie.setPosition(this.posX + 1.0 + this.rand.nextInt(10), this.posY + 3.0, this.posZ + 1.0 + this.rand.nextInt(10));
-                    this.worldObj.spawnEntityInWorld((Entity)entityzombie);
+                    this.worldObj.spawnEntityInWorld(entityzombie);
                     if (this.entityToAttack != null && entity instanceof EntityLivingBase) {
                         entityzombie.setAttackTarget((EntityLivingBase)this.entityToAttack);
                     }
-                    entityzombie.onSpawnWithEgg((IEntityLivingData)null);
+                    entityzombie.onSpawnWithEgg(null);
                     entityzombie.setPosition(this.posX + 1.0 + this.rand.nextInt(10), this.posY + 3.0, this.posZ + 1.0 + this.rand.nextInt(10));
                 }
                 if (this.rand.nextInt(6) == 0 && !this.worldObj.isRemote) {
                     final EntityBlackKnight entityzombie = new EntityBlackKnight(this.worldObj);
                     entityzombie.setPosition(this.posX - 1.0 - this.rand.nextInt(10), this.posY + 3.0, this.posZ - 1.0 - this.rand.nextInt(10));
-                    this.worldObj.spawnEntityInWorld((Entity)entityzombie);
+                    this.worldObj.spawnEntityInWorld(entityzombie);
                     if (this.entityToAttack != null && entity instanceof EntityLivingBase) {
                         entityzombie.setAttackTarget((EntityLivingBase)this.entityToAttack);
                     }
-                    entityzombie.onSpawnWithEgg((IEntityLivingData)null);
+                    entityzombie.onSpawnWithEgg(null);
                     entityzombie.setPosition(this.posX - 1.0 - this.rand.nextInt(10), this.posY + 3.0, this.posZ - 1.0 - this.rand.nextInt(10));
                 }
             }
@@ -218,21 +221,21 @@ public class EntityDarkKnight extends EntityMob implements IBossDisplayData
             if (this.rand.nextInt(6) == 0 && !this.worldObj.isRemote) {
                 final EntityBlackKnight entityzombie = new EntityBlackKnight(this.worldObj);
                 entityzombie.setPosition(this.posX + 1.0 + this.rand.nextInt(10), this.posY + 3.0, this.posZ + 1.0 + this.rand.nextInt(10));
-                this.worldObj.spawnEntityInWorld((Entity)entityzombie);
+                this.worldObj.spawnEntityInWorld(entityzombie);
                 if (this.entityToAttack != null && entity instanceof EntityLivingBase) {
                     entityzombie.setAttackTarget((EntityLivingBase)this.entityToAttack);
                 }
-                entityzombie.onSpawnWithEgg((IEntityLivingData)null);
+                entityzombie.onSpawnWithEgg(null);
                 entityzombie.setPosition(this.posX + 1.0 + this.rand.nextInt(10), this.posY + 3.0, this.posZ + 1.0 + this.rand.nextInt(10));
             }
             if (this.rand.nextInt(6) == 0 && !this.worldObj.isRemote) {
                 final EntityBlackKnight entityzombie = new EntityBlackKnight(this.worldObj);
                 entityzombie.setPosition(this.posX - 1.0 - this.rand.nextInt(10), this.posY + 3.0, this.posZ - 1.0 - this.rand.nextInt(10));
-                this.worldObj.spawnEntityInWorld((Entity)entityzombie);
+                this.worldObj.spawnEntityInWorld(entityzombie);
                 if (this.entityToAttack != null && entity instanceof EntityLivingBase) {
                     entityzombie.setAttackTarget((EntityLivingBase)this.entityToAttack);
                 }
-                entityzombie.onSpawnWithEgg((IEntityLivingData)null);
+                entityzombie.onSpawnWithEgg(null);
                 entityzombie.setPosition(this.posX - 1.0 - this.rand.nextInt(10), this.posY + 3.0, this.posZ - 1.0 - this.rand.nextInt(10));
             }
         }
