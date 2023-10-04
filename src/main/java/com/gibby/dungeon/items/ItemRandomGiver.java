@@ -4,14 +4,20 @@ import com.gibby.dungeon.Dungeons;
 import com.gibby.dungeon.util.ItemEntry;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Random;
 
 public class ItemRandomGiver extends Item {
+
+    private static final Logger LOGGER = LogManager.getLogger(ItemRandomGiver.class);
     public static ItemEntry[] Vampire = {
         new ItemEntry(Dungeons.voidCoin, 1, 1),
         new ItemEntry(Dungeons.lithium, 5, 10)
@@ -214,30 +220,40 @@ public class ItemRandomGiver extends Item {
         this.maxStackSize =64;
     }
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3) {
-        ItemEntry[] lootList = null;
+        if (par3.capabilities.isCreativeMode) {
+            if (par2World.isRemote) {
+                par3.addChatMessage(new ChatComponentText("You must be in survival mode to use ItemRandomGiver due to a duplication issue."));
+            }
+        } else {
+            if (par1ItemStack.getItem() == this) {
+            if (!par3.isSneaking()) {
+            ItemEntry[] lootList = null;
 
-        if (Dungeons.randomItemGiverVampire != null) {
-            lootList = Vampire;
-        } else if (Dungeons.randomItemGiverVoidDungeon != null) {
-            lootList = VoidDungeon;
-        } else if (Dungeons.randomItemGiverMontaneDungeon != null) {
-            lootList = MontaneDungeon;
-        } else if (Dungeons.randomItemGiverMontagneRiche != null) {
-            lootList = MontagneRiche;
-        } else if (Dungeons.randomItemGiverNetherStructure != null) {
-            lootList = NetherStructure;
-        } else if (Dungeons.randomItemGiverBeholder != null) {
-            lootList = Beholder;
-        } else if (Dungeons.randomItemGiverdungeonChest != null) {
-            lootList = DungeonChest;
+            if (Dungeons.randomItemGiverVampire != null) {
+                lootList = Vampire;
+            } else if (Dungeons.randomItemGiverVoidDungeon != null) {
+                lootList = VoidDungeon;
+            } else if (Dungeons.randomItemGiverMontaneDungeon != null) {
+                lootList = MontaneDungeon;
+            } else if (Dungeons.randomItemGiverMontagneRiche != null) {
+                lootList = MontagneRiche;
+            } else if (Dungeons.randomItemGiverNetherStructure != null) {
+                lootList = NetherStructure;
+            } else if (Dungeons.randomItemGiverBeholder != null) {
+                lootList = Beholder;
+            } else if (Dungeons.randomItemGiverdungeonChest != null) {
+                lootList = DungeonChest;
+            }
+
+            if (lootList != null && !par2World.isRemote) {
+                giveRandomLoot(par2World, par3);
+                par1ItemStack.stackSize--;
+            }
         }
-
-        if (lootList != null) {
-            giveRandomLoot(par2World, par3);
-        }
-
+        } }
         return par1ItemStack;
     }
+
 
     private void giveRandomLoot(World world, EntityPlayer player) {
         if (lootList != null && lootList.length > 0) {
@@ -246,7 +262,6 @@ public class ItemRandomGiver extends Item {
             ItemStack loot = randomEntry.getLootEntry();
 
             if (loot != null && world != null) {
-                // Check if the world is not null before spawning the entity
                 if (!world.isRemote) {
                     EntityItem entityItem = new EntityItem(world, player.posX, player.posY, player.posZ, loot);
                     world.spawnEntityInWorld(entityItem);
@@ -254,5 +269,4 @@ public class ItemRandomGiver extends Item {
             }
         }
     }
-
 }
