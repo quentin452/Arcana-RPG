@@ -30,7 +30,7 @@ public class BlockBadgererSpawner extends Block
     }
 
     public void randomDisplayTick(final World world, final int x, final int y, final int z, final Random random) {
-        for (int i = 0; i < 100; ++i) {
+        for (int i = 0; i < 1; ++i) {
             world.spawnParticle("portal", x + Dungeons.randGauss(), y + Dungeons.randGauss(), z + Dungeons.randGauss(), Dungeons.randGauss(), Dungeons.randGauss(), Dungeons.randGauss());
         }
     }

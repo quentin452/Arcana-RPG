@@ -53,13 +53,13 @@ public class EntityEnergy extends EntityThrowable
     }
 
     protected void onImpact(final MovingObjectPosition var1) {
-        if (var1.entityHit != null && var1.entityHit instanceof EntityLivingBase) {
-            ((EntityLivingBase)var1.entityHit).attackEntityFrom(DamageSource.causeThrownDamage((Entity)this, var1.entityHit), 1.0f);
-            ((EntityLivingBase)var1.entityHit).hurtResistantTime = 0;
-            ((EntityLivingBase)var1.entityHit).attackEntityFrom(DamageSource.magic, (float)(5 + this.tier * 3));
+        if (var1.entityHit instanceof EntityLivingBase) {
+            var1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, var1.entityHit), 1.0f);
+            var1.entityHit.hurtResistantTime = 0;
+            var1.entityHit.attackEntityFrom(DamageSource.magic, (float)(5 + this.tier * 3));
         }
         if (this.worldObj.isRemote) {
-            for (int i = 0; i < 100; ++i) {
+            for (int i = 0; i < 1; ++i) {
                 final float colorRand1 = (float)this.rand.nextGaussian();
                 final float colorRand2 = (float)this.rand.nextGaussian();
                 final float colorRand3 = (float)this.rand.nextGaussian();
@@ -67,7 +67,7 @@ public class EntityEnergy extends EntityThrowable
                 final double randY = this.rand.nextGaussian() - this.rand.nextGaussian();
                 final double randZ = this.rand.nextGaussian() - this.rand.nextGaussian();
                 final EntityReddustFX particle = new EntityReddustFX(this.worldObj, this.posX + randX, this.posY + randY, this.posZ + randZ, colorRand1, colorRand2, colorRand3);
-                Minecraft.getMinecraft().effectRenderer.addEffect((EntityFX)particle);
+                Minecraft.getMinecraft().effectRenderer.addEffect(particle);
             }
         }
     }

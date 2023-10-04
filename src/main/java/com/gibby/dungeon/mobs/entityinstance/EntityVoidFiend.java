@@ -61,7 +61,7 @@ public class EntityVoidFiend extends EntityMob
 
     public void onUpdate() {
         super.onUpdate();
-        for (int i = 0; i < 100; ++i) {
+        for (int i = 0; i < 1; ++i) {
             this.worldObj.spawnParticle("smoke", this.posX + (this.rand.nextGaussian() - this.rand.nextGaussian()) / 8.0, this.posY + this.rand.nextGaussian() / 5.0 + 0.5, this.posZ + (this.rand.nextGaussian() - this.rand.nextGaussian()) / 8.0, 0.0, 0.0, 0.0);
         }
     }

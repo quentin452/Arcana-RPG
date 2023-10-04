@@ -58,7 +58,7 @@ public class EntityBlackEnergy extends EntityThrowable
             var1.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, var1.entityHit), 6.0f);
         }
         if (this.worldObj.isRemote) {
-            for (int i = 0; i < 100; ++i) {
+            for (int i = 0; i < 1; ++i) {
                 final float random = (float)this.rand.nextGaussian();
                 final double randX = this.rand.nextGaussian() - this.rand.nextGaussian();
                 final double randY = this.rand.nextGaussian() - this.rand.nextGaussian();

@@ -39,7 +39,7 @@ public class EntityQuake extends EntityThrowable
         final int X = (int)this.posX;
         int Y = (int)this.freezeY;
         final int Z = (int)this.posZ;
-        for (int i = 0; i < 100; ++i) {
+        for (int i = 0; i < 1; ++i) {
             if (this.freezeY != 0.0) {
                 final Block block = (this.worldObj.getBlock(X, Y, Z) != Blocks.air) ? this.worldObj.getBlock(X, Y, Z) : Blocks.dirt;
                 final double particlePosX = this.posX + (this.rand.nextGaussian() - this.rand.nextGaussian());

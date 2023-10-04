@@ -60,7 +60,7 @@ public class EntityVoidDisk extends EntityThrowable
     public void onUpdate() {
         super.onUpdate();
         if (this.impact) {
-            for (int i = 0; i < 100; ++i) {
+            for (int i = 0; i < 1; ++i) {
                 this.worldObj.spawnParticle("happyVillager", this.posX, this.posY, this.posZ, Dungeons.randGauss(), 0.0, Dungeons.randGauss());
                 final List list = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this.getThrower(), this.boundingBox.expand(5.0, 5.0, 5.0));
                 if (list != null) {
