@@ -94,10 +94,16 @@ public class DungeonEventHandler
         }
 
         if (entity.getActivePotionEffect(Potion.damageBoost) != null && entity.worldObj.rand.nextInt(8) == 0) {
+            randx = entity.worldObj.rand.nextGaussian() / 2.0 - entity.worldObj.rand.nextGaussian() / 2.0;
+            randy = entity.worldObj.rand.nextGaussian() / 2.0 - entity.worldObj.rand.nextGaussian() / 4.0;
+            randz = entity.worldObj.rand.nextGaussian() / 2.0 - entity.worldObj.rand.nextGaussian() / 2.0;
             entity.worldObj.spawnParticle("reddust", entity.posX + randx, entity.posY + randy, entity.posZ + randz, 0.0, 0.0, 0.0);
         }
 
         if (entity.getActivePotionEffect(Potion.wither) != null && entity.worldObj.rand.nextInt(8) == 0) {
+            randx = entity.worldObj.rand.nextGaussian() / 2.0 - entity.worldObj.rand.nextGaussian() / 2.0;
+            randy = entity.worldObj.rand.nextGaussian() / 2.0 - entity.worldObj.rand.nextGaussian() / 4.0;
+            randz = entity.worldObj.rand.nextGaussian() / 2.0 - entity.worldObj.rand.nextGaussian() / 2.0;
             entity.worldObj.spawnParticle("mobspell", entity.posX + randx, entity.posY + randy, entity.posZ + randz, 0.0, 0.0, 0.0);
         }
 
