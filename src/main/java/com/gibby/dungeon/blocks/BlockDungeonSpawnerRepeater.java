@@ -34,4 +34,5 @@ public class BlockDungeonSpawnerRepeater extends Block implements ITileEntityPro
     public boolean isOpaqueCube() {
         return false;
     }
+
 }
