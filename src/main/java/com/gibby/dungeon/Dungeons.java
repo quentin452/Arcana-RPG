@@ -45,7 +45,7 @@ import net.minecraftforge.common.util.EnumHelper;
 import java.io.File;
 import java.util.Random;
 
-@Mod(modid = Dungeons.MODID, version = "1.4.7.8",dependencies = "required-after:reccomplex;")
+@Mod(modid = Dungeons.MODID, version = "1.4.8.1",dependencies = "required-after:reccomplex;")
 public class Dungeons
 {
     public static final String MODID = "gibby_dungeons";
@@ -1534,25 +1534,6 @@ public class Dungeons
     public static int randRange(final int start, final int end) {
         final Random rand = new Random();
         return rand.nextInt(Math.abs(start - end) + 1) + start;
-    }
-
-    public static void spawner(final World world, final int x, final int y, final int z, final int mobId, final int mobCount) {
-        world.setBlock(x, y, z, Dungeons.dungeonSpawner);
-        final TileEntityDungeonSpawner spawner = (TileEntityDungeonSpawner)world.getTileEntity(x, y, z);
-        if (spawner != null) {
-            spawner.setMobName(mobId);
-            spawner.setMobCount(mobCount);
-        }
-    }
-
-    public static void spawnerRepeater(final World world, final int x, final int y, final int z, final int mobId, final int mobCount, final int cooldown) {
-        world.setBlock(x, y, z, Dungeons.dungeonSpawnerRepeater);
-        final TileEntityDungeonSpawnerRepeater spawner = (TileEntityDungeonSpawnerRepeater)world.getTileEntity(x, y, z);
-        if (spawner != null) {
-            spawner.setMobName(mobId);
-            spawner.setMobCount(mobCount);
-            spawner.setCooldown(cooldown);
-        }
     }
 
     static {

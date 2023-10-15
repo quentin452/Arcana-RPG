@@ -19,7 +19,6 @@ import net.minecraft.init.Items;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import net.minecraftforge.common.IExtendedEntityProperties;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -37,7 +36,7 @@ public class DungeonEventHandler
             DungeonsExtendedPlayer.register((EntityPlayer)event.entity);
         }
         if (event.entity instanceof EntityPlayer && event.entity.getExtendedProperties("ExtendedPlayer") == null) {
-            event.entity.registerExtendedProperties("ExtendedPlayer", (IExtendedEntityProperties)new DungeonsExtendedPlayer((EntityPlayer)event.entity));
+            event.entity.registerExtendedProperties("ExtendedPlayer", new DungeonsExtendedPlayer((EntityPlayer)event.entity));
         }
     }
 
@@ -58,6 +57,12 @@ public class DungeonEventHandler
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void onLivingUpdate(final LivingEvent.LivingUpdateEvent event) {
+        double randx = 0.0;
+        double randx2;
+        double randz2 = 0.0;
+        double randz3;
+        double randy = 0.0;
+        double randz = 0.0;
         final EntityLivingBase entity = event.entityLiving;
         if (entity instanceof EntityPlayer) {
             final EntityPlayer player = (EntityPlayer)entity;
@@ -81,37 +86,47 @@ public class DungeonEventHandler
                 par3.addMagic(1);
             }
         }
+
+        if (entity instanceof EntityPlayer) {
+            randx = entity.worldObj.rand.nextGaussian() / 2.0 - entity.worldObj.rand.nextGaussian() / 2.0;
+            randy = entity.worldObj.rand.nextGaussian() / 2.0 - entity.worldObj.rand.nextGaussian() / 4.0;
+            randz = entity.worldObj.rand.nextGaussian() / 2.0 - entity.worldObj.rand.nextGaussian() / 2.0;
+        }
+
         if (entity.getActivePotionEffect(Potion.damageBoost) != null && entity.worldObj.rand.nextInt(8) == 0) {
-            final double randx = entity.worldObj.rand.nextGaussian() / 2.0 - entity.worldObj.rand.nextGaussian() / 2.0;
-            final double randy = entity.worldObj.rand.nextGaussian() / 2.0 - entity.worldObj.rand.nextGaussian() / 4.0;
-            final double randz = entity.worldObj.rand.nextGaussian() / 2.0 - entity.worldObj.rand.nextGaussian() / 2.0;
+            randx = entity.worldObj.rand.nextGaussian() / 2.0 - entity.worldObj.rand.nextGaussian() / 2.0;
+            randy = entity.worldObj.rand.nextGaussian() / 2.0 - entity.worldObj.rand.nextGaussian() / 4.0;
+            randz = entity.worldObj.rand.nextGaussian() / 2.0 - entity.worldObj.rand.nextGaussian() / 2.0;
             entity.worldObj.spawnParticle("reddust", entity.posX + randx, entity.posY + randy, entity.posZ + randz, 0.0, 0.0, 0.0);
         }
+
         if (entity.getActivePotionEffect(Potion.wither) != null && entity.worldObj.rand.nextInt(8) == 0) {
-            final double randx = entity.worldObj.rand.nextGaussian() / 2.0 - entity.worldObj.rand.nextGaussian() / 2.0;
-            final double randy = entity.worldObj.rand.nextGaussian() / 2.0 - entity.worldObj.rand.nextGaussian() / 4.0;
-            final double randz = entity.worldObj.rand.nextGaussian() / 2.0 - entity.worldObj.rand.nextGaussian() / 2.0;
+            randx = entity.worldObj.rand.nextGaussian() / 2.0 - entity.worldObj.rand.nextGaussian() / 2.0;
+            randy = entity.worldObj.rand.nextGaussian() / 2.0 - entity.worldObj.rand.nextGaussian() / 4.0;
+            randz = entity.worldObj.rand.nextGaussian() / 2.0 - entity.worldObj.rand.nextGaussian() / 2.0;
             entity.worldObj.spawnParticle("mobspell", entity.posX + randx, entity.posY + randy, entity.posZ + randz, 0.0, 0.0, 0.0);
         }
+
         if (entity.getActivePotionEffect(Potion.regeneration) != null && entity.worldObj.rand.nextInt(12) == 0) {
-            final double randx = entity.worldObj.rand.nextGaussian() - entity.worldObj.rand.nextGaussian() / 2.0;
-            final double randy = entity.worldObj.rand.nextGaussian() - entity.worldObj.rand.nextGaussian() / 2.0;
-            final double randz = entity.worldObj.rand.nextGaussian() - entity.worldObj.rand.nextGaussian() / 2.0;
+            randx = entity.worldObj.rand.nextGaussian() - entity.worldObj.rand.nextGaussian() / 2.0;
+            randy = entity.worldObj.rand.nextGaussian() - entity.worldObj.rand.nextGaussian() / 2.0;
+            randz = entity.worldObj.rand.nextGaussian() - entity.worldObj.rand.nextGaussian() / 2.0;
             entity.worldObj.spawnParticle("heart", entity.posX + randx, entity.posY + randy, entity.posZ + randz, 0.0, 0.0, 0.0);
         }
+
         if (entity.getActivePotionEffect(Potion.resistance) != null) {
-            final double randx = entity.worldObj.rand.nextGaussian() - 0.5;
-            final double randz2 = entity.worldObj.rand.nextGaussian() - 0.5;
+            randx = entity.worldObj.rand.nextGaussian() - 0.5;
+            randz2 = entity.worldObj.rand.nextGaussian() - 0.5;
+
             if (entity instanceof EntityPlayer) {
                 entity.worldObj.spawnParticle("blockcrack_" + Block.getIdFromBlock(Blocks.stone) + "_0", entity.posX + randx, entity.posY - 1.52, entity.posZ + randz2, 0.0, 0.0, 0.0);
-            }
-            else {
+            } else {
                 entity.worldObj.spawnParticle("blockcrack_" + Block.getIdFromBlock(Blocks.stone) + "_0", entity.posX + randx, entity.posY + 1.0, entity.posZ + randz2, 0.0, 0.0, 0.0);
             }
         }
         if (entity.getActivePotionEffect(Potion.fireResistance) != null && entity.worldObj.rand.nextInt(12) == 0) {
-            final double randx = entity.worldObj.rand.nextGaussian() - 0.5;
-            final double randz2 = entity.worldObj.rand.nextGaussian() - 0.5;
+            randx = entity.worldObj.rand.nextGaussian() - 0.5;
+            randz2 = entity.worldObj.rand.nextGaussian() - 0.5;
             if (entity instanceof EntityPlayer) {
                 entity.worldObj.spawnParticle("flame", entity.posX + randx, entity.posY - 1.52, entity.posZ + randz2, 0.0, 0.0, 0.0);
             }
@@ -120,8 +135,8 @@ public class DungeonEventHandler
             }
         }
         if (entity.getActivePotionEffect(Potion.moveSpeed) != null && entity.worldObj.rand.nextInt(3) == 0) {
-            final double randx = entity.worldObj.rand.nextGaussian() - 0.5;
-            final double randz2 = entity.worldObj.rand.nextGaussian() - 0.5;
+            randx = entity.worldObj.rand.nextGaussian() - 0.5;
+            randx2 = entity.worldObj.rand.nextGaussian() - 0.5;
             if (entity instanceof EntityPlayer) {
                 entity.worldObj.spawnParticle("cloud", entity.posX + randx, entity.posY - 1.52, entity.posZ + randz2, 0.0, 0.0, 0.0);
             }
@@ -130,8 +145,8 @@ public class DungeonEventHandler
             }
         }
         if (entity.getActivePotionEffect(Potion.jump) != null) {
-            final double randx = entity.worldObj.rand.nextGaussian() - 0.3;
-            final double randz2 = entity.worldObj.rand.nextGaussian() - 0.3;
+            randx = entity.worldObj.rand.nextGaussian() - 0.3;
+            randz2 = entity.worldObj.rand.nextGaussian() - 0.3;
             if (entity instanceof EntityPlayer) {
                 entity.worldObj.spawnParticle("happyVillager", entity.posX + randx, entity.posY - 1.52, entity.posZ + randz2, 0.0, 0.0, 0.0);
             }
@@ -145,8 +160,8 @@ public class DungeonEventHandler
             entity.hurtResistantTime = 5;
         }
         if (entity.getActivePotionEffect(Dungeons.growth) != null) {
-            double randx = entity.worldObj.rand.nextGaussian() - 0.5;
-            double randz2 = entity.worldObj.rand.nextGaussian() - 0.5;
+            randx = entity.worldObj.rand.nextGaussian() - 0.5;
+            randz2 = entity.worldObj.rand.nextGaussian() - 0.5;
             if (entity instanceof EntityPlayer) {
                 entity.worldObj.spawnParticle("happyVillager", entity.posX + randx, entity.posY - 1.52, entity.posZ + randz2, 0.0, 0.0, 0.0);
             }
@@ -169,14 +184,14 @@ public class DungeonEventHandler
         }
         if (entity.getActivePotionEffect(Dungeons.inflame) != null) {
             for (int j = 0; j < 5; ++j) {
-                final double randx2 = (entity.worldObj.rand.nextGaussian() - 0.5) / 4.0;
-                final double randz3 = (entity.worldObj.rand.nextGaussian() - 0.5) / 4.0;
+                randx2 = (entity.worldObj.rand.nextGaussian() - 0.5) / 4.0;
+                randz3 = (entity.worldObj.rand.nextGaussian() - 0.5) / 4.0;
                 entity.worldObj.spawnParticle("flame", entity.posX + randx2, entity.posY - 1.52, entity.posZ + randz3, 0.0, 0.0, 0.0);
                 entity.worldObj.spawnParticle("smoke", entity.posX + randx2, entity.posY - 1.52, entity.posZ + randz3, 0.0, 0.0, 0.0);
             }
             if (entity.worldObj.rand.nextInt(5) == 0) {
-                final double randx = (entity.worldObj.rand.nextGaussian() - 0.5) / 4.0;
-                final double randz2 = (entity.worldObj.rand.nextGaussian() - 0.5) / 4.0;
+                randx = (entity.worldObj.rand.nextGaussian() - 0.5) / 4.0;
+                randz2 = (entity.worldObj.rand.nextGaussian() - 0.5) / 4.0;
                 entity.worldObj.spawnParticle("lava", entity.posX + randx, entity.posY + 0.5, entity.posZ + randz2, 0.0, 0.0, 0.0);
                 entity.worldObj.playSoundAtEntity(entity, "random.fizz", 0.5f, 1.0f);
                 entity.addPotionEffect(new PotionEffect(Potion.fireResistance.id, 100, 0));
@@ -193,8 +208,8 @@ public class DungeonEventHandler
         }
         if (entity.getActivePotionEffect(Dungeons.magicBoost) != null) {
             for (int j = 0; j < 5; ++j) {
-                final double randx2 = (entity.worldObj.rand.nextGaussian() - 0.5) / 2.0;
-                final double randz3 = (entity.worldObj.rand.nextGaussian() - 0.5) / 2.0;
+                randx2 = (entity.worldObj.rand.nextGaussian() - 0.5) / 2.0;
+                randz3 = (entity.worldObj.rand.nextGaussian() - 0.5) / 2.0;
                 if (entity instanceof EntityPlayer) {
                     entity.worldObj.spawnParticle("enchantmenttable", entity.posX + randx2, entity.posY - 1.52, entity.posZ + randz3, 0.0, 0.0, 0.0);
                     entity.worldObj.spawnParticle("portal", entity.posX + randx2, entity.posY - 1.52, entity.posZ + randz3, 0.0, 0.0, 0.0);
@@ -216,14 +231,14 @@ public class DungeonEventHandler
         if (entity.getActivePotionEffect(Dungeons.storm) != null) {
             if (entity.motionX == 0.0 && entity.motionZ == 0.0) {
                 for (int j = 0; j < 20; ++j) {
-                    final double randx2 = (entity.worldObj.rand.nextGaussian() - 0.5) / 1.5;
-                    final double randz3 = (entity.worldObj.rand.nextGaussian() - 0.5) / 1.5;
+                    randx2 = (entity.worldObj.rand.nextGaussian() - 0.5) / 1.5;
+                    randz3 = (entity.worldObj.rand.nextGaussian() - 0.5) / 1.5;
                     entity.worldObj.spawnParticle("cloud", entity.posX + randx2, entity.posY + 2.3, entity.posZ + randz3, 0.0, 0.0, 0.0);
                     entity.worldObj.spawnParticle("explode", entity.posX + randx2, entity.posY + 2.3, entity.posZ + randz3, 0.0, 0.0, 0.0);
                 }
                 for (int j = 0; j < 3; ++j) {
-                    final double randx2 = (entity.worldObj.rand.nextGaussian() - 0.5) / 2.5;
-                    final double randz3 = (entity.worldObj.rand.nextGaussian() - 0.5) / 2.5;
+                    randx2 = (entity.worldObj.rand.nextGaussian() - 0.5) / 2.5;
+                    randz3 = (entity.worldObj.rand.nextGaussian() - 0.5) / 2.5;
                     entity.worldObj.spawnParticle("dripWater", entity.posX + randx2, entity.posY + 2.3, entity.posZ + randz3, 0.0, 0.0, 0.0);
                 }
             }
@@ -236,8 +251,8 @@ public class DungeonEventHandler
             }
         }
         if (entity.getActivePotionEffect(Dungeons.antigravity) != null) {
-            final double randx = (entity.worldObj.rand.nextGaussian() - 0.5) / 4.0;
-            final double randz2 = (entity.worldObj.rand.nextGaussian() - 0.5) / 4.0;
+            randx = (entity.worldObj.rand.nextGaussian() - 0.5) / 4.0;
+            randz2 = (entity.worldObj.rand.nextGaussian() - 0.5) / 4.0;
             entity.worldObj.spawnParticle("magicCrit", entity.posX + randx, entity.posY - 1.52, entity.posZ + randz2, 0.0, 0.0, 0.0);
             entity.worldObj.spawnParticle("crit", entity.posX + randx, entity.posY - 1.52, entity.posZ + randz2, 0.0, 0.0, 0.0);
             if (entity.motionY <= 3.0) {
@@ -256,12 +271,11 @@ public class DungeonEventHandler
         }
         if (entity.getActivePotionEffect(Dungeons.shadowAura) != null) {
             for (int j = 0; j < 15; ++j) {
-                final double randx2 = (entity.worldObj.rand.nextGaussian() - 0.5) / 2.0;
-                final double randz3 = (entity.worldObj.rand.nextGaussian() - 0.5) / 2.0;
+                randx2 = (entity.worldObj.rand.nextGaussian() - 0.5) / 2.0;
+                randz3 = (entity.worldObj.rand.nextGaussian() - 0.5) / 2.0;
                 if (entity instanceof EntityPlayer && entity.worldObj.isRemote) {
                     final double timePassed = (double) (entity.ticksExisted / 2 + j * 40) / 10;
                     final double particlePositionX = Math.cos(timePassed) * 2.0;
-                    final double particlePositionY = Math.sin(timePassed) * 2.0;
                     final double particlePositionZ = Math.sin(timePassed) * 2.0;
                     final EntityFlameFX particle = new EntityFlameFX(entity.worldObj, entity.posX + particlePositionX, entity.posY - 1.52, entity.posZ + particlePositionZ, 0.0, 0.0, 0.0);
                     particle.setRBGColorF(0.0f, 0.1f, 0.6f);
@@ -288,8 +302,6 @@ public class DungeonEventHandler
         if (entity.getActivePotionEffect(Dungeons.crystalliumBlessing) != null) {
             entity.addPotionEffect(new PotionEffect(Potion.resistance.id, 5, 3));
             for (int j = 0; j < 15; ++j) {
-                final double randx2 = (entity.worldObj.rand.nextGaussian() - 0.5) / 2.0;
-                final double randz3 = (entity.worldObj.rand.nextGaussian() - 0.5) / 2.0;
                 if (entity instanceof EntityPlayer && entity.worldObj.isRemote) {
                     final double timePassed = (double) (entity.ticksExisted + j * 40) / 10;
                     final double particlePositionX = Math.cos(timePassed) * 2.0;
@@ -325,19 +337,19 @@ public class DungeonEventHandler
         if (event.entityLiving instanceof EntityPlayer) {
             if (event.source == DamageSource.magic || event.source == DamageSource.causeIndirectMagicDamage(event.source.getEntity(), event.entity)) {
                 this.MagicArmor((EntityPlayer)event.entityLiving);
-                System.out.println(event.ammount);
+            //    System.out.println(event.ammount);
                 final double f = 1.0 + this.totalMagicDefence * 8 * 0.01;
                 event.ammount /= (float)f;
-                System.out.println(f);
-                System.out.println(event.ammount);
+            //    System.out.println(f);
+             //   System.out.println(event.ammount);
             }
             if (event.source == DamageSource.outOfWorld) {
                 this.voidArmor((EntityPlayer)event.entityLiving);
-                System.out.println(event.ammount);
+             //   System.out.println(event.ammount);
                 final double f = 1.0 + this.totalVoidDefence * 8 * 0.01;
                 event.ammount /= (float)f;
-                System.out.println(f);
-                System.out.println(event.ammount);
+            //    System.out.println(f);
+            //    System.out.println(event.ammount);
             }
         }
     }

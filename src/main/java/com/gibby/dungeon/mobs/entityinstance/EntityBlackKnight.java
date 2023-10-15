@@ -25,8 +25,8 @@ public class EntityBlackKnight extends EntityMob
     public EntityBlackKnight(final World par1World) {
         super(par1World);
         this.setSize(2.3f, 2.3f);
-        this.tasks.addTask(4, (EntityAIBase)new EntityAIAttackOnCollide((EntityCreature)this, (Class)EntityLivingBase.class, 1.0, false));
-        this.targetTasks.addTask(3, (EntityAIBase)new EntityAINearestAttackableTarget((EntityCreature)this, (Class)EntityHannibal.class, 0, true));
+        this.tasks.addTask(4, new EntityAIAttackOnCollide(this, EntityLivingBase.class, 1.0, false));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityHannibal.class, 0, true));
         this.experienceValue = 15;
     }
 
