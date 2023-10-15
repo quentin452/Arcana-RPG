@@ -85,27 +85,24 @@ public class BlockCrystalliumLeaves extends BlockLeaves
     public int getRenderType() {
         return super.getRenderType();
     }
-    public void updateTick(final World par1World, final int par2, final int par3, final int par4,
-                           final Random par5Random) {
-        int var7 = 30;
-        int totaldist;
-        if (!par1World.isRemote && par1World
-            .checkChunksExist(par2 - var7, par3 - var7, par4 - var7, par2 + var7, par3 + var7, par4 + var7)) {
-            for (int var8 = -var7; var8 <= var7; ++var8) {
-                for (int var9 = -var7; var9 <= 0; ++var9) {
-                    for (int var10 = -var7; var10 <= var7; ++var10) {
-                        totaldist = Math.abs(var8) + Math.abs(var9) + Math.abs(var10);
+    public void updateTick(final World world, final int x, final int y, final int z, final Random random) {
+        int radius = 30;
+
+        if (!world.isRemote && world.checkChunksExist(x - radius, y - radius, z - radius, x + radius, y + radius, z + radius)) {
+            for (int offX = -radius; offX <= radius; ++offX) {
+                for (int offY = -radius; offY <= radius; ++offY) {
+                    for (int offZ = -radius; offZ <= radius; ++offZ) {
+                        int totaldist = Math.max(Math.max(Math.abs(offX), Math.abs(offY)), Math.abs(offZ));
                         if (totaldist <= 5) {
-                            Block bid = par1World.getBlock(par2 + var8, par3 + var9, par4 + var10);
-                            if (bid != null && canSustainLeaves(par1World, par2 + var8, par3 + var9, par4 + var10)) {
-                                bid = par1World.getBlock(par2, par3 - 1, par4);
+                            Block adjacentBlock = world.getBlock(x + offX, y + offY, z + offZ);
+                            if (adjacentBlock != null && canSustainLeaves(world, x + offX, y + offY, z + offZ)) {
                                 return;
                             }
                         }
                     }
                 }
             }
-            this.removeLeaves(par1World, par2, par3, par4);
+            this.removeLeaves(world, x, y, z);
         }
     }
 
