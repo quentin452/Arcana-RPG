@@ -86,7 +86,7 @@ public class FileInjector {
         // List of source file names
         String[] sourceFiles = {
             "ARCANA_RPG_archruinsV1.3.rcst",
-            "ARCANA_RPG_LargeCastle3V1.2.1.rcst",
+            "ARCANA_RPG_LargeCastle3V1.2.2.rcst",
             "ARCANA_RPG_SmallCastleV1.2.2.rcst",
             "ARCANA_RPG_squareruinsV1.2.rcst",
             "ARCANA_RPG_WorldGenBleachedDungeonV1.2.rcst",

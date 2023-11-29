@@ -112,7 +112,7 @@ public class ModConfig {
         return config.get("Dungeon generation", "Enable ARCANA_RPG_archruinsV1.2", true).getBoolean();
     }
     public boolean isARCANA_RPG_LargeCastle3Enabled() {
-        return config.get("Dungeon generation", "Enable ARCANA_RPG_LargeCastle3V1.2.1.rcst", true).getBoolean();
+        return config.get("Dungeon generation", "Enable ARCANA_RPG_LargeCastle3V1.2.2.rcst", true).getBoolean();
     }
     public boolean isARCANA_RPG_SmallCastleEnabled() {
         return config.get("Dungeon generation", "Enable ARCANA_RPG_SmallCastleV1.2.1.rcst", true).getBoolean();
