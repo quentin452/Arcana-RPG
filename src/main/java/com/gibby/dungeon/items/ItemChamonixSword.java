@@ -61,14 +61,17 @@ public class ItemChamonixSword extends ItemStandardMagicSword
     @Override
     public void onUpdate(final ItemStack par1ItemStack, final World par2World, final Entity par3Entity, final int par4, final boolean par5) {
         super.onUpdate(par1ItemStack, par2World, par3Entity, par4, par5);
-        if (par3Entity instanceof EntityPlayer) {
-            final EntityPlayer par6 = (EntityPlayer)par3Entity;
-            if (par6.isBlocking() && par1ItemStack == par6.getCurrentEquippedItem() && !par2World.isRemote) {
-                for (int i = 0; i < 4; ++i) {
-                    final EntityFireworkSparkFX particle = new EntityFireworkSparkFX(par2World, par6.posX + Dungeons.randGauss() / 2.0, par6.posY + Dungeons.randGauss() / 2.0, par6.posZ + Dungeons.randGauss() / 2.0, 0.0, 0.0, 0.0, Minecraft.getMinecraft().effectRenderer);
-                    particle.setRBGColorF(1.0f, 1.0f, 0.0f);
-                    Minecraft.getMinecraft().effectRenderer.addEffect(particle);
-                }
+
+        if (!(par3Entity instanceof EntityPlayer)) {
+            return;
+        }
+
+        final EntityPlayer par6 = (EntityPlayer) par3Entity;
+        if (par6.isBlocking() && par1ItemStack == par6.getCurrentEquippedItem() && par2World.isRemote) {
+            for (int i = 0; i < 4; ++i) {
+                final EntityFireworkSparkFX particle = new EntityFireworkSparkFX(par2World, par6.posX + Dungeons.randGauss() / 2.0, par6.posY + Dungeons.randGauss() / 2.0, par6.posZ + Dungeons.randGauss() / 2.0, 0.0, 0.0, 0.0, Minecraft.getMinecraft().effectRenderer);
+                particle.setRBGColorF(1.0f, 1.0f, 0.0f);
+                Minecraft.getMinecraft().effectRenderer.addEffect(particle);
             }
         }
     }
